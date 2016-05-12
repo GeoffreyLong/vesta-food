@@ -1,0 +1,38 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+a {
+  color: #00b7ff;
+}
+#paneOne {
+  height: 90%;
+  max-width: 100%;
+/***** IMAGE STUFF ******/
+/*** Set the gradient ***/
+/* default */
+  background-image: url("../images/splash_one.jpg");
+/* For Safari 5.1 to 6.0 */
+  background: -webkit-linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0), rgba(0,0,0,0.8)), url("../images/splash_one.jpg");
+/* For Opera 11.1 to 12.0 */
+  background: -o-linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0), rgba(0,0,0,0.8)), url("../images/splash_one.jpg");
+/* For Firefox 3.6 to 15 */
+  background: -moz-linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0), rgba(0,0,0,0.8)), url("../images/splash_one.jpg");
+/* Standard */
+  background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0), rgba(0,0,0,0.8)), url("../images/splash_one.jpg");
+/*** Set the size ***/
+  background-size: cover;
+/*** Set the position (what part of image is shown) ***/
+  -ms-background-position-x: center;
+  -ms-background-position-y: center;
+  background-position: center;
+/* TODO test */
+/* ie8 workaround - http://louisremi.github.io/background-size-polyfill/ */
+  -ms-behavior: url("/backgroundsize.min.htc");
+}
