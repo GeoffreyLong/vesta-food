@@ -91,4 +91,10 @@ $(document).ready(function(){
     */
   });
 
+  $('#infoA').on('click', function(){
+    $('html, body').animate({
+        scrollTop: $('#paneTwo').offset().top
+    }, 500);
+    return false;
+  });
 })

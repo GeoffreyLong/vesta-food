@@ -61,7 +61,7 @@ nav {
   left: 0;
   top: 35%;
 }
-#paneOne #formContainer p {
+#paneOne #formContainer h2 {
   position: relative;
   color: #fff;
   font-size: 3em;

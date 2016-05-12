@@ -9,13 +9,11 @@
   <div class="nav-wrapper container">
     <a id="logo-container" href="#" class="brand-logo"> VESTA </a>
     <ul class="right hide-on-med-and-down">
-      <li><a href="#">Navbar Link</a></li>
-      <li><a href="#">Navbar Link</a></li>
+      <li><a id="infoA"> Information </a></li>
     </ul>
 
     <ul id="nav-mobile" class="side-nav">
-      <li><a href="#">Navbar Link</a></li>
-      <li><a href="#">Navbar Link</a></li>
+      <li><a href="#">Info</a></li>
     </ul>
   </div>
 </nav>
@@ -23,7 +21,7 @@
 {{!-- Splash page photo and email form --}}
 <div id="paneOne">  
   <div id="formContainer">
-    <p> The online marketplace for homemade food </p>
+    <h2> The online marketplace for homemade food </h2>
     <form action="/newsletter" method="post" id="emailForm">
       <input type="text" placeholder="Email Address" id="email" name="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'"/>
       <input type="submit" id="newsletterButton" value="Join Our Newsletter!"/>
@@ -59,10 +57,9 @@
       <br><br>
       <h1 class="header center"> An Upcoming Web Marketplace </h1>
       <div class="row center">
-        <h5 class="header col s12 light"> Although currently a mailing list, 
-          Vesta has plans to expand its presence via a fully integrated web marketplace. 
-          This marketpace will have the following features. For now, please subscribe to 
-          our mailing list to receive listings of great homemeade foods from local chefs.
+        <h5 class="header col s12 light"> Vesta is currently expanding its presence via a fully integrated web marketplace. 
+          For now, please subscribe to 
+          our mailing list to receive listings of great homemeade meals from local chefs.
         </h5>
         {{!-- TODO add in a button "subscribe" as per before which will bring user to form --}}
       </div>
@@ -88,7 +85,7 @@
           <div class="icon-block">
             <h2 class="center"><i class="large material-icons">thumbs_up_down</i></h2>
             <h5 class="center">Comprehensive Review System</h5>
-            <p class="light"> Vesta is committed to ensuring the highest quality experience. To help ensure this, we offer a comprehensive review system for both buyers and sellers. </p>
+            <p class="light"> Vesta is committed to ensuring the highest quality experience. To achieve this, we offer a comprehensive review system for both buyers and sellers. </p>
           </div>
         </div>
 
@@ -109,6 +106,7 @@
 
 
 {{!-- Featured chefs space --}}
+{{!--
 <div id="paneThree">
   <div class="container">
     <div class="strike">
@@ -181,11 +179,14 @@
     </div>
   </div>
 </div>
+--}}
+
 
 {{!-- Non-fixed footer
       Contains information such as the company name, copyright, contact,
       instagram/facebook/etc links --}}
 <footer class="page-footer light-blue lighten-1">
+  {{!--
   <div class="container">
     <div class="row">
       <div class="col l6 s12">
@@ -194,7 +195,7 @@
       </div>
     </div>
   </div>
-
+  --}}
 
 
   <div class="footer-copyright">
