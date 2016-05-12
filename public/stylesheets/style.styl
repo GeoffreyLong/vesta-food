@@ -18,6 +18,7 @@ a
   top: 0
   right: 0
   margin: 0px
+  padding-right: 10%
   /* Text font */
   color: #FFFFFF
   font-size: 30px
@@ -39,6 +40,8 @@ a
   #logo
     font-family: Impact, Charcoal, sans-serif;
     float: left
+    /* 10% in plus the 10% margin from header */
+    margin-left: 20%
 
 #paneOne
   height: 90%
@@ -72,12 +75,32 @@ a
   #formContainer
     display: inline-block
     position: absolute
-    top: 30%
-    margin-left: -10%
-    
+    top: 65%
+    /* This absolute value is based on the absolute width of form */
+    margin-left: -300px
+
     form
       margin: 0px
       padding: 0px
+      /* This removes the space between the input fields */
+      font-size: 0
+
+      input
+        border-style: none
+        height: 50px
+        width: 300px
+        font-size: 25px
+        padding-left: 10px
+        padding-right: 10px
+        font-weight: bold
+      
+      input[type="text"]
+        border-radius: 10px 0px 0px 10px
+        
+      input[type="submit"]
+        color: #FFFFFF
+        background-color: #3375AA
+        border-radius: 0px 10px 10px 0px
 
 
 #paneTwo
