@@ -13,6 +13,8 @@ a {
 }
 /* Give the header an absolute size */
 #header {
+/* keep the header on top */
+  z-index: 10;
 /* Sizing */
   height: 60px;
   width: 100%;
@@ -24,9 +26,9 @@ a {
 /* Text font */
   color: #fff;
   font-size: 30px;
-  background-color: #000;
 }
 #header a {
+  color: #fff;
   font-family: "Lucida Console", Monaco, monospace;
   display: block;
   height: 60px;
@@ -38,8 +40,15 @@ a {
   float: right;
   padding-left: 15px;
   padding-right: 15px;
+/* Interesting unintended effect for swoop in */
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -ms-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
 }
 #header a:hover {
+  color: #00b7ff;
   background-color: #fff;
 }
 #header #logo {
