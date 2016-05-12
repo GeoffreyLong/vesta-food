@@ -11,6 +11,40 @@ body {
 a {
   color: #00b7ff;
 }
+/* Give the header an absolute size */
+#header {
+/* Sizing */
+  height: 60px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin: 0px;
+/* Text font */
+  color: #fff;
+  font-size: 30px;
+  background-color: #000;
+}
+#header a {
+  font-family: "Lucida Console", Monaco, monospace;
+  display: block;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  cursor: pointer;
+  top: 15px;
+  display: inline;
+  float: right;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+#header a:hover {
+  background-color: #fff;
+}
+#header #logo {
+  font-family: Impact, Charcoal, sans-serif;
+  float: left;
+}
 #paneOne {
   height: 90%;
   max-width: 100%;
