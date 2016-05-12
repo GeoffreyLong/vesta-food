@@ -65,13 +65,13 @@ a {
 /* default */
   background-image: url("../images/splash_one.jpg");
 /* For Safari 5.1 to 6.0 */
-  background: -webkit-linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0), rgba(0,0,0,0.8)), url("../images/splash_one.jpg");
+  background: -webkit-linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url("../images/splash_one.jpg");
 /* For Opera 11.1 to 12.0 */
-  background: -o-linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0), rgba(0,0,0,0.8)), url("../images/splash_one.jpg");
+  background: -o-linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url("../images/splash_one.jpg");
 /* For Firefox 3.6 to 15 */
-  background: -moz-linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0), rgba(0,0,0,0.8)), url("../images/splash_one.jpg");
+  background: -moz-linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url("../images/splash_one.jpg");
 /* Standard */
-  background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0), rgba(0,0,0,0.8)), url("../images/splash_one.jpg");
+  background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url("../images/splash_one.jpg");
 /*** Set the size ***/
   background-size: cover;
 /*** Set the position (what part of image is shown) ***/
@@ -85,26 +85,15 @@ a {
 /***** FORM *****/
 }
 #paneOne #formContainer {
-  background-color: rgba(0,0,0,0.5);
-/* For Safari 5.1 to 6.0 */
-  background: -webkit-linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0), rgba(0,0,0,0.8));
-/* For Opera 11.1 to 12.0 */
-  background: -o-linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0), rgba(0,0,0,0.8));
-/* For Firefox 3.6 to 15 */
-  background: -moz-linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0), rgba(0,0,0,0.8));
-/* Standard */
-  background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.8), rgba(0,0,0,0));
-  padding-bottom: 40px;
   width: 100%;
   display: inline-block;
   position: absolute;
   left: 0;
-  bottom: 0px;
+  top: 35%;
 }
 #paneOne #formContainer p {
   position: relative;
   color: #fff;
-  font-weight: bold;
   font-size: 3em;
 }
 #paneOne #formContainer form {
