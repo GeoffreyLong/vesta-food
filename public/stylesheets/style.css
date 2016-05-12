@@ -70,6 +70,17 @@ a {
 /* ie8 workaround - http://louisremi.github.io/background-size-polyfill/ */
   -ms-behavior: url("/backgroundsize.min.htc");
   text-align: center;
+/***** FORM *****/
+}
+#paneOne #formContainer {
+  display: inline-block;
+  position: absolute;
+  top: 30%;
+  margin-left: -10%;
+}
+#paneOne #formContainer form {
+  margin: 0px;
+  padding: 0px;
 }
 #paneTwo {
   height: 100%;
