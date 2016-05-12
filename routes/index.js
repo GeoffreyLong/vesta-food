@@ -36,37 +36,38 @@ router.post('/newsletter', function(req, res) {
   console.log('User email address entered is ' + newEmail);
 
   // Upsert ensures that only adds if doesn't exist
-  EarlyUsers.update({email: newEmail}, 
-                    {upsert: true}, 
-                    {$setOnInsert: newEmail},
-                    function(err, saved) {
+  EarlyUsers.find({email: newEmail}, function(err, found) {
     if (err){
       console.log(err);
       res.status(500).send(err);
     }
-    console.log(saved);
+    
+    // In this case a user did not exist
+    // Add the new user to the database
+    if (found == 0){
+      new EarlyUsers({
+        email: newEmail
+      }).save(function(err, saved){
+        if (err){
+          console.log(err);
+          res.status(500).send(err);
+        }
 
-    // Should redirect to a second survey
-    // This survey would add additional information to the schema
-    // Updated via a find by email
-    res.redirect("/");
-  });
-  
-  /*
-  new EarlyUsers({
-    email: newEmail
-  }).save(function(err, saved){
-    if (err){
-      console.log(err);
-      res.status(500).send(err);
+        console.log(newEmail + ' added to the database');
+        // Should redirect to a second survey
+        // This survey would add additional information to the schema
+        // Updated via a find by email
+        res.redirect("/");
+
+      });
     }
-
-    // Should redirect to a second survey
-    // This survey would add additional information to the schema
-    // Updated via a find by email
-    res.redirect("/");
+    // In this case a user did exis
+    else{
+      // TODO error handling
+      console.log(newEmail + ' is already in the database');
+      res.redirect("/");
+    }
   });
-  */
 });
 
 module.exports = router;
