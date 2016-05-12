@@ -24,10 +24,11 @@
 <div id="paneOne">  
   <div id="formContainer">
     <p> The online marketplace for homemade food </p>
-    <form action="/newsletter" method="post">
-      <input type="text" placeholder="Email Address" name="email"/>
+    <form action="/newsletter" method="post" id="emailForm">
+      <input type="text" placeholder="Email Address" id="email" name="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'"/>
       <input type="submit" id="newsletterButton" value="Join Our Newsletter!"/>
     </form>
+    <div id="toast-container"> </div>
   </div>
 </div>
 

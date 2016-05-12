@@ -57,15 +57,15 @@ router.post('/newsletter', function(req, res) {
         // Should redirect to a second survey
         // This survey would add additional information to the schema
         // Updated via a find by email
-        res.redirect("/");
+        res.status(200).send(newEmail);
 
       });
     }
-    // In this case a user did exis
+    // In this case a user did exist
     else{
-      // TODO error handling
+      // NOTE Could consider sending a different status code than 200
       console.log(newEmail + ' is already in the database');
-      res.redirect("/");
+      res.status(200).send('');
     }
   });
 });

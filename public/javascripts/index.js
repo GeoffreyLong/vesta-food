@@ -23,4 +23,40 @@ $(document).ready(function(){
 
   updateHeader();
 
+  $("#emailForm").submit(function(event) {
+
+    /* stop form from submitting normally */
+    event.preventDefault();
+
+    var targetUrl = $(this).attr('action');
+    var data = {};
+    data.email = $('#email').val();
+
+    $.ajax({
+      type: 'POST',
+      contentType: 'application/json',
+      url: targetUrl,
+      data: JSON.stringify(data),
+      async: true,
+      statusCode: {
+        200: function(data) {
+          console.log("Email passed back: " + data);
+          if (!data) {
+            // Don't really want toast if redirecting
+            Materialize.toast('Successfully Added!', 4000)
+            // TODO redirect to survey
+            window.location.replace("/survey");
+          }
+          else{
+            Materialize.toast('Email already exists!', 4000)
+          }
+
+        },
+        400: function() {
+          alert("Didn't work");
+        }
+      }
+    });
+
+  });
 })
