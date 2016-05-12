@@ -23,39 +23,43 @@ $(document).ready(function(){
 
   updateHeader();
 
-  $("#emailForm").submit(function(event) {
+  $("#emailForm").validate({
+    submitHandler: function(form) {
+      var data = {};
+      data.email = $('#email').val();
 
+      $.ajax({
+        type: 'POST',
+        contentType: 'application/json',
+        url: '/newsletter',
+        data: JSON.stringify(data),
+        async: true,
+        statusCode: {
+          200: function(data) {
+            console.log("Email passed back: " + data);
+            if (data) {
+              // Launch survey if new user
+              $('#survey').openModal();
+            }
+            else{
+              Materialize.toast('Email already exists!', 4000)
+            }
+
+          },
+          400: function() {
+            alert("Didn't work");
+          }
+        }
+      });
+    },
+
+    invalidHandler: function(event, validator) {
+      Materialize.toast('Invalid Email!', 4000)
+    },
+  });
+  $("#emailForm").submit(function(event) {
     /* stop form from submitting normally */
     event.preventDefault();
-
-    var targetUrl = $(this).attr('action');
-    var data = {};
-    data.email = $('#email').val();
-
-    $.ajax({
-      type: 'POST',
-      contentType: 'application/json',
-      url: targetUrl,
-      data: JSON.stringify(data),
-      async: true,
-      statusCode: {
-        200: function(data) {
-          console.log("Email passed back: " + data);
-          if (data) {
-            // Launch survey if new user
-            $('#survey').openModal();
-          }
-          else{
-            Materialize.toast('Email already exists!', 4000)
-          }
-
-        },
-        400: function() {
-          alert("Didn't work");
-        }
-      }
-    });
-
   });
 
   $("#surveyAgree").on('click', function(){

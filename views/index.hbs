@@ -23,7 +23,7 @@
   <div id="formContainer">
     <h2> The online marketplace for homemade food </h2>
     <form action="/newsletter" method="post" id="emailForm">
-      <input type="text" placeholder="Email Address" id="email" name="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'"/>
+      <input type="text" placeholder="Email Address" id="email" name="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'" data-rule-required="true" data-rule-email="true" data-msg-required="" data-msg-email=""/>
       <input type="submit" id="newsletterButton" value="Join Our Newsletter!"/>
     </form>
     <div id="toast-container"> </div>
@@ -200,8 +200,8 @@
 
   <div class="footer-copyright">
     <div class="container">
-    © 2016 Copyright Text
-    <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+    © 2016 Copyright Vesta Food
+    {{!-- <a class="grey-text text-lighten-4 right" href="#!">More Links</a> --}}
     </div>
   </div>
 </footer>
