@@ -108,8 +108,33 @@ nav
   .icon-block
     margin: 10px
 
+.strike {
+  position: relative;
+  top: 30px
+  text-align: center;
+  color: #FFFFFF
+}
+.strike:after {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  content: "";
+  background: #FFFFFF;
+}
+.strike h2 {
+  display: inline;
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: 0 10px;
+  background: #8899AB    
+  font-size: 2em;
+}
+
 #paneThree
-  background-color: #8899AB
+  background-color: #8899AB 
   width: 100%
   .row
     margin-top: 30px;
@@ -117,3 +142,5 @@ nav
     top: 12%
   li
     margin: 20px
+  .container
+    width: 90%

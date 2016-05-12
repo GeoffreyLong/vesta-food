@@ -41,11 +41,9 @@ $(document).ready(function(){
       statusCode: {
         200: function(data) {
           console.log("Email passed back: " + data);
-          if (!data) {
-            // Don't really want toast if redirecting
-            Materialize.toast('Successfully Added!', 4000)
-            // TODO redirect to survey
-            window.location.replace("/survey");
+          if (data) {
+            // Launch survey if new user
+            $('#survey').openModal();
           }
           else{
             Materialize.toast('Email already exists!', 4000)
@@ -59,4 +57,38 @@ $(document).ready(function(){
     });
 
   });
+
+  $("#surveyAgree").on('click', function(){
+    $('#survey').closeModal();
+
+    var data = {};
+    console.log("hello");
+
+    /*
+    $.ajax({
+      type: 'POST',
+      contentType: 'application/json',
+      url: '/survey',
+      data: JSON.stringify(data),
+      async: true,
+      statusCode: {
+        200: function(data) {
+          console.log("Email passed back: " + data);
+          if (data) {
+            // Launch survey if new user
+            $('#survey').openModal();
+          }
+          else{
+            Materialize.toast('Email already exists!', 4000)
+          }
+
+        },
+        400: function() {
+          alert("Didn't work");
+        }
+      }
+    });
+    */
+  });
+
 })

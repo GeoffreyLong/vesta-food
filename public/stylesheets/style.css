@@ -108,6 +108,30 @@ nav {
 #paneTwo .icon-block {
   margin: 10px;
 }
+.strike {
+  position: relative;
+  top: 30px;
+  text-align: center;
+  color: #fff;
+}
+.strike:after {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  content: "";
+  background: #fff;
+}
+.strike h2 {
+  display: inline;
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: 0 10px;
+  background: #8899ab;
+  font-size: 2em;
+}
 #paneThree {
   background-color: #8899ab;
   width: 100%;
@@ -119,4 +143,7 @@ nav {
 }
 #paneThree li {
   margin: 20px;
+}
+#paneThree .container {
+  width: 90%;
 }
