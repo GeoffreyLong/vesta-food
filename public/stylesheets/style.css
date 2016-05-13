@@ -26,6 +26,18 @@ nav {
   z-index: 10;
   position: fixed;
 }
+nav .brand-logo {
+  font-weight: bold;
+}
+nav li a {
+  font-weight: bold;
+  -webkit-transition: all 1s;
+  transition: all 0.5s ease;
+}
+nav li a:hover {
+  background-color: rgba(0,0,0,0.5) !important;
+  color: #ea6e10;
+}
 #paneOne {
   height: 90%;
   min-height: 300px;
