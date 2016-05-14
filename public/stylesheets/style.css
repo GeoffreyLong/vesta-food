@@ -131,7 +131,7 @@ nav li a:hover {
   left: 0;
   right: 0;
   top: 50%;
-  height: 2px;
+  height: 3px;
   content: "";
   background: #fff;
 }
@@ -142,7 +142,7 @@ nav li a:hover {
   margin: 0;
   padding: 0 10px;
   background: #8899ab;
-  font-size: 2em;
+  font-size: 3em;
 }
 #paneThree {
   background-color: #8899ab;
@@ -158,4 +158,31 @@ nav li a:hover {
 }
 #paneThree .container {
   width: 90%;
+}
+#paneThree #becomeSeller {
+  background-color: #3375aa;
+}
+#paneFour {
+  background-color: #8899ab;
+  width: 100%;
+}
+#paneFour .row {
+  margin-top: 30px;
+  position: relative;
+  top: 12%;
+}
+#paneFour li {
+  margin: 20px;
+}
+#paneFour .container {
+  width: 90%;
+}
+#paneFour #becomeSeller {
+  background-color: #3375aa;
+}
+.page-footer {
+/* Override the default spacings */
+  margin-top: 0px !important;
+/* TODO check if like better */
+/* padding-top: 0px !important */
 }
