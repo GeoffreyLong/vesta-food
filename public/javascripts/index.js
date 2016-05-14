@@ -39,7 +39,8 @@ $(document).ready(function(){
             console.log("Email passed back: " + data);
             if (data) {
               // Launch survey if new user
-              $('#survey').openModal();
+              //$('#survey').openModal();
+              Materialize.toast('Successfully Added!', 4000)
             }
             else{
               Materialize.toast('Email already exists!', 4000)
