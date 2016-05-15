@@ -98,7 +98,7 @@ $(document).ready(function(){
 
   $('#infoA').on('click', function(){
     $('html, body').animate({
-        scrollTop: $('#paneTwo').offset().top
+        scrollTop: $('#paneTwo').offset().top - $('.navbar').height()
     }, 500);
     return false;
   });
