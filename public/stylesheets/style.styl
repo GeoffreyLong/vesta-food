@@ -46,6 +46,7 @@ nav
 
 
 #paneOne
+  font-family: 'Avenir LT Std-Book', sans-serif;
   height: 90%
   min-height: 350 px
   max-width: 100%
@@ -82,12 +83,11 @@ nav
     display: inline-block
     position: absolute
     left:0
-    top: 35%
+    top: 25%
 
     h2
       position: relative
       color: #FFFFFF
-      font-size: 3em
 
     form
       margin: 0px
@@ -97,16 +97,15 @@ nav
 
       input
         border-style: none
-        height: 50px
-        width: 300px
+        height: 65px
         font-size: 25px
         padding-left: 10px
         padding-right: 10px
-        font-weight: bold
       
       input[type="text"]
+        width: 300px
         border-radius: 4px 0px 0px 4px
-        background-color: rgba(0, 0, 0, 0.7)
+        background-color: #FFFFFF
         color: #FFFFFF
         
       input[type="submit"]
@@ -129,30 +128,6 @@ nav
   .icon-block
     margin: 10px
 
-.strike {
-  position: relative;
-  top: 30px
-  text-align: center;
-  color: #FFFFFF
-}
-.strike:after {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  height: 3px;
-  content: "";
-  background: #FFFFFF;
-}
-.strike h2 {
-  display: inline;
-  position: relative;
-  z-index: 1;
-  margin: 0;
-  padding: 0 10px;
-  background: #8899AB    
-  font-size: 3em;
-}
 .arrow-down {
   display: inline-block
   padding: 0
@@ -218,8 +193,35 @@ nav
   #addAvailability
     cursor: pointer
 
+
+.strike {
+  position: relative;
+  top: 30px
+  text-align: center;
+  color: #3375AA
+}
+.strike:after {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 3px;
+  content: "";
+  background-color: #3375AA
+}
+.strike h2 {
+  display: inline;
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: 0 10px;
+  background-color: #FFFFFF
+  font-size: 3em;
+}
+
+
 #paneFour
-  background-color: #8899AB 
+  background-color: #FFFFFF 
   width: 100%
   .row
     margin-top: 30px;
@@ -246,7 +248,9 @@ nav
     font-size: 36px !important
   }
   input {
-    width: 175px !important
     font-size: 15px !important
+  }
+  input[type="text"] {
+    width: 175px !important
   }
 }

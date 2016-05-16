@@ -50,6 +50,7 @@ nav li a:hover {
   color: #ea6e10;
 }
 #paneOne {
+  font-family: 'Avenir LT Std-Book', sans-serif;
   height: 90%;
   min-height: 350px;
   max-width: 100%;
@@ -82,12 +83,11 @@ nav li a:hover {
   display: inline-block;
   position: absolute;
   left: 0;
-  top: 35%;
+  top: 25%;
 }
 #paneOne #formContainer h2 {
   position: relative;
   color: #fff;
-  font-size: 3em;
 }
 #paneOne #formContainer form {
   margin: 0px;
@@ -97,16 +97,15 @@ nav li a:hover {
 }
 #paneOne #formContainer form input {
   border-style: none;
-  height: 50px;
-  width: 300px;
+  height: 65px;
   font-size: 25px;
   padding-left: 10px;
   padding-right: 10px;
-  font-weight: bold;
 }
 #paneOne #formContainer form input[type="text"] {
+  width: 300px;
   border-radius: 4px 0px 0px 4px;
-  background-color: rgba(0,0,0,0.7);
+  background-color: #fff;
   color: #fff;
 }
 #paneOne #formContainer form input[type="submit"] {
@@ -130,30 +129,6 @@ nav li a:hover {
 }
 #paneTwo .icon-block {
   margin: 10px;
-}
-.strike {
-  position: relative;
-  top: 30px;
-  text-align: center;
-  color: #fff;
-}
-.strike:after {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  height: 3px;
-  content: "";
-  background: #fff;
-}
-.strike h2 {
-  display: inline;
-  position: relative;
-  z-index: 1;
-  margin: 0;
-  padding: 0 10px;
-  background: #8899ab;
-  font-size: 3em;
 }
 .arrow-down {
   display: inline-block;
@@ -220,8 +195,32 @@ nav li a:hover {
 #becomeChef #addAvailability {
   cursor: pointer;
 }
+.strike {
+  position: relative;
+  top: 30px;
+  text-align: center;
+  color: #3375aa;
+}
+.strike:after {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 3px;
+  content: "";
+  background-color: #3375aa;
+}
+.strike h2 {
+  display: inline;
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: 0 10px;
+  background-color: #fff;
+  font-size: 3em;
+}
 #paneFour {
-  background-color: #8899ab;
+  background-color: #fff;
   width: 100%;
 }
 #paneFour .row {
@@ -252,7 +251,9 @@ nav li a:hover {
     font-size: 36px !important;
   }
   input {
-    width: 175px !important;
     font-size: 15px !important;
+  }
+  input[type="text"] {
+    width: 175px !important;
   }
 }

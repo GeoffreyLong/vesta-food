@@ -101,6 +101,12 @@ $(document).ready(function(){
     }, 500);
     return false;
   });
+  $('#infoB').on('click', function(){
+    $('html, body').animate({
+        scrollTop: $('#paneThree').offset().top - $('.navbar').height()
+    }, 500);
+    return false;
+  });
 
   $('#becomeSeller').on('click', function(){
     $('#becomeChef').openModal();
