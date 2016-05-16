@@ -216,6 +216,9 @@ nav li a:hover {
 #becomeChef .row {
   margin-bottom: 0;
 }
+#becomeChef #addAvailability {
+  cursor: pointer;
+}
 #paneFour {
   background-color: #8899ab;
   width: 100%;
