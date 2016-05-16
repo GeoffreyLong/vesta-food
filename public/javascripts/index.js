@@ -41,6 +41,7 @@ $(document).ready(function(){
               // Launch survey if new user
               //$('#survey').openModal();
               Materialize.toast('Successfully Added!', 4000)
+              $('#email').val(''); 
             }
             else{
               Materialize.toast('Email already exists!', 4000)
@@ -129,7 +130,6 @@ $(document).ready(function(){
     data.email = chefModal.find('#chefEmail').val();
     data.telephone = chefModal.find('#chefPhone').val();
     data.pickup = chefModal.find('#chefAddress').val();
-    data.email = 
 
     $.ajax({
       type: 'POST',
@@ -145,6 +145,13 @@ $(document).ready(function(){
             //$('#survey').openModal();
             Materialize.toast('Successfully Added!', 4000)
             $('#becomeChef').closeModal();
+            chefModal.find('input').removeClass('valid');
+            chefModal.find('i').removeClass('active');
+            chefModal.find('#chefFirst').val(''); 
+            chefModal.find('#chefLast').val('');
+            chefModal.find('#chefEmail').val('');
+            chefModal.find('#chefPhone').val('');
+            chefModal.find('#chefAddress').val('');
           }
           else{
             Materialize.toast('Email already exists!', 4000)

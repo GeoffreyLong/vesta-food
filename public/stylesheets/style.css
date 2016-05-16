@@ -12,7 +12,6 @@ body {
 a {
   color: #00b7ff;
 }
-/* TODO work on centering */
 #toaster {
 /* z-index of a modal is 1003 */
   z-index: 1004;
@@ -119,7 +118,6 @@ nav li a:hover {
   width: 300px;
   border-radius: 4px 0px 0px 4px;
   background-color: #fff;
-  color: #fff;
 }
 #paneOne #formContainer form input[type="submit"] {
   cursor: pointer;
@@ -199,6 +197,7 @@ nav li a:hover {
 #paneThree #becomeSeller {
   background-color: #3375aa;
 }
+/* TODO this moves the background elements a bit (removes scroll)... fix this */
 #becomeChef .modal-content {
   overflow-x: hidden !important;
 }
