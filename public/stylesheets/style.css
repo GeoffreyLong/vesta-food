@@ -210,6 +210,12 @@ nav li a:hover {
 #paneThree #becomeSeller {
   background-color: #3375aa;
 }
+#becomeChef .modal-content {
+  overflow-x: hidden !important;
+}
+#becomeChef .row {
+  margin-bottom: 0;
+}
 #paneFour {
   background-color: #8899ab;
   width: 100%;

@@ -102,4 +102,16 @@ $(document).ready(function(){
     }, 500);
     return false;
   });
+
+  $('#becomeSeller').on('click', function(){
+    $('#becomeChef').openModal();
+
+  });
+
+  $('#chefLast').on('focusin', function(){
+    if (!$('#chefNameIcon').hasClass('active')) $('#chefNameIcon').addClass('active');
+  });
+  $('#chefLast').on('focusout', function(){
+    if ($('#chefNameIcon').hasClass('active')) $('#chefNameIcon').removeClass('active');
+  });
 })
