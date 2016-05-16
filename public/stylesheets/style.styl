@@ -10,11 +10,22 @@ body
 a
   color: #00B7FF
 
-#toast-container 
-  display: inline-block
+#toaster
+  /* z-index of a modal is 1003 */
+  z-index: 1004
   position: fixed
-  top: 80% !important
-  right:47% !important
+  top: 85% !important
+  width: 100%
+  text-align: center
+  #toast-container 
+    position: relative
+    top: 0 !important
+    left: 0 !important
+    display: inline
+    margin: auto
+    .toast
+      margin: auto
+      
 
 .toast
   background-color: #ea6e10
@@ -185,6 +196,7 @@ nav
     background-color: #3375AA
 
 
+/* TODO this moves the background elements a bit (removes scroll)... fix this */
 #becomeChef
   .modal-content
     overflow-x: hidden !important
