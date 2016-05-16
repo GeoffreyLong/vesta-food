@@ -67,7 +67,6 @@ $(document).ready(function(){
     $('#survey').closeModal();
 
     var data = {};
-    console.log("hello");
 
     /*
     $.ajax({
@@ -113,5 +112,43 @@ $(document).ready(function(){
   });
   $('#chefLast').on('focusout', function(){
     if ($('#chefNameIcon').hasClass('active')) $('#chefNameIcon').removeClass('active');
+  });
+
+  $('#chefSubmit').on('click', function(event){
+    var chefModal = $('#becomeChef');
+
+    var data = {};
+    data.firstName = chefModal.find('#chefFirst').val(); 
+    data.lastName = chefModal.find('#chefLast').val();
+    data.email = chefModal.find('#chefEmail').val();
+    data.telephone = chefModal.find('#chefPhone').val();
+    data.pickup = chefModal.find('#chefAddress').val();
+    data.email = 
+
+    $.ajax({
+      type: 'POST',
+      contentType: 'application/json',
+      url: '/sellerinfo',
+      data: JSON.stringify(data),
+      async: true,
+      statusCode: {
+        200: function(data) {
+          console.log("Email passed back: " + data);
+          if (data) {
+            // Launch survey if new user
+            //$('#survey').openModal();
+            Materialize.toast('Successfully Added!', 4000)
+            $('#becomeChef').closeModal();
+          }
+          else{
+            Materialize.toast('Email already exists!', 4000)
+          }
+
+        },
+        400: function() {
+          alert("Didn't work");
+        }
+      }
+    });
   });
 })
