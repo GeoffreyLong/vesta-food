@@ -121,8 +121,62 @@ $(document).ready(function(){
     if ($('#chefNameIcon').hasClass('active')) $('#chefNameIcon').removeClass('active');
   });
 
-  $('#chefSubmit').on('click', function(event){
-    var chefModal = $('#becomeChef');
+  $("#becomeChefForm").validate({
+    submitHandler: function(form) {
+      var errored = $("#becomeChefForm").find('input.error');
+      if (errored) {
+        console.log('errored');
+        $.each(errored, function(index, elm){
+          Materialize.toast(errored.data('error-message'), 4000);
+        });
+      }
+      else {
+        console.log('not errored');
+        var isBreak = false;
+        $.each($('#becomeChefForm').find('input'), function(index, elm){
+          if (!elm.val()){
+            Materialize.toast(errored.data('error-message'), 4000);
+            isBreak = true;
+            return false;
+          }
+        });
+        console.log(isBreak);
+
+        if (!isBreak){
+          Materialize.toast('good stuff', 4000);
+        }
+      }
+    },
+
+    invalidHandler: function(event, validator) {
+      // 'this' refers to the form
+      var errors = validator.numberOfInvalids();
+      Materialize.toast(validator.showErrors(), 4000)
+      
+      var errored = $(this).find('.error');
+      Materialize.toast(errored.data('error-message'), 4000)
+
+      
+      if (errors) {
+        var message = errors == 1
+          ? 'you missed 1 field. it has been highlighted'
+          : 'you missed ' + errors + ' fields. they have been highlighted';
+        $("div.error span").html(message);
+        $("div.error").show();
+      } else {
+        $("div.error").hide();
+      }
+    },
+
+  });
+  $("#becomechefform").submit(function(event) {
+    /* stop form from submitting normally */
+    event.preventdefault();
+  });
+
+  /*
+  $('#chefsubmit').on('click', function(event){
+    var chefmodal = $('#becomechef');
 
     var data = {};
     data.firstName = chefModal.find('#chefFirst').val(); 
@@ -164,4 +218,5 @@ $(document).ready(function(){
       }
     });
   });
+  */
 })
