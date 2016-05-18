@@ -235,6 +235,10 @@ nav li a:hover {
   background-color: #fff;
   width: 100%;
 }
+#paneFour img {
+  padding-bottom: 25px;
+  margin-bottom: 0px;
+}
 #paneFour .row {
   margin-top: 30px;
   position: relative;
@@ -242,10 +246,6 @@ nav li a:hover {
 }
 #paneFour .slick-dots {
   bottom: 0;
-/* Not working */
-}
-#paneFour .slick-dots li button:before {
-  color: #000;
 }
 #paneFour .slick-dotted.slick-slider {
   margin-bottom: 0px;
