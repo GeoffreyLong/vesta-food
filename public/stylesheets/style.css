@@ -240,8 +240,15 @@ nav li a:hover {
   position: relative;
   top: 12%;
 }
-#paneFour li {
-  margin: 20px;
+#paneFour .slick-dots {
+  bottom: 0;
+/* Not working */
+}
+#paneFour .slick-dots li button:before {
+  color: #000;
+}
+#paneFour .slick-dotted.slick-slider {
+  margin-bottom: 0px;
 }
 #paneFour .container {
   width: 90%;

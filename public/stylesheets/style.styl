@@ -238,18 +238,29 @@ nav
     margin-top: 30px;
     position:relative
     top: 12%
-  li
-    margin: 20px
+  .slick-dots
+    bottom: 0
+    /* Not working */
+    li
+      button:before
+        color: rgba(0,0,0,1)
+  .slick-dotted.slick-slider
+    margin-bottom: 0px
   .container
     width: 90%
   #becomeSeller
     background-color: #3375AA
+
+
+
+
 
 .page-footer
   /* Override the default spacings */
   margin-top: 0px !important
   /* TODO check if like better */
   /* padding-top: 0px !important */
+
 
 
 @media screen and (max-width: 1000px) {
