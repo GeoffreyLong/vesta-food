@@ -123,28 +123,58 @@ $(document).ready(function(){
 
   $("#becomeChefForm").validate({
     submitHandler: function(form) {
-      var errored = $("#becomeChefForm").find('input.error');
-      if (errored) {
-        console.log('errored');
-        $.each(errored, function(index, elm){
-          Materialize.toast(errored.data('error-message'), 4000);
-        });
-      }
-      else {
-        console.log('not errored');
-        var isBreak = false;
-        $.each($('#becomeChefForm').find('input'), function(index, elm){
-          if (!elm.val()){
-            Materialize.toast(errored.data('error-message'), 4000);
-            isBreak = true;
-            return false;
+      var isBreak = false;
+      $.each($('#becomeChefForm').find('input'), function(index, elm){
+        if ((!$(this).val() || $(elm).hasClass('error')) 
+              && ($(elm).attr('type') != 'submit' && $(elm).attr('type') != 'hidden')) {
+          Materialize.toast($(elm).data('error-message'), 4000);
+          isBreak = true;
+          return false;
+        }
+      });
+
+      if (!isBreak){
+        var chefModal = $('#becomeChef');
+
+        var data = {};
+        data.firstName = chefModal.find('#chefFirst').val(); 
+        data.lastName = chefModal.find('#chefLast').val();
+        data.email = chefModal.find('#chefEmail').val();
+        data.telephone = chefModal.find('#chefPhone').val();
+        data.pickup = chefModal.find('#chefAddress').val();
+
+        $.ajax({
+          type: 'POST',
+          contentType: 'application/json',
+          url: '/sellerinfo',
+          data: JSON.stringify(data),
+          async: true,
+          statusCode: {
+            200: function(data) {
+              console.log("Email passed back: " + data);
+              if (data) {
+                // Launch survey if new user
+                //$('#survey').openModal();
+                Materialize.toast('Successfully Added!', 4000)
+                $('#becomeChef').closeModal();
+                chefModal.find('input').removeClass('valid');
+                chefModal.find('i').removeClass('active');
+                chefModal.find('#chefFirst').val(''); 
+                chefModal.find('#chefLast').val('');
+                chefModal.find('#chefEmail').val('');
+                chefModal.find('#chefPhone').val('');
+                chefModal.find('#chefAddress').val('');
+              }
+              else{
+                Materialize.toast('Email already exists!', 4000)
+              }
+
+            },
+            400: function() {
+              alert("Didn't work");
+            }
           }
         });
-        console.log(isBreak);
-
-        if (!isBreak){
-          Materialize.toast('good stuff', 4000);
-        }
       }
     },
 
@@ -155,17 +185,6 @@ $(document).ready(function(){
       
       var errored = $(this).find('.error');
       Materialize.toast(errored.data('error-message'), 4000)
-
-      
-      if (errors) {
-        var message = errors == 1
-          ? 'you missed 1 field. it has been highlighted'
-          : 'you missed ' + errors + ' fields. they have been highlighted';
-        $("div.error span").html(message);
-        $("div.error").show();
-      } else {
-        $("div.error").hide();
-      }
     },
 
   });
@@ -176,47 +195,5 @@ $(document).ready(function(){
 
   /*
   $('#chefsubmit').on('click', function(event){
-    var chefmodal = $('#becomechef');
-
-    var data = {};
-    data.firstName = chefModal.find('#chefFirst').val(); 
-    data.lastName = chefModal.find('#chefLast').val();
-    data.email = chefModal.find('#chefEmail').val();
-    data.telephone = chefModal.find('#chefPhone').val();
-    data.pickup = chefModal.find('#chefAddress').val();
-
-    $.ajax({
-      type: 'POST',
-      contentType: 'application/json',
-      url: '/sellerinfo',
-      data: JSON.stringify(data),
-      async: true,
-      statusCode: {
-        200: function(data) {
-          console.log("Email passed back: " + data);
-          if (data) {
-            // Launch survey if new user
-            //$('#survey').openModal();
-            Materialize.toast('Successfully Added!', 4000)
-            $('#becomeChef').closeModal();
-            chefModal.find('input').removeClass('valid');
-            chefModal.find('i').removeClass('active');
-            chefModal.find('#chefFirst').val(''); 
-            chefModal.find('#chefLast').val('');
-            chefModal.find('#chefEmail').val('');
-            chefModal.find('#chefPhone').val('');
-            chefModal.find('#chefAddress').val('');
-          }
-          else{
-            Materialize.toast('Email already exists!', 4000)
-          }
-
-        },
-        400: function() {
-          alert("Didn't work");
-        }
-      }
-    });
-  });
   */
 })
