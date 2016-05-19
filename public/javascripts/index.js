@@ -6,7 +6,7 @@ $(document).ready(function(){
     updateHeader(); 
   });
   function updateHeader() {
-    var o = $(document).scrollTop() / 500;
+    var o = $(document).scrollTop() / ($('#splashPane').height() - $('nav').height());
     if (o > 1.000) { o = 1; }
     var e = $('nav');
     var newColor = 'rgba(' + 41 + ',' + 182 + ',' + 246 + ',' + o + ')';

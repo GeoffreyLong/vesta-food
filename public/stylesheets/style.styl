@@ -58,7 +58,7 @@ nav
 
 #splashPane
   font-family: 'Avenir LT Std-Book', sans-serif;
-  height: 90%
+  height: 50%
   min-height: 350 px
   max-width: 100%
   /***** IMAGE STUFF ******/
@@ -94,9 +94,9 @@ nav
     display: inline-block
     position: absolute
     left:0
-    top: 25%
+    top: 20%;
 
-    h2
+    h4
       position: relative
       color: #FFFFFF
 
@@ -108,13 +108,13 @@ nav
 
       input
         border-style: none
-        height: 65px
-        font-size: 25px
+        height: 50px
+        font-size: 20px
         padding-left: 10px
         padding-right: 10px
       
       input[type="text"]
-        width: 300px
+        width: 250px
         border-radius: 4px 0px 0px 4px
         background-color: #FFFFFF
         
@@ -272,12 +272,6 @@ nav
 
 
 @media screen and (max-width: 1000px) {
-  h1 {
-    font-size: 42px !important
-  }
-  h2 {
-    font-size: 42px !important
-  }
   input {
     font-size: 20px !important
   }
@@ -286,17 +280,16 @@ nav
   }
 }
 @media screen and (max-width: 750px) {
-  h1 {
-    font-size: 36px !important
-  }
-  h2 {
-    font-size: 36px !important
-  }
   input {
     font-size: 15px !important
   }
   input[type="text"] {
     width: 125px !important
+  }
+}
+@media screen and (max-height: 500px) {
+  #formContainer {
+    top: 125px !important;
   }
 }
 
