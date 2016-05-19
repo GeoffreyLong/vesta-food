@@ -32,7 +32,7 @@
     <h4> The Online Marketplace for Homemade Food </h4>
     <form action="/newsletter" method="post" id="emailForm">
       <input type="text" placeholder="Email Address" id="email" name="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'" data-rule-required="true" data-rule-email="true" data-msg-required="" data-msg-email=""/>
-      <input type="submit" id="newsletterButton" value="Join our Newsletter!"/>
+      <input type="submit" id="newsletterButton" value="Subscribe to our Menu!"/>
     </form>
   </div>
 </div>
@@ -56,8 +56,48 @@
   </div>
 </div>
 
+{{!-- Description of how the newsletter / catalogue works --}}
 <div id="newsletterPane">
-
+  <div class="row container center">
+    <h3> How Our Menu Works </h3>
+  </div>
+  <div class="row container valign-wrapper">
+    <div class="col s1 center">
+      <i class="linker medium material-icons">undo</i> 
+    </div>
+    <div class="col s2 center valign">
+      <i class="medium material-icons">contact_mail</i>
+    </div>
+    <div class="col s8 valign">
+      Subscribe to our menu using the email form above. 
+      This menu, released on a weekly basis, contains listings of local chefs and their dishes. 
+      If any dishes catch your eye, you can reply to the newsletter with the 
+      name of the seller(s) you wish to contact. Vesta will respond with the seller's information.
+    </div>
+  </div>
+  <div class="row container valign-wrapper">
+    <div class="col s1 center">
+      <i class="linker medium material-icons">undo</i> 
+    </div>
+    <div class="col s2 center valign">
+      <img src="images/chef_1-1.png" class="responsive-img"/> 
+    </div>
+    <div class="col s8 valign">
+      Contact the seller using the provided information. 
+      <br>
+      Choose your desired meals, pickup time, and pickup location. 
+    </div>
+  </div>
+  <div class="row container valign-wrapper">
+    <div class="col s1 center">
+    </div>
+    <div class="col s2 valign">
+      <img src="images/chef_1-1.png" class="responsive-img"/> 
+    </div>
+    <div class="col s8 valign">
+      Pick up your food from the chef and enjoy your homecooked meal!
+    </div>
+  </div>
 </div>
 
 {{!-- Who we are / what we do --}}
