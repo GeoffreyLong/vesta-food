@@ -256,6 +256,9 @@ nav li a:hover {
 #paneFour #becomeSeller {
   background-color: #3375aa;
 }
+#paneFour .card-reveal {
+  z-index: 6;
+}
 .page-footer {
 /* Override the default spacings */
   margin-top: 0px !important;
