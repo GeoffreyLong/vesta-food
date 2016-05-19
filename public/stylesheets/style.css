@@ -61,7 +61,7 @@ nav li a:hover {
   background-color: rgba(0,0,0,0.5) !important;
   color: #ea6e10;
 }
-#paneOne {
+#splashPane {
   font-family: 'Avenir LT Std-Book', sans-serif;
   height: 90%;
   min-height: 350px;
@@ -90,55 +90,55 @@ nav li a:hover {
   text-align: center;
 /***** FORM *****/
 }
-#paneOne #formContainer {
+#splashPane #formContainer {
   width: 100%;
   display: inline-block;
   position: absolute;
   left: 0;
   top: 25%;
 }
-#paneOne #formContainer h2 {
+#splashPane #formContainer h2 {
   position: relative;
   color: #fff;
 }
-#paneOne #formContainer form {
+#splashPane #formContainer form {
   margin: 0px;
   padding: 0px;
 /* This removes the space between the input fields */
   font-size: 0;
 }
-#paneOne #formContainer form input {
+#splashPane #formContainer form input {
   border-style: none;
   height: 65px;
   font-size: 25px;
   padding-left: 10px;
   padding-right: 10px;
 }
-#paneOne #formContainer form input[type="text"] {
+#splashPane #formContainer form input[type="text"] {
   width: 300px;
   border-radius: 4px 0px 0px 4px;
   background-color: #fff;
 }
-#paneOne #formContainer form input[type="submit"] {
+#splashPane #formContainer form input[type="submit"] {
   cursor: pointer;
   color: #fff;
   background-color: #3375aa;
   border-radius: 0px 4px 4px 0px;
 }
-#paneTwo {
+#infoPane {
   position: relative;
   width: 100%;
 }
-#paneTwo h1 {
+#infoPane h1 {
   color: #3375aa;
 }
-#paneTwo a {
+#infoPane a {
   background-color: #3375aa;
 }
-#paneTwo h2 {
+#infoPane h2 {
   color: #ea6e10;
 }
-#paneTwo .icon-block {
+#infoPane .icon-block {
   margin: 10px;
 }
 .arrow-down {
@@ -151,7 +151,7 @@ nav li a:hover {
   border-right: 50px solid transparent;
   border-top: 50px solid #3375aa;
 }
-#paneThree {
+#addChefPane {
 /* default */
   background-image: url("../images/splash_one.jpg");
 /* For Safari 5.1 to 6.0 */
@@ -173,28 +173,28 @@ nav li a:hover {
   -ms-behavior: url("/backgroundsize.min.htc");
   width: 100%;
 }
-#paneThree h2 {
+#addChefPane h2 {
   padding: 20px;
   width: 100%;
   background-color: #3375aa;
   color: #fff;
   margin: 0px;
 }
-#paneThree .row {
+#addChefPane .row {
   margin-top: 30px;
   position: relative;
   top: 12%;
 }
-#paneThree li {
+#addChefPane li {
   margin: 20px;
 }
-#paneThree .container {
+#addChefPane .container {
   width: 90%;
 }
-#paneThree .container h5 {
+#addChefPane .container h5 {
   color: #fff;
 }
-#paneThree #becomeSeller {
+#addChefPane #becomeSeller {
   background-color: #3375aa;
 }
 /* TODO this moves the background elements a bit (removes scroll)... fix this */
@@ -231,35 +231,35 @@ nav li a:hover {
   background-color: #fff;
   font-size: 3em;
 }
-#paneFour {
+#featuredPane {
   background-color: #fff;
   width: 100%;
 }
-#paneFour img {
+#featuredPane img {
   padding-bottom: 25px;
   margin-bottom: 0px;
 }
-#paneFour .row {
+#featuredPane .row {
   margin-top: 30px;
   position: relative;
   top: 12%;
 }
-#paneFour .slick-dots {
+#featuredPane .slick-dots {
   bottom: 0;
 }
-#paneFour .slick-dotted.slick-slider {
+#featuredPane .slick-dotted.slick-slider {
   margin-bottom: 0px;
 }
-#paneFour .container {
+#featuredPane .container {
   width: 90%;
 }
-#paneFour #becomeSeller {
+#featuredPane #becomeSeller {
   background-color: #3375aa;
 }
-#paneFour .card-reveal {
+#featuredPane .card-reveal {
   z-index: 6;
 }
-#paneFour .card-image .price {
+#featuredPane .card-image .price {
   position: absolute;
   top: 0;
   margin: auto;

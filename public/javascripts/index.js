@@ -28,13 +28,13 @@ $(document).ready(function(){
   ////////////////////////////////////////////////////////////////////////////
   $('#infoA').on('click', function(){
     $('html, body').animate({
-        scrollTop: $('#paneTwo').offset().top - $('.navbar').height()
+        scrollTop: $('#infoPane').offset().top - $('.navbar').height()
     }, 500);
     return false;
   });
   $('#infoB').on('click', function(){
     $('html, body').animate({
-        scrollTop: $('#paneThree').offset().top - $('.navbar').height()
+        scrollTop: $('#addChefPane').offset().top - $('.navbar').height()
     }, 500);
     return false;
   });
@@ -204,6 +204,7 @@ $(document).ready(function(){
   });
 
 
+  /*
   $('.card-image').slick({
     // This will load the images lazily
     // lazyLoad: 'ondemand', 
@@ -214,4 +215,5 @@ $(document).ready(function(){
     slidesToShow: 1,
     adaptiveHeight: true
   });
+  */
 });
