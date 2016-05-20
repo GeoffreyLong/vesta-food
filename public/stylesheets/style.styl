@@ -129,12 +129,17 @@ nav
   h3
     color: #3375AA
   #menuDivContainer
+    style: inline-block
+    width: 30%
+    margin-left: 10%
+    float: left
     cursor: pointer;
     text-align: center
     font-weight: bold
     #menuDiv
       height:275px;
       width:300px;
+      margin: auto
       background-image: url("../images/Menu_Alert_1.jpg") 
       /*** Set the size ***/
       background-size: cover
@@ -151,6 +156,10 @@ nav
     cursor: pointer
   .emailFormLink:hover
     color: #0077DD
+  #menuStepsContainer
+    style: inline-block
+    float: right
+    width: 60%
 
 #menuModal
   .right
@@ -308,6 +317,16 @@ nav
   }
   input[type="text"] {
     width: 200px !important
+  }
+}
+@media screen and (max-width: 900px) {
+  #menuDivContainer {
+    width: 50% !important;
+    margin-left: auto !important;
+    float: none !important;
+  }
+  #menuStepsContainer{
+    width: 100% !important;
   }
 }
 @media screen and (max-width: 750px) {
