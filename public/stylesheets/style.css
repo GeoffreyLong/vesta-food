@@ -12,6 +12,12 @@ body {
 a {
   color: #00b7ff;
 }
+.emailFormLink {
+  cursor: pointer;
+}
+.emailFormLink:hover {
+  color: #07d;
+}
 #toaster {
 /* z-index of a modal is 1003 */
   z-index: 1004;
@@ -159,12 +165,6 @@ nav li a:hover {
 #newsletterPane #menuDivContainer:hover {
   color: #00b7ff;
 }
-#newsletterPane .emailFormLink {
-  cursor: pointer;
-}
-#newsletterPane .emailFormLink:hover {
-  color: #07d;
-}
 #newsletterPane #menuStepsContainer {
   style: inline-block;
   float: right;
@@ -179,9 +179,6 @@ nav li a:hover {
 }
 #infoPane h1 {
   color: #3375aa;
-}
-#infoPane a {
-  background-color: #3375aa;
 }
 #infoPane h2 {
   color: #ea6e10;
