@@ -326,6 +326,12 @@ nav li a:hover {
 /* TODO check if like better */
 /* padding-top: 0px !important */
 }
+.page-footer img {
+  cursor: pointer;
+  margin: 10px;
+  height: 30px;
+  width: 30px;
+}
 @media screen and (max-width: 1000px) {
   input {
     font-size: 20px !important;
