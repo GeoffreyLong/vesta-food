@@ -1,7 +1,6 @@
 {{!-- 
   THIS IS THE SPLASH PAGE
   TODO
-    Form validation for the seller stuff
     Add in availabilities to the seller stuff
     Add in ability to add food items to the seller stuff
 --}}
@@ -16,8 +15,8 @@
   <div class="nav-wrapper container">
     <a id="logo-container" href="#" class="brand-logo"> VESTA </a>
     <ul class="right hide-on-med-and-down">
-      <li><a id="infoA"> What is Vesta? </a></li>
       <li><a id="infoB"> Become A Chef </a></li>
+      <li><a id="infoA"> What is Vesta? </a></li>
     </ul>
 
     <ul id="nav-mobile" class="side-nav">
@@ -57,12 +56,9 @@
 </div>
 
 {{!-- Description of how the newsletter / catalogue works --}}
-{{!-- TODO try to make this responsive like the info pane
-      ideally when the screen is small the menu will go on top
-      The four icons will shift below it... --}}
 <div id="newsletterPane" class="row">
   <div class="row container center">
-    <h3> How to use our Menu </h3>
+    <h1> How to use our Menu </h1>
   </div>
   <div class="row valign-wrapper" id="menuDivContainer">
     <div>
@@ -118,66 +114,9 @@
   </div>
 </div>
 
-{{!-- Who we are / what we do --}}
-<div id="infoPane">
-  <div class="section no-pad-bot" id="index-banner">
-    <div class="container">
-      <h1 class="header center"> 
-        Web Marketplace 
-        <br> 
-        - Under Construction - 
-      </h1>
-      <div class="row center">
-        <h5 class="header col s12 light"> Vesta is currently expanding its presence. 
-          We hope to have our fully integrated web marketplace available by mid June. 
-          For now, please subscribe to our mailing list to receive listings of 
-          great homemeade meals from local chefs.
-        </h5>
-        {{!-- TODO add in a button "subscribe" as per before which will bring user to form --}}
-      </div>
-      <br><br>
-
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="section" id="quickOverview">
-
-      <!--   Icon Section   -->
-      <div class="row">
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center"><i class="large material-icons">people</i></h2>
-            <h5 class="center">Community Focused</h5>
-            <p class="light"> Get to know your neighborhood and your neighbors through culinary experiences.  </p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center"><i class="large material-icons">thumbs_up_down</i></h2>
-            <h5 class="center">Comprehensive Review System</h5>
-            <p class="light"> Vesta is committed to ensuring the highest quality experience. To achieve this, we offer a comprehensive review system for both buyers and sellers. </p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center"><i class="large material-icons">restaurant</i></h2>
-            <h5 class="center"> Homemade Variety </h5>
-            <p class="light"> If you don't like homemade food, you just don't get it </p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-</div>
-
 
 <div id="addChefPane">
-  <div class="row center">
+  <div class="center triangleBanner">
     <h2> Create Culinary Experiences </h2>
     <div class="arrow-down"></div>
   </div>
@@ -298,6 +237,65 @@
     </div>
   </form>
 </div>
+
+{{!-- Who we are / what we do --}}
+<div id="infoPane">
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <h1 class="header center"> 
+        Web Marketplace 
+        <br> 
+        - Under Construction - 
+      </h1>
+      <div class="row center">
+        <h5 class="header col s12 light"> Vesta is currently expanding its presence. 
+          We hope to have our fully integrated web marketplace available by mid June. 
+          For now, please subscribe to our mailing list to receive listings of 
+          great homemeade meals from local chefs.
+        </h5>
+        {{!-- TODO add in a button "subscribe" as per before which will bring user to form --}}
+      </div>
+      <br><br>
+
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="section" id="quickOverview">
+
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center"><i class="large material-icons">people</i></h2>
+            <h5 class="center">Community Focused</h5>
+            <p class="light"> Get to know your neighborhood and your neighbors through culinary experiences.  </p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center"><i class="large material-icons">thumbs_up_down</i></h2>
+            <h5 class="center">Comprehensive Review System</h5>
+            <p class="light"> Vesta is committed to ensuring the highest quality experience. To achieve this, we offer a comprehensive review system for both buyers and sellers. </p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center"><i class="large material-icons">restaurant</i></h2>
+            <h5 class="center"> Homemade Variety </h5>
+            <p class="light"> If you don't like homemade food, you just don't get it </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
 
 {{!-- featured chefs space --}}
 {{!-- Postponed till we have chefs

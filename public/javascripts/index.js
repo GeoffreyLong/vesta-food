@@ -28,13 +28,13 @@ $(document).ready(function(){
   ////////////////////////////////////////////////////////////////////////////
   $('#infoA').on('click', function(){
     $('html, body').animate({
-        scrollTop: $('#infoPane').offset().top - $('.navbar').height()
+        scrollTop: $('#infoPane').offset().top - $('.navbar').height() + 1
     }, 500);
     return false;
   });
   $('#infoB').on('click', function(){
     $('html, body').animate({
-        scrollTop: $('#addChefPane').offset().top - $('.navbar').height()
+        scrollTop: $('#addChefPane').offset().top - $('.navbar').height() + 1
     }, 500);
     return false;
   });

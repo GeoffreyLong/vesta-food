@@ -63,7 +63,7 @@ nav li a:hover {
 }
 #splashPane {
   font-family: 'Avenir LT Std-Book', sans-serif;
-  height: 50%;
+  height: 80%;
   min-height: 350px;
   max-width: 100%;
 /***** IMAGE STUFF ******/
@@ -128,7 +128,7 @@ nav li a:hover {
 #newsletterPane {
   width: 100%;
 }
-#newsletterPane h3 {
+#newsletterPane h1 {
   color: #3375aa;
 }
 #newsletterPane #menuDivContainer {
@@ -199,14 +199,16 @@ nav li a:hover {
   border-top: 50px solid #3375aa;
 }
 #addChefPane {
+  min-height: 435px;
+  height: 80%;
 /* default */
-  background-image: url("../images/splash_one.jpg");
+  background-image: url("../images/splash_two.jpg");
 /* For Safari 5.1 to 6.0 */
-  background: -webkit-linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url("../images/splash_one.jpg");
+  background: -webkit-linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url("../images/splash_two.jpg");
 /* For Opera 11.1 to 12.0 */
-  background: -o-linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url("../images/splash_one.jpg");
+  background: -o-linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url("../images/splash_two.jpg");
 /* For Firefox 3.6 to 15 */
-  background: -moz-linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url("../images/splash_one.jpg");
+  background: -moz-linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url("../images/splash_two.jpg");
 /* Standard */
   background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url("../images/splash_two.jpg");
 /*** Set the size ***/
@@ -219,6 +221,9 @@ nav li a:hover {
 /* ie8 workaround - http://louisremi.github.io/background-size-polyfill/ */
   -ms-behavior: url("/backgroundsize.min.htc");
   width: 100%;
+}
+#addChefPane .triangleBanner {
+  margin: 0 !important;
 }
 #addChefPane h2 {
   padding: 20px;
