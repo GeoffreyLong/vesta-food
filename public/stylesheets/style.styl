@@ -128,16 +128,33 @@ nav
   width: 100%
   h3
     color: #3375AA
-  i.linker
-    -ms-transform: rotate(270deg); /* IE 9 */
-    -webkit-transform: rotate(270deg); /* Safari */
-    transform: rotate(270deg);
-    position:absolute
-    margin-right: 20px
-  img
-    height: 100%;
-    width: 100%;
-    border-radius: 50%
+  #menuDivContainer
+    cursor: pointer;
+    text-align: center
+    font-weight: bold
+    #menuDiv
+      height:275px;
+      width:300px;
+      background-image: url("../images/Menu_Alert_1.jpg") 
+      /*** Set the size ***/
+      background-size: cover
+      /*** Set the position (what part of image is shown) ***/
+      -ms-background-position-x: 50%;
+      -ms-background-position-y: 80%;
+      background-position: 50% 80%;
+      /* TODO test */
+      /* ie8 workaround - http://louisremi.github.io/background-size-polyfill/ */
+      -ms-behavior: url(/backgroundsize.min.htc)
+  #menuDivContainer:hover
+      color: #00B7FF
+  .emailFormLink
+    cursor: pointer
+  .emailFormLink:hover
+    color: #0077DD
+
+#menuModal
+  .right
+    padding:10px
 
 #infoPane
   position:relative

@@ -16,7 +16,7 @@
   <div class="nav-wrapper container">
     <a id="logo-container" href="#" class="brand-logo"> VESTA </a>
     <ul class="right hide-on-med-and-down">
-      <li><a id="infoA"> Information </a></li>
+      <li><a id="infoA"> What is Vesta? </a></li>
       <li><a id="infoB"> Become A Chef </a></li>
     </ul>
 
@@ -57,46 +57,62 @@
 </div>
 
 {{!-- Description of how the newsletter / catalogue works --}}
+{{!-- TODO try to make this responsive like the info pane
+      ideally when the screen is small the menu will go on top
+      The four icons will shift below it... --}}
 <div id="newsletterPane">
   <div class="row container center">
-    <h3> How Our Menu Works </h3>
+    <h3> How to use our Menu </h3>
   </div>
   <div class="row container valign-wrapper">
-    <div class="col s1 center">
-      <i class="linker medium material-icons">undo</i> 
+    <div id="menuDivContainer">
+      <p> Example Menu </p>
+      <div class="col s2" id="menuDiv"> </div>
     </div>
-    <div class="col s2 center valign">
-      <i class="medium material-icons">contact_mail</i>
-    </div>
-    <div class="col s8 valign">
-      Subscribe to our menu using the email form above. 
-      This menu, released on a weekly basis, contains listings of local chefs and their dishes. 
-      If any dishes catch your eye, you can reply to the newsletter with the 
-      name of the seller(s) you wish to contact. Vesta will respond with the seller's information.
+    <div class="col s10 valign">
+      <div class="row valign-wrapper">
+        <div class="col center s4 valign">
+           <i class="medium material-icons">person_add</i> 
+        </div>
+        <div class="col s12 valign">
+          Subscribe to our menu using the <a class="emailFormLink"> email form </a> 
+        </div>
+      </div>
+      <div class="row valign-wrapper">
+        <div class="col center s4 valign">
+           <i class="medium material-icons">contact_mail</i> 
+        </div>
+        <div class="col s12 valign">
+          Reply to a weekly menu email to get a chef's contact information 
+        </div>
+      </div>
+      <div class="row valign-wrapper">
+        <div class="col center s4 valign">
+           <i class="medium material-icons">add_shopping_cart</i> 
+        </div>
+        <div class="col s12 valign">
+          Place an order with the chef and arrange a pickup 
+        </div>
+      </div>
+      <div class="row valign-wrapper">
+        <div class="col center s4 valign">
+           <i class="medium material-icons">local_restaurant</i> 
+        </div>
+        <div class="col s12 valign">
+          Enjoy your homecooked meal!
+        </div>
+      </div>
     </div>
   </div>
-  <div class="row container valign-wrapper">
-    <div class="col s1 center">
-      <i class="linker medium material-icons">undo</i> 
-    </div>
-    <div class="col s2 center valign">
-      <img src="images/chef_1-1.png" class="responsive-img"/> 
-    </div>
-    <div class="col s8 valign">
-      Contact the seller using the provided information. 
-      <br>
-      Choose your desired meals, pickup time, and pickup location. 
-    </div>
+</div>
+
+<div id="menuModal" class="modal">
+  {{!-- TODO consider making a fixed header icon --}}
+  <div class="right"> 
+    <i class="small material-icons modal-action modal-close waves-effect waves-red">close</i>
   </div>
-  <div class="row container valign-wrapper">
-    <div class="col s1 center">
-    </div>
-    <div class="col s2 valign">
-      <img src="images/chef_1-1.png" class="responsive-img"/> 
-    </div>
-    <div class="col s8 valign">
-      Pick up your food from the chef and enjoy your homecooked meal!
-    </div>
+  <div class="modal-content center">
+    <img src="/images/Menu_Alert_1.jpg"/>
   </div>
 </div>
 

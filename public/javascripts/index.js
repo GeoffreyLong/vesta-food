@@ -216,4 +216,21 @@ $(document).ready(function(){
     adaptiveHeight: true
   });
   */
+
+
+  ////////////////////////////////////////////////////////////////////////////
+                    /********** OTHER **********/
+  ////////////////////////////////////////////////////////////////////////////
+  // This scrolls and focuses on the email form on link click
+  $('.emailFormLink').on('click', function(){
+    $('html, body').animate({
+        scrollTop: 0
+    }, 500);
+    $('#formContainer input[type="text"]').focus();
+  });
+
+  // Open the newsletter/menu modal
+  $('#menuDivContainer').on('click', function(){ 
+    $('#menuModal').openModal();
+  });
 });
