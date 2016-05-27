@@ -2,6 +2,7 @@
 module.exports = function(passport){
   // TODO
   //  Pull out the db existance check logic into an fn
+  //  READ: https://vickev.com/#!/article/authentication-in-single-page-applications-node-js-passportjs-angularjs
 
 
   var express = require('express');
@@ -33,10 +34,22 @@ module.exports = function(passport){
   var EarlyUsers = mongoose.model('earlyUsers', EarlyUserSchema);
   var EarlySellers = mongoose.model('earlySellers', EarlySellerSchema);
 
+  router.get('/splogin', function(req, res){
+    res.render('splogin');
+  });
+
+  var authenticate = function(req, res, next) {
+    // Might offer some cross browser stuff?
+    // res.header('Access-Control-Allow-Credentials', true);
+    console.log('Authenticating');
+    if (req.isAuthenticated()) { return next(); }
+    console.log('Not Authenticated');
+    res.redirect('/splogin')
+  };
 
   /* GET home page. */
-  router.get('/', function(req, res) {
-    res.render('splogin');
+  router.get('/', authenticate, function(req, res) {
+    res.render('index');
   });
 
 
@@ -46,8 +59,8 @@ module.exports = function(passport){
 
   router.get('/auth/facebook/callback',
     passport.authenticate('facebook', { 
-         successRedirect : '/', 
-         failureRedirect: '/login' 
+        successRedirect : '/', 
+        failureRedirect: '/splogin' 
     }), function(req, res) {
       res.redirect('/');
     }
@@ -58,10 +71,6 @@ module.exports = function(passport){
     res.redirect('/');
   });
 
-  function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) { return next(); }
-    res.redirect('/splogin')
-  }
 
   /* POST for newsletter 
    * Occurs when the user enters their email address on the splash page

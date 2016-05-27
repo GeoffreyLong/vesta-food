@@ -9,43 +9,7 @@ var passport = require('passport');
 var expressSession = require('express-session');
 
 
-// Get the correct configuration down
-var config = require('./config');
-config = config[process.env.NODE_ENV] || config['development'];
-
-// Start up the DB
-mongoose.connect(config.database.url, function (error) {
-  if (error) {
-      console.log(error);
-  }
-  else{
-    console.log('Successfully Connected');
-  }
-});
-
 var app = express();
-
-
-// Configuring Passport
-app.use(expressSession({
-    secret: 's33cr33tzzz',
-    resave: true,
-    saveUninitialized: true
-}));
-app.use(passport.initialize());
-app.use(passport.session());
-
-// Initialize Passport
-var initPassport = require('./passport/init');
-initPassport(passport);
-
-
-var routes = require('./routes/index')(passport);
-var users = require('./routes/users');
-
-
-
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -60,11 +24,42 @@ app.use(cookieParser());
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+// Get the correct configuration down
+var config = require('./config');
+config = config[process.env.NODE_ENV] || config['development'];
+
+// Start up the DB
+mongoose.connect(config.database.url, function (error) {
+  if (error) {
+      console.log(error);
+  }
+  else{
+    console.log('Successfully Connected');
+  }
+});
+
+
+// Configuring Sessions
+app.use(expressSession({
+    secret: 's33cr33tzzz',
+    resave: true,
+    saveUninitialized: true
+}));
+
+// Initialize Passport
+app.use(passport.initialize());
+app.use(passport.session());
+var initPassport = require('./passport/init');
+initPassport(passport);
+
+
+// Routes
+var routes = require('./routes/index')(passport);
+var users = require('./routes/users');
+
 app.use('/', routes);
 app.use('/users', users);
-
-
-
 
 
 // catch 404 and forward to error handler
