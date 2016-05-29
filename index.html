@@ -3,9 +3,6 @@
   <head>
     <meta charset="utf-8">
     <title>Vesta</title>
-    <script src="/node_modules/angular/angular.js"></script>
-    <script src="/node_modules/angular/angular-route.js"></script>
-    <script src="/node_modules/angular/angular-resource.js"></script>
 
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
@@ -14,6 +11,9 @@
     <!-- jQuery validator -->
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
     <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.min.js"></script>
+
+    <!-- Angular --> 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js"></script>
 
     <!-- Materialize JS/CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
@@ -25,12 +25,11 @@
     <!-- Add the slick-theme.css if you want default styling 
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css"/>
     -->
-    <link rel='stylesheet' href='/stylesheets/slick-theme.css' />
 
 
     <!-- Our Stuff -->
-    <link rel='stylesheet' href='/stylesheets/splogin.css' />
-    <script src="javascripts/splogin.js"></script>
+    <script src="app.js"></script>
+
 
     <!-- Not sure if we need all of this... might be good for the favicon
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
@@ -74,8 +73,18 @@
 
   </head>
   <body>
-    Index
+    
+  <body ng-controller="StoreListController">
 
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+    <ul>
+      <li ng-repeat="store in stores">
+        <span>{{store.name}}</span>
+        <p>{{store.snippet}}</p>
+      </li>
+    </ul>
+
+  </body>
+
+
   </body>
 </html>
