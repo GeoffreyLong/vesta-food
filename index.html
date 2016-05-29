@@ -22,13 +22,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js"></script>
     
     <!-- Materialize JS/CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.9/angular-material.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.9/angular-material.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     
 
     <!-- Our Stuff -->
+    <link rel="stylesheet" type="text/css" href="index.css"/>
     <script src="app.module.js"></script>
+    <script src="vesta-nav/vesta-nav.module.js"></script>
+    <script src="vesta-nav/vesta-nav.component.js"></script>
     <script src="stores-view/stores-view.module.js"></script>
     <script src="stores-view/stores-view.component.js"></script>
 
@@ -76,6 +79,7 @@
   </head>
   <body>
     
+  <vesta-nav></vesta-nav>
   <stores-view></stores-view>
 
   </body>
