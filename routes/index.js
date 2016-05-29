@@ -34,21 +34,37 @@ module.exports = function(passport){
   var EarlyUsers = mongoose.model('earlyUsers', EarlyUserSchema);
   var EarlySellers = mongoose.model('earlySellers', EarlySellerSchema);
 
-  var authenticate = function(req, res, next) {
-    // Might offer some cross browser stuff?
-    // res.header('Access-Control-Allow-Credentials', true);
-    console.log('Authenticating');
 
-    if (req.isAuthenticated()) { return next(); }
-    
-    console.log('Not Authenticated');
+  // Sessions are required on everything but splogin
+  var requireSession = function(req, res, next) {
+    // Check to see if the user is logged in
+    //    or if the user has previously entered a search address
+    if (req.session && (req.session.address || req.session.user)) {
+      console.log("Found session");
+      next();
+    }
+    else {
+      console.log("No session");
+      res.sendFile(path.resolve('splogin.html'));
+    }
 
-    res.sendFile(path.resolve('splogin.html'));
   };
 
+  // Login is required for store purchases
+  var requireLogin = function(req, res, next) {
+    if (req.isAuthenticated()) { 
+      return next(); 
+    }
+    else {
+      console.log('Not Authenticated');
+      // TODO Give them to some sort of login
+      // Don't want to redirect to splogin, want one on page
+    }
+  };
+
+
   /* GET home page. */
-  router.get('/', authenticate, function(req, res) {
-    console.log("hello");
+  router.get('/', requireSession, function(req, res) {
     res.sendFile(path.resolve('index.html'));
   });
 
@@ -87,6 +103,8 @@ module.exports = function(passport){
     //        that we will come to their neighborhood someday or something
     //    If stores found then redirect to the angular application
     //    TODO figure out how to do that...
+
+    req.session.address = searchAddress
 
     res.status(200).send(searchAddress);
   });

@@ -59,6 +59,7 @@ $(document).ready(function(){
         200: function(data) {
           console.log("Locations passed back: " + data);
           Materialize.toast('TODO add functionality!', 4000)
+          window.location.href = "/";
         },
         400: function() {
           alert("Didn't work");
