@@ -1,3 +1,4 @@
+/* Variables */
 html,
 body {
   padding: 0;
@@ -16,7 +17,7 @@ a {
   cursor: pointer;
 }
 .emailFormLink:hover {
-  color: #07d;
+  color: #4a6ea9;
 }
 #toaster {
 /* z-index of a modal is 1003 */
@@ -127,15 +128,34 @@ nav li a:hover {
 }
 #splashPane #formContainer form input[type="submit"] {
   cursor: pointer;
+  width: 100px;
   color: #fff;
-  background-color: #3375aa;
+  background-color: #4a6ea9;
   border-radius: 0px 4px 4px 0px;
+}
+#splashPane #formContainer #facebookLogin {
+  cursor: pointer;
+  background-color: #4a6ea9;
+  border-radius: 4px;
+  height: 50px;
+  max-width: 370px;
+  margin: auto;
+}
+#splashPane #formContainer #facebookLogin img {
+  margin-top: 5px;
+  float: left;
+}
+#splashPane #formContainer #facebookLogin span {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 25px;
+  color: #fff;
 }
 #newsletterPane {
   width: 100%;
 }
 #newsletterPane h1 {
-  color: #3375aa;
+  color: #4a6ea9;
 }
 #newsletterPane #menuDivContainer {
   style: inline-block;
@@ -178,7 +198,7 @@ nav li a:hover {
   width: 100%;
 }
 #infoPane h1 {
-  color: #3375aa;
+  color: #4a6ea9;
 }
 #infoPane h2 {
   color: #ea6e10;
@@ -226,7 +246,7 @@ nav li a:hover {
 #addChefPane h2 {
   padding: 20px;
   width: 100%;
-  background-color: #3375aa;
+  background-color: #4a6ea9;
   color: #fff;
   margin: 0px;
 }
@@ -240,7 +260,7 @@ nav li a:hover {
   color: #fff;
 }
 #addChefPane #becomeSeller {
-  background-color: #3375aa;
+  background-color: #4a6ea9;
 }
 #addChefPane .photoBanner {
   position: relative;
@@ -260,7 +280,7 @@ nav li a:hover {
   position: relative;
   top: 30px;
   text-align: center;
-  color: #3375aa;
+  color: #4a6ea9;
 }
 .strike:after {
   position: absolute;
@@ -269,7 +289,7 @@ nav li a:hover {
   top: 50%;
   height: 3px;
   content: "";
-  background-color: #3375aa;
+  background-color: #4a6ea9;
 }
 .strike h2 {
   display: inline;
@@ -303,7 +323,7 @@ nav li a:hover {
   width: 90%;
 }
 #featuredPane #becomeSeller {
-  background-color: #3375aa;
+  background-color: #4a6ea9;
 }
 #featuredPane .card-reveal {
   z-index: 6;

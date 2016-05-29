@@ -43,45 +43,28 @@ $(document).ready(function(){
   ////////////////////////////////////////////////////////////////////////////
                         /********** Email Form **********/
   ////////////////////////////////////////////////////////////////////////////
-  $("#emailForm").submit(function(event) {
+  $("#locationSearch").submit(function(event) {
     /* stop form from submitting normally */
     event.preventDefault();
-  });
-  $("#emailForm").validate({
-    submitHandler: function(form) {
-      var data = {};
-      data.email = $('#email').val();
+    var data = {};
+    data.searchAddress = $('#searchAddress').val();
 
-      $.ajax({
-        type: 'POST',
-        contentType: 'application/json',
-        url: '/newsletter',
-        data: JSON.stringify(data),
-        async: true,
-        statusCode: {
-          200: function(data) {
-            console.log("Email passed back: " + data);
-            if (data) {
-              // Launch survey if new user
-              //$('#survey').openModal();
-              Materialize.toast('Successfully Added!', 4000)
-              $('#email').val(''); 
-            }
-            else{
-              Materialize.toast('Email already exists!', 4000)
-            }
-
-          },
-          400: function() {
-            alert("Didn't work");
-          }
+    $.ajax({
+      type: 'POST',
+      contentType: 'application/json',
+      url: '/locationSearch',
+      data: JSON.stringify(data),
+      async: true,
+      statusCode: {
+        200: function(data) {
+          console.log("Locations passed back: " + data);
+          Materialize.toast('TODO add functionality!', 4000)
+        },
+        400: function() {
+          alert("Didn't work");
         }
-      });
-    },
-
-    invalidHandler: function(event, validator) {
-      Materialize.toast('Invalid Email!', 4000)
-    },
+      }
+    });
   });
 
   ////////////////////////////////////////////////////////////////////////////
@@ -232,5 +215,10 @@ $(document).ready(function(){
   // Open the newsletter/menu modal
   $('#menuDivContainer').on('click', function(){ 
     $('#menuModal').openModal();
+  });
+
+
+  $('#facebookLogin').on('click', function(){
+    window.location.href = "/auth/facebook";
   });
 });

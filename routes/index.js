@@ -2,14 +2,14 @@
 module.exports = function(passport){
   // TODO
   //  Pull out the db existance check logic into an fn
-  //  READ: https://vickev.com/#!/article/authentication-in-single-page-applications-node-js-passportjs-angularjs
-
-
+  
   var express = require('express');
   var router = express.Router();
 
   var mongoose = require('mongoose');
   var mongo = require('mongodb');
+
+  var path = require("path");
 
   // NOTE: Not so sure about this
   // Could just module.exports this auth information... this seems convoluted
@@ -34,22 +34,22 @@ module.exports = function(passport){
   var EarlyUsers = mongoose.model('earlyUsers', EarlyUserSchema);
   var EarlySellers = mongoose.model('earlySellers', EarlySellerSchema);
 
-  router.get('/splogin', function(req, res){
-    res.render('splogin');
-  });
-
   var authenticate = function(req, res, next) {
     // Might offer some cross browser stuff?
     // res.header('Access-Control-Allow-Credentials', true);
     console.log('Authenticating');
+
     if (req.isAuthenticated()) { return next(); }
+    
     console.log('Not Authenticated');
-    res.redirect('/splogin')
+
+    res.sendFile(path.resolve('splogin.html'));
   };
 
   /* GET home page. */
   router.get('/', authenticate, function(req, res) {
-    res.render('index');
+    console.log("hello");
+    res.sendFile(path.resolve('index.html'));
   });
 
 
@@ -75,43 +75,20 @@ module.exports = function(passport){
   /* POST for newsletter 
    * Occurs when the user enters their email address on the splash page
    */
-  router.post('/newsletter', function(req, res) {
-    var newEmail = req.body.email;
-    console.log('User email address entered is ' + newEmail);
+  router.post('/locationSearch', function(req, res) {
+    var searchAddress = req.body.searchAddress;
+    console.log('Location search entered is ' + searchAddress);
+    
+    // TODO redirect to the store page application
+    //    Basically search the DB for stores with a set distance of the user
+    //    If no stores found then send the user a message
+    //        Especially if the address is not in Montreal
+    //        If this happens then have them enter their email and we will say
+    //        that we will come to their neighborhood someday or something
+    //    If stores found then redirect to the angular application
+    //    TODO figure out how to do that...
 
-    // Upsert ensures that only adds if doesn't exist
-    EarlyUsers.find({email: newEmail}, function(err, found) {
-      if (err){
-        console.log(err);
-        res.status(500).send(err);
-      }
-      
-      // In this case a user did not exist
-      // Add the new user to the database
-      if (found == 0){
-        new EarlyUsers({
-          email: newEmail
-        }).save(function(err, saved){
-          if (err){
-            console.log(err);
-            res.status(500).send(err);
-          }
-
-          console.log(newEmail + ' added to the database');
-          // Should redirect to a second survey
-          // This survey would add additional information to the schema
-          // Updated via a find by email
-          res.status(200).send(newEmail);
-
-        });
-      }
-      // In this case a user did exist
-      else{
-        // NOTE Could consider sending a different status code than 200
-        console.log(newEmail + ' is already in the database');
-        res.status(200).send('');
-      }
-    });
+    res.status(200).send(searchAddress);
   });
 
   /* POST for new sellers 

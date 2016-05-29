@@ -1,3 +1,11 @@
+/* Variables */
+$importantColor = #4A6EA9
+$alertColor = #EA6E10
+$secondaryColor = #EA6E10
+$linkColor = #00B7FF
+
+
+
 html,body
   padding: 0
   margin: 0
@@ -8,11 +16,11 @@ body
   font: 14px "Roboto", Helvetica, Arial, sans-serif
 
 a
-  color: #00B7FF
+  color: $linkColor
 .emailFormLink
   cursor: pointer
 .emailFormLink:hover
-  color: #0077DD
+  color: $importantColor
 
 #toaster
   /* z-index of a modal is 1003 */
@@ -32,7 +40,7 @@ a
       
 
 .toast
-  background-color: #ea6e10
+  background-color: $alertColor
   position: relative
   left: 0px !important
 
@@ -57,7 +65,7 @@ nav
       transition: all 0.5s ease
     a:hover
       background-color: rgba(0,0,0,0.5) !important
-      color: #ea6e10
+      color: $alertColor
 
 
 #splashPane
@@ -124,14 +132,32 @@ nav
         
       input[type="submit"]
         cursor: pointer
+        width: 100px
         color: #FFFFFF
-        background-color: #3375AA
+        background-color: $importantColor
         border-radius: 0px 4px 4px 0px
+
+    #facebookLogin
+      cursor: pointer
+      background-color: $importantColor
+      border-radius: 4px
+      height: 50px
+      max-width: 370px
+      margin: auto
+      img
+        margin-top: 5px
+        float:left
+      span
+        display: inline-block
+        margin-top: 10px
+        font-size: 25px
+        color: #FFFFFF
+
 
 #newsletterPane
   width: 100%
   h1
-    color: #3375AA
+    color: $importantColor
   #menuDivContainer
     style: inline-block
     width: 30%
@@ -156,7 +182,7 @@ nav
       /* ie8 workaround - http://louisremi.github.io/background-size-polyfill/ */
       -ms-behavior: url(/backgroundsize.min.htc)
   #menuDivContainer:hover
-      color: #00B7FF
+      color: $linkColor
   #menuStepsContainer
     style: inline-block
     float: right
@@ -171,9 +197,9 @@ nav
   width: 100%
 
   h1
-    color: #3375AA
+    color: $importantColor
   h2
-    color: #ea6e10
+    color: $secondaryColor
   .icon-block
     margin: 10px
 
@@ -221,7 +247,7 @@ nav
   h2
     padding:20px
     width: 100%
-    background-color: #3375AA
+    background-color: $importantColor
     color: #FFFFFF
     margin:0px
 
@@ -232,7 +258,7 @@ nav
     h5
       color:#FFFFFF
   #becomeSeller
-    background-color: #3375AA
+    background-color: $importantColor
   .photoBanner
     position: relative
     top: 20%
@@ -251,7 +277,7 @@ nav
   position: relative;
   top: 30px
   text-align: center;
-  color: #3375AA
+  color: $importantColor
 }
 .strike:after {
   position: absolute;
@@ -260,7 +286,7 @@ nav
   top: 50%;
   height: 3px;
   content: "";
-  background-color: #3375AA
+  background-color: $importantColor
 }
 .strike h2 {
   display: inline;
@@ -290,7 +316,7 @@ nav
   .container
     width: 90%
   #becomeSeller
-    background-color: #3375AA
+    background-color: $importantColor
   .card-reveal
     z-index: 6
   .card-image
