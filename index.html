@@ -12,23 +12,25 @@
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
     <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.min.js"></script>
 
-    <!-- Angular --> 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js"></script>
-
-    <!-- Materialize JS/CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    
     <!-- Image Carousel -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
     <!-- Add the slick-theme.css if you want default styling 
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css"/>
     -->
 
+    <!-- Angular --> 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js"></script>
+    
+    <!-- Materialize JS/CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
 
     <!-- Our Stuff -->
-    <script src="app.js"></script>
+    <script src="app.module.js"></script>
+    <script src="stores-view/stores-view.module.js"></script>
+    <script src="stores-view/stores-view.component.js"></script>
 
 
     <!-- Not sure if we need all of this... might be good for the favicon
@@ -74,17 +76,7 @@
   </head>
   <body>
     
-  <body ng-controller="StoreListController">
-
-    <ul>
-      <li ng-repeat="store in stores">
-        <span>{{store.name}}</span>
-        <p>{{store.snippet}}</p>
-      </li>
-    </ul>
-
-  </body>
-
+  <stores-view></stores-view>
 
   </body>
 </html>
