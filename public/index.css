@@ -7,9 +7,18 @@ body {
   height: 100%;
   width: 100%;
 }
+/* This is kindof hacky, it ensures that the top divs aren't hidden
+    ... would like to avoid */
+body {
+  padding-top: 64px;
+}
+md-toolbar {
+  margin-top: -64px;
+}
 /******************************** TOP NAV BAR ********************************/
 /* NOTE a few of these attributes can be encapsulated in a header elements class */
 md-toolbar {
+  height: 64px;
   background-color: #4a6ea9;
 /* Make text unselectable */
   -webkit-user-select: none;
@@ -55,3 +64,7 @@ md-toolbar #cartButton {
   margin-right: 10px;
 }
 /******************************** SIDE NAV BAR ********************************/
+md-sidenav {
+  position: fixed;
+  top: 64px !important;
+}

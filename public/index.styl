@@ -5,15 +5,25 @@ $secondaryColor = #EA6E10
 $alertColor = #EA6E10
 $linkColor = #00B7FF
 
+$headerHeight = 64px
+
 html, body
   padding: 0
   margin: 0
   height: 100%
   width: 100%
 
+/* This is kindof hacky, it ensures that the top divs aren't hidden
+    ... would like to avoid */
+body
+  padding-top: $headerHeight
+md-toolbar
+  margin-top: -64px;
+
 /******************************** TOP NAV BAR ********************************/
 /* NOTE a few of these attributes can be encapsulated in a header elements class */
 md-toolbar
+  height: $headerHeight
   $navButtonSize = 40px
 
   background-color: $primaryColor
@@ -61,6 +71,9 @@ md-toolbar
 
 
 /******************************** SIDE NAV BAR ********************************/
+md-sidenav
+  position: fixed
+  top: $headerHeight !important
 
 
 
