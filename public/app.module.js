@@ -1,5 +1,6 @@
 angular.module('vestaApp', [
     'vestaNav',
+    'sideNav',
     'storesView',
     'ngMaterial'
 ]).config(function($mdThemingProvider) {

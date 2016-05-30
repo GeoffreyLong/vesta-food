@@ -7,6 +7,7 @@ body {
   height: 100%;
   width: 100%;
 }
+/******************************** TOP NAV BAR ********************************/
 /* NOTE a few of these attributes can be encapsulated in a header elements class */
 md-toolbar {
   background-color: #4a6ea9;
@@ -53,3 +54,4 @@ md-toolbar #cartButton {
 /* hmm... I don't know if I like this... */
   margin-right: 10px;
 }
+/******************************** SIDE NAV BAR ********************************/
