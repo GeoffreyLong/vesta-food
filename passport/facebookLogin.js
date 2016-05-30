@@ -19,7 +19,6 @@ module.exports = function(passport){
         console.log("ok");
         // In case of any error, return using the done method
         if (err){
-          
           console.log(user);
           return done(err);
         }

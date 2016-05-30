@@ -39,7 +39,7 @@ module.exports = function(passport){
   var requireSession = function(req, res, next) {
     // Check to see if the user is logged in
     //    or if the user has previously entered a search address
-    if (req.session && (req.session.address || req.session.user)) {
+    if ((req.user && req.user.fbID) || req.session.address) {
       console.log("Found session");
       next();
     }
