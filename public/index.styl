@@ -1,7 +1,7 @@
 /* variables */
-$importantColor = #4A6EA9
-$alertColor = #EA6E10
+$primaryColor = #4A6EA9
 $secondaryColor = #EA6E10
+$alertColor = #EA6E10
 $linkColor = #00B7FF
 
 html, body
@@ -11,7 +11,9 @@ html, body
   width: 100%
 
 md-toolbar
-  background-color: $importantColor
+  $navButtonSize = 40px
+
+  background-color: $primaryColor
 
   /* Make text unselectable */
   -webkit-user-select: none; /* Chrome/Safari */        
@@ -24,4 +26,21 @@ md-toolbar
   .brand-logo
     margin-top: auto
     margin-bottom: auto
-    margin-left: 20px
+    margin-left: 30px
+
+  md-button
+    cursor: pointer
+    height: $navButtonSize
+    width: $navButtonSize
+    margin: 10px
+    margin-top: auto
+    margin-bottom: auto
+    color: #FFFFFF
+
+    md-icon.material-icons
+      height: $navButtonSize
+      width: $navButtonSize
+      font-size: 40px
+
+  md-button:hover
+    color: $secondaryColor

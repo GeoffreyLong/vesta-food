@@ -22,5 +22,22 @@ md-toolbar {
 md-toolbar .brand-logo {
   margin-top: auto;
   margin-bottom: auto;
-  margin-left: 20px;
+  margin-left: 30px;
+}
+md-toolbar md-button {
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  margin: 10px;
+  margin-top: auto;
+  margin-bottom: auto;
+  color: #fff;
+}
+md-toolbar md-button md-icon.material-icons {
+  height: 40px;
+  width: 40px;
+  font-size: 40px;
+}
+md-toolbar md-button:hover {
+  color: #ea6e10;
 }
