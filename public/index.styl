@@ -73,7 +73,8 @@ md-toolbar
 /******************************** SIDE NAV BAR ********************************/
 md-sidenav
   position: fixed
-  top: $headerHeight !important
+  /* This ensures that the sidenav doesn't overlap the topnav shadow */
+  top: $headerHeight + 15 !important
 
 
 
