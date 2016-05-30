@@ -8,12 +8,13 @@ body {
   width: 100%;
   background-color: #f2f2f2;
 }
+/* NOTE this could use some work if I find myself with nothing to do */
 #nonNavContainer {
   padding-top: 50px;
   transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 0.1);
 }
 #nonNavContainer.sideNavOpen {
-  padding-left: 320px;
+  padding-left: 225px;
   transition: all 0.15s ease-in;
 }
 /******************************** TOP NAV BAR ********************************/
@@ -71,6 +72,7 @@ md-sidenav {
   top: 65px !important;
   background-color: #f2f2f2;
   transition: all 0.25s ease-in;
+  width: 225px;
 }
 .md-sidenav-backdrop {
   height: 0px;
