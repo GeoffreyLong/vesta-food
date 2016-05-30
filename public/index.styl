@@ -10,6 +10,7 @@ html, body
   height: 100%
   width: 100%
 
+/* NOTE a few of these attributes can be encapsulated in a header elements class */
 md-toolbar
   $navButtonSize = 40px
 
@@ -23,10 +24,10 @@ md-toolbar
   -o-user-select: none;
   user-select: none;
 
-  .brand-logo
+  #brand-logo
     margin-top: auto
     margin-bottom: auto
-    margin-left: 30px
+    margin-left: 20px
 
   md-button
     cursor: pointer
@@ -44,3 +45,11 @@ md-toolbar
 
   md-button:hover
     color: $secondaryColor
+
+  #username
+    margin: auto
+    margin-right:20px
+
+  #cartButton
+    /* hmm... I don't know if I like this... */
+    margin-right: 10px

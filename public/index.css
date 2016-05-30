@@ -6,6 +6,7 @@ body {
   height: 100%;
   width: 100%;
 }
+/* NOTE a few of these attributes can be encapsulated in a header elements class */
 md-toolbar {
   background-color: #4a6ea9;
 /* Make text unselectable */
@@ -19,10 +20,10 @@ md-toolbar {
   -o-user-select: none;
   user-select: none;
 }
-md-toolbar .brand-logo {
+md-toolbar #brand-logo {
   margin-top: auto;
   margin-bottom: auto;
-  margin-left: 30px;
+  margin-left: 20px;
 }
 md-toolbar md-button {
   cursor: pointer;
@@ -40,4 +41,12 @@ md-toolbar md-button md-icon.material-icons {
 }
 md-toolbar md-button:hover {
   color: #ea6e10;
+}
+md-toolbar #username {
+  margin: auto;
+  margin-right: 20px;
+}
+md-toolbar #cartButton {
+/* hmm... I don't know if I like this... */
+  margin-right: 10px;
 }
