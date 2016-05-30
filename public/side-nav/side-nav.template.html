@@ -1,5 +1,11 @@
-<div> hello world </div>
-<div> hello world </div>
-<div> hello world </div>
-<div> hello world </div>
-<div> hello world </div>
+<!-- md-disable-backdrop not working... -->
+
+<md-sidenav md-is-open="true" md-component-id="left" class="md-sidenav-left">
+  Left Nav!
+</md-sidenav>
+<md-content>
+  Center Content
+  <md-button ng-click="openLeftMenu()">
+    Open Left Menu
+  </md-button>
+</md-content>
