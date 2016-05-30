@@ -6,20 +6,22 @@ body {
   margin: 0;
   height: 100%;
   width: 100%;
+  background-color: #f2f2f2;
 }
 /* This is kindof hacky, it ensures that the top divs aren't hidden
     ... would like to avoid */
 body {
-  padding-top: 64px;
+  padding-top: 50px;
 }
 md-toolbar {
-  margin-top: -64px;
+  margin-top: -50px;
 }
 /******************************** TOP NAV BAR ********************************/
 /* NOTE a few of these attributes can be encapsulated in a header elements class */
 md-toolbar {
-  height: 64px;
-  background-color: #4a6ea9;
+  height: 50px;
+  min-height: 50px;
+  background-color: #4285f4 !important;
 /* Make text unselectable */
   -webkit-user-select: none;
 /* Chrome/Safari */
@@ -38,19 +40,18 @@ md-toolbar #brand-logo {
 }
 md-toolbar button {
   cursor: pointer;
-  height: 40px;
-  width: 40px;
-/* Try to avoid an override */
-  margin: 10px !important;
+  height: $navButtonSize;
+  width: $navButtonSize;
+  margin: 10px;
   margin-top: auto;
   margin-bottom: auto;
   color: #fff;
   border-radius: 0 !important;
 }
 md-toolbar button md-icon.material-icons {
-  height: 40px;
-  width: 40px;
-  font-size: 40px;
+  height: 30px;
+  width: 30px;
+  font-size: 30px;
 }
 md-toolbar button:hover md-icon.material-icons {
   color: #ea6e10;
@@ -66,5 +67,11 @@ md-toolbar #cartButton {
 /******************************** SIDE NAV BAR ********************************/
 md-sidenav {
   position: fixed;
-  top: 64px !important;
+/* This ensures that the sidenav doesn't overlap the topnav shadow */
+  top: 65px !important;
+  background-color: #f2f2f2;
+}
+.md-sidenav-backdrop {
+  height: 0px;
+  width: 0px;
 }

@@ -1,32 +1,36 @@
 /* variables */
 /* Try to mostly use Angular-Material for coloring though */
-$primaryColor = #4A6EA9
+$primaryColor = #4285F4
 $secondaryColor = #EA6E10
 $alertColor = #EA6E10
 $linkColor = #00B7FF
+$backgroundColor = #F2F2F2
 
-$headerHeight = 64px
+$headerHeight = 50px
 
 html, body
   padding: 0
   margin: 0
   height: 100%
   width: 100%
+  background-color: $backgroundColor
 
 /* This is kindof hacky, it ensures that the top divs aren't hidden
     ... would like to avoid */
 body
   padding-top: $headerHeight
 md-toolbar
-  margin-top: -64px;
+  margin-top: -50px;
 
 /******************************** TOP NAV BAR ********************************/
 /* NOTE a few of these attributes can be encapsulated in a header elements class */
+$componentSize = 30px
+$marginSpace = 10px
 md-toolbar
   height: $headerHeight
-  $navButtonSize = 40px
+  min-height: $headerHeight
 
-  background-color: $primaryColor
+  background-color: $primaryColor !important
 
   /* Make text unselectable */
   -webkit-user-select: none; /* Chrome/Safari */        
@@ -45,17 +49,16 @@ md-toolbar
     cursor: pointer
     height: $navButtonSize
     width: $navButtonSize
-    /* Try to avoid an override */
-    margin: 10px !important
+    margin: 10px     
     margin-top: auto
     margin-bottom: auto
     color: #FFFFFF
     border-radius: 0 !important
 
     md-icon.material-icons
-      height: $navButtonSize
-      width: $navButtonSize
-      font-size: 40px
+      height: $componentSize
+      width: $componentSize
+      font-size: $componentSize
 
   button:hover
     md-icon.material-icons
@@ -75,6 +78,7 @@ md-sidenav
   position: fixed
   /* This ensures that the sidenav doesn't overlap the topnav shadow */
   top: $headerHeight + 15 !important
+  background-color: $backgroundColor
 
 .md-sidenav-backdrop
   height: 0px
