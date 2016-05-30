@@ -8,11 +8,13 @@ body {
   width: 100%;
   background-color: #f2f2f2;
 }
-/* This is kindof hacky, it ensures that the top divs aren't hidden
-    ... would like to avoid */
 #nonNavContainer {
   padding-top: 50px;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 0.1);
+}
+#nonNavContainer.sideNavOpen {
   padding-left: 320px;
+  transition: all 0.15s ease-in;
 }
 /******************************** TOP NAV BAR ********************************/
 /* NOTE a few of these attributes can be encapsulated in a header elements class */
@@ -68,6 +70,7 @@ md-sidenav {
 /* This ensures that the sidenav doesn't overlap the topnav shadow */
   top: 65px !important;
   background-color: #f2f2f2;
+  transition: all 0.25s ease-in;
 }
 .md-sidenav-backdrop {
   height: 0px;
