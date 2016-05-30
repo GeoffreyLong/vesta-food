@@ -107,6 +107,7 @@ nav li a:hover {
 #splashPane #formContainer h4 {
   position: relative;
   color: #fff;
+  font-weight: bold;
 }
 #splashPane #formContainer form {
   margin: 0px;
@@ -150,6 +151,25 @@ nav li a:hover {
   margin-top: 10px;
   font-size: 25px;
   color: #fff;
+}
+#howWorks .header {
+  color: #4a6ea9;
+}
+#howWorks .descIcon {
+  color: #ea6e10;
+}
+#howWorks .expIcon {
+  float: right;
+}
+#howWorks .collapsible-header.active .expIcon {
+  -ms-transform: rotate(180deg);
+/* IE 9 */
+  -webkit-transform: rotate(180deg);
+/* Safari */
+  transform: rotate(180deg);
+}
+#howWorks .collapsible-header:hover .expIcon {
+  color: #ea6e10;
 }
 #newsletterPane {
   width: 100%;

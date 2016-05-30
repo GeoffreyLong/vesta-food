@@ -89,8 +89,14 @@
     <!-- Splash page photo and email form -->
     <div id="splashPane">  
       <div id="formContainer">
-        <h4> The Online Marketplace for Homemade Food </h4>
-<!-- TODO change this to be address entry, then add FB signin button -->
+        <!-- Change header to the "I want my food to be..." 
+              No farther than the fridge
+              Convenient
+              Delicious
+              Nutritious
+            These swap out... I forget what website has this TODO find
+        -->
+        <h4> Homemade Quality -- In the time it takes to walk to your fridge </h4>
         <form id="locationSearch">
           <input type="text" placeholder="Search for Food Near ..." id="searchAddress" name="searchAddress" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search for Food Near...'"/>
           <input type="submit" id="exploreButton" value="Explore!"/>
@@ -122,69 +128,140 @@
     </div>
 
 
+
 <!-- ********************************************************************** -->
-    <!-- Who we are / what we do -->
-    <div id="infoPane">
-      <div class="section no-pad-bot" id="index-banner">
-        <div class="container">
-          <h1 class="header center"> 
-            Web Marketplace 
-            <br> 
-            - Under Construction - 
-          </h1>
-          <div class="row center">
-            <h5 class="header col s12 light"> Vesta is currently expanding its presence. 
-              We hope to have our fully integrated web marketplace available by July. 
-              For now, please <a class="emailFormLink"> subscribe to our menu </a> to receive listings of 
-              great homemeade meals from local chefs.
-            </h5>
-            <!-- TODO add in a button "subscribe" as per before 
-            which will bring user to form -->
+    <!-- Description of how the newsletter / catalogue works -->
+    <div id="howWorks" class="container">
+      <h2 class="header center"> 
+        How Vesta Works
+      </h2>
+      <ul class="collapsible popout" data-collapsible="accordion">
+        <li>
+          <div class="collapsible-header active">
+            <i class="material-icons descIcon">search</i>
+            <b> Step One: </b> Browse a variety of peer reviewed chefs
+            <i class="material-icons expIcon">expand_more</i>
           </div>
-          <br><br>
-
-        </div>
-      </div>
-
-      <div class="container">
-        <div class="section" id="quickOverview">
-
-          <!-- TODO could add the seller vetting information here -->
-          <!--   Icon Section   -->
-          <div class="row">
-            <div class="col s12 m4">
-              <div class="icon-block">
-                <h2 class="center"><i class="large material-icons">people</i></h2>
-                <h5 class="center">Community Focused</h5>
-                <p class="light"> Get to know your neighborhood and your neighbors through culinary experiences.  </p>
-              </div>
-            </div>
-
-            <div class="col s12 m4">
-              <div class="icon-block">
-                <h2 class="center"><i class="large material-icons">thumbs_up_down</i></h2>
-                <h5 class="center">Comprehensive Review System</h5>
-                <p class="light"> Vesta is committed to ensuring the highest quality experience. To achieve this, we offer a comprehensive review system for both buyers and sellers. </p>
-              </div>
-            </div>
-
-            <div class="col s12 m4">
-              <div class="icon-block">
-                <h2 class="center"><i class="large material-icons">restaurant</i></h2>
-                <h5 class="center"> Homemade Variety </h5>
-                <p class="light"> 
-                  Gain access to a range of homemade meals. 
-                  Experience new culinary styles that might otherwise be unavailable to you.
-                </p>
-              </div>
-            </div>
+          <div class="collapsible-body">
+            <p>
+              All of our chefs are certified and licensed to gaurantee a great experience.
+              The vast majority of our cooks are local culinary students
+              and aspiring chefs, eager to share their creations with the world. 
+              Find a chef that intrigues you and become a patron of their work. 
+              Afterwards, show your appreciation by writing a review.
+              SAY MORE... LINK TO "WHO ARE OUR CHEFS" which lets them view some chefs?
+            </p>
           </div>
-
-        </div>
-      </div>
-
+        </li>
+        <li>
+          <div class="collapsible-header">
+            <i class="material-icons descIcon">add_shopping_cart</i>
+            <b> Step Two: </b> Fill your cart with delicious meals from a chef's online storefront
+            <i class="material-icons expIcon">expand_more</i>
+          </div>
+          <div class="collapsible-body">
+            <p>
+              Each chef gets their own online storefront which they fill with delicious 
+              meals. Your food is made-to-order, then packaged individually into meal
+              sized containers. You are encouraged to plan out several days worth 
+              of meals which can be purchased from a chef all at once. This 
+            </p>
+          </div>
+        </li>
+        <li>
+          <div class="collapsible-header">
+            <i class="material-icons descIcon">weekend</i>
+            <!--i class="material-icons descIcon">event_seat</i-->
+            <b> Step Three: </b> Sit back and relax while our chefs take care of everything 
+            <i class="material-icons expIcon">expand_more</i>
+          </div>
+          <div class="collapsible-body">
+            <p>
+              Traditionally, quality food either costs too much time or money. We believe
+              you shouldn't have to sacrifice either.
+              Your food will be prepared fresh, packaged into individual 
+              meal containers, then delivered straight to your doorstep. 
+            </p>
+          </div>
+        </li>
+        <li>
+          <div class="collapsible-header">
+            <i class="material-icons descIcon">save</i>
+            <b> Step Four: </b> Enjoy your food immediately AND save some for later!
+            <i class="material-icons expIcon">expand_more</i>
+          </div>
+          <div class="collapsible-body">
+            <p>
+              Our chefs are encouraged to make food that tastes just as good after the
+              fridge as it did fresh out of the oven. This means that you can store
+              several meals without worrying about diminishing the quality of your purchase.
+              This ensures that a quality meal is never farther than your fridge. We even
+              package each meal individually, so that you can have convenient meals to go
+              without sacrificing quality or paying restaurant price. 
+            </p>
+          </div>
+        </li>
+      </ul>
     </div>
 
+    <!--
+    <div id="newsletterPane" class="row">
+      <div class="row container center">
+        <h1> How Vesta Works </h1>
+      </div>
+      <div class="row valign-wrapper" id="menuDivContainer">
+        <div>
+          <p> Example Menu </p>
+          <div class="col s2 center" id="menuDiv"> </div>
+        </div>
+      </div>
+      <div class="row container valign-wrapper" id="menuStepsContainer">
+        <div class="col s12 valign">
+          <div class="row valign-wrapper">
+            <div class="col center s4 valign">
+               <i class="medium material-icons">person_add</i> 
+            </div>
+            <div class="col s12 valign">
+              Subscribe to our menu using the <a class="emailFormLink"> email form </a> 
+            </div>
+          </div>
+          <div class="row valign-wrapper">
+            <div class="col center s4 valign">
+               <i class="medium material-icons">contact_mail</i> 
+            </div>
+            <div class="col s12 valign">
+              Reply to a weekly menu email to get a chef's contact information 
+            </div>
+          </div>
+          <div class="row valign-wrapper">
+            <div class="col center s4 valign">
+               <i class="medium material-icons">add_shopping_cart</i> 
+            </div>
+            <div class="col s12 valign">
+              Place an order with the chef and arrange a pickup 
+            </div>
+          </div>
+          <div class="row valign-wrapper">
+            <div class="col center s4 valign">
+               <i class="medium material-icons">local_restaurant</i> 
+            </div>
+            <div class="col s12 valign">
+              Enjoy your homecooked meal!
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+-->
+    <div id="menuModal" class="modal">
+      <!-- TODO consider making a fixed header icon -->
+      <div class="right"> 
+        <i class="small material-icons modal-action modal-close waves-effect waves-red">close</i>
+      </div>
+      <div class="modal-content center">
+        <img src="/images/Menu_Alert_1.jpg"/>
+      </div>
+    </div>
 
 
 
@@ -313,63 +390,66 @@
     </div>
 
 <!-- ********************************************************************** -->
-    <!-- Description of how the newsletter / catalogue works -->
-    <div id="newsletterPane" class="row">
-      <div class="row container center">
-        <h1> How to use our Menu </h1>
-      </div>
-      <div class="row valign-wrapper" id="menuDivContainer">
-        <div>
-          <p> Example Menu </p>
-          <div class="col s2 center" id="menuDiv"> </div>
-        </div>
-      </div>
-      <div class="row container valign-wrapper" id="menuStepsContainer">
-        <div class="col s12 valign">
-          <div class="row valign-wrapper">
-            <div class="col center s4 valign">
-               <i class="medium material-icons">person_add</i> 
-            </div>
-            <div class="col s12 valign">
-              Subscribe to our menu using the <a class="emailFormLink"> email form </a> 
-            </div>
+    <!-- Who we are / what we do -->
+    <div id="infoPane">
+      <div class="section no-pad-bot" id="index-banner">
+        <div class="container">
+          <h1 class="header center"> 
+            Web Marketplace 
+            <br> 
+            - Under Construction - 
+          </h1>
+          <div class="row center">
+            <h5 class="header col s12 light"> Vesta is currently expanding its presence. 
+              We hope to have our fully integrated web marketplace available by July. 
+              For now, please <a class="emailFormLink"> subscribe to our menu </a> to receive listings of 
+              great homemeade meals from local chefs.
+            </h5>
+            <!-- TODO add in a button "subscribe" as per before 
+            which will bring user to form -->
           </div>
-          <div class="row valign-wrapper">
-            <div class="col center s4 valign">
-               <i class="medium material-icons">contact_mail</i> 
-            </div>
-            <div class="col s12 valign">
-              Reply to a weekly menu email to get a chef's contact information 
-            </div>
-          </div>
-          <div class="row valign-wrapper">
-            <div class="col center s4 valign">
-               <i class="medium material-icons">add_shopping_cart</i> 
-            </div>
-            <div class="col s12 valign">
-              Place an order with the chef and arrange a pickup 
-            </div>
-          </div>
-          <div class="row valign-wrapper">
-            <div class="col center s4 valign">
-               <i class="medium material-icons">local_restaurant</i> 
-            </div>
-            <div class="col s12 valign">
-              Enjoy your homecooked meal!
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+          <br><br>
 
-    <div id="menuModal" class="modal">
-      <!-- TODO consider making a fixed header icon -->
-      <div class="right"> 
-        <i class="small material-icons modal-action modal-close waves-effect waves-red">close</i>
+        </div>
       </div>
-      <div class="modal-content center">
-        <img src="/images/Menu_Alert_1.jpg"/>
+
+      <div class="container">
+        <div class="section" id="quickOverview">
+
+          <!-- TODO could add the seller vetting information here -->
+          <!--   Icon Section   -->
+          <div class="row">
+            <div class="col s12 m4">
+              <div class="icon-block">
+                <h2 class="center"><i class="large material-icons">people</i></h2>
+                <h5 class="center">Community Focused</h5>
+                <p class="light"> Get to know your neighborhood and your neighbors through culinary experiences.  </p>
+              </div>
+            </div>
+
+            <div class="col s12 m4">
+              <div class="icon-block">
+                <h2 class="center"><i class="large material-icons">thumbs_up_down</i></h2>
+                <h5 class="center">Comprehensive Review System</h5>
+                <p class="light"> Vesta is committed to ensuring the highest quality experience. To achieve this, we offer a comprehensive review system for both buyers and sellers. </p>
+              </div>
+            </div>
+
+            <div class="col s12 m4">
+              <div class="icon-block">
+                <h2 class="center"><i class="large material-icons">restaurant</i></h2>
+                <h5 class="center"> Homemade Variety </h5>
+                <p class="light"> 
+                  Gain access to a range of homemade meals. 
+                  Experience new culinary styles that might otherwise be unavailable to you.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
+
     </div>
 
 

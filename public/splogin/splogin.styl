@@ -111,6 +111,7 @@ nav
     h4
       position: relative
       color: #FFFFFF
+      font-weight: bold
 
     form
       margin: 0px
@@ -152,6 +153,23 @@ nav
         margin-top: 10px
         font-size: 25px
         color: #FFFFFF
+
+
+#howWorks
+  .header
+    color: $importantColor
+  .descIcon
+    color: $secondaryColor
+  .expIcon
+    float: right
+  .collapsible-header.active
+    .expIcon
+      -ms-transform: rotate(180deg); /* IE 9 */
+      -webkit-transform: rotate(180deg); /* Safari */
+      transform: rotate(180deg);
+  .collapsible-header:hover
+    .expIcon
+      color: $alertColor
 
 
 #newsletterPane
