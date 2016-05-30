@@ -1,4 +1,5 @@
 /* variables */
+/* Try to mostly use Angular-Material for coloring though */
 html,
 body {
   padding: 0;
@@ -25,21 +26,23 @@ md-toolbar #brand-logo {
   margin-bottom: auto;
   margin-left: 20px;
 }
-md-toolbar md-button {
+md-toolbar button {
   cursor: pointer;
   height: 40px;
   width: 40px;
-  margin: 10px;
+/* Try to avoid an override */
+  margin: 10px !important;
   margin-top: auto;
   margin-bottom: auto;
   color: #fff;
+  border-radius: 0 !important;
 }
-md-toolbar md-button md-icon.material-icons {
+md-toolbar button md-icon.material-icons {
   height: 40px;
   width: 40px;
   font-size: 40px;
 }
-md-toolbar md-button:hover {
+md-toolbar button:hover md-icon.material-icons {
   color: #ea6e10;
 }
 md-toolbar #username {
