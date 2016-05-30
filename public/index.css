@@ -10,11 +10,9 @@ body {
 }
 /* This is kindof hacky, it ensures that the top divs aren't hidden
     ... would like to avoid */
-body {
+#nonNavContainer {
   padding-top: 50px;
-}
-md-toolbar {
-  margin-top: -50px;
+  padding-left: 320px;
 }
 /******************************** TOP NAV BAR ********************************/
 /* NOTE a few of these attributes can be encapsulated in a header elements class */
