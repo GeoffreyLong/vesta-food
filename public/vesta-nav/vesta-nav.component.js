@@ -3,7 +3,7 @@ angular.module('vestaNav').component('vestaNav', {
   controller: function VestaNavController($scope, $mdSidenav) {
     this.user = {
       displayName: 'UserName'
-    }
+    };
 
     $scope.openLeftMenu = function() {
       $mdSidenav('left').toggle();

@@ -1,6 +1,7 @@
 angular.module('vestaApp', [
+    'ngMaterial',
+    'ngRoute',
     'vestaNav',
     'storesView',
-    'ngMaterial',
-    'ngRoute'
+    'becomeChef'
 ]);

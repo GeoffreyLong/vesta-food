@@ -13,6 +13,10 @@ angular
       $routeProvider.
         when('/', {
           template: '<stores-view></stores-view>'
+        })
+        
+        .when('/becomeAChef', {
+          template: '<become-chef></become-chef>'
         });
     },
 ]);
