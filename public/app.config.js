@@ -12,11 +12,7 @@ angular
       $locationProvider.hashPrefix('!');
       $routeProvider.
         when('/', {
-          template: 
-            '<vesta-nav></vesta-nav>'
-            + '<div id="nonNavContainer" class="sideNavOpen">'
-            + '<stores-view></stores-view>'
-            + '</div>'
+          template: '<stores-view></stores-view>'
         });
     },
 ]);
