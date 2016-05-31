@@ -1,3 +1,4 @@
+/* $primaryColor= #00b376 */
 html,
 body {
   padding: 0;
@@ -17,6 +18,10 @@ a {
 }
 .emailFormLink:hover {
   color: #07d;
+}
+h4 {
+  font-weight: bold;
+  color: #00b36f;
 }
 #toaster {
 /* z-index of a modal is 1003 */
@@ -41,7 +46,7 @@ a {
   position: relative;
   left: 0px !important;
 }
-nav {
+#theNav {
   z-index: 10;
   position: fixed;
 /* Make text unselectable */
@@ -55,17 +60,23 @@ nav {
   -o-user-select: none;
   user-select: none;
 }
-nav .brand-logo {
-  font-weight: bold;
+#theNav #brand-logo {
+  height: 40px;
+  width: auto;
+  margin-top: 10px;
 }
-nav li a {
+#theNav li a {
   font-weight: bold;
   -webkit-transition: all 1s;
   transition: all 0.5s ease;
 }
-nav li a:hover {
+#theNav li a:hover {
   background-color: rgba(0,0,0,0.5) !important;
   color: #ea6e10;
+}
+#theNav li #infoA,
+#theNav li #infoB {
+  color: #fca345;
 }
 #splashPane {
   font-family: 'Avenir LT Std-Book', sans-serif;
@@ -128,7 +139,7 @@ nav li a:hover {
 #splashPane #formContainer form input[type="submit"] {
   cursor: pointer;
   color: #fff;
-  background-color: #3375aa;
+  background-color: #fca345;
   border-radius: 0px 4px 4px 0px;
 }
 #newsletterPane {
@@ -136,6 +147,9 @@ nav li a:hover {
 }
 #newsletterPane h1 {
   color: #3375aa;
+}
+#newsletterPane h6 {
+  font-size: 20px;
 }
 #newsletterPane #menuDivContainer {
   style: inline-block;
@@ -163,7 +177,7 @@ nav li a:hover {
   -ms-behavior: url("/backgroundsize.min.htc");
 }
 #newsletterPane #menuDivContainer:hover {
-  color: #00b7ff;
+  color: $linkColor;
 }
 #newsletterPane #menuStepsContainer {
   style: inline-block;
@@ -177,11 +191,8 @@ nav li a:hover {
   position: relative;
   width: 100%;
 }
-#infoPane h1 {
-  color: #3375aa;
-}
 #infoPane h2 {
-  color: #ea6e10;
+  color: #fca345;
 }
 #infoPane .icon-block {
   margin: 10px;
@@ -194,7 +205,7 @@ nav li a:hover {
   height: 0;
   border-left: 50px solid transparent;
   border-right: 50px solid transparent;
-  border-top: 50px solid #3375aa;
+  border-top: 50px solid #00b36f;
 }
 #addChefPane {
   min-height: 435px;
@@ -226,7 +237,7 @@ nav li a:hover {
 #addChefPane h2 {
   padding: 20px;
   width: 100%;
-  background-color: #3375aa;
+  background-color: #00b36f;
   color: #fff;
   margin: 0px;
 }
@@ -240,7 +251,7 @@ nav li a:hover {
   color: #fff;
 }
 #addChefPane #becomeSeller {
-  background-color: #3375aa;
+  background-color: #fca345;
 }
 #addChefPane .photoBanner {
   position: relative;
@@ -316,18 +327,20 @@ nav li a:hover {
   background: rgba(0,0,0,0.7);
   color: #fff;
 }
-.page-footer {
+#theFooter {
+/* background-color: $primaryColor */
+  background-color: #2d8668;
   padding-top: 0px !important;
   padding: 5px;
   margin-bottom: 0px;
 }
-.page-footer img {
+#theFooter img {
   cursor: pointer;
   margin: 10px;
   height: 30px;
   width: 30px;
 }
-.page-footer #footerContainer {
+#theFooter #footerContainer {
   margin-bottom: 0px;
 }
 @media screen and (max-width: 1000px) {

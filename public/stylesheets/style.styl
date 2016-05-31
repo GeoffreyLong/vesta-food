@@ -1,3 +1,10 @@
+/* $primaryColor= #00b376 */
+$primaryColor= #00B36F
+$secondaryColor= #FCA345
+$alertColor = #ea6e10 
+
+
+
 html,body
   padding: 0
   margin: 0
@@ -13,6 +20,11 @@ a
   cursor: pointer
 .emailFormLink:hover
   color: #0077DD
+
+h4
+  font-weight: bold
+  color: $primaryColor
+
 
 #toaster
   /* z-index of a modal is 1003 */
@@ -32,11 +44,11 @@ a
       
 
 .toast
-  background-color: #ea6e10
+  background-color: $alertColor
   position: relative
   left: 0px !important
 
-nav
+#theNav
   z-index: 10
   position: fixed
   
@@ -48,8 +60,10 @@ nav
   -o-user-select: none;
   user-select: none;
 
-  .brand-logo
-    font-weight: bold
+  #brand-logo
+    height: 40px
+    width: auto
+    margin-top: 10px
   li
     a
       font-weight: bold
@@ -57,7 +71,9 @@ nav
       transition: all 0.5s ease
     a:hover
       background-color: rgba(0,0,0,0.5) !important
-      color: #ea6e10
+      color: $alertColor
+    #infoA, #infoB 
+      color: $secondaryColor
 
 
 #splashPane
@@ -125,13 +141,17 @@ nav
       input[type="submit"]
         cursor: pointer
         color: #FFFFFF
-        background-color: #3375AA
+        background-color: $secondaryColor
         border-radius: 0px 4px 4px 0px
+
+
 
 #newsletterPane
   width: 100%
   h1
     color: #3375AA
+  h6
+    font-size: 20px
   #menuDivContainer
     style: inline-block
     width: 30%
@@ -156,7 +176,7 @@ nav
       /* ie8 workaround - http://louisremi.github.io/background-size-polyfill/ */
       -ms-behavior: url(/backgroundsize.min.htc)
   #menuDivContainer:hover
-      color: #00B7FF
+      color: $linkColor
   #menuStepsContainer
     style: inline-block
     float: right
@@ -170,10 +190,8 @@ nav
   position:relative
   width: 100%
 
-  h1
-    color: #3375AA
   h2
-    color: #ea6e10
+    color: $secondaryColor
   .icon-block
     margin: 10px
 
@@ -186,7 +204,7 @@ nav
 	border-left: 50px solid transparent;
 	border-right: 50px solid transparent;
 	
-	border-top: 50px solid #3375AA;
+	border-top: 50px solid $primaryColor;
 }
 
 #addChefPane
@@ -221,7 +239,7 @@ nav
   h2
     padding:20px
     width: 100%
-    background-color: #3375AA
+    background-color: $primaryColor
     color: #FFFFFF
     margin:0px
 
@@ -232,7 +250,7 @@ nav
     h5
       color:#FFFFFF
   #becomeSeller
-    background-color: #3375AA
+    background-color: $secondaryColor
   .photoBanner
     position: relative
     top: 20%
@@ -304,8 +322,9 @@ nav
 
 
 
-
-.page-footer
+#theFooter
+  /* background-color: $primaryColor */
+  background-color: #2D8668
   padding-top: 0px !important
   padding: 5px
   margin-bottom: 0px

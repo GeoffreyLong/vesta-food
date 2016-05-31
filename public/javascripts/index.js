@@ -9,7 +9,11 @@ $(document).ready(function(){
     var o = $(document).scrollTop() / ($('#splashPane').height() - $('nav').height());
     if (o > 1.000) { o = 1; }
     var e = $('nav');
-    var newColor = 'rgba(' + 41 + ',' + 182 + ',' + 246 + ',' + o + ')';
+
+    // TODO fix so it draws from the css file
+    // var newColor = 'rgba(' + 0 + ',' + 179 + ',' + 118 + ',' + o + ')';
+    // var newColor = 'rgba(' + 255 + ',' + 162 + ',' + 85 + ',' + o + ')';
+    var newColor = 'rgba(' + 255 + ',' + 255 + ',' + 255 + ',' + o + ')';
     e.attr('style', 'background-color: ' + newColor + ' !important');
 
     if (o < 0.6){
@@ -28,7 +32,7 @@ $(document).ready(function(){
   ////////////////////////////////////////////////////////////////////////////
   $('#infoA').on('click', function(){
     $('html, body').animate({
-        scrollTop: $('#infoPane').offset().top - $('.navbar').height() + 1
+        scrollTop: $('#newsletterPane').offset().top - $('.navbar').height() + 1
     }, 500);
     return false;
   });
