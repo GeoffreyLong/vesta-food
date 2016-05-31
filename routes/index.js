@@ -45,7 +45,7 @@ module.exports = function(passport){
     }
     else {
       console.log("No session");
-      res.sendFile(path.resolve('splogin.html'));
+      // Handled by the nginx server
     }
 
   };
@@ -65,7 +65,8 @@ module.exports = function(passport){
 
   /* GET home page. */
   router.get('/', requireSession, function(req, res) {
-    res.sendFile(path.resolve('index.html'));
+    // Handled by the nginx server
+    //
   });
 
 
