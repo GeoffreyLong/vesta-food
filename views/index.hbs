@@ -11,16 +11,12 @@
 
 {{!-- <h1>{{title}}</h1> --}}
 {{!-- <p>Welcome to {{title}}</p> --}}
-<nav class="navbar transparent z-depth-0" role="navigation">
+<nav id="theNav" class="navbar transparent z-depth-0" role="navigation">
   <div class="nav-wrapper container">
-    <a id="logo-container" href="#" class="brand-logo"> VESTA </a>
-    <ul class="right hide-on-med-and-down">
-      <li><a id="infoB"> Become A Chef </a></li>
+    <img id="brand-logo" src="/images/Vesta_Logo.png" alt="VESTA"/>
+    <ul class="right">
       <li><a id="infoA"> What is Vesta? </a></li>
-    </ul>
-
-    <ul id="nav-mobile" class="side-nav">
-      <li><a href="#">Info</a></li>
+      <li><a id="infoB"> Become A Chef </a></li>
     </ul>
   </div>
 </nav>
@@ -58,7 +54,18 @@
 {{!-- Description of how the newsletter / catalogue works --}}
 <div id="newsletterPane" class="row">
   <div class="row container center">
-    <h1> How to use our Menu </h1>
+    <br> 
+    <h4> How Vesta Works </h4>
+    <h6> 
+      The Vesta Marketpace connects you to our network of licensed and reviewed
+      local chefs. When you join our community, you can view our chefs' meals, 
+      place an order, and pick up your food right from them.
+      <br>
+      <br>
+      Experience the culinary genius of the people in your neighborhood! 
+    </h6>
+    <br>
+    <br>
   </div>
   <div class="row valign-wrapper" id="menuDivContainer">
     <div>
@@ -242,14 +249,9 @@
 <div id="infoPane">
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
-      <h1 class="header center"> 
-        Web Marketplace 
-        <br> 
-        - Under Construction - 
-      </h1>
       <div class="row center">
         <h5 class="header col s12 light"> Vesta is currently expanding its presence. 
-          We hope to have our fully integrated web marketplace available by July. 
+          We hope to have our fully integrated web marketplace available by Mid-July. 
           For now, please <a class="emailFormLink"> subscribe to our menu </a> to receive listings of 
           great homemeade meals from local chefs.
         </h5>
@@ -411,7 +413,7 @@
 {{!-- Non-fixed footer
       Contains information such as the company name, copyright, contact,
       instagram/facebook/etc links --}}
-<footer class="page-footer light-blue lighten-1">
+<footer id="theFooter" class="page-footer">
   {{!--
   <div class="container">
     <div class="row">
@@ -423,12 +425,25 @@
   </div>
   --}}
 
-
-  <div class="footer-copyright">
-    <div class="container">
+    <div id="footerContainer" class="row valign-wrapper">
+      <h6 class="col s4 center-align">
       © 2016 Copyright Vesta Food
-      <img class="right" src="images/instagram-64.png" onclick="window.open('https://www.instagram.com/VestaFood/', '_blank');"/>
-      <img class="right" src="images/facebook-3-64.png" onclick="window.open('https://www.facebook.com/VestaFood', '_blank');"/>
+      </h6>
+      <h6 class="col s4 center"> 
+        481 Avenue Viger Ouest
+        <br>
+        Montreal, QC H2Z 1G6
+        <br>
+        info@VestaFood.ca 
+      </h6> 
+      <span class="col s4 center-align">
+        <img src="images/instagram-64.png" onclick="window.open('https://www.instagram.com/VestaFood/', '_blank');"/>
+        <img src="images/facebook-3-64.png" onclick="window.open('https://www.facebook.com/VestaFood', '_blank');"/>
+      </span>
     </div>
+
+  {{!--
+  <div class="footer-copyright">
   </div>
+  --}}
 </footer>
