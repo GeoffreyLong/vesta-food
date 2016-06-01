@@ -72,6 +72,7 @@ module.exports = function(passport){
 
   // Passport Router
   // Add scope?
+  // TODO add /api to this... everything needs to be /api/<route>
   router.get('/auth/facebook', passport.authenticate('facebook'));
 
   router.get('/auth/facebook/callback',

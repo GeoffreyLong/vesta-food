@@ -9,7 +9,7 @@ server {
     listen 8080;
 
     location / {
-        root /home/geoffrey/vesta-food/static/;
+        root /home/geoffrey/vesta-food/public/;
         try_files $uri @proxy;
     }
     location @proxy {
