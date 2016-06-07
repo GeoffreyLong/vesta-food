@@ -22,7 +22,7 @@ body {
 md-toolbar {
   height: 50px;
   min-height: 50px;
-  background-color: #4285f4 !important;
+  background-color: #00b36f !important;
 /* Make text unselectable */
   -webkit-user-select: none;
 /* Chrome/Safari */
@@ -35,6 +35,8 @@ md-toolbar {
   user-select: none;
 }
 md-toolbar #brand-logo {
+  height: 30px;
+  width: auto;
   margin-top: auto;
   margin-bottom: auto;
   margin-left: 20px;
@@ -55,7 +57,7 @@ md-toolbar button md-icon.material-icons {
   font-size: 30px;
 }
 md-toolbar button:hover md-icon.material-icons {
-  color: #ea6e10;
+  color: #fca345;
 }
 md-toolbar #username {
   margin: auto;
