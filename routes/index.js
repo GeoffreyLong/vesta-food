@@ -1,12 +1,13 @@
 // TODO
 //  Pull out the db existance check logic into an fn
 
-
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
+var request = require('request')
 
-var mongo = require('mongodb');
+// var mailchimp = require('./mailchimp');
+// var mongo = require('mongodb');
 
 
 mongoose.connect('mongodb://localhost/VestaFood', function (error) {
@@ -47,39 +48,72 @@ router.post('/newsletter', function(req, res) {
   var newEmail = req.body.email;
   console.log('User email address entered is ' + newEmail);
 
-  // Upsert ensures that only adds if doesn't exist
-  EarlyUsers.find({email: newEmail}, function(err, found) {
-    if (err){
-      console.log(err);
-      res.status(500).send(err);
-    }
-    
-    // In this case a user did not exist
-    // Add the new user to the database
-    if (found == 0){
-      new EarlyUsers({
-        email: newEmail
-      }).save(function(err, saved){
-        if (err){
-          console.log(err);
-          res.status(500).send(err);
-        }
+  var buyer = {
+    email_address: newEmail,
+    status: 'subscribed',
+  };
 
-        console.log(newEmail + ' added to the database');
-        // Should redirect to a second survey
-        // This survey would add additional information to the schema
-        // Updated via a find by email
-        res.status(200).send(newEmail);
+  request.post({
+    url: 'https://us13.api.mailchimp.com/3.0/lists/56352af333/members',
+    headers: {
+      'Authorization': 'vestafood 22c6dadf7c03785e77cfb211d8c5111d-us13',
+    },
+    form: JSON.stringify(buyer)
+  }, function (err, response, body) {
+    var info = JSON.parse(body);
 
-      });
+    if (info.status == 'subscribed') {
+      // success
+      console.log('succesfully added email address ' + newEmail);
+      console.log(body);
+      res.status(200).send('success');
     }
-    // In this case a user did exist
-    else{
-      // NOTE Could consider sending a different status code than 200
-      console.log(newEmail + ' is already in the database');
-      res.status(200).send('');
+    else if (info.status == 400 && info.title && info.title == "Member Exists") {
+      // duplicate email
+      console.log('dupliate email address ' + newEmail)
+      res.status(400).send('duplicate_email')
+    }
+    else {
+      // general failure
+      console.log('failed to add email address ' + newEmail);
+      console.log(body);
+      res.status(500).send('error');
     }
   });
+
+  // // Upsert ensures that only adds if doesn't exist
+  // EarlyUsers.find({email: newEmail}, function(err, found) {
+  //   if (err){
+  //     console.log(err);
+  //     res.status(500).send(err);
+  //   }
+  //
+  //   // In this case a user did not exist
+  //   // Add the new user to the database
+  //   if (found == 0){
+  //     new EarlyUsers({
+  //       email: newEmail
+  //     }).save(function(err, saved){
+  //       if (err){
+  //         console.log(err);
+  //         res.status(500).send(err);
+  //       }
+  //
+  //       console.log(newEmail + ' added to the database');
+  //       // Should redirect to a second survey
+  //       // This survey would add additional information to the schema
+  //       // Updated via a find by email
+  //       res.status(200).send(newEmail);
+  //
+  //     });
+  //   }
+  //   // In this case a user did exist
+  //   else{
+  //     // NOTE Could consider sending a different status code than 200
+  //     console.log(newEmail + ' is already in the database');
+  //     res.status(200).send('');
+  //   }
+  // });
 });
 
 /* POST for new sellers 
