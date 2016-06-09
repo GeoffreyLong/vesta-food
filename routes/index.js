@@ -53,6 +53,7 @@ router.post('/newsletter', function(req, res) {
     status: 'subscribed',
   };
 
+  // submit to mailchimp and send response
   request.post({
     url: 'https://us13.api.mailchimp.com/3.0/lists/56352af333/members',
     headers: {
@@ -64,7 +65,7 @@ router.post('/newsletter', function(req, res) {
 
     if (info.status == 'subscribed') {
       // success
-      console.log('succesfully added email address ' + newEmail);
+      console.log('successfully added email address ' + newEmail);
       console.log(body);
       res.status(200).send('success');
     }
@@ -81,39 +82,37 @@ router.post('/newsletter', function(req, res) {
     }
   });
 
-  // // Upsert ensures that only adds if doesn't exist
-  // EarlyUsers.find({email: newEmail}, function(err, found) {
-  //   if (err){
-  //     console.log(err);
-  //     res.status(500).send(err);
-  //   }
-  //
-  //   // In this case a user did not exist
-  //   // Add the new user to the database
-  //   if (found == 0){
-  //     new EarlyUsers({
-  //       email: newEmail
-  //     }).save(function(err, saved){
-  //       if (err){
-  //         console.log(err);
-  //         res.status(500).send(err);
-  //       }
-  //
-  //       console.log(newEmail + ' added to the database');
-  //       // Should redirect to a second survey
-  //       // This survey would add additional information to the schema
-  //       // Updated via a find by email
-  //       res.status(200).send(newEmail);
-  //
-  //     });
-  //   }
-  //   // In this case a user did exist
-  //   else{
-  //     // NOTE Could consider sending a different status code than 200
-  //     console.log(newEmail + ' is already in the database');
-  //     res.status(200).send('');
-  //   }
-  // });
+  // add to database for our own keeping
+  // Upsert ensures that only adds if doesn't exist
+  EarlyUsers.find({email: newEmail}, function(err, found) {
+    if (err){
+      console.log(err);
+      res.status(500).send(err);
+    }
+
+    // In this case a user did not exist
+    // Add the new user to the database
+    if (found == 0){
+      new EarlyUsers({
+        email: newEmail
+      }).save(function(err, saved){
+        if (err){
+          console.log(err);
+          res.status(500).send(err);
+        }
+
+        console.log(newEmail + ' added to the database');
+        // Should redirect to a second survey
+        // This survey would add additional information to the schema
+        // Updated via a find by email
+      });
+    }
+    // In this case a user did exist
+    else{
+      // NOTE Could consider sending a different status code than 200
+      console.log(newEmail + ' is already in the database');
+    }
+  });
 });
 
 /* POST for new sellers 
@@ -122,6 +121,44 @@ router.post('/newsletter', function(req, res) {
 router.post('/sellerinfo', function(req, res) {
   var newEmail = req.body.email;
   console.log('User email address entered is ' + newEmail);
+
+  var seller = {
+    email_address: newEmail,
+    status: 'subscribed',
+    merge_fields: {
+      FNAME: req.body.firstName,
+      LNAME: req.body.lastName
+    }
+  }
+
+  // submit to mailchimp and send response
+  request.post({
+    url: 'https://us13.api.mailchimp.com/3.0/lists/df96afad6b/members',
+    headers: {
+      'Authorization': 'vestafood 22c6dadf7c03785e77cfb211d8c5111d-us13',
+    },
+    form: JSON.stringify(seller)
+  }, function (err, response, body) {
+    var info = JSON.parse(body);
+
+    if (info.status == 'subscribed') {
+      // success
+      console.log('successfully added email address ' + newEmail);
+      console.log(body);
+      res.status(200).send('success');
+    }
+    else if (info.status == 400 && info.title && info.title == "Member Exists") {
+      // duplicate email
+      console.log('dupliate email address ' + newEmail)
+      res.status(400).send('duplicate_email')
+    }
+    else {
+      // general failure
+      console.log('failed to add email address ' + newEmail);
+      console.log(body);
+      res.status(500).send('error');
+    }
+  });
 
   // Upsert ensures that only adds if doesn't exist
   EarlySellers.find({email: newEmail}, function(err, found) {
@@ -149,7 +186,7 @@ router.post('/sellerinfo', function(req, res) {
         // Should redirect to a second survey
         // This survey would add additional information to the schema
         // Updated via a find by email
-        res.status(200).send(newEmail);
+        // res.status(200).send(newEmail);
 
       });
     }
@@ -157,7 +194,7 @@ router.post('/sellerinfo', function(req, res) {
     else{
       // NOTE Could consider sending a different status code than 200
       console.log(newEmail + ' is already in the database');
-      res.status(200).send('');
+      // res.status(200).send('');
     }
   });
 });
