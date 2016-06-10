@@ -55,7 +55,7 @@ $(document).ready(function(){
     submitHandler: function(form) {
       var data = {};
       data.email = $('#email').val();
-
+      
       $.ajax({
         type: 'POST',
         contentType: 'application/json',
@@ -65,19 +65,18 @@ $(document).ready(function(){
         statusCode: {
           200: function(data) {
             console.log("Email passed back: " + data);
-            if (data) {
-              // Launch survey if new user
-              //$('#survey').openModal();
-              Materialize.toast('Successfully Added!', 4000)
-              $('#email').val(''); 
-            }
-            else{
-              Materialize.toast('Email already exists!', 4000)
-            }
-
+            // Launch survey if new user
+            //$('#survey').openModal();
+            Materialize.toast('Awesome! Thanks for joining Vesta. You should ' +
+              'receive an automated response email soon and when we send out ' +
+              'our next menu, you\'ll be the first to know.', 10000)
+            $('#email').val('');
           },
           400: function() {
-            alert("Didn't work");
+            Materialize.toast('It appears we already have your email address. Please try another.', 4000);
+          },
+          500: function() {
+            Materialize.toast('There was an error processing you information.', 4000);
           }
         }
       });
@@ -171,27 +170,29 @@ $(document).ready(function(){
           async: true,
           statusCode: {
             200: function(data) {
+              //success
               console.log("Email passed back: " + data);
-              if (data) {
-                // Launch survey if new user
-                //$('#survey').openModal();
-                Materialize.toast('Successfully Added!', 4000)
-                $('#becomeChef').closeModal();
-                chefModal.find('input').removeClass('valid');
-                chefModal.find('i').removeClass('active');
-                chefModal.find('#chefFirst').val(''); 
-                chefModal.find('#chefLast').val('');
-                chefModal.find('#chefEmail').val('');
-                chefModal.find('#chefPhone').val('');
-                chefModal.find('#chefAddress').val('');
-              }
-              else{
-                Materialize.toast('Email already exists!', 4000)
-              }
+              // Launch survey if new user
+              //$('#survey').openModal();
+              // Materialize.toast('Successfully Added!', 4000)
+              $('#becomeChef').closeModal();
+              chefModal.find('input').removeClass('valid');
+              chefModal.find('i').removeClass('active');
+              chefModal.find('#chefFirst').val('');
+              chefModal.find('#chefLast').val('');
+              chefModal.find('#chefEmail').val('');
+              chefModal.find('#chefPhone').val('');
+              chefModal.find('#chefAddress').val('');
 
+              Materialize.toast('Thank you for joining Vesta! Jimmy will be in touch soon.', 10000);
             },
             400: function() {
-              alert("Didn't work");
+              // duplicate email
+              Materialize.toast('It appears we already have your email address. Please try another.', 4000)
+            },
+            500: function() {
+              // error
+              Materialize.toast('There was an error processing your information.', 4000);
             }
           }
         });
