@@ -4,10 +4,8 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var request = require('request')
-
-// var mailchimp = require('./mailchimp');
-// var mongo = require('mongodb');
+var request = require('request');
+var mailchimp = require('./mailchimp');
 
 
 mongoose.connect('mongodb://localhost/VestaFood', function (error) {
@@ -48,19 +46,7 @@ router.post('/newsletter', function(req, res) {
   var newEmail = req.body.email;
   console.log('User email address entered is ' + newEmail);
 
-  var buyer = {
-    email_address: newEmail,
-    status: 'subscribed',
-  };
-
-  // submit to mailchimp and send response
-  request.post({
-    url: 'https://us13.api.mailchimp.com/3.0/lists/56352af333/members',
-    headers: {
-      'Authorization': 'vestafood 22c6dadf7c03785e77cfb211d8c5111d-us13',
-    },
-    form: JSON.stringify(buyer)
-  }, function (err, response, body) {
+  mailchimp.subscribeBuyer(newEmail, function (err, response, body) {
     var info = JSON.parse(body);
 
     if (info.status == 'subscribed') {
@@ -71,8 +57,8 @@ router.post('/newsletter', function(req, res) {
     }
     else if (info.status == 400 && info.title && info.title == "Member Exists") {
       // duplicate email
-      console.log('dupliate email address ' + newEmail)
-      res.status(400).send('duplicate_email')
+      console.log('dupliate email address ' + newEmail);
+      res.status(400).send('duplicate_email');
     }
     else {
       // general failure
@@ -85,9 +71,9 @@ router.post('/newsletter', function(req, res) {
   // add to database for our own keeping
   // Upsert ensures that only adds if doesn't exist
   EarlyUsers.find({email: newEmail}, function(err, found) {
-    if (err){
+    if (err) {
       console.log(err);
-      res.status(500).send(err);
+      // res.status(500).send(err);
     }
 
     // In this case a user did not exist
@@ -96,9 +82,9 @@ router.post('/newsletter', function(req, res) {
       new EarlyUsers({
         email: newEmail
       }).save(function(err, saved){
-        if (err){
+        if (err) {
           console.log(err);
-          res.status(500).send(err);
+          // res.status(500).send(err);
         }
 
         console.log(newEmail + ' added to the database');
@@ -122,23 +108,15 @@ router.post('/sellerinfo', function(req, res) {
   var newEmail = req.body.email;
   console.log('User email address entered is ' + newEmail);
 
+  // can't figure out phone/address on mailchimp
   var seller = {
-    email_address: newEmail,
-    status: 'subscribed',
-    merge_fields: {
-      FNAME: req.body.firstName,
-      LNAME: req.body.lastName
-    }
+    emailAddress: newEmail,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName
   }
 
   // submit to mailchimp and send response
-  request.post({
-    url: 'https://us13.api.mailchimp.com/3.0/lists/df96afad6b/members',
-    headers: {
-      'Authorization': 'vestafood 22c6dadf7c03785e77cfb211d8c5111d-us13',
-    },
-    form: JSON.stringify(seller)
-  }, function (err, response, body) {
+  mailchimp.subscribeSeller(seller, function (err, response, body) {
     var info = JSON.parse(body);
 
     if (info.status == 'subscribed') {
@@ -177,9 +155,9 @@ router.post('/sellerinfo', function(req, res) {
         telephone: req.body.telephone,
         pickupLocation: req.body.pickup,
       }).save(function(err, saved){
-        if (err){
+        if (err) {
           console.log(err);
-          res.status(500).send(err);
+          // res.status(500).send(err);
         }
 
         console.log(newEmail + ' added to the database');
