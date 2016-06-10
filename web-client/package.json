@@ -1,0 +1,21 @@
+{
+  "name": "vesta-food-web-client",
+  "version": "0.0.0",
+  "description": "Web client for vesta food.",
+  "repository": "https://github.com/GeoffreyLong/vesta-food.git",
+  "scripts": {
+    "postinstall": "bower install",
+
+    "prestart": "npm install",
+    "start": "http-server -a localhost -p 8000 -c-1 ./app",
+    "poststart": "open http://localhost:8000",
+
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vesta",
+  "license": "ISC",
+  "devDependencies": {
+    "bower": "^1.7.9",
+    "http-server": "^0.9.0"
+  }
+}
