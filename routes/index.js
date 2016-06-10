@@ -110,7 +110,7 @@ router.post('/sellerinfo', function(req, res) {
 
   // can't figure out phone/address on mailchimp
   var seller = {
-    emailAddress: newEmail,
+    email: newEmail,
     firstName: req.body.firstName,
     lastName: req.body.lastName
   }
