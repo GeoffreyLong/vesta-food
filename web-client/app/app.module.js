@@ -3,5 +3,6 @@ angular.module('vestaApp', [
     'ngRoute',
     'vestaNav',
     'storesView',
-    'becomeChef'
+    'becomeChef',
+    'splogin'
 ]);
