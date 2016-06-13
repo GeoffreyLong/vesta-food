@@ -12,6 +12,7 @@ server {
         root $rootloc/app;
     }
     location /api/ {
+        add_header Access-Control-Allow-Origin *;
         proxy_pass http://localhost:3000;
     }
 }

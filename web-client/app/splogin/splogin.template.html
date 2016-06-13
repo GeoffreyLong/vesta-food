@@ -39,8 +39,8 @@
       <input type="text" placeholder="Search for Food Near ..." id="searchAddress" name="searchAddress" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search for Food Near...'"/>
       <input type="submit" id="exploreButton" value="Explore!"/>
     </form>
-    <div id="facebookLogin">
-      <img src="images/facebook_logo_simple.png" alt="Facebook" width="40" height="40">
+    <div id="facebookLogin" ng-click="fblogin()">
+      <img ng-src="images/facebook_logo_simple.png" alt="Facebook" width="40" height="40">
       <span> Login with Facebook </span>
     </div>
   </div>
