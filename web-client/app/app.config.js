@@ -38,6 +38,26 @@ angular
               }
             }
           }*/
+        })
+        .when('/becomeAChef/stripeCallback', {
+          template: '<p>become a chef callback</p>',
+          controller: function($location, $http) {
+            var stripeParams = $location.search();
+            console.log(JSON.stringify(stripeParams));
+
+            $http
+              .patch('/api/users/charlie', stripeParams)
+              .then(function onSuccess(response) {
+                console.log('success')
+                console.log(response)
+              }, function onError(response) {
+                console.log('error')
+                console.log(response)
+              });
+          }
+        })
+        .otherwise({
+          redirectTo: ('/')
         });
-    },
+    }
 ]);
