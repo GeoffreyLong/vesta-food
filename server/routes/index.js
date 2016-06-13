@@ -46,6 +46,7 @@ module.exports = function(passport){
     else {
       console.log("No session");
       // Handled by the nginx server
+      res.redirect('app/splogin.html');
     }
 
   };
@@ -53,7 +54,8 @@ module.exports = function(passport){
   // Login is required for store purchases
   var requireLogin = function(req, res, next) {
     if (req.isAuthenticated()) { 
-      return next(); 
+      console.log("Is Authenticated");
+      next(); 
     }
     else {
       console.log('Not Authenticated');
@@ -66,7 +68,7 @@ module.exports = function(passport){
   /* GET home page. */
   router.get('/', requireSession, function(req, res) {
     // Handled by the nginx server
-    //
+    res.redirect('app/index.html');
   });
 
 
