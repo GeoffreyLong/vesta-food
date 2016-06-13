@@ -40,13 +40,13 @@ module.exports = function(passport){
     // Check to see if the user is logged in
     //    or if the user has previously entered a search address
     if ((req.user && req.user.fbID) || req.session.address) {
+      // User session exists, send user info to angular
       console.log("Found session");
       next();
     }
     else {
       console.log("No session");
-      // Handled by the nginx server
-      res.redirect('app/splogin.html');
+      // TODO Send the user back to the splogin
     }
 
   };
@@ -54,30 +54,33 @@ module.exports = function(passport){
   // Login is required for store purchases
   var requireLogin = function(req, res, next) {
     if (req.isAuthenticated()) { 
+      // User exists, send user info to angular
       console.log("Is Authenticated");
       next(); 
     }
     else {
       console.log('Not Authenticated');
+
       // TODO Give them to some sort of login
       // Don't want to redirect to splogin, want one on page
     }
   };
 
 
-  /* GET home page. */
-  router.get('/', requireSession, function(req, res) {
-    // Handled by the nginx server
-    res.redirect('app/index.html');
+  router.get('/api/auth/session', requireSession, function(req, res) {
+    res.send(req.user);
+  });
+  router.get('/api/auth/login', requireLogin, function(req, res) {
+    res.send(req.user);
   });
 
 
   // Passport Router
   // Add scope?
   // TODO add /api to this... everything needs to be /api/<route>
-  router.get('/auth/facebook', passport.authenticate('facebook'));
+  router.get('/api/auth/facebook', passport.authenticate('facebook'));
 
-  router.get('/auth/facebook/callback',
+  router.get('/api/auth/facebook/callback',
     passport.authenticate('facebook', { 
         successRedirect : '/', 
         failureRedirect: '/splogin' 
@@ -86,16 +89,16 @@ module.exports = function(passport){
     }
   );
 
-  router.get('/logout', function(req, res){
+  router.get('/api/logout', function(req, res){
     req.logout();
-    res.redirect('/');
+    // TODO send stuff back
   });
 
 
   /* POST for newsletter 
    * Occurs when the user enters their email address on the splash page
    */
-  router.post('/locationSearch', function(req, res) {
+  router.post('/api/locationSearch', function(req, res) {
     var searchAddress = req.body.searchAddress;
     console.log('Location search entered is ' + searchAddress);
     
@@ -116,6 +119,7 @@ module.exports = function(passport){
   /* POST for new sellers 
    * Occurs when the user uses the 'become a seller' modal on the splash page
    */
+  /*
   router.post('/sellerinfo', function(req, res) {
     var newEmail = req.body.email;
     console.log('User email address entered is ' + newEmail);
@@ -158,6 +162,6 @@ module.exports = function(passport){
       }
     });
   });
-
+*/
   return router;
 };

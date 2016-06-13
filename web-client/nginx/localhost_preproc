@@ -8,13 +8,10 @@ server {
     listen 80;
     listen 8080;
 
-    location /app/ {
-        root $rootloc;
-    }
-    location /images/ {
+    location / {
         root $rootloc/app;
     }
-    location / {
+    location /api/ {
         proxy_pass http://localhost:3000;
     }
 }
