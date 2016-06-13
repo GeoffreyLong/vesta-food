@@ -6,99 +6,98 @@ module.exports = function(passport){
   var express = require('express');
   var router = express.Router();
 
-  var mongoose = require('mongoose');
-  var mongo = require('mongodb');
-
-  var path = require("path");
-
-  // NOTE: Not so sure about this
-  // Could just module.exports this auth information... this seems convoluted
-  // Does it offer any benefits accessing it in this manner?
-  var common = require('./common');
-  var config = common.config();
-
-
-  var Schema = mongoose.Schema;
-
-  var EarlyUserSchema = new Schema({
-      email: String,
-  });
-  var EarlySellerSchema = new Schema({
-      firstName: String,
-      lastName: String,
-      email: String,
-      telephone: String,
-      pickupLocation: String,
-  });
-
-  var EarlyUsers = mongoose.model('earlyUsers', EarlyUserSchema);
-  var EarlySellers = mongoose.model('earlySellers', EarlySellerSchema);
-
-
-  // Sessions are required on everything but splogin
-  var requireSession = function(req, res, next) {
-    // Check to see if the user is logged in
-    //    or if the user has previously entered a search address
-    if ((req.user && req.user.fbID) || req.session.address) {
-      // User session exists, send user info to angular
-      console.log("Found session");
-      next();
-    }
-    else {
-      console.log("No session");
-      // TODO Send the user back to the splogin
-    }
-
-  };
-
-  // Login is required for store purchases
-  var requireLogin = function(req, res, next) {
-    if (req.isAuthenticated()) { 
-      // User exists, send user info to angular
-      console.log("Is Authenticated");
-      next(); 
-    }
-    else {
-      console.log('Not Authenticated');
-
-      // TODO Give them to some sort of login
-      // Don't want to redirect to splogin, want one on page
-    }
-  };
+  // var mongoose = require('mongoose');
+  // var mongo = require('mongodb');
+  //
+  // var path = require("path");
+  //
+  // // NOTE: Not so sure about this
+  // // Could just module.exports this auth information... this seems convoluted
+  // // Does it offer any benefits accessing it in this manner?
+  // var common = require('./common');
+  // var config = common.config();
+  //
+  //
+  // var Schema = mongoose.Schema;
+  //
+  // var EarlyUserSchema = new Schema({
+  //     email: String,
+  // });
+  // var EarlySellerSchema = new Schema({
+  //     firstName: String,
+  //     lastName: String,
+  //     email: String,
+  //     telephone: String,
+  //     pickupLocation: String,
+  // });
+  //
+  // var EarlyUsers = mongoose.model('earlyUsers', EarlyUserSchema);
+  // var EarlySellers = mongoose.model('earlySellers', EarlySellerSchema);
 
 
-  router.get('/api/auth/session', requireSession, function(req, res) {
-    res.send(req.user);
-  });
-  router.get('/api/auth/login', requireLogin, function(req, res) {
-    res.send(req.user);
-  });
+  // // Sessions are required on everything but splogin
+  // var requireSession = function(req, res, next) {
+  //   // Check to see if the user is logged in
+  //   //    or if the user has previously entered a search address
+  //   if ((req.user && req.user.fbID) || req.session.address) {
+  //     // User session exists, send user info to angular
+  //     console.log("Found session");
+  //     next();
+  //   }
+  //   else {
+  //     console.log("No session");
+  //     // TODO Send the user back to the splogin
+  //   }
+  //
+  // };
+  //
+  // // Login is required for store purchases
+  // var requireLogin = function(req, res, next) {
+  //   if (req.isAuthenticated()) {
+  //     // User exists, send user info to angular
+  //     console.log("Is Authenticated");
+  //     next();
+  //   }
+  //   else {
+  //     console.log('Not Authenticated');
+  //
+  //     // TODO Give them to some sort of login
+  //     // Don't want to redirect to splogin, want one on page
+  //   }
+  // };
 
-
-  // Passport Router
-  // Add scope?
-  // TODO add /api to this... everything needs to be /api/<route>
-  router.get('/api/auth/facebook', passport.authenticate('facebook'));
-
-  router.get('/api/auth/facebook/callback',
-    passport.authenticate('facebook', { 
-        successRedirect : '/', 
-        failureRedirect: '/splogin' 
-    }), function(req, res) {
-      res.redirect('/');
-    }
-  );
-
-  router.get('/api/logout', function(req, res){
-    req.logout();
-    // TODO send stuff back
-  });
+  // router.get('/auth/session', requireSession, function(req, res) {
+  //   res.send(req.user);
+  // });
+  // router.get('/auth/login', requireLogin, function(req, res) {
+  //   res.send(req.user);
+  // });
+  //
+  //
+  // // Passport Router
+  // // Add scope?
+  // // TODO add /api to this... everything needs to be /api/<route>
+  // router.get('/auth/facebook', passport.authenticate('facebook'));
+  //
+  // router.get('/auth/facebook/callback',
+  //   passport.authenticate('facebook', { 
+  //       successRedirect : '/', 
+  //       failureRedirect: '/splogin' 
+  //   }), function(req, res) {
+  //     res.redirect('/');
+  //   }
+  // );
+  //
+  // router.get('/logout', function(req, res){
+  //   req.logout();
+  //   // TODO send stuff back
+  // });
 
 
   /* POST for newsletter 
    * Occurs when the user enters their email address on the splash page
    */
-  router.post('/api/locationSearch', function(req, res) {
+  router.post('/locationSearch', function(req, res) {
     var searchAddress = req.body.searchAddress;
     console.log('Location search entered is ' + searchAddress);
     
