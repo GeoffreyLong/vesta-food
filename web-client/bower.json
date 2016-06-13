@@ -9,6 +9,9 @@
     "angular-aria": "1.5.x",
     "angular-route": "1.5.x",
     "bootstrap": "3.3.x",
-    "jquery": "2.2.x"
+    "jquery": "2.2.x",
+    "slick-carousel": "^1.6.0",
+    "jquery-migrate": "^3.0.0",
+    "angular-material": "^1.0.9"
   }
 }
