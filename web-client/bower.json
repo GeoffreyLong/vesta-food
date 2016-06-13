@@ -1,0 +1,14 @@
+{
+  "name": "vesta-food-web-client",
+  "description": "Web client for vesta food.",
+  "version": "0.0.0",
+  "homepage": "vestafood.ca",
+  "dependencies": {
+    "angular": "1.5.x",
+    "angular-animate": "1.5.x",
+    "angular-aria": "1.5.x",
+    "angular-route": "1.5.x",
+    "bootstrap": "3.3.x",
+    "jquery": "2.2.x"
+  }
+}

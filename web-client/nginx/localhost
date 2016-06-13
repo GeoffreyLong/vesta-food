@@ -8,11 +8,13 @@ server {
     listen 80;
     listen 8080;
 
-    location / {
-        root /home/geoffrey/vesta-food/public/;
-        try_files $uri @proxy;
+    location /app/ {
+        root /home/geoffrey/vesta-food/web-client;
     }
-    location @proxy {
-        proxy_pass http://127.0.0.1:3000;
+    location /images/ {
+        root /home/geoffrey/vesta-food/web-client/app;
+    }
+    location / {
+        proxy_pass http://localhost:3000;
     }
 }
