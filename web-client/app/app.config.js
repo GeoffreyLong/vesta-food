@@ -12,11 +12,32 @@ angular
       $locationProvider.hashPrefix('!');
       $routeProvider.
         when('/', {
-          template: '<stores-view></stores-view>'
+          template: '<vesta-nav></vesta-nav>'
+            + '<div id="nonNavContainer" class="sideNavOpen">'
+            + '<stores-view></stores-view>'
+            + '</div>'
+          /*resolve: {
+            auth: function ($q, authService) {
+              var session = authService.getSession();
+              if (session) {
+                
+              }
+            }
+          }*/
         })
-        
         .when('/becomeAChef', {
-          template: '<become-chef></become-chef>'
+          template: '<vesta-nav></vesta-nav>'
+            + '<div id="nonNavContainer" class="sideNavOpen">'
+            + '<become-chef></become-chef>'
+            + '</div>'
+          /*resolve: {
+            auth: function ($q, authService) {
+              var session = authService.getSession();
+              if (session) {
+                
+              }
+            }
+          }*/
         });
     },
 ]);
