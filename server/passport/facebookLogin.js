@@ -11,12 +11,8 @@ module.exports = function(passport){
                   clientSecret:config.facebook.appSecret,
                   callbackURL: config.facebook.callbackUrl
               }, function(access_token, refresh_token, profile, done) { 
-    // Is this "process.nextTick" necessary?
-    // I guess it gives some asynch behaviours
-    console.log("hello");
     process.nextTick(function () {
       User.findOne({ 'fbID' :  profile.id }, function(err, user) {
-        console.log("ok");
         // In case of any error, return using the done method
         if (err){
           console.log(user);
