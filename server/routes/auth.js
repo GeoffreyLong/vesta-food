@@ -14,9 +14,9 @@ router.get('/login', function(req, res) {
 // Passport Router
 // Add scope?
 // TODO add /api to this... everything needs to be /api/<route>
-router.get('/api/facebook', passport.authenticate('facebook'));
+router.get('/facebook', passport.authenticate('facebook'));
 
-router.get('/api/facebook/callback',
+router.get('/facebook/callback',
   passport.authenticate('facebook', {
     successRedirect : '/',
     failureRedirect: '/splogin'
