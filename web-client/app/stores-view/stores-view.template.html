@@ -1,6 +1,15 @@
 <ul>
   <li ng-repeat="store in $ctrl.stores">
-    <span>{{store.name}}</span>
-    <p>{{store.snippet}}</p>
+    <!-- click on this to go to the store -->
+    <span>{{store.storeTitle}}</span>
+    <p>{{store.pickupAddress}}</p>
+    <!-- click on this to go to user's page? -->
+    <p>{{store.personalPhoto}}</p>
+
+    <ul>
+      <li ng-repeat="food in store.foods">
+        <span> {{food.name}} </span>
+      </li>
+    </ul>
   </li>
 </ul>
