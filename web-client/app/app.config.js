@@ -61,7 +61,6 @@ angular.module('vestaApp')
   },
 ]).run(["$rootScope", "$location", function ($rootScope, $location) {
   $rootScope.$on("$routeChangeSuccess", function (userInfo) {
-    console.log(userInfo);
     console.log("Route Change Success for " + $location.url());
   });
 
@@ -89,7 +88,6 @@ angular.module('vestaApp')
   function fblogin() {
     // I don't see this working another way due to cross origin scripting issues
     window.location = "/api/auth/facebook"
-    console.log("ok");
   }
 
   function logout() {
@@ -126,7 +124,6 @@ angular.module('vestaApp')
               userName: result.data.displayName,
               fbID: result.data.fbID
           };
-          console.log(session);
           deferred.resolve(session);
           // TODO if we want to make our REST server stateless
           // $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
@@ -143,7 +140,6 @@ angular.module('vestaApp')
   }
 
   function getUser() {
-    console.log(user);
     if (user && user.id) {
       return user;
     }
