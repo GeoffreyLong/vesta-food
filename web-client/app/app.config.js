@@ -22,21 +22,7 @@ angular.module('vestaApp')
         resolve: {
           // Going to the stores view only requires a session
           auth: function ($q, authService) {
-            var sessionPromise = authService.getSession();
-            sessionPromise.then(function(session) {
-              console.log("Session = "session);
-              if (session && session.id) {
-                return $q.when(session);
-              }
-              else {
-                return $q.reject({sessioned: false});
-              }
-
-
-            }, function(err) {
-              return $q.reject({sessioned: false});
-            })
-
+            return authService.getSession();
           }
         }
       })
@@ -57,7 +43,7 @@ angular.module('vestaApp')
                 return $q.reject({authenticated: false});
               }
             }, function(err) {
-              return $q.reject({authenticated: false})
+              return $q.reject({authenticated: false});
             })
           }
         }
@@ -68,8 +54,8 @@ angular.module('vestaApp')
   },
 ]).run(["$rootScope", "$location", function ($rootScope, $location) {
   $rootScope.$on("$routeChangeSuccess", function (userInfo) {
-    console.log("Route Change Success for " + $location.url());
     console.log(userInfo);
+    console.log("Route Change Success for " + $location.url());
   });
 
   $rootScope.$on("$routeChangeError", function (event, current, previous, eventObj) {
@@ -125,18 +111,24 @@ angular.module('vestaApp')
     }
     else {
       var deferred = $q.defer();
-      $http.get("/api/auth/session")
-        .then(function (result) {
+      $http.get("/api/auth/session").then(function (result) {
+        if (result.data._id) {
           session = {
               id: result.data._id,
               userName: result.data.displayName,
               fbID: result.data.fbID
           };
+          console.log(session);
           deferred.resolve(session);
-          // $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
-        }, function (error) {
-          deferred.reject(error);
-        });
+        }
+        else {
+          deferred.reject({sessioned: false});
+        }
+        // $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
+      }, function (error) {
+        deferred.reject({sessioned: false});
+      });
+
       return deferred.promise
     }
   }
