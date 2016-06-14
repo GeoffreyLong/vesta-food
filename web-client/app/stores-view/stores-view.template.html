@@ -1,15 +1,21 @@
-<ul>
-  <li ng-repeat="store in $ctrl.stores">
-    <!-- click on this to go to the store -->
-    <span>{{store.storeTitle}}</span>
-    <p>{{store.pickupAddress}}</p>
-    <!-- click on this to go to user's page? -->
-    <p>{{store.personalPhoto}}</p>
-
-    <ul>
-      <li ng-repeat="food in store.foods">
-        <span> {{food.name}} </span>
-      </li>
-    </ul>
-  </li>
-</ul>
+<md-content class="md-padding" layout-xs="column" layout="row">
+  <div flex-xs flex-gt-xs="50" layout="column" ng-repeat="rows in $ctrl.chunkedData">
+    <md-card ng-repeat="store in rows">
+      <!-- TODO this will be the scrolling food image thing -->
+      <img ng-src="{{imagePath}}" class="md-card-image" alt="Store Image">
+      <md-card-title>
+        <md-card-title-text>
+        <span class="md-headline">{{store.storeTitle}}</span>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-content>
+        <p>
+          {{store.description}}
+        </p>
+      </md-card-content>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button>Action</md-button>
+      </md-card-actions>
+    </md-card>
+  </div>
+</md-content>
