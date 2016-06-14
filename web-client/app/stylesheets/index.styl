@@ -100,5 +100,10 @@ md-sidenav
 
 /******************************** STORES VIEW ********************************/
 #storesContainer
-  background-color: $background
+  background-color: $backgroundColor
+
+  .md-card-image
+    /* Hacky workaround to make flexbox images scale correctly */
+    /* Allegedly adding flex="none" on a child may work, I haven't seen success */
+    min-height:0
 

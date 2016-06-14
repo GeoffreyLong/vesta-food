@@ -1,8 +1,8 @@
-<md-content class="md-padding" layout-xs="column" layout="row">
+<md-content id="storesContainer" class="md-padding" layout-xs="column" layout="row">
   <div flex-xs flex-gt-xs="50" layout="column" ng-repeat="rows in $ctrl.chunkedData">
     <md-card ng-repeat="store in rows">
       <!-- TODO this will be the scrolling food image thing -->
-      <img ng-src="{{imagePath}}" class="md-card-image" alt="Store Image">
+      <img ng-src="{{store.foods[0].photo}}" class="md-card-image" alt="Store Image">
       <md-card-title>
         <md-card-title-text>
         <span class="md-headline">{{store.storeTitle}}</span>

@@ -28,7 +28,7 @@ angular.module('storesView').component('storesView', {
         overallRating: 4,
         foods: [{
           name: "Brittle Peanuts",
-          photo: "TODO",
+          photo: "/images/chef_1-1.png",
           price: 10,
           shelfLife: 3,
           prepTime: 2,
@@ -47,7 +47,7 @@ angular.module('storesView').component('storesView', {
         overallRating: 4,
         foods: [{
           name: "Brittle Peanuts",
-          photo: "TODO",
+          photo: "/images/chef_2-1.jpg",
           price: 10,
           shelfLife: 3,
           prepTime: 2,
@@ -66,7 +66,7 @@ angular.module('storesView').component('storesView', {
         overallRating: 4,
         foods: [{
           name: "Brittle Peanuts",
-          photo: "TODO",
+          photo: "/images/chef_3-1.jpg",
           price: 10,
           shelfLife: 3,
           prepTime: 2,
@@ -85,26 +85,7 @@ angular.module('storesView').component('storesView', {
         overallRating: 4,
         foods: [{
           name: "Brittle Peanuts",
-          photo: "TODO",
-          price: 10,
-          shelfLife: 3,
-          prepTime: 2,
-          overallRating: 3
-        }]
-      }, {
-        userID: "123456789",
-        storeID: "123456789",
-        storeTitle: "Geoff's Store 5",
-        personalPhoto: "TODO",
-        pickupAddress: "3515 Rue Durocher",
-        neighborhood: "TODO",
-        stripeAuth: "TODO",
-        description: "This is the best store you'll ever go to. I make lots of things.",
-        availability: "TODO",
-        overallRating: 4,
-        foods: [{
-          name: "Brittle Peanuts",
-          photo: "TODO",
+          photo: "/images/chef_4-1.jpg",
           price: 10,
           shelfLife: 3,
           prepTime: 2,
@@ -113,7 +94,10 @@ angular.module('storesView').component('storesView', {
       }
     ];
 
-    this.chunkedData = chunk(this.stores, 2);
+    // This gives the number of rows
+    // Three looks good on my screen
+    // Might want to make it dynamic based on screen size
+    this.chunkedData = chunk(this.stores, 3);
 
   }
 });
