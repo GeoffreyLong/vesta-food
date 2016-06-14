@@ -34,17 +34,7 @@ angular.module('vestaApp')
         resolve: {
           // Becoming a chef requires a login
           auth: function ($q, authService) {
-            var userPromise = authService.getUser();
-            userPromise.then(function(user) {
-              if (user) {
-                return $q.when(user);
-              }
-              else {
-                return $q.reject({authenticated: false});
-              }
-            }, function(err) {
-              return $q.reject({authenticated: false});
-            })
+            return authService.getUser();
           }
         }
       })
@@ -111,6 +101,7 @@ angular.module('vestaApp')
     }
     else {
       var deferred = $q.defer();
+
       $http.get("/api/auth/session").then(function (result) {
         if (result.data._id) {
           session = {
@@ -120,11 +111,12 @@ angular.module('vestaApp')
           };
           console.log(session);
           deferred.resolve(session);
+          // TODO if we want to make our REST server stateless
+          // $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
         }
         else {
           deferred.reject({sessioned: false});
         }
-        // $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
       }, function (error) {
         deferred.reject({sessioned: false});
       });
@@ -141,18 +133,21 @@ angular.module('vestaApp')
     else {
       var deferred = $q.defer();
 
-      $http.get("/api/auth/user")
-        .then(function (result) {
+      $http.get("/api/auth/user").then(function (result) {
+        if (result.data._id) {
           user = {
               id: result.data._id,
               userName: result.data.displayName,
               fbID: result.data.fbID
           };
-          // $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
           deferred.resolve(user);
-        }, function (error) {
-          deferred.reject(error);
-        });
+        }
+        else {
+          deferred.reject({authenticated: false});
+        }
+      }, function (error) {
+        deferred.reject({authenticated: false});
+      });
 
       return deferred.promise;
     }
