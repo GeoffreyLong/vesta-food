@@ -1,1 +1,1 @@
-angular.module('storesView', []);
+angular.module('storesView', ['slick']);

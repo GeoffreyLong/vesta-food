@@ -78,11 +78,14 @@ md-sidenav {
   width: 0px;
 }
 /******************************** STORES VIEW ********************************/
-#storesContainer {
-  background-color: #f2f2f2;
-}
-#storesContainer .md-card-image {
 /* Hacky workaround to make flexbox images scale correctly */
 /* Allegedly adding flex="none" on a child may work, I haven't seen success */
+/* TODO should probably prohibit strangely sized images (far away from 50-50) */
+#storesContainer * {
   min-height: 0;
+  min-width: 0;
+}
+#storesContainer {
+  overflow-x: hidden;
+  background-color: #f2f2f2;
 }
