@@ -5,10 +5,8 @@
   "repository": "https://github.com/GeoffreyLong/vesta-food.git",
   "scripts": {
     "postinstall": "bower install",
-
     "prestart": "npm install",
     "start": "./setup.sh",
-
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Vesta",
@@ -16,5 +14,9 @@
   "devDependencies": {
     "bower": "^1.7.9",
     "http-server": "^0.9.0"
+  },
+  "dependencies": {
+    "nib": "^1.1.0",
+    "stylus": "^0.54.5"
   }
 }

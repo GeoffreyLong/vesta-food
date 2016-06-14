@@ -46,12 +46,9 @@ nav {
   z-index: 10;
   position: fixed;
 /* Make text unselectable */
-  -webkit-user-select: none;
-/* Chrome/Safari */
-  -moz-user-select: none;
-/* Firefox */
-  -ms-user-select: none;
-/* IE10+ */
+  -webkit-user-select: none; /* Chrome/Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
 /* Rules below not implemented in browsers yet */
   -o-user-select: none;
   user-select: none;
@@ -162,10 +159,8 @@ nav li a:hover {
   float: right;
 }
 #howWorks .collapsible-header.active .expIcon {
-  -ms-transform: rotate(180deg);
-/* IE 9 */
-  -webkit-transform: rotate(180deg);
-/* Safari */
+  -ms-transform: rotate(180deg); /* IE 9 */
+  -webkit-transform: rotate(180deg); /* Safari */
   transform: rotate(180deg);
 }
 #howWorks .collapsible-header:hover .expIcon {

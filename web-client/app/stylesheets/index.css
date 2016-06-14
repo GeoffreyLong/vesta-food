@@ -24,12 +24,9 @@ md-toolbar {
   min-height: 50px;
   background-color: #00b36f !important;
 /* Make text unselectable */
-  -webkit-user-select: none;
-/* Chrome/Safari */
-  -moz-user-select: none;
-/* Firefox */
-  -ms-user-select: none;
-/* IE10+ */
+  -webkit-user-select: none; /* Chrome/Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
 /* Rules below not implemented in browsers yet */
   -o-user-select: none;
   user-select: none;
@@ -79,4 +76,8 @@ md-sidenav {
 .md-sidenav-backdrop {
   height: 0px;
   width: 0px;
+}
+/******************************** STORES VIEW ********************************/
+#storesContainer {
+  background-color: $background;
 }
