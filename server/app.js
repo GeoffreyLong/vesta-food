@@ -54,7 +54,7 @@ var initPassport = require('./passport/init');
 initPassport(passport);
 
 // initial route filter, log user
-app.use((req, res, next) => {
+app.use(function(req, res, next) {
   if (req.user) {
     console.log('Current User:', req.user)
   }
