@@ -22,13 +22,21 @@ angular.module('vestaApp')
         resolve: {
           // Going to the stores view only requires a session
           auth: function ($q, authService) {
-            var session = authService.getSession();
-            if (session) {
-              return $q.when(session);
-            }
-            else {
+            var sessionPromise = authService.getSession();
+            sessionPromise.then(function(session) {
+              console.log("Session = "session);
+              if (session && session.id) {
+                return $q.when(session);
+              }
+              else {
+                return $q.reject({sessioned: false});
+              }
+
+
+            }, function(err) {
               return $q.reject({sessioned: false});
-            }
+            })
+
           }
         }
       })
@@ -40,13 +48,17 @@ angular.module('vestaApp')
         resolve: {
           // Becoming a chef requires a login
           auth: function ($q, authService) {
-            var user = authService.getUser();
-            if (user) {
-              return $q.when(user);
-            }
-            else {
-              return $q.reject({authenticated: false});
-            }
+            var userPromise = authService.getUser();
+            userPromise.then(function(user) {
+              if (user) {
+                return $q.when(user);
+              }
+              else {
+                return $q.reject({authenticated: false});
+              }
+            }, function(err) {
+              return $q.reject({authenticated: false})
+            })
           }
         }
       })
@@ -70,27 +82,21 @@ angular.module('vestaApp')
     }
   });
 
-}]).factory("authService", ["$http","$q","$window",function ($http, $q, $window) {
+}]).factory("authService", ["$location","$http","$q","$window",function ($location, $http, $q, $window) {
+  // For now session and user are largely the same
+  // TODO different them or put as one object
+  // I think the best way would be to have the user info as a larger session object
+  // session without user would be like an address or something
+  //    Might grow to include search results, temporary carts, etc
+  // user object is simply the user's _id, username, and fbID
+  //    Should also have address though?
   var user;
   var session;
 
   function fblogin() {
-    var deferred = $q.defer();
-
-    $http.get("/api/facebook")
-      .then(function (result) {
-        console.log(result);
-        userInfo = {
-            accessToken: result.data.access_token,
-            userName: result.data.userName
-        };
-        // $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
-        // deferred.resolve(userInfo);
-      }, function (error) {
-        // deferred.reject(error);
-      });
-
-    return deferred.promise;
+    // I don't see this working another way due to cross origin scripting issues
+    window.location = "/api/auth/facebook"
+    console.log("ok");
   }
 
   function logout() {
@@ -114,12 +120,51 @@ angular.module('vestaApp')
   }
 
   function getSession() {
+    if (session && session.id) {
       return session;
+    }
+    else {
+      var deferred = $q.defer();
+      $http.get("/api/auth/session")
+        .then(function (result) {
+          session = {
+              id: result.data._id,
+              userName: result.data.displayName,
+              fbID: result.data.fbID
+          };
+          deferred.resolve(session);
+          // $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
+        }, function (error) {
+          deferred.reject(error);
+        });
+      return deferred.promise
+    }
   }
 
   function getUser() {
+    console.log(user);
+    if (user && user.id) {
       return user;
-  }
+    }
+    else {
+      var deferred = $q.defer();
+
+      $http.get("/api/auth/user")
+        .then(function (result) {
+          user = {
+              id: result.data._id,
+              userName: result.data.displayName,
+              fbID: result.data.fbID
+          };
+          // $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
+          deferred.resolve(user);
+        }, function (error) {
+          deferred.reject(error);
+        });
+
+      return deferred.promise;
+    }
+  } 
 
   function init() {
       if ($window.sessionStorage["userInfo"]) {
