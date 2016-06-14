@@ -53,6 +53,17 @@ app.use(passport.session());
 var initPassport = require('./passport/init');
 initPassport(passport);
 
+// initial route filter, log user
+app.use((req, res, next) => {
+  if (req.user) {
+    console.log('Current User:', req.user)
+  }
+  else {
+    console.log('Unauthenticated');
+  }
+  next();
+});
+
 
 // Routes
 var routes = require('./routes/index')(passport);
