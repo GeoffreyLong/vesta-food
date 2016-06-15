@@ -1,4 +1,5 @@
 *.swp
+*.swo
 npm-debug.log
 .idea/
 *~

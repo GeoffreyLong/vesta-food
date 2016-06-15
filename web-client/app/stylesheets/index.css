@@ -89,3 +89,31 @@ md-sidenav {
   overflow-x: hidden;
   background-color: #f2f2f2;
 }
+#storesContainer md-card-title {
+  padding-top: 0;
+}
+#storesContainer slick .slick-arrow {
+  z-index: 1;
+}
+#storesContainer slick .slick-arrow:before {
+  font-size: 40px;
+}
+#storesContainer slick .slick-arrow.slick-prev {
+  left: 0;
+}
+#storesContainer slick .slick-arrow.slick-next {
+  right: 20px;
+}
+#storesContainer slick .slick-arrow.slick-prev:before,
+#storesContainer slick .slick-arrow.slick-next:before {
+  opacity: 0.75;
+}
+#storesContainer slick .slick-arrow.slick-prev:focus:before,
+#storesContainer slick .slick-arrow.slick-next:focus:before {
+  opacity: 0.75;
+}
+#storesContainer slick .slick-arrow.slick-prev:hover:before,
+#storesContainer slick .slick-arrow.slick-next:hover:before {
+  opacity: 1;
+  color: #fca345;
+}

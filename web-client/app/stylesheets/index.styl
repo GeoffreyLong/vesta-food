@@ -109,5 +109,21 @@ md-sidenav
 #storesContainer
   overflow-x: hidden
   background-color: $backgroundColor
-
-
+  md-card-title
+    padding-top: 0
+  slick
+    .slick-arrow
+      z-index: 1
+    .slick-arrow:before
+      font-size: 40px
+    .slick-arrow.slick-prev
+      left: 0
+    .slick-arrow.slick-next
+      right: 20px
+    .slick-arrow.slick-prev:before, .slick-arrow.slick-next:before
+      opacity: 0.75
+    .slick-arrow.slick-prev:focus:before, .slick-arrow.slick-next:focus:before
+      opacity: 0.75
+    .slick-arrow.slick-prev:hover:before, .slick-arrow.slick-next:hover:before
+      opacity: 1
+      color: $secondaryColor 
