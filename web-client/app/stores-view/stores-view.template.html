@@ -1,13 +1,21 @@
 <md-content id="storesContainer" class="md-padding" layout-xs="column" layout="row">
   <div flex-xs flex-gt-xs="50" layout="column" ng-repeat="rows in $ctrl.chunkedData">
     <md-card ng-repeat="store in rows">
-      <!-- TODO this will be the scrolling food image thing -->
       <slick dots=true arrows=true infinite=true speed=300 slides-to-show=1 touch-move=false slides-to-scroll=1 adaptive-height=true>
-        <div>
-          <img ng-src="{{store.foods[0].photo}}" class="md-card-image" alt="Store Image">
-        </div>
-        <div>
-          <img ng-src="{{store.foods[0].photo}}" class="md-card-image" alt="Store Image">
+        <!-- TODO ng-repeat over food in stores 
+              Include the name and price of the food -->
+        <div ng-repeat="food in store.foods">
+          <!-- TODO wrap the foodImagInfos in an element for better spacing and alignment -->
+          <span class="foodPrice foodImageInfo"> ${{food.price}} </span>
+          <span class="foodRating foodImageInfo"> 
+            <md-button class="star" md-no-ink ng-repeat="star in $ctrl.getNumber(food.overallRating) track by $index">
+              <md-icon class="material-icons"> star_rate </md-icon>
+            </md-button>
+          </span>
+          <!-- Not sure if we want this
+          <span class="foodName"> {{food.price}} </span>
+          -->
+          <img ng-src="{{food.photo}}" class="md-card-image" alt="Store Image">
         </div>
       </slick>
       <md-card-title>

@@ -88,6 +88,8 @@ md-sidenav {
 #storesContainer {
   overflow-x: hidden;
   background-color: #f2f2f2;
+/* NOTE not so sure I like the buttons changing position with the image swaps */
+/* SLICK STUFF */
 }
 #storesContainer md-card-title {
   padding-top: 0;
@@ -116,4 +118,16 @@ md-sidenav {
 #storesContainer slick .slick-arrow.slick-next:hover:before {
   opacity: 1;
   color: #fca345;
+}
+#storesContainer slick .foodImageInfo {
+  position: absolute;
+  padding: 10px;
+}
+#storesContainer slick .foodImageInfo.foodRating .star {
+  padding: 0;
+  margin: 0;
+}
+#storesContainer slick .foodImageInfo.foodPrice {
+  color: #fff;
+  background: rgba(0,0,0,0.3);
 }
