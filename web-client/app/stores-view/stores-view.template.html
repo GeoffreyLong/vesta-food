@@ -5,13 +5,14 @@
         <!-- TODO ng-repeat over food in stores 
               Include the name and price of the food -->
         <div ng-repeat="food in store.foods">
-          <!-- TODO wrap the foodImagInfos in an element for better spacing and alignment -->
-          <span class="foodPrice foodImageInfo"> ${{food.price}} </span>
-          <span class="foodRating foodImageInfo"> 
-            <md-button class="star" md-no-ink ng-repeat="star in $ctrl.getNumber(food.overallRating) track by $index">
-              <md-icon class="material-icons"> star_rate </md-icon>
-            </md-button>
-          </span>
+          <div class="foodImageInfo">
+            <span class="foodPrice"> ${{food.price}} </span>
+            <span class="foodRating" align="right"> 
+              <md-button class="star" md-no-ink ng-repeat="star in $ctrl.getNumber(food.overallRating) track by $index">
+                <md-icon class="material-icons"> star_rate </md-icon>
+              </md-button>
+            </span>
+          </div>
           <!-- Not sure if we want this
           <span class="foodName"> {{food.price}} </span>
           -->

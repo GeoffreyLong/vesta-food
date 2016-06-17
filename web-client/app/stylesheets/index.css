@@ -120,14 +120,21 @@ md-sidenav {
   color: #fca345;
 }
 #storesContainer slick .foodImageInfo {
-  position: absolute;
+  display: inline-block;
+  background: rgba(0,0,0,0.3);
+  width: 100%;
+}
+#storesContainer slick .foodImageInfo .foodPrice {
+  color: #fff;
   padding: 10px;
 }
-#storesContainer slick .foodImageInfo.foodRating .star {
+#storesContainer slick .foodImageInfo .foodRating {
+  float: right;
+}
+#storesContainer slick .foodImageInfo .foodRating .star {
   padding: 0;
   margin: 0;
 }
-#storesContainer slick .foodImageInfo.foodPrice {
-  color: #fff;
-  background: rgba(0,0,0,0.3);
+#storesContainer slick .foodImageInfo .foodRating .star md-icon {
+  color: #fca345;
 }

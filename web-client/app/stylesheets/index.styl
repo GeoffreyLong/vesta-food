@@ -132,13 +132,20 @@ md-sidenav
       color: $secondaryColor 
 
     .foodImageInfo
-      position: absolute
-      padding: 10px
-
-    .foodImageInfo.foodRating
-      .star 
-        padding: 0
-        margin: 0
-    .foodImageInfo.foodPrice
-      color: #FFFFFF
+      display: inline-block
       background: rgba(0,0,0,0.3)
+      width: 100%
+
+      .foodPrice
+        color: #FFFFFF
+        padding: 10px
+
+      .foodRating
+        float: right;
+        .star 
+          padding: 0
+          margin: 0
+
+          md-icon
+            color: $secondaryColor
+
