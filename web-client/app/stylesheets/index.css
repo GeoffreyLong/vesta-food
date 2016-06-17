@@ -122,11 +122,14 @@ md-sidenav {
 #storesContainer slick .foodImageInfo {
   display: inline-block;
   background: rgba(0,0,0,0.3);
-  width: 100%;
+  position: absolute;
+  width: inherit;
 }
 #storesContainer slick .foodImageInfo .foodPrice {
+  display: inline-block;
   color: #fff;
   padding: 10px;
+  font-weight: bold;
 }
 #storesContainer slick .foodImageInfo .foodRating {
   float: right;
