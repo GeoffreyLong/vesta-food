@@ -87,6 +87,7 @@ angular.module('vestaApp')
 
   function fblogin() {
     // I don't see this working another way due to cross origin scripting issues
+    // Would be better to use $http.get though
     window.location = "/api/auth/facebook"
   }
 
@@ -119,6 +120,13 @@ angular.module('vestaApp')
 
       $http.get("/api/auth/session").then(function (result) {
         if (result.data._id) {
+          // Temporary construct
+          // TODO set up the proper session structure
+          user = {
+              id: result.data._id,
+              userName: result.data.displayName,
+              fbID: result.data.fbID
+          };
           session = {
               id: result.data._id,
               userName: result.data.displayName,
