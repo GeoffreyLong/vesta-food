@@ -112,8 +112,10 @@ md-sidenav
   md-card-title
     padding-top: 0
 
-  /* NOTE not so sure I like the buttons changing position with the image swaps */
   /* SLICK STUFF */
+  /* NOTE not so sure I like the buttons changing position with the image swaps 
+      I guess it is the best way to do it though */
+  /* TODO might want dots div so uniform padding if only one image */
   slick
     .slick-arrow
       z-index: 1
@@ -132,7 +134,7 @@ md-sidenav
       color: $secondaryColor 
 
     .foodImageInfo
-      display: inline-block
+      display: block
       background: rgba(0,0,0,0.3)
       position: absolute;
       width: inherit
