@@ -3,9 +3,14 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/session', function(req, res) {
-  res.send(req.user);
+  var session = {};
+  session.user = req.user;
+  session.address = req.session.address;
+  console.log(session);
+  res.send(session);
 });
 
+// Deprecate this... Only poll session to get user info as well
 router.get('/login', function(req, res) {
   res.send(req.user);
 });

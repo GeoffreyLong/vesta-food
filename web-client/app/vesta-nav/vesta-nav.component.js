@@ -1,7 +1,7 @@
 angular.module('vestaNav').component('vestaNav', {
   templateUrl: 'vesta-nav/vesta-nav.template.html',
   controller: function VestaNavController($scope, $mdSidenav, authService) {
-    this.user = authService.getUser();
+    this.session = authService.getSession();
 
     $scope.openLeftMenu = function() {
       $mdSidenav('left').toggle();

@@ -39,13 +39,15 @@ md-toolbar #brand-logo {
   margin-bottom: auto;
   margin-left: 20px;
 }
+md-toolbar .topOptions {
+  display: inline-block;
+  width: 200px;
+}
 md-toolbar button {
   cursor: pointer;
   height: $navButtonSize;
   width: $navButtonSize;
   margin: 10px;
-  margin-top: auto;
-  margin-bottom: auto;
   color: #fff;
   border-radius: 0 !important;
 }

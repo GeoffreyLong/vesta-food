@@ -82,7 +82,6 @@ angular.module('vestaApp')
   //    Might grow to include search results, temporary carts, etc
   // user object is simply the user's _id, username, and fbID
   //    Should also have address though?
-  var user;
   var session;
 
   function fblogin() {
@@ -91,6 +90,7 @@ angular.module('vestaApp')
     window.location = "/api/auth/facebook"
   }
 
+  // TODO update
   function logout() {
       var deferred = $q.defer();
 
@@ -112,29 +112,18 @@ angular.module('vestaApp')
   }
 
   function getSession() {
-    if (session && session.id) {
+    if (session && (session.address || (session.user && session.user._id))) {
       return session;
     }
     else {
       var deferred = $q.defer();
 
       $http.get("/api/auth/session").then(function (result) {
-        if (result.data._id) {
-          // Temporary construct
-          // TODO set up the proper session structure
-          user = {
-              id: result.data._id,
-              userName: result.data.displayName,
-              fbID: result.data.fbID
-          };
-          session = {
-              id: result.data._id,
-              userName: result.data.displayName,
-              fbID: result.data.fbID
-          };
+        if (result.data.address || (result.data.user && result.data.user._id)) {
+          session = result.data;
           deferred.resolve(session);
-          // TODO if we want to make our REST server stateless
-          // $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
+          // TODO could speed up using session storage
+          //    $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
         }
         else {
           deferred.reject({sessioned: false});
@@ -147,19 +136,21 @@ angular.module('vestaApp')
     }
   }
 
-  function getUser() {
+  /* 
+   * TODO probably can handle through sessions
+  function getuser() {
     if (user && user.id) {
       return user;
     }
     else {
       var deferred = $q.defer();
 
-      $http.get("/api/auth/user").then(function (result) {
+      $http.get("/api/auth/session").then(function (result) {
         if (result.data._id) {
           user = {
               id: result.data._id,
-              userName: result.data.displayName,
-              fbID: result.data.fbID
+              username: result.data.displayname,
+              fbid: result.data.fbid
           };
           deferred.resolve(user);
         }
@@ -173,6 +164,7 @@ angular.module('vestaApp')
       return deferred.promise;
     }
   } 
+  */
 
   function init() {
       if ($window.sessionStorage["userInfo"]) {
@@ -185,6 +177,5 @@ angular.module('vestaApp')
       fblogin: fblogin,
       logout: logout,
       getSession: getSession,
-      getUser: getUser
   };
 }]);

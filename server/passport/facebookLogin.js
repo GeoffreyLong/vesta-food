@@ -15,23 +15,19 @@ module.exports = function(passport){
       User.findOne({ 'fbID' :  profile.id }, function(err, user) {
         // In case of any error, return using the done method
         if (err){
-          console.log(user);
           return done(err);
         }
 
         if (user) {
           // if the user is found, then log them in
-          console.log(user);
           return done(null, user); // user found, return that user
         } 
         else {
           // if there is no user found with that facebook id, create them
           var newUser = new User();
 
-          console.log(profile);
-
           // set all of the facebook information in our user model
-          newUser.fbID    = profile.id; // set the users facebook id                 
+          newUser.fbID = profile.id; // set the users facebook id                 
           newUser.fbAccessToken = access_token; // we will save the token that facebook provides to the user                    
           newUser.firstName  = profile.name.givenName;
           newUser.lastName = profile.name.familyName; // look at the passport user profile to see how names are returned
