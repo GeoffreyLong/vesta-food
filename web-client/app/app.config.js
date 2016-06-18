@@ -34,7 +34,7 @@ angular.module('vestaApp')
         resolve: {
           // Becoming a chef requires a login
           auth: function ($q, authService) {
-            return authService.getUser();
+            return authService.getSession(true);
           }
         }
       })
@@ -111,7 +111,7 @@ angular.module('vestaApp')
       return deferred.promise;
   }
 
-  function getSession() {
+  function getSession(requireUser) {
     if (session && (session.address || (session.user && session.user._id))) {
       return session;
     }
@@ -119,13 +119,15 @@ angular.module('vestaApp')
       var deferred = $q.defer();
 
       $http.get("/api/auth/session").then(function (result) {
-        if (result.data.address || (result.data.user && result.data.user._id)) {
+        if ((!requireUser && result.data.address) 
+          || (result.data.user && result.data.user._id)) {
           session = result.data;
           deferred.resolve(session);
           // TODO could speed up using session storage
           //    $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
         }
         else {
+          if (requireUser) deferred.reject({authenticated: false});
           deferred.reject({sessioned: false});
         }
       }, function (error) {
