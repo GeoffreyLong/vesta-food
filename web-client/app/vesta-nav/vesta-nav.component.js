@@ -11,11 +11,6 @@ angular.module('vestaNav').component('vestaNav', {
       // TODO check if this is always valid
       // Also not sure if this is good practice in Angular
       $('#nonNavContainer').toggleClass('sideNavOpen');
-      for (var i = 0; i < 5; i ++){
-        setTimeout(function(){
-            $('slick').slick('setPosition', 0)
-        }, i*100);
-      }
     };
   }
 });
