@@ -144,5 +144,10 @@ angular.module('storesView').component('storesView', {
     this.getNumber = function(num) {
       return new Array(num);   
     }
+
+    // Hopefully this solves the image loading bug on first visit
+    // If not try wrapping this in an image loading event
+    //    so it fires after the images have been sent
+    $('slick').slick('setPosition', 0);
   }
 });
