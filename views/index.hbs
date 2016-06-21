@@ -5,12 +5,40 @@
     Add in ability to add food items to the seller stuff
 --}}
 
+{{!-- TODO Restyle this messaging }}
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : {{fbAppId}},
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-page" 
+     data-href="https://www.facebook.com/vestaFood/" 
+     data-tabs="messages" 
+     data-width="400" 
+     data-height="300" 
+     data-small-header="true">
+  <div class="fb-xfbml-parse-ignore">
+    <blockquote></blockquote>
+  </div>
+</div>
+
 <div class="row valign-wrapper" id="toaster">
   <div id="toast-container" class="valign center"> </div>
 </div>
 
-{{!-- <h1>{{title}}</h1> --}}
-{{!-- <p>Welcome to {{title}}</p> --}}
 <nav id="theNav" class="navbar transparent z-depth-0" role="navigation">
   <div class="nav-wrapper container">
     <img id="brand-logo" src="/images/Vesta_Logo.png" alt="VESTA"/>
@@ -25,10 +53,14 @@
 <div id="splashPane">  
   <div id="formContainer">
     <h4> The Online Marketplace for Homemade Food </h4>
+
+    {{!-- TODO convert to a FB like button }}
     <form action="/newsletter" method="post" id="emailForm">
       <input type="text" placeholder="Email Address" id="email" name="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'" data-rule-required="true" data-rule-email="true" data-msg-required="" data-msg-email=""/>
       <input type="submit" id="newsletterButton" value="Subscribe to our Menu!"/>
     </form>
+  
+  
   </div>
 </div>
 
@@ -146,6 +178,7 @@
 
 </div>
 
+{{!-- TODO change to facebook messaging client? }}
 {{!-- Become a Chef Modal --}}
 <div id="becomeChef" class="modal modal-fixed-footer">
   <form id="becomeChefForm">

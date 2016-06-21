@@ -8,6 +8,10 @@ var mongoose = require('mongoose');
 
 var mongo = require('mongodb');
 
+var config = require('../config');
+config = config[process.env.NODE_ENV] || config['development'];
+
+
 
 mongoose.connect('mongodb://localhost/VestaFood', function (error) {
   if (error) {
@@ -37,7 +41,7 @@ var EarlySellers = mongoose.model('earlySellers', EarlySellerSchema);
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { fbAppId: JSON.parse(config.facebook.appID.replace(/&quot;/g,'"')) });
 });
 
 /* POST for newsletter 
