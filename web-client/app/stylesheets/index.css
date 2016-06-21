@@ -76,6 +76,16 @@ md-sidenav {
   transition: all 0.25s ease-in;
   width: 225px;
 }
+md-sidenav .sidenavMenu {
+  width: 100%;
+  margin: 0;
+  text-align: left;
+  text-transform: none;
+}
+md-sidenav .childElement {
+  width: 80%;
+  margin-left: 10%;
+}
 .md-sidenav-backdrop {
   height: 0px;
   width: 0px;

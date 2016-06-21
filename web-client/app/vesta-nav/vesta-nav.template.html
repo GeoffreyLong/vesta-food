@@ -31,7 +31,12 @@
 <md-sidenav md-is-open="true" md-component-id="left" class="md-sidenav-left">
   <!-- Not sure if we need this ng-if stuff, but for now it can remain -->
   <div ng-if="$ctrl.currentPath === '/'"> 
-    <form name="search" >
+    <md-button class='parentMenu sidenavMenu'>
+      <md-icon class="material-icons"> search </md-icon>
+      Store Search
+    </md-button>
+
+    <form class='childElement' name="search" >
       <md-input-container>
         <label>Store Name</label>
         <input type="text" ng-model="search.storeName" ng-change="storeNameChange()">
@@ -50,6 +55,26 @@
         </label>
     </form>
   
+    <md-button class='parentMenu sidenavMenu'>
+      <md-icon class="material-icons"> store </md-icon>
+      Buyer Dashboard
+    </md-button>
+
+    <div class='childElement'>
+      <md-button class='childMenu sidenavMenu'>
+        <md-icon class="material-icons" href="#!/pendingPickups"> store </md-icon>
+        Pending Pickups
+      </md-button>
+      <md-button class='childMenu sidenavMenu' href="#!/pendingReviews">
+        <md-icon class="material-icons"> store </md-icon>
+        Pending Reviews
+      </md-button>
+    </div>
+
+    <md-button class='parentMenu sidenavMenu'>
+      <md-icon class="material-icons"> store </md-icon>
+      Seller Dashboard
+    </md-button>
 
   </div>
   <div ng-if="$ctrl.currentPath === '/becomeAChef'"> Other </div>
