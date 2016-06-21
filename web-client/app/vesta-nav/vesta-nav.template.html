@@ -35,11 +35,6 @@
       <md-input-container>
         <label>Store Name</label>
         <input type="text" ng-model="search.storeName" ng-change="storeNameChange()">
-        <!-- If we want error messages we also need ngMessages
-        <div ng-messages="search.storeName.$error" ng-show="search.storeName.$dirty">
-          <div ng-message="minlength"> Must be at least 3 characters </div>
-        </div>
-        -->
       </md-input-container>
       <rzslider rz-slider-model="slider.minValue"
                 rz-slider-high="slider.maxValue"
@@ -55,6 +50,7 @@
         </label>
     </form>
   
+
   </div>
   <div ng-if="$ctrl.currentPath === '/becomeAChef'"> Other </div>
 </md-sidenav>
