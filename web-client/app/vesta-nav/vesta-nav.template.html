@@ -15,7 +15,7 @@
   <h4 ng-if="!$ctrl.session.user" id='username'>Sign In!</h4>
 
 
-  <!-- This is temporary... will go in user buttons -->
+  <!-- This is temporary... will go in user buttons along with ng-if for different actions -->
   <md-button ng-if="!$ctrl.session.user.storeId" id="menuButton" href="#!/becomeAChef" aria-label="Custom Icon Button">
     <md-icon class="material-icons"> store </md-icon>
   </md-button>
@@ -29,5 +29,5 @@
 
 <!-- md-disable-backdrop will be in v1.0.10 -->
 <md-sidenav md-is-open="true" md-component-id="left" class="md-sidenav-left">
-Left Nav! <br> TODO seed with content! TODO make dynamic seed!
+<div ng-if="$ctrl.currentPath === '/'"> hi </div>
 </md-sidenav>
