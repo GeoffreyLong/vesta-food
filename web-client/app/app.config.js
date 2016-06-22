@@ -194,7 +194,7 @@ angular.module('vestaApp')
   };
 }])
 .service('dataService', function() {
-  this.storeData = {};
+  this.storeData = null;
 
   this.setStore = function(store) {
     this.storeData = store;

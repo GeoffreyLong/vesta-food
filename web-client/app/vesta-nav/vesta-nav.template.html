@@ -30,7 +30,7 @@
 <!-- md-disable-backdrop will be in v1.0.10 -->
 <md-sidenav md-is-open="true" md-component-id="left" class="md-sidenav-left">
   <!-- Not sure if we need this ng-if stuff, but for now it can remain -->
-  <div ng-if="$ctrl.currentPath === '/'"> 
+  <div ng-if="$ctrl.currentPath !== '/splash'"> 
     <md-button class='parentMenu sidenavMenu'>
       <md-icon class="material-icons"> search </md-icon>
       Store Search
@@ -77,5 +77,4 @@
     </md-button>
 
   </div>
-  <div ng-if="$ctrl.currentPath === '/becomeAChef'"> Other </div>
 </md-sidenav>
