@@ -151,6 +151,8 @@ angular.module('storesView').component('storesView', {
     $('slick').slick('setPosition', 0);
 
 
+    // If itemIndex is set to one of the photos, then one of the foods was clicked
+    // In this case go to the storefront with some sort of emphasis on the food item
     this.goToStore = function(store, itemIndex) {
       dataService.setStore(store);
       console.log(dataService.getStore());

@@ -5,5 +5,6 @@ angular.module('vestaApp', [
     'vestaNav',
     'storesView',
     'becomeChef',
-    'splogin'
+    'splogin',
+    'storeFront'
 ]);

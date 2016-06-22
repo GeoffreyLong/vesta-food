@@ -57,6 +57,18 @@ angular.module('vestaApp')
       })
       .when('/splash', {
         template: '<splogin></splogin>'
+      })
+      .when('/store/:storeID', {
+        template: '<vesta-nav></vesta-nav>'
+          + '<div id="nonNavContainer" class="sideNavOpen">'
+          + '<store-front></store-front>'
+          + '</div>',
+        resolve: {
+          // Going to the stores view only requires a session
+          auth: function ($q, authService) {
+            return authService.getSession();
+          }
+        }
       });
   },
 ]).run(["$rootScope", "$location", function ($rootScope, $location) {
