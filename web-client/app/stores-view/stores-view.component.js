@@ -6,6 +6,7 @@
 angular.module('storesView').component('storesView', {
   templateUrl: 'stores-view/stores-view.template.html',
   controller: function StoresViewController(dataService, $location) {
+    // Could move to the dataService if used by another controller
     function chunk(arr, size) {
       var newArr = [];
       for (var i = 0; i < size; i ++) {

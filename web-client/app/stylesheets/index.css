@@ -138,6 +138,7 @@ md-sidenav .childElement {
   color: #fca345;
 }
 #storesContainer slick .foodImageInfo {
+  padding: 5px;
   display: block;
   background: rgba(0,0,0,0.3);
   position: absolute;
@@ -146,15 +147,14 @@ md-sidenav .childElement {
 #storesContainer slick .foodImageInfo .foodPrice {
   display: inline-block;
   color: #fff;
-  padding: 10px;
   font-weight: bold;
+  padding: 4px;
 }
 #storesContainer slick .foodImageInfo .foodRating {
   float: right;
 }
 #storesContainer slick .foodImageInfo .foodRating .star {
-  padding: 0;
-  margin: 0;
+  color: #ea6e10;
 }
 #storesContainer slick .foodImageInfo .foodRating .star md-icon {
   color: #fca345;
@@ -179,7 +179,14 @@ store-front #titleDiv #storeTitle {
 store-front #titleDiv #titleStars {
 /* If I want the stars to lie low on the line */
 /* Height of md-display-3 */
-  padding-top: 56px;
+  padding-top: 20px;
+}
+store-front #titleDiv #titleStars .star {
+  color: #ea6e10;
+/* NOTE for whatever reason, this adds an overflow-x to the body */
+  font-size: 36px;
+  height: 36px;
+  width: 36px;
 }
 store-front #titleDiv .underline {
   height: 5px;

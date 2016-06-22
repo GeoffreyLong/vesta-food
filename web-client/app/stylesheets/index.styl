@@ -5,6 +5,7 @@ $secondaryColor = #FCA345
 $alertColor = #EA6E10
 $linkColor = #00B7FF
 $backgroundColor = #F2F2F2
+$starColor = $alertColor
 
 
 $headerHeight = 50px
@@ -148,23 +149,22 @@ md-sidenav
       color: $secondaryColor 
 
     .foodImageInfo
+      padding: 5px
       display: block
       background: rgba(0,0,0,0.3)
-      position: absolute;
+      position: absolute
       width: inherit
 
       .foodPrice
         display: inline-block
         color: #FFFFFF
-        padding: 10px
         font-weight: bold
+        padding: 4px
 
       .foodRating
         float: right;
         .star 
-          padding: 0
-          margin: 0
-
+          color: $starColor
           md-icon
             color: $secondaryColor
 
@@ -190,7 +190,13 @@ store-front
     #titleStars
       /* If I want the stars to lie low on the line */
       /* Height of md-display-3 */
-      padding-top: 56px 
+      padding-top: 20px 
+      .star
+        color: $starColor
+        /* NOTE for whatever reason, this adds an overflow-x to the body */
+        font-size: 36px
+        height: 36px
+        width: 36px
 
     .underline
       height: 5px;

@@ -43,5 +43,9 @@ angular.module('storeFront').component('storeFront', {
         }]
       };
     }
+
+    this.getNumber = function(num) {
+      return new Array(num);   
+    }    
   }
 });
