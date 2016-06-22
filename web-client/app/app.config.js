@@ -180,4 +180,14 @@ angular.module('vestaApp')
       logout: logout,
       getSession: getSession,
   };
-}]);
+}])
+.service('dataService', function() {
+  this.storeData = {};
+
+  this.setStore = function(store) {
+    this.storeData = store;
+  }
+  this.getStore = function(store) {
+    return this.storeData;
+  }
+});

@@ -2,8 +2,11 @@
   <div flex-xs flex-gt-xs="50" layout="column" ng-repeat="rows in $ctrl.chunkedData">
     <md-card ng-repeat="store in rows">
       <slick dots=true arrows=true infinite=true speed=300 slides-to-show=1 touch-move=false slides-to-scroll=1 adaptive-height=true>
-        <!-- TODO ng-repeat over food in stores 
-              Include the name and price of the food -->
+        <!-- 
+              TODO should probably make the food photo clickable
+              This would lead to the food #'ed in the store page 
+              Maybe a button within will bring you to the food in the page? 
+        -->
         <div ng-repeat="food in store.foods">
           <div class="foodImageInfo">
             <span class="foodPrice"> ${{food.price}} </span>
@@ -14,7 +17,7 @@
             </span>
           </div>
           <!-- Not sure if we want this
-          <span class="foodName"> {{food.price}} </span>
+          <span class="foodName"> {{food.name}} </span>
           -->
           <img ng-src="{{food.photo}}" class="md-card-image" alt="Store Image">
         </div>
@@ -30,7 +33,7 @@
         </p>
       </md-card-content>
       <md-card-actions layout="row" layout-align="end center">
-        <md-button>Action</md-button>
+        <md-button ng-click="$ctrl.goToStore(store, -1)">Visit Store</md-button>
       </md-card-actions>
     </md-card>
   </div>

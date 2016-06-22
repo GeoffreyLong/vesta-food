@@ -109,6 +109,9 @@ md-sidenav .childElement {
 #storesContainer md-card-title {
   padding-top: 0;
 }
+#storesContainer md-card-title .md-headline {
+  cursor: pointer;
+}
 #storesContainer slick .slick-arrow {
   z-index: 1;
 }

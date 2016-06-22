@@ -5,7 +5,7 @@
 
 angular.module('storesView').component('storesView', {
   templateUrl: 'stores-view/stores-view.template.html',
-  controller: function StoresViewController() {
+  controller: function StoresViewController(dataService, $location) {
     function chunk(arr, size) {
       var newArr = [];
       for (var i = 0; i < size; i ++) {
@@ -149,5 +149,18 @@ angular.module('storesView').component('storesView', {
     // If not try wrapping this in an image loading event
     //    so it fires after the images have been sent
     $('slick').slick('setPosition', 0);
+
+
+    this.goToStore = function(store, itemIndex) {
+      dataService.setStore(store);
+      console.log(dataService.getStore());
+      
+      if (itemIndex >= 0) {
+        $location.path('/store/' + store.storeID + '#' + itemIndex);
+      }
+      else {
+        $location.path('/store/' + store.storeID);
+      }
+    }
   }
 });
