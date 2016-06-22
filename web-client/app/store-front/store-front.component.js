@@ -67,7 +67,6 @@ angular.module('storeFront').component('storeFront', {
       slidesToScroll: 1,
       touchMove: false,
       centerMode: true,
-      variableWidth: true,
       method: {},
       event: {
         init: function (event, slick) {
@@ -81,9 +80,9 @@ angular.module('storeFront').component('storeFront', {
           // slick.slickGoTo($scope.currentIndex); // slide to correct index when init
         },
         beforeChange: function (event, slick, currentSlide, nextSlide) {
-          $('.slick-track').css({'width': $('.slick-track').width() + 200});
-          $('.slick-current').css({'width': $('.slick-slide').width() + 100});
         },
+        // TODO for some reason the center one expands the width the other way
+        //    This makes it look choppy
         afterChange: function (event, slick, currentSlide, nextSlide) {
           $('.slick-track').css({'width': $('.slick-track').width() + 100});
           $('.slick-current').css({'width': $('.slick-slide').width() + 100});

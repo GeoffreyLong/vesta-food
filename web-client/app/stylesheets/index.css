@@ -197,6 +197,12 @@ store-front slick * {
   min-height: 0;
   min-width: 0;
 }
+store-front .slick-slide {
+  transition: width 0.5s;
+}
+store-front .slick-track {
+  transition: width 0.5s;
+}
 store-front .foodImageInfo {
   padding: 5px;
   background: rgba(0,0,0,0.3);
