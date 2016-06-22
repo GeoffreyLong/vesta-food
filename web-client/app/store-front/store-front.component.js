@@ -107,37 +107,21 @@ angular.module('storeFront').component('storeFront', {
     $scope.slickConfig = {
       dots: true,
       arrows: true,
-      infinite: false, // NOTE temp fix to avoid the jittery transitions
+      infinite: true, 
       speed: 300,
       slidesToShow: 3,
       slidesToScroll: 1,
       touchMove: false,
       centerMode: true,
+      centerPadding: '10%',
       method: {},
       event: {
         init: function (event, slick) {
-          // Doesn't work if not timed out
-          setTimeout(function(){
-            $('.slick-track').css({'width': $('.slick-track').width() + 100});
-            $('.slick-center').css({'width': $('.slick-slide').width() + 100});
-          }, 10);
-
-
           // slick.slickGoTo($scope.currentIndex); // slide to correct index when init
         },
         beforeChange: function (event, slick, currentSlide, nextSlide) {
-
         },
-        // TODO for some reason the center one expands the width the other way
-        //    This makes it look choppy
-        //    I think it must have to do with the slick-cloned and how the slick works
-        //    TODO experiment with using the data-slick-index and $scope.currentIndex
-        //        To select the next element instead of .slick-current
-        // TODO TODO TODO
-        //    It is actually probably best to scale the elements within the slick component
         afterChange: function (event, slick, currentSlide, nextSlide) {
-          $('.slick-track').css({'width': $('.slick-track').width() + 100});
-          $('.slick-center').css({'width': $('.slick-slide').width() + 100});
         }
       }
     };
