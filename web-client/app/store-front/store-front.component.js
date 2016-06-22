@@ -113,7 +113,6 @@ angular.module('storeFront').component('storeFront', {
       slidesToScroll: 1,
       touchMove: false,
       centerMode: true,
-      centerPadding: '10%',
       method: {},
       event: {
         init: function (event, slick) {
