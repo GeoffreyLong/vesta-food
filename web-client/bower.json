@@ -14,7 +14,8 @@
     "jquery-migrate": "^3.0.0",
     "angular-material": "^1.0.9",
     "angular-slick": "^0.2.1",
-    "angularjs-slider": "^4.0.2"
+    "angularjs-slider": "^4.0.2",
+    "angular-slick-carousel": "^3.1.5"
   },
   "resolutions": {
     "angular": "1.5.6",

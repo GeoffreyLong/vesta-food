@@ -34,6 +34,20 @@ angular.module('storeFront').component('storeFront', {
           prepTime: 4,
           overallRating: 3
         }, {
+          name: "Schwarma Guy Wraps",
+          photo: "/images/chef_1-2.jpg",
+          price: 8,
+          shelfLife: 2,
+          prepTime: 4,
+          overallRating: 3
+        }, {
+          name: "Schwarma Guy Wraps",
+          photo: "/images/chef_1-2.jpg",
+          price: 8,
+          shelfLife: 2,
+          prepTime: 4,
+          overallRating: 3
+        }, {
           name: "Salmon Delight",
           photo: "/images/chef_1-3.jpeg",
           price: 8,
@@ -43,6 +57,39 @@ angular.module('storeFront').component('storeFront', {
         }]
       };
     }
+
+    $scope.slickConfig = {
+      dots: true,
+      arrows: true,
+      infinite: true,
+      speed: 300,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      touchMove: false,
+      centerMode: true,
+      variableWidth: true,
+      method: {},
+      event: {
+        init: function (event, slick) {
+          // Doesn't work if not timed out
+          setTimeout(function(){
+            $('.slick-track').css({'width': $('.slick-track').width() + 100});
+            $('.slick-current').css({'width': $('.slick-slide').width() + 100});
+          }, 10);
+
+
+          // slick.slickGoTo($scope.currentIndex); // slide to correct index when init
+        },
+        beforeChange: function (event, slick, currentSlide, nextSlide) {
+          $('.slick-track').css({'width': $('.slick-track').width() + 200});
+          $('.slick-current').css({'width': $('.slick-slide').width() + 100});
+        },
+        afterChange: function (event, slick, currentSlide, nextSlide) {
+          $('.slick-track').css({'width': $('.slick-track').width() + 100});
+          $('.slick-current').css({'width': $('.slick-slide').width() + 100});
+        }
+      }
+    };
 
     this.getNumber = function(num) {
       return new Array(num);   
