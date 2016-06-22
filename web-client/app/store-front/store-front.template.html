@@ -9,3 +9,32 @@
   </div>
   <div class="underline" flex/>
 </div>
+
+<slick dots=true arrows=true infinite=true speed=300 slides-to-show=3 touch-move=false slides-to-scroll=1 adaptive-height=true>
+  <div ng-repeat="food in store.foods">
+    <md-card>
+      <div class="foodImageInfo" layout="row" layout-align="space-between center">
+        <span class="foodPrice"> ${{food.price}} </span>
+        <span class="foodRating" align="right"> 
+          <md-icon class="star material-icons" ng-repeat="star in $ctrl.getNumber(food.overallRating) track by $index"> star </md-icon>
+        </span>
+      </div>
+      <img ng-src="{{food.photo}}" class="md-card-image" alt="Store Image">      
+
+      <md-card-title>
+        <md-card-title-text>
+        <span class="md-headline" ng-click="$ctrl.goToStore(store, -1)">{{store.storeTitle}}</span>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-content>
+        <p>
+          {{store.description}}
+        </p>
+      </md-card-content>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button ng-click="$ctrl.goToStore(store, -1)">Visit Store</md-button>
+      </md-card-actions>
+    </md-card>
+  </div>
+</slick>
+

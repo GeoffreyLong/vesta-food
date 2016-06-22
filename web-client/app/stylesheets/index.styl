@@ -172,6 +172,7 @@ md-sidenav
 /******************************** STORE FRONT ********************************/
 store-front
   #titleDiv
+    margin-top: 20px
     width: 80%
     margin-left: auto
     margin-right: auto
@@ -202,3 +203,24 @@ store-front
       height: 5px;
       background-color: $primaryColor
 
+  /* 
+      NOTE this is mostly repeated from the stores-view slick
+      The foodImageInfo logic didn't recycle very well though
+      Should condense this logic later
+  */
+  slick *
+    min-height: 0
+    min-width: 0
+
+  .foodImageInfo
+    padding: 5px
+    background: rgba(0,0,0,0.3)
+    margin-bottom: -34px 
+    z-index: 1
+
+    .foodPrice
+      color: #FFFFFF
+      font-weight: bold
+    
+    .star
+      color: $starColor
