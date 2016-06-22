@@ -159,3 +159,29 @@ md-sidenav .childElement {
 #storesContainer slick .foodImageInfo .foodRating .star md-icon {
   color: #fca345;
 }
+/******************************** STORE FRONT ********************************/
+store-front #titleDiv {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+store-front #titleDiv #titleRow {
+  padding: 10px;
+}
+store-front #titleDiv img {
+/* Height of md-display-3 */
+  height: 56px;
+  border-radius: 50%;
+}
+store-front #titleDiv #storeTitle {
+  display: inline-block;
+}
+store-front #titleDiv #titleStars {
+/* If I want the stars to lie low on the line */
+/* Height of md-display-3 */
+  padding-top: 56px;
+}
+store-front #titleDiv .underline {
+  height: 5px;
+  background-color: #00b36f;
+}

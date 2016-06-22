@@ -1,18 +1,18 @@
 angular.module('storeFront').component('storeFront', {
   templateUrl: 'store-front/store-front.template.html',
-  controller: function StoreFrontController(dataService){
+  controller: function StoreFrontController($scope, dataService){
     // TODO If for any reason we cannot get the store,
     //    like if this returns null, then we will use the :storeID on the url
     //    to get query the database for the store
-    this.store = dataService.getStore();
-    if (!this.store){
+    $scope.store = dataService.getStore();
+    if (!$scope.store){
       // Temporary store population if could not get it
       // TODO have a DB query instead later
-      this.store = {
+      $scope.store = {
         userID: "123456789",
         storeID: "123456789",
         storeTitle: "Geoff's Store 1",
-        personalPhoto: "TODO",
+        profilePhoto: "/images/chef_1_profile.jpg",
         pickupAddress: "3515 Rue Durocher",
         neighborhood: "TODO",
         stripeAuth: "TODO",

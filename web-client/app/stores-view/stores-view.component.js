@@ -19,12 +19,19 @@ angular.module('storesView').component('storesView', {
     }
 
 
+    // TODO TODO 
+    // For images in the stores we might want to consider
+    // /images/chefs/:chefId for the personal photos
+    // /images/foods/:foodId for the food photos
+    // We will have to decide if we want to use something like GridFS with mongo
+    //    or just use a file system to save these images
+    //    I don't know the benefits of each... will have to weigh pros/cons
     this.stores = [
       {
         userID: "123456789",
         storeID: "123456789",
         storeTitle: "Geoff's Store 1",
-        personalPhoto: "TODO",
+        profilePhoto: "/images/chef_1_profile.jpg",
         pickupAddress: "3515 Rue Durocher",
         neighborhood: "TODO",
         stripeAuth: "TODO",
@@ -53,11 +60,11 @@ angular.module('storesView').component('storesView', {
           prepTime: 1,
           overallRating: 2
         }]
-      },{
+      }, {
         userID: "111111111",
         storeID: "111111111",
         storeTitle: "Store Des Ipsums",
-        personalPhoto: "TODO",
+        profilePhoto: "TODO",
         pickupAddress: "3515 Rue Durocher",
         neighborhood: "TODO",
         stripeAuth: "TODO",
@@ -78,7 +85,7 @@ angular.module('storesView').component('storesView', {
         userID: "123456789",
         storeID: "123456789",
         storeTitle: "Piecaken Nation",
-        personalPhoto: "TODO",
+        profilePhoto: "TODO",
         pickupAddress: "3515 Rue Durocher",
         neighborhood: "TODO",
         stripeAuth: "TODO",
@@ -118,7 +125,7 @@ angular.module('storesView').component('storesView', {
         userID: "123456789",
         storeID: "123456789",
         storeTitle: "Geoff's Store 4",
-        personalPhoto: "TODO",
+        profilePhoto: "TODO",
         pickupAddress: "3515 Rue Durocher",
         neighborhood: "TODO",
         stripeAuth: "TODO",
@@ -128,6 +135,25 @@ angular.module('storesView').component('storesView', {
         foods: [{
           name: "Brittle Peanuts",
           photo: "/images/chef_4-1.jpg",
+          price: 10,
+          shelfLife: 3,
+          prepTime: 2,
+          overallRating: 3
+        }]
+      }, {
+        userID: "8675309",
+        storeID: "123454321",
+        storeTitle: "Ronald's",
+        profilePhoto: "/images/chef_5_profile.jpg",
+        pickupAddress: "3515 Rue Durocher",
+        neighborhood: "TODO",
+        stripeAuth: "TODO",
+        description: "I will make you fat, that is a guarantee.", 
+        availability: "TODO",
+        overallRating: 4,
+        foods: [{
+          name: "Ipsum Salad",
+          photo: "/images/chef_2-1.jpg",
           price: 10,
           shelfLife: 3,
           prepTime: 2,
