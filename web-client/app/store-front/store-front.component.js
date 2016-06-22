@@ -58,10 +58,56 @@ angular.module('storeFront').component('storeFront', {
       };
     }
 
+    // To get this we will have to do a join on buyer and the storeId
+    $scope.storeReviews = [{
+      storeID: 123456789,
+      buyer: {
+        _id: 111111111,
+        displayName: 'Dude Guy Kid',
+        photo: '/images/chef_1_profile.jpg'
+      },
+      date: "TODO",
+      overall: 4,
+      comment: "This was pretty good. Not as good as the person claimed, but good enough"
+    }, {
+      storeID: 123456789,
+      buyer: {
+        _id: 123212321,
+        displayName: 'Jameis No Namesly',
+      },
+      date: "TODO",
+      overall: 5,
+      comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." 
+        + "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." 
+        + "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    }, {
+      storeID: 123456789,
+      buyer: {
+        _id: 121212121,
+        displayName: 'Another One',
+        photo: '/images/chef_5_profile.jpg'
+      },
+      date: "TODO",
+      overall: 5,
+      comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." 
+        + "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." 
+        + "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    }, {
+      storeID: 123456789,
+      buyer: {
+        _id: 111111111,
+        displayName: 'Dude Guy Kid',
+        photo: '/images/chef_1_profile.jpg'
+      },
+      date: "TODO",
+      overall: 4,
+      comment: null
+    }];
+
     $scope.slickConfig = {
       dots: true,
       arrows: true,
-      infinite: true,
+      infinite: false, // NOTE temp fix to avoid the jittery transitions
       speed: 300,
       slidesToShow: 3,
       slidesToScroll: 1,
@@ -73,7 +119,7 @@ angular.module('storeFront').component('storeFront', {
           // Doesn't work if not timed out
           setTimeout(function(){
             $('.slick-track').css({'width': $('.slick-track').width() + 100});
-            $('.slick-current').css({'width': $('.slick-slide').width() + 100});
+            $('.slick-center').css({'width': $('.slick-slide').width() + 100});
           }, 10);
 
 
@@ -87,9 +133,11 @@ angular.module('storeFront').component('storeFront', {
         //    I think it must have to do with the slick-cloned and how the slick works
         //    TODO experiment with using the data-slick-index and $scope.currentIndex
         //        To select the next element instead of .slick-current
+        // TODO TODO TODO
+        //    It is actually probably best to scale the elements within the slick component
         afterChange: function (event, slick, currentSlide, nextSlide) {
           $('.slick-track').css({'width': $('.slick-track').width() + 100});
-          $('.slick-current').css({'width': $('.slick-slide').width() + 100});
+          $('.slick-center').css({'width': $('.slick-slide').width() + 100});
         }
       }
     };

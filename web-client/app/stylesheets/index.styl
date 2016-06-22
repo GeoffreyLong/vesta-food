@@ -218,6 +218,8 @@ store-front
     transition: width 0.5s
     margin-left: -50px
 
+  /* TODO change the current buttons so that they are large chevrons */
+
   .foodImageInfo
     padding: 5px
     background: rgba(0,0,0,0.3)
@@ -231,3 +233,30 @@ store-front
     .star
       color: $starColor
     
+#storeReviews
+  .altCard
+    background-color: #FFFFFF
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12)
+    margin: 10px
+    padding: 10px
+    width: 80%
+    margin-left: auto
+    margin-right: auto
+
+    .profilePhotoDiv
+      vertical-align: top
+      width: 10%
+      display: inline-block
+      .profilePhoto
+        border-radius: 50%
+        height: 48px;
+        width: 48px;
+    .reviewStars .star
+      color: $starColor
+
+    .reviewContentContainer
+      display: inline-block;
+      width: 85%
+      .reviewComment
+        font-weight: 100
+        margin-top: 10px

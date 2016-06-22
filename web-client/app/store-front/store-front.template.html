@@ -33,3 +33,45 @@
   </div>
 </slick>
 
+<!-- Descriptions and chef info -->
+<div layout="row" layout-xs="column" layout-sm="column">
+  <div flex>
+    {{store.description}}
+  </div>
+  <div flex style="background-color:#123456">
+    This is where the map will go
+    TODO integrate with google maps
+  </div>
+</div>
+
+<!-- 
+      TODO for a later version 
+        we can add the dishes they had too
+-->
+<!-- Review Stuff -->
+<div id="storeReviews">
+  <div ng-repeat="review in storeReviews">
+    <div class="altCard">
+      <div class="profilePhotoDiv">
+        <!-- 
+              NOTE should probably get a stock image for no-photo people 
+              if we even allow that to happen
+        -->
+        <img ng-src="{{review.buyer.photo}}" class="profilePhoto md-card-image" alt="Profile Image" />      
+      </div>
+      <div class="reviewContentContainer">
+        <div class="reviewHeader" layout="row" layout-align="space-between end">
+          <div class='md-title'> {{review.buyer.displayName}} </div>
+          <!-- NOTE not sure if I like this not lining up with the other stars -->
+          <div class="reviewStars"> 
+            <md-icon class="star material-icons" ng-repeat="star in $ctrl.getNumber(review.overall) track by $index"> star </md-icon>
+          </div>
+          <div> {{review.date}} </div>
+        </div>
+        <div ng-if="review.comment" class="reviewComment">
+          {{review.comment}}
+        </div>
+    </div>
+    </div>
+  </div>
+</div>

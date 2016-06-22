@@ -217,3 +217,33 @@ store-front .foodImageInfo .foodPrice {
 store-front .foodImageInfo .star {
   color: #ea6e10;
 }
+#storeReviews .altCard {
+  background-color: #fff;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2), 0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12);
+  margin: 10px;
+  padding: 10px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+#storeReviews .altCard .profilePhotoDiv {
+  vertical-align: top;
+  width: 10%;
+  display: inline-block;
+}
+#storeReviews .altCard .profilePhotoDiv .profilePhoto {
+  border-radius: 50%;
+  height: 48px;
+  width: 48px;
+}
+#storeReviews .altCard .reviewStars .star {
+  color: #ea6e10;
+}
+#storeReviews .altCard .reviewContentContainer {
+  display: inline-block;
+  width: 85%;
+}
+#storeReviews .altCard .reviewContentContainer .reviewComment {
+  font-weight: 100;
+  margin-top: 10px;
+}
