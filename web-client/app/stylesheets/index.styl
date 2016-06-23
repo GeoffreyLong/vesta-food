@@ -217,8 +217,10 @@ store-front
     .slick-prev:before, .slick-next:before
       font-family: 'Material Icons'
       -webkit-font-feature-settings: 'liga'
-      color: mix($primaryColor, $alertColor, 0.5)
+      color: lighten($primaryColor, 10%)
       font-size: 40px
+    .slick-prev, .slick-next
+      z-index: 1
     .slick-prev:before
       content: "chevron_left"
     .slick-next:before

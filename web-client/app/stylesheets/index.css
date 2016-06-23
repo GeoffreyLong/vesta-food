@@ -201,8 +201,12 @@ store-front slick .slick-prev:before,
 store-front slick .slick-next:before {
   font-family: 'Material Icons';
   -webkit-font-feature-settings: 'liga';
-  color: rgba(0,181,116,0.9);
+  color: #00d484;
   font-size: 40px;
+}
+store-front slick .slick-prev,
+store-front slick .slick-next {
+  z-index: 1;
 }
 store-front slick .slick-prev:before {
   content: "chevron_left";
