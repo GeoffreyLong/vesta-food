@@ -175,15 +175,20 @@ angular.module('storesView').component('storesView', {
     // Hopefully this solves the image loading bug on first visit
     // If not try wrapping this in an image loading event
     //    so it fires after the images have been sent
-    // TODO TODO TODO
-    //    Why does this repeat forever?
     this.refreshSlick = function() {
       setTimeout(function() {
         // TODO if desired
-        $('.slider').slick('setPosition');
-        console.log('ok');
+        if (!$('.slider').length > 0) {
+          console.log('hello');
+          refreshSlick();
+        }
+        else {
+          console.log($('.slider').length);
+          $('.slider').slick('setPosition');
+        }
       }, 1000);
     }
+    this.refreshSlick();
 
 
     // If itemIndex is set to one of the photos, then one of the foods was clicked
