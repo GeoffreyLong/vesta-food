@@ -179,11 +179,9 @@ angular.module('storesView').component('storesView', {
       setTimeout(function() {
         // TODO if desired
         if (!$('.slider').length > 0) {
-          console.log('hello');
           refreshSlick();
         }
         else {
-          console.log($('.slider').length);
           $('.slider').slick('setPosition');
         }
       }, 1000);
