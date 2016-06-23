@@ -94,13 +94,14 @@ module.exports = function(passport){
   // });
 
 
-  /* POST for newsletter 
-   * Occurs when the user enters their email address on the splash page
-   */
   router.post('/locationSearch', function(req, res) {
-    var searchAddress = req.body.searchAddress;
+    var searchAddress = req.body.address;
     console.log('Location search entered is ' + searchAddress);
+
     
+    // TODO do below here or in the request for '/'?
+    //      This could check the address to make sure it's legit
+    //      Also might be able to do that client side though
     // TODO redirect to the store page application
     //    Basically search the DB for stores with a set distance of the user
     //    If no stores found then send the user a message
@@ -110,6 +111,8 @@ module.exports = function(passport){
     //    If stores found then redirect to the angular application
     //    TODO figure out how to do that...
 
+    // Does this make our REST server stateful?
+    // TODO might not want to do this and store in client session store instead?
     req.session.address = searchAddress
 
     res.status(200).send(searchAddress);

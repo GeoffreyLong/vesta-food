@@ -9,19 +9,17 @@
   <div id="toast-container" class="valign center"> </div>
 </div>
 
-<nav class="navbar transparent z-depth-0" role="navigation">
-  <div class="nav-wrapper container">
-    <a id="logo-container" href="#" class="brand-logo"> VESTA </a>
-    <ul class="right hide-on-med-and-down">
-      <li><a id="infoB"> Become A Chef </a></li>
-      <li><a id="infoA"> What is Vesta? </a></li>
-    </ul>
+<md-toolbar layout="row" class="md-whiteframe-z2" style="z-index:10; padding:0px; margin-bottom:0px; position:fixed">
+  <img id='brand-logo' src="/images/vesta_logo_new.png" alt="Vesta"/>
+  <ul class="right hide-on-med-and-down">
+    <li><a id="infoB"> Become A Chef </a></li>
+    <li><a id="infoA"> What is Vesta? </a></li>
+  </ul>
 
-    <ul id="nav-mobile" class="side-nav">
-      <li><a href="#">Info</a></li>
-    </ul>
-  </div>
-</nav>
+  <ul id="nav-mobile" class="side-nav">
+    <li><a href="#">Info</a></li>
+  </ul>
+</md-toolbar>
 
 <!-- ********************************************************************** -->
 <!-- Splash page photo and email form -->
@@ -36,8 +34,11 @@
     -->
     <h4> Homemade Quality -- In the time it takes to walk to your fridge </h4>
     <form id="locationSearch">
-      <input type="text" placeholder="Search for Food Near ..." id="searchAddress" name="searchAddress" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search for Food Near...'"/>
-      <input type="submit" id="exploreButton" value="Explore!"/>
+      <input type="text" placeholder="Search for Food Near ..." 
+              id="searchAddress" name="searchAddress" onfocus="this.placeholder = ''" 
+              onblur="this.placeholder = 'Search for Food Near...'"
+              ng-model="address.address"/>
+      <input type="submit" id="exploreButton" value="Explore!" ng-click="addressSearch(address)"/>
     </form>
     <div id="facebookLogin" ng-click="fblogin()">
       <img ng-src="images/facebook_logo_simple.png" alt="Facebook" width="40" height="40">

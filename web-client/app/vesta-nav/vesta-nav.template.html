@@ -50,6 +50,34 @@
       </md-menu-content>
     </md-menu>
   </md-menu-bar>
+  
+  <md-menu-bar ng-if="!$ctrl.session.user">
+     <md-menu>
+      <button ng-click="$mdOpenMenu()">
+        Sign Up!
+      </button>
+      <md-menu-content>
+        <md-menu-item class="md-indent">
+          <md-icon class="material-icons"> person </md-icon>
+          <md-button ng-click="">
+            Become a User
+          </md-button>
+        </md-menu-item>
+        <md-menu-item class="md-indent">
+          <md-icon class="material-icons"> store </md-icon>
+          <md-button ng-click="">
+            Create a Storefront
+          </md-button>
+        </md-menu-item>
+        <md-menu-divider></md-menu-divider>
+        <md-menu-item class="md-indent">
+          <md-button ng-click="">
+            Unrelated actions
+          </md-button>
+        </md-menu-item>
+      </md-menu-content>
+    </md-menu>
+  </md-menu-bar>
 
   <md-button id="cartButton" aria-label="Custom Icon Button">
     <md-icon class="material-icons"> shopping_cart </md-icon>
