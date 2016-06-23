@@ -117,6 +117,21 @@ angular.module('storeFront').component('storeFront', {
       event: {
         init: function (event, slick) {
           // slick.slickGoTo($scope.currentIndex); // slide to correct index when init
+          
+          // NOTE could consider the setPosition update in here instead
+
+          // If there are three or fewer slick-slide elements then the slider won't init
+          // Remove the css for expansions in this case
+          // NOTE Might be better to do this template side 
+          //      I could possibly do this with an ng-if so I don't load slick
+          //      if it is not being used
+          if ($('.slick-slide').length <= 3) {
+            $('.slick-slide').css({
+              'transition': 'none',
+              'transform': 'scale(1)'
+            });
+          }
+          console.log($('.slick-slide').length);
         },
         beforeChange: function (event, slick, currentSlide, nextSlide) {
           // TODO either disable or remove the buttons (esp add to cart)
