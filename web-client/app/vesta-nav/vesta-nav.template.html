@@ -20,6 +20,37 @@
     <md-icon class="material-icons"> store </md-icon>
   </md-button>
 
+  <!-- NOTE not worth styling till we decide if this is what we want -->
+  <md-menu-bar ng-if="$ctrl.session.user">
+     <md-menu>
+      <button ng-click="$mdOpenMenu()">
+        {{$ctrl.session.user.displayName}}
+      </button>
+      <md-menu-content>
+        <md-menu-item class="md-indent">
+          <!-- NOTE if we want icons it looks like this -->
+          <md-icon class="material-icons"> person </md-icon>
+          <md-button ng-click="">
+            Logout
+          </md-button>
+        </md-menu-item>
+        <md-menu-item class="md-indent">
+          <!-- NOTE if we want icons it looks like this -->
+          <md-icon class="material-icons"> store </md-icon>
+          <md-button ng-click="">
+            Create a Storefront
+          </md-button>
+        </md-menu-item>
+        <md-menu-divider></md-menu-divider>
+        <md-menu-item class="md-indent">
+          <md-button ng-click="">
+            Unrelated actions
+          </md-button>
+        </md-menu-item>
+      </md-menu-content>
+    </md-menu>
+  </md-menu-bar>
+
   <md-button id="cartButton" aria-label="Custom Icon Button">
     <md-icon class="material-icons"> shopping_cart </md-icon>
   </md-button>
@@ -35,6 +66,7 @@
           NOTE All of search might not be necessary for v1
           We won't have enough stores to make use of all of it
           Plus we might not have tagging in v1
+          SIDENOTE material chips might be cool to use here
     -->
     <md-button class='parentMenu sidenavMenu'>
       <md-icon class="material-icons"> search </md-icon>
@@ -50,7 +82,6 @@
                 rz-slider-high="slider.maxValue"
                 rz-slider-options="slider.options">
       </rzslider>
-      {{refreshSlider()}}
     
       <label ng-repeat='tag in tags'>
         <br>

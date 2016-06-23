@@ -34,11 +34,13 @@ angular.module('vestaNav').component('vestaNav', {
       }
     }; 
     // Refresh the slider so that it initializes properly
-    $scope.refreshSlider = function () {
-      setTimeout(function () {
+    this.refreshSlider = function() {
+      setTimeout(function() {
+        console.log('ok');
         $scope.$broadcast('rzSliderForceRender');
       }, 10);
     };
+    this.refreshSlider();
 
     // TAG LISTENER
     $scope.tags = ['vegetarian', 'vegan', 'kosher', 'halal'];
