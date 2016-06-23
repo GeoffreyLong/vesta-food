@@ -107,7 +107,7 @@ angular.module('storeFront').component('storeFront', {
     $scope.slickConfig = {
       dots: true,
       arrows: true,
-      infinite: true, 
+      infinite: true,
       speed: 300,
       slidesToShow: 3,
       slidesToScroll: 1,
@@ -119,6 +119,8 @@ angular.module('storeFront').component('storeFront', {
           // slick.slickGoTo($scope.currentIndex); // slide to correct index when init
         },
         beforeChange: function (event, slick, currentSlide, nextSlide) {
+          // TODO either disable or remove the buttons (esp add to cart)
+          //    from the non-focused elements
         },
         afterChange: function (event, slick, currentSlide, nextSlide) {
         }

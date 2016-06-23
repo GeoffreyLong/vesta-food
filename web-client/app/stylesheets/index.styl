@@ -208,15 +208,31 @@ store-front
       The foodImageInfo logic didn't recycle very well though
       Should condense this logic later
   */
-  slick *
-    min-height: 0
-    min-width: 0
+  slick
+    *
+      min-height: 0
+      min-width: 0
 
-  .slick-slide
-    transform: scale(0.6)
-    transition: all 0.5s
-  .slick-center
-    transform: scale(1)
+    /* arrow styling */
+    .slick-prev:before, .slick-next:before
+      font-family: 'Material Icons'
+      -webkit-font-feature-settings: 'liga'
+      color: mix($primaryColor, $alertColor, 0.5)
+      font-size: 40px
+    .slick-prev:before
+      content: "chevron_left"
+    .slick-next:before
+      content: "chevron_right"
+    .slick-prev
+      left: 0px
+    .slick-next
+      right: 0px
+
+    .slick-slide
+      transform: scale(0.6)
+      transition: all 0.5s
+    .slick-center
+      transform: scale(1)
 
 
   /* TODO change the current buttons so that they are large chevrons */

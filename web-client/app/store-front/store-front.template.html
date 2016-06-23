@@ -34,10 +34,17 @@
 </slick>
 
 <!-- Descriptions and chef info -->
-<div layout="row" layout-xs="column" layout-sm="column">
+<div layout="row" layout-align="center center" layout-xs="column" layout-sm="column">
+  <!-- 
+        TODO this might be too sparse to lay side by side with a map
+        See if I can add more content to this
+        Could add like a "most popular dish" or something
+  -->
   <div flex>
+    <span class='md-title'> Store Description: </span>
     {{store.description}}
   </div>
+  <!-- TODO maps... Will take care of this with address verification in one shot -->
   <div flex style="background-color:#123456">
     This is where the map will go
     TODO integrate with google maps
@@ -71,6 +78,16 @@
         <div ng-if="review.comment" class="reviewComment">
           {{review.comment}}
         </div>
+        <!-- 
+              NOTE could alternatively just have slightly different styling
+              Could also just require a comment
+        -->
+        <div ng-if="!review.comment" class="reviewComment">
+          <i>
+            No Review Comment Given!
+          </i>
+        </div>
+
     </div>
     </div>
   </div>

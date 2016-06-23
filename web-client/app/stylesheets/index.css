@@ -197,11 +197,30 @@ store-front slick * {
   min-height: 0;
   min-width: 0;
 }
-store-front .slick-slide {
+store-front slick .slick-prev:before,
+store-front slick .slick-next:before {
+  font-family: 'Material Icons';
+  -webkit-font-feature-settings: 'liga';
+  color: rgba(0,181,116,0.9);
+  font-size: 40px;
+}
+store-front slick .slick-prev:before {
+  content: "chevron_left";
+}
+store-front slick .slick-next:before {
+  content: "chevron_right";
+}
+store-front slick .slick-prev {
+  left: 0px;
+}
+store-front slick .slick-next {
+  right: 0px;
+}
+store-front slick .slick-slide {
   transform: scale(0.6);
   transition: all 0.5s;
 }
-store-front .slick-center {
+store-front slick .slick-center {
   transform: scale(1);
 }
 store-front .foodImageInfo {
