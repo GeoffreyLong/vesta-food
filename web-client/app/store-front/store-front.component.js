@@ -131,7 +131,6 @@ angular.module('storeFront').component('storeFront', {
               'transform': 'scale(1)'
             });
           }
-          console.log($('.slick-slide').length);
         },
         beforeChange: function (event, slick, currentSlide, nextSlide) {
           // TODO either disable or remove the buttons (esp add to cart)

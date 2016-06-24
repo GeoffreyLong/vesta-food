@@ -4,7 +4,6 @@ angular.module('vestaNav').component('vestaNav', {
     this.session = authService.getSession();
     this.currentPath = $location.path();
 
-
     $scope.openLeftMenu = function() {
       $mdSidenav('left').toggle();
 
@@ -36,7 +35,6 @@ angular.module('vestaNav').component('vestaNav', {
     // Refresh the slider so that it initializes properly
     this.refreshSlider = function() {
       setTimeout(function() {
-        console.log('ok');
         $scope.$broadcast('rzSliderForceRender');
       }, 10);
     };

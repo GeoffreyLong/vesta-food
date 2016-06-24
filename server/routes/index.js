@@ -98,24 +98,26 @@ module.exports = function(passport){
     var searchAddress = req.body.address;
     console.log('Location search entered is ' + searchAddress);
 
-    
-    // TODO do below here or in the request for '/'?
-    //      This could check the address to make sure it's legit
-    //      Also might be able to do that client side though
-    // TODO redirect to the store page application
-    //    Basically search the DB for stores with a set distance of the user
-    //    If no stores found then send the user a message
-    //        Especially if the address is not in Montreal
-    //        If this happens then have them enter their email and we will say
-    //        that we will come to their neighborhood someday or something
-    //    If stores found then redirect to the angular application
-    //    TODO figure out how to do that...
+    // TODO add some logic to check if the address is legit either here or client side
+    //      I do not believe that we need to search for stores here
+    //      We can perform the store search as a part of the '/' route
 
     // Does this make our REST server stateful?
     // TODO might not want to do this and store in client session store instead?
+    
+    // NOTE We might want to put address in a larger object that is like search params
+    //      Then we can store things like distance and make the searches persistent
     req.session.address = searchAddress
 
     res.status(200).send(searchAddress);
+  });
+
+  router.post('/stores', function(req, res) {
+    // Basically search the DB for stores with a set distance of the user
+    // TODO figure out a good distance... perhaps this is something the user can spec
+    //      in the store search sidenav
+
+
   });
 
   /* POST for new sellers 

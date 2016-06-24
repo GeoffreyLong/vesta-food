@@ -21,6 +21,8 @@
   </ul>
 </md-toolbar>
 
+
+
 <!-- ********************************************************************** -->
 <!-- Splash page photo and email form -->
 <div id="splashPane">  
@@ -34,10 +36,9 @@
     -->
     <h4> Homemade Quality -- In the time it takes to walk to your fridge </h4>
     <form id="locationSearch">
-      <input type="text" placeholder="Search for Food Near ..." 
-              id="searchAddress" name="searchAddress" onfocus="this.placeholder = ''" 
-              onblur="this.placeholder = 'Search for Food Near...'"
-              ng-model="address.address"/>
+      <input  places-auto-complete types="['geocode']" ng-model="address.address" 
+              on-place-changed="placeChanged()" />
+
       <input type="submit" id="exploreButton" value="Explore!" ng-click="addressSearch(address)"/>
     </form>
     <div id="facebookLogin" ng-click="fblogin()">

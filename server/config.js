@@ -8,6 +8,9 @@ module.exports = {
           "appID": "592850390877879",
           "appSecret": "9d74b20152449f942818ab1cd2558e46",
           "callbackUrl": "http://localhost:80/api/auth/facebook/callback"
+        },
+        "googleMaps": {
+          "apiKey": "AIzaSyBr9CgN3xm551js9nkeFykGZUtgyrJp6Rg"
         }
   }, 
   "production": {

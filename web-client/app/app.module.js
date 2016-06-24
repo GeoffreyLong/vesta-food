@@ -3,6 +3,7 @@ angular.module('vestaApp', [
     'ngRoute',
     'rzModule',
     'slickCarousel',
+    'ngMap',
     'vestaNav',
     'storesView',
     'becomeChef',
