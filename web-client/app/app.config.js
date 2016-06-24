@@ -45,13 +45,15 @@ angular.module('vestaApp')
           console.log(JSON.stringify(stripeParams));
 
           $http
-            .put('/api/users/charlie', stripeParams)
+            .post('/api/users/becomeChef', stripeParams)
             .then(function onSuccess(response) {
-              console.log('success')
-              console.log(response)
+              console.log('success');
+              console.log(response);
+              $location.path('/');
             }, function onError(response) {
-              console.log('error')
-              console.log(response)
+              console.log('error');
+              console.log(response);
+              $location.path('/');
             });
         }
       })
