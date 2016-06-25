@@ -12,6 +12,11 @@ angular.module('vestaNav').component('vestaNav', {
       $('#nonNavContainer').toggleClass('sideNavOpen');
     };
 
+    $scope.fblogin = function(){
+      authService.fblogin();
+    }
+
+
     /********************* SIDE NAV *************************************/
     // TODO
     //  Accordian this shizz... either wait for Angular Material's accordian or

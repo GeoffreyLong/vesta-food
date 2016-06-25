@@ -59,13 +59,17 @@ md-toolbar button md-icon.material-icons {
 md-toolbar button:hover md-icon.material-icons {
   color: #fca345;
 }
-md-toolbar #username {
+md-toolbar #navDropdown {
   margin: auto;
   margin-right: 20px;
 }
-md-toolbar #cartButton {
-/* hmm... I don't know if I like this... */
-  margin-right: 10px;
+md-toolbar #navDropdown .md-menu button {
+/* Doesn't seem to work with md-open */
+  cursor: pointer;
+}
+/* The menu content shows up outside the nav */
+#menu_container_0 .material-icons {
+  width: auto;
 }
 /******************************** SIDE NAV BAR ********************************/
 md-sidenav {

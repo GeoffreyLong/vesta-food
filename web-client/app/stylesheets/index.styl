@@ -75,14 +75,20 @@ md-toolbar
     md-icon.material-icons
       color: $secondaryColor
 
-  #username
+  #navDropdown
     margin: auto
     margin-right:20px
+    .md-menu
+      button
+        /* Doesn't seem to work with md-open */
+        cursor: pointer
+        
+    
 
-  #cartButton
-    /* hmm... I don't know if I like this... */
-    margin-right: 10px
-
+/* The menu content shows up outside the nav */
+#menu_container_0
+  .material-icons
+    width: auto
 
 
 /******************************** SIDE NAV BAR ********************************/
