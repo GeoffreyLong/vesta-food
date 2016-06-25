@@ -32,7 +32,7 @@ router.get('/facebook/callback',
 
 router.get('/logout', function(req, res){
   req.logout();
-  // TODO send stuff back
+  res.status(200).send("");
 });
 
 module.exports = router;

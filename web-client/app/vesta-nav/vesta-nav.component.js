@@ -15,6 +15,9 @@ angular.module('vestaNav').component('vestaNav', {
     $scope.fblogin = function(){
       authService.fblogin();
     }
+    $scope.logout = function(){
+      authService.logout();
+    }
 
 
     /********************* SIDE NAV *************************************/

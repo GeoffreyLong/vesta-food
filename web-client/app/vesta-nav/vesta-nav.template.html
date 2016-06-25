@@ -11,14 +11,14 @@
 
 
   <md-menu-bar id="navDropdown" ng-if="$ctrl.session.user">
-     <md-menu>
+    <md-menu>
       <md-button ng-click="$mdOpenMenu()">
         {{$ctrl.session.user.displayName}}
       </md-button>
       <md-menu-content>
         <md-menu-item class="md-indent">
           <md-icon class="material-icons"> person </md-icon>
-          <md-button href="/api/auth/logout">
+          <md-button ng-click="logout()">
             Logout
           </md-button>
         </md-menu-item>
@@ -39,7 +39,7 @@
   </md-menu-bar>
   
   <md-menu-bar id="navDropdown" ng-if="!$ctrl.session.user">
-     <md-menu>
+    <md-menu>
       <md-button ng-click="$mdOpenMenu()">
         Sign Up!
       </md-button>

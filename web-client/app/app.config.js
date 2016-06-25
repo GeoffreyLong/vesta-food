@@ -106,23 +106,11 @@ angular.module('vestaApp')
 
   // TODO update
   function logout() {
-      var deferred = $q.defer();
-
-      $http({
-          method: "POST",
-          url: "/api/logout",
-          headers: {
-              "access_token": userInfo.accessToken
-          }
-      }).then(function (result) {
-          userInfo = null;
-          $window.sessionStorage["userInfo"] = null;
-          deferred.resolve(result);
+      $http.get("/api/auth/logout").then(function (result) {
+        session = null;
+        $location.path("/splash");
       }, function (error) {
-          deferred.reject(error);
       });
-
-      return deferred.promise;
   }
 
   function getSession(requireUser) {
@@ -151,36 +139,6 @@ angular.module('vestaApp')
       return deferred.promise
     }
   }
-
-  /* 
-   * TODO probably can handle through sessions
-  function getuser() {
-    if (user && user.id) {
-      return user;
-    }
-    else {
-      var deferred = $q.defer();
-
-      $http.get("/api/auth/session").then(function (result) {
-        if (result.data._id) {
-          user = {
-              id: result.data._id,
-              username: result.data.displayname,
-              fbid: result.data.fbid
-          };
-          deferred.resolve(user);
-        }
-        else {
-          deferred.reject({authenticated: false});
-        }
-      }, function (error) {
-        deferred.reject({authenticated: false});
-      });
-
-      return deferred.promise;
-    }
-  } 
-  */
 
   function init() {
       if ($window.sessionStorage["userInfo"]) {
