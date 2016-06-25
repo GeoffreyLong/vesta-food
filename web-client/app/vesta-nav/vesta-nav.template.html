@@ -10,33 +10,9 @@
   </md-button>
 
 
-  <md-menu-bar id="navDropdown" ng-if="$ctrl.session.user">
-    <md-menu>
-      <md-button ng-click="$mdOpenMenu()">
+      <md-button ng-click="openMenu($event)" class="menuOpenButton">
         {{$ctrl.session.user.displayName}}
       </md-button>
-      <md-menu-content>
-        <md-menu-item class="md-indent">
-          <md-icon class="material-icons"> person </md-icon>
-          <md-button ng-click="logout()">
-            Logout
-          </md-button>
-        </md-menu-item>
-        <md-menu-item class="md-indent">
-          <md-icon class="material-icons"> store </md-icon>
-          <md-button href="#!/becomeAChef">
-            Create a Storefront
-          </md-button>
-        </md-menu-item>
-        <md-menu-divider></md-menu-divider>
-        <md-menu-item class="md-indent">
-          <md-button ng-click="">
-            Unrelated actions
-          </md-button>
-        </md-menu-item>
-      </md-menu-content>
-    </md-menu>
-  </md-menu-bar>
   
   <md-menu-bar id="navDropdown" ng-if="!$ctrl.session.user">
     <md-menu>
