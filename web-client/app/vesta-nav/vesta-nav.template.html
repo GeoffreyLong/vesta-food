@@ -12,6 +12,12 @@
 
   <md-menu-bar id="navDropdown" ng-if="$ctrl.session.user">
     <md-menu>
+      <!-- 
+            NOTE this causes a "Cannot read property 'setAttribute' of null" TypeError
+            This can be negated by changing this to button, however this breaks some css.
+            That being said, since it causes no issues (that I can see), 
+            it should remain as is
+      -->
       <md-button ng-click="$mdOpenMenu()">
         {{$ctrl.session.user.displayName}}
       </md-button>

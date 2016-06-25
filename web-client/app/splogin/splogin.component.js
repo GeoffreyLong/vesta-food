@@ -10,7 +10,10 @@ angular.module('splogin').component('splogin', {
     }
 
     $scope.addressSearch = function(address) {
-      console.log(address);
+      console.log(address);      
+
+      // http://maps.google.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&sensor=false
+
       $http.post("/api/locationSearch", address).then(function(response) {
         console.log("Response is: " + response);
         if (response) {

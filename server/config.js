@@ -10,7 +10,8 @@ module.exports = {
           "callbackUrl": "http://localhost:80/api/auth/facebook/callback"
         },
         "googleMaps": {
-          "apiKey": "AIzaSyBr9CgN3xm551js9nkeFykGZUtgyrJp6Rg"
+          "clientKey": "AIzaSyBr9CgN3xm551js9nkeFykGZUtgyrJp6Rg",
+          "serverKey": "AIzaSyDmoJrfXcTd5i_v88O-VzLrtcKd7nrNQvA"
         }
   }, 
   "production": {

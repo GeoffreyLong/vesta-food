@@ -18,7 +18,6 @@ router.get('/login', function(req, res) {
 
 // Passport Router
 // Add scope?
-// TODO add /api to this... everything needs to be /api/<route>
 router.get('/facebook', passport.authenticate('facebook'));
 
 router.get('/facebook/callback',
@@ -31,6 +30,7 @@ router.get('/facebook/callback',
 );
 
 router.get('/logout', function(req, res){
+  // TODO error handling here and on the front end side of this
   req.logout();
   res.status(200).send("");
 });

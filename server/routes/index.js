@@ -5,6 +5,12 @@ module.exports = function(passport){
   
   var express = require('express');
   var router = express.Router();
+  var request = require('request');
+
+  // Get the correct configuration down
+  var config = require('../../server/config');
+  config = config[process.env.NODE_ENV] || config['development'];
+
 
   // var mongoose = require('mongoose');
   // var mongo = require('mongodb');
@@ -35,65 +41,8 @@ module.exports = function(passport){
   // var EarlySellers = mongoose.model('earlySellers', EarlySellerSchema);
 
 
-  // // Sessions are required on everything but splogin
-  // var requireSession = function(req, res, next) {
-  //   // Check to see if the user is logged in
-  //   //    or if the user has previously entered a search address
-  //   if ((req.user && req.user.fbID) || req.session.address) {
-  //     // User session exists, send user info to angular
-  //     console.log("Found session");
-  //     next();
-  //   }
-  //   else {
-  //     console.log("No session");
-  //     // TODO Send the user back to the splogin
-  //   }
-  //
-  // };
-  //
-  // // Login is required for store purchases
-  // var requireLogin = function(req, res, next) {
-  //   if (req.isAuthenticated()) {
-  //     // User exists, send user info to angular
-  //     console.log("Is Authenticated");
-  //     next();
-  //   }
-  //   else {
-  //     console.log('Not Authenticated');
-  //
-  //     // TODO Give them to some sort of login
-  //     // Don't want to redirect to splogin, want one on page
-  //   }
-  // };
-
-  // router.get('/auth/session', requireSession, function(req, res) {
-  //   res.send(req.user);
-  // });
-  // router.get('/auth/login', requireLogin, function(req, res) {
-  //   res.send(req.user);
-  // });
-  //
-  //
-  // // Passport Router
-  // // Add scope?
-  // // TODO add /api to this... everything needs to be /api/<route>
-  // router.get('/auth/facebook', passport.authenticate('facebook'));
-  //
-  // router.get('/auth/facebook/callback',
-  //   passport.authenticate('facebook', { 
-  //       successRedirect : '/', 
-  //       failureRedirect: '/splogin' 
-  //   }), function(req, res) {
-  //     res.redirect('/');
-  //   }
-  // );
-  //
-  // router.get('/logout', function(req, res){
-  //   req.logout();
-  //   // TODO send stuff back
-  // });
-
-
+  // This endpoint is for when the user enters an address in the front page
+  // It will store the address in the session object for later authentications
   router.post('/locationSearch', function(req, res) {
     var searchAddress = req.body.address;
     console.log('Location search entered is ' + searchAddress);
@@ -108,6 +57,14 @@ module.exports = function(passport){
     // NOTE We might want to put address in a larger object that is like search params
     //      Then we can store things like distance and make the searches persistent
     req.session.address = searchAddress
+
+    request('https://maps.googleapis.com/maps/api/geocode/json?'
+              + 'address=' + searchAddress
+              + '&key=' + config.googleMaps.serverKey, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        // TODO do something with the geocoords
+       }
+    })
 
     res.status(200).send(searchAddress);
   });
