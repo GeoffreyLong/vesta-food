@@ -12,7 +12,7 @@
 
   <md-menu-bar id="navDropdown" ng-if="$ctrl.session.user">
     <md-menu>
-      <md-button ng-click="openMenu($mdOpenMenu, $event)">
+      <md-button ng-click="$mdOpenMenu()">
         {{$ctrl.session.user.displayName}}
       </md-button>
       <md-menu-content>

@@ -20,10 +20,6 @@ angular.module('vestaNav').component('vestaNav', {
       authService.logout();
     }
 
-    $scope.openMenu = function(open, ev) {
-      open();
-      $('body').css({'background': 'relative'});
-    }
 
     /********************* SIDE NAV *************************************/
     // TODO
