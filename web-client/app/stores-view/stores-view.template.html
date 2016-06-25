@@ -1,5 +1,10 @@
+<!-- 
+      NOTE perhaps should put a search location thing here
+      This can be doubly useful if we prompt when no stores are found
+-->
+
 <md-content id="storesContainer" class="md-padding" layout-xs="column" layout="row">
-  <div flex-xs flex-gt-xs="50" layout="column" ng-repeat="rows in $ctrl.chunkedData">
+  <div flex-xs flex-gt-xs="50" layout="column" ng-repeat="rows in chunkedData">
     <md-card ng-cloak ng-repeat="store in rows">
       <slick class="slider" dots=true arrows=true infinite=true speed=300 slides-to-show=1 touch-move=false slides-to-scroll=1 adaptive-height=true>
         <!-- 

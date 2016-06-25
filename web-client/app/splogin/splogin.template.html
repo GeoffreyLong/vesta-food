@@ -36,6 +36,10 @@
     -->
     <h4> Homemade Quality -- In the time it takes to walk to your fridge </h4>
     <form id="locationSearch">
+      <!--  
+            NOTE could add a navigator geolocation like in stores-view
+            This could be in a button like "use my current location"
+      --> 
       <input  places-auto-complete types="['geocode']" ng-model="address.address" 
               on-place-changed="placeChanged()" />
 
