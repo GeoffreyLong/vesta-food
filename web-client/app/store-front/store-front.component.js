@@ -110,5 +110,14 @@ angular.module('storeFront').component('storeFront', {
               && (session.user.storeId == $scope.store._id)
               && (session.user._id == $scope.store.userId));
     }
+
+    $scope.editStore = function() {
+      // NOTE I think it would look cool to do this "in page" but for now we are routing
+      //      To avoid template complexity
+      //      We could do this in page either by ng-ifs with a flag
+      //      Or by forcing the template heavy via JS I think
+      //      That's a later problem though
+      $location.path($location.path() + '/edit');
+    }
   }
 });

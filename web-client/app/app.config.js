@@ -78,9 +78,21 @@ angular.module('vestaApp')
             return authService.getSession();
           }
         }
+      })
+      .when('/store/:storeID/edit', {
+        template: '<vesta-nav></vesta-nav>'
+          + '<div id="nonNavContainer" class="sideNavOpen">'
+          + '<store-edit></store-edit>'
+          + '</div>',
+        resolve: {
+          // Going to the stores view only requires a session
+          auth: function ($q, authService) {
+            return authService.requireStore();
+          }
+        }
       });
   },
-]).run(["$rootScope", "$location", function ($rootScope, $location) {
+]).run(["$rootScope", "$location", "$window", function ($rootScope, $location, $window) {
   $rootScope.$on("$routeChangeSuccess", function (userInfo) {
     console.log("Route Change Success for " + $location.url());
   });
@@ -92,6 +104,9 @@ angular.module('vestaApp')
     }
     if (eventObj.authenticated === false) {
       $location.path("/login");
+    }
+    if (eventObj.storeOwner === false) {
+      $window.history.back(); 
     }
   });
 
@@ -142,6 +157,40 @@ angular.module('vestaApp')
     }
   }
 
+  function requireStore() {
+    // NOTE might not be the best way to handle the path...
+    //      Seems rather shotty to me...
+    var re = new RegExp("\/store\/(.*)\/edit");
+    var storeId = re.exec($location.path())[1];
+
+    // Check to see if session exists
+    // If it does and getSession is called then no promise is returned => error
+    if (session && (session.address || (session.user && session.user._id))) {
+      if (session && session.user && storeId
+              && (session.user.storeId == storeId)) {
+        return session;
+      }
+      else {
+        return null;
+      }
+    }
+    else {
+      var deferred = $q.defer();
+      getSession(true).then(function(session){
+        if (session && session.user && storeId
+                && (session.user.storeId == storeId)) {
+          deferred.resolve(session)
+        }
+        else {
+          return deferred.reject({storeOwner: false});
+        }
+      }, function(err) {
+        return deferred.reject({storeOwner: false});
+      });
+      return deferred.promise;
+    }
+  }
+
   function init() {
       if ($window.sessionStorage["userInfo"]) {
           userInfo = JSON.parse($window.sessionStorage["userInfo"]);
@@ -153,6 +202,7 @@ angular.module('vestaApp')
       fblogin: fblogin,
       logout: logout,
       getSession: getSession,
+      requireStore: requireStore
   };
 }])
 .service('dataService', function() {

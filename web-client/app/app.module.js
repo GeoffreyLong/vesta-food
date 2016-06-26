@@ -8,5 +8,6 @@ angular.module('vestaApp', [
     'storesView',
     'becomeChef',
     'splogin',
-    'storeFront'
+    'storeFront',
+    'storeEdit'
 ]);

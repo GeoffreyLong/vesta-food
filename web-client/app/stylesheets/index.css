@@ -164,6 +164,13 @@ md-sidenav .childElement {
   color: #fca345;
 }
 /******************************** STORE FRONT ********************************/
+store-front #editStore {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 10;
+  background-color: #ea6e10;
+}
 store-front #titleDiv {
   margin-top: 20px;
   width: 80%;
@@ -244,13 +251,13 @@ store-front .foodImageInfo .foodPrice {
 store-front .foodImageInfo .star {
   color: #ea6e10;
 }
-#descriptionPanel {
+store-front #descriptionPanel {
   margin-top: 50px;
 }
-#storeReviews {
+store-front #storeReviews {
   margin-top: 50px;
 }
-#storeReviews .altCard {
+store-front #storeReviews .altCard {
   background-color: #fff;
   box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2), 0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12);
   margin: 10px;
@@ -259,24 +266,24 @@ store-front .foodImageInfo .star {
   margin-left: auto;
   margin-right: auto;
 }
-#storeReviews .altCard .profilePhotoDiv {
+store-front #storeReviews .altCard .profilePhotoDiv {
   vertical-align: top;
   width: 10%;
   display: inline-block;
 }
-#storeReviews .altCard .profilePhotoDiv .profilePhoto {
+store-front #storeReviews .altCard .profilePhotoDiv .profilePhoto {
   border-radius: 50%;
   height: 48px;
   width: 48px;
 }
-#storeReviews .altCard .reviewStars .star {
+store-front #storeReviews .altCard .reviewStars .star {
   color: #ea6e10;
 }
-#storeReviews .altCard .reviewContentContainer {
+store-front #storeReviews .altCard .reviewContentContainer {
   display: inline-block;
   width: 85%;
 }
-#storeReviews .altCard .reviewContentContainer .reviewComment {
+store-front #storeReviews .altCard .reviewContentContainer .reviewComment {
   font-weight: 100;
   margin-top: 10px;
 }
