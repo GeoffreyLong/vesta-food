@@ -89,22 +89,15 @@ angular.module('vestaApp')
   });
 
 }]).factory("authService", ["$location","$http","$q","$window",function ($location, $http, $q, $window) {
-  // For now session and user are largely the same
-  // TODO different them or put as one object
-  // I think the best way would be to have the user info as a larger session object
-  // session without user would be like an address or something
-  //    Might grow to include search results, temporary carts, etc
-  // user object is simply the user's _id, username, and fbID
-  //    Should also have address though?
   var session;
 
   function fblogin() {
     // I don't see this working another way due to cross origin scripting issues
     // Would be better to use $http.get though
+    // TODO could probably do away with passportJS and simply do client side FB Auth
     window.location = "/api/auth/facebook"
   }
 
-  // TODO update
   function logout() {
       $http.get("/api/auth/logout").then(function (result) {
         session = null;
@@ -133,6 +126,8 @@ angular.module('vestaApp')
           deferred.reject({sessioned: false});
         }
       }, function (error) {
+        // TODO redirect to "Temporary Maintanence page or something"
+        console.log("server out");
         deferred.reject({sessioned: false});
       });
 

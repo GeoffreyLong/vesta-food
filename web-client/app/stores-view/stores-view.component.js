@@ -15,8 +15,6 @@ angular.module('storesView').component('storesView', {
       method: 'GET',
       url: 'api/stores'
     }).then(function(data) {
-      console.log(data);
-
       // This gives the number of rows
       // Three looks good on my screen
       // Might want to make it dynamic based on screen size

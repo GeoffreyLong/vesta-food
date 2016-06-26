@@ -5,6 +5,8 @@ var router = express.Router();
 var Users = require('../models/user');
 var Store = require('../models/store');
 
+
+// TODO put these values in config.js
 var STRIPE_CLIENT_ID = 'ca_89GeQlhMVoUResS0PeQm6XuCs6hoXgze';
 var STRIPE_API_KEY = 'sk_test_an3Nezne8XguJAefiBJgNV63';
 var STRIPE_TOKEN_URI = 'https://connect.stripe.com/oauth/token';
@@ -33,7 +35,7 @@ router.post('/becomeChef', function(req, res) {
       console.log(body);
 
       var store = new Store({
-        stripeCredentials: JSON.parse(body)
+        stripe: JSON.parse(body)
       });
 
       store.save(function (storeError) {
