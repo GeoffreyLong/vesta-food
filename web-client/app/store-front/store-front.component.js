@@ -144,5 +144,10 @@ angular.module('storeFront').component('storeFront', {
     this.getNumber = function(num) {
       return new Array(num);   
     }    
+
+    // TODO this will check the session to see if the user is the owner of the store
+    $scope.checkOwnership = function() {
+      return true;
+    }
   }
 });

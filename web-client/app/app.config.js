@@ -39,7 +39,7 @@ angular.module('vestaApp')
         }
       })
       .when('/becomeAChef/stripeCallback', {
-        template: '<p>become a chef callback</p>',
+        template: '<p>become a chef callback TODO loading screen?</p>',
         controller: function($location, $http) {
           var stripeParams = $location.search();
           console.log(JSON.stringify(stripeParams));
@@ -49,12 +49,19 @@ angular.module('vestaApp')
             .then(function onSuccess(response) {
               console.log('success');
               console.log(response);
-              $location.path('/');
+              $location.path('/store/:storeID/edit');
             }, function onError(response) {
+              // TODO might want an error Page
               console.log('error');
               console.log(response);
               $location.path('/');
             });
+        },
+        resolve: {
+          // Becoming a chef requires a login
+          auth: function ($q, authService) {
+            return authService.getSession(true);
+          }
         }
       })
       .when('/splash', {
