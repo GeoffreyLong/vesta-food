@@ -2,7 +2,7 @@ module.exports = {
   "development": {
         "port": 3000,
         "database": {
-          'url': 'mongodb://localhost/VestaFood'
+          'url': 'mongodb://localhost/VestaFoodTest'
         },
         "facebook": {
           "appID": "592850390877879",
