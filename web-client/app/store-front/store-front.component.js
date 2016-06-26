@@ -1,10 +1,10 @@
 angular.module('storeFront').component('storeFront', {
   templateUrl: 'store-front/store-front.template.html',
   controller: function StoreFrontController($scope, dataService, authService, $location, $http){
-    // TODO If for any reason we cannot get the store,
-    //    like if this returns null, then we will use the :storeID on the url
-    //    to get query the database for the store
-    $scope.store = dataService.getStore();
+    // TODO add in the dataService function for getting stores
+    //      Something like dataService.getStore('storeId')
+    //      This will also handle the db query below if it isn't found?
+    //      $scope.store = dataService.getStore(storeId);
     if (!$scope.store){
       $http.get('/api' + $location.path()).then(function(store) {
         $scope.store = store.data;
