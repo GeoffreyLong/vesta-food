@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
  
 var Store = mongoose.model('Store', {
-  userID: String,
+  userId: String,
 	storeTitle: String,
 	profilePhoto: String,
 	description: String,
