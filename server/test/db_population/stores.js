@@ -1,5 +1,3 @@
-var mongoose = require('mongoose');
-
 module.exports = [{
   storeTitle: "Geoff's Store",
   profilePhoto: "/images/chef_1_profile.jpg",

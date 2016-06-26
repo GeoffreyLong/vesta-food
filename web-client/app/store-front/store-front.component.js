@@ -8,6 +8,7 @@ angular.module('storeFront').component('storeFront', {
     if (!$scope.store){
       // Temporary store population if could not get it
       // TODO have a DB query instead later
+      // TODO remove
       $scope.store = {
         userID: "123456789",
         storeID: "123456789",
@@ -59,6 +60,7 @@ angular.module('storeFront').component('storeFront', {
     }
 
     // To get this we will have to do a join on buyer and the storeId
+    // TODO remove
     $scope.storeReviews = [{
       storeID: 123456789,
       buyer: {

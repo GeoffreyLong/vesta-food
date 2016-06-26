@@ -1,8 +1,6 @@
 // TODO
 //    Get at least Charlie's fbID
 
-var mongoose = require('mongoose');
-
 module.exports = [{
   fbID: '10206007018314578',
   displayName: 'Geoffrey Saxton',

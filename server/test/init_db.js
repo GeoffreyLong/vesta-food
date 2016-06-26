@@ -1,3 +1,9 @@
+// TODO 
+//      Purchases
+//      MAJOR TODO TODO 
+//          FoodId (store.food._id) is not a thing in this nested subdocument structure
+//          Perhaps food reviews go in the store with the food objects?
+
 console.log("hello world!");
 var mongoose = require('mongoose');
 
@@ -6,6 +12,13 @@ var Users = require('../models/user');
 var usersArray = require('./db_population/users.js');
 var Stores = require('../models/store');
 var storesArray = require('./db_population/stores.js');
+var StoreReviews = require('../models/storeReview.js');
+var storeReviewsArray = require('./db_population/storeReviews.js');
+var FoodReviews = require('../models/foodReview.js');
+var foodReviewsArray = require('./db_population/foodReviews.js');
+
+var userIds = [];
+var storeIds = [];
 
 // Require that we be in development mode 
 // NOTE might want a 'test' mode down the road
@@ -19,11 +32,11 @@ mongoose.connect(config.database.url, function (error) {
   }
   else{
     console.log('Successfully Connected');
-    addUsers();
+    insertUsers();
   }
 });
 
-var addUsers = function(){
+var insertUsers = function(){
   // Remove all users and add in the test users
   Users.remove({}, function(err){
     Users.collection.insert(usersArray, function(err, docs) {
@@ -34,6 +47,8 @@ var addUsers = function(){
       else {
         console.log("Added Users: " + docs.insertedIds);
 
+        userIds = docs.insertedIds;
+
         var pairings = [];
         docs.insertedIds.forEach(function(userId, index){
           var pair = {};
@@ -42,14 +57,14 @@ var addUsers = function(){
         });
         // Pass the _ids of the created users on for future refs
         // May want to pass the whole docs if need be
-        addStores(pairings);
+        insertStores(pairings);
       }
     });
   })
 }
 
 // TODO need to add in test stores
-var addStores = function(pairings){
+var insertStores = function(pairings){
   // Remove all stores and add in the test stores
   Stores.remove({}, function(err){
     Stores.collection.insert(storesArray, function(err, docs) {
@@ -59,6 +74,8 @@ var addStores = function(pairings){
       }
       else {
         console.log("Added Stores: " + docs.insertedIds);
+
+        storeIds = docs.insertedIds;
 
         // Pair up the stores and the users
         var newPairs = [];
@@ -70,12 +87,11 @@ var addStores = function(pairings){
         });
 
         updatePairs(newPairs);
+        insertStoreReviews(newPairs);
       }
     });
 
-  })
-
-
+  });
 }
 
 
@@ -99,25 +115,91 @@ var updatePairs = function(pairs) {
       }
     });
   });
-/*
-    // Populate the userIds of the stores
-    storesArray.forEach(function(store, index){
-      // NOTE This will not add it as type ObjectId
-      //      Perhaps that is preferred?
-      var userId = userIds[index]
-      store.userId = userId;
+}
 
-      store.save(function (err, store){
-        else {
+var insertStoreReviews = function(pairs) {
+  FoodReviews.remove({}, function(err){
+    StoreReviews.remove({}, function(err){
+      var numStoreReviews = Math.floor((Math.random() * 25) + 5);
+      
+      var numReviewOptions = storeReviewsArray.length;
+      var numStores = storeIds.length;
+      var numUsers = userIds.length;
 
+
+      for (var i = 0; i < numStoreReviews; i++) {
+        // TODO
+        //      It would be cool if we also grabbed random indices of food items 
+        //      from the store to associate with the review
+        // TODO
+        //      Also might want to just iterate over the stores to assign 
+        //      a random number of store reviews from random users
+        //      This way we can check to make sure the reviews aggregation is correct
+
+        var pair = pairs[Math.floor(Math.random() * numStores)];
+        var storeId = pair.storeId;
+        
+        var userId = userIds[Math.floor(Math.random() * numUsers)];
+        while (userId == pair.userId) {
+          var userId = userIds[Math.floor(Math.random() * numUsers)];
         }
-      });
+
+        var review = new StoreReviews(storeReviewsArray[Math.floor(Math.random() * numReviewOptions)]);
+        review.userId = userId;
+        review.storeId = storeId;
+        review.save(function(err, review){
+          if (err) {
+            console.log("ERROR: " + err);
+          }
+          else {
+            // NOTE interesting error
+            //      If I do userId and storeId then both default to the same
+            //      since they are being changed outside of the scope of this callback
+            insertFoodReview(review.userId, review.storeId);
+          }
+        });
+      }
     });
-*/
+  });
+}
 
+var insertFoodReview = function(userId, storeId) {
+  var numFoodReviews = foodReviewsArray.length;
+  
+  Stores.findById(storeId, function(err, store){
+    if (err) {
+      console.log("Couldn't find storeId: " + storeId);
+    }
+    else {
+      var foods = [];
+      var numFoods = store.foods.length;
+      var numReviews = Math.floor((Math.random() * numFoods) + 1);
 
+      // Generate a random number of food reviews
+      for (var i = 0; i < numReviews; i++){
+        // Make sure the food being reviewed does not repeat
+        var foodNum = Math.floor(Math.random() * numFoods);
+        while(foods.indexOf(foodNum) != -1){
+          foodNum = Math.floor(Math.random() * numFoods);
+        }
+        var foodId = store.foods[foodNum]._id;
 
-        // TODO add reviews?
-        // addReviews(docs.insertedIds);
+        // Grab a random review from the possible food review templates
+        var review = new FoodReviews(foodReviewsArray[Math.floor(Math.random() * numFoodReviews)]);
+        // Add in the required info
+        review.userId = userId;
+        review.foodId = foodId;
+        // Save the food review
+        review.save(function(err, review){
+          if (err) {
+            console.log("ERROR: " + err);
+          }
+          else {
+            console.log(review);
+          }
+        });
+      }
+    }
+  });
 }
 
