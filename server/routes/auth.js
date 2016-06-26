@@ -6,7 +6,6 @@ router.get('/session', function(req, res) {
   var session = {};
   session.user = req.user;
   session.address = req.session.address;
-  console.log(session);
   res.send(session);
 });
 

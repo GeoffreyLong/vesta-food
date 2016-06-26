@@ -82,8 +82,6 @@ module.exports = function(passport){
     // TODO figure out a good distance... perhaps this is something the user can spec
     //      in the store search sidenav
 
-    console.log("hit stores");
-
     Stores.find({}, function(err, stores){
       if (err) res.status(400).send(err)
 
@@ -92,6 +90,20 @@ module.exports = function(passport){
 
 
   });
+
+
+
+  router.get('/store/:storeId', function(req, res) {
+    Stores.findById(req.params.storeId, function(err, store){
+      if (err) res.status(400).send(err)
+
+      res.status(200).send(store);
+    });
+
+
+  });
+
+
 
   /* POST for new sellers 
    * Occurs when the user uses the 'become a seller' modal on the splash page

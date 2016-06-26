@@ -53,12 +53,13 @@ var initPassport = require('./passport/init');
 initPassport(passport);
 
 // initial route filter, log user
+// NOTE temporarily turned off
 app.use(function(req, res, next) {
   if (req.user) {
-    console.log('Current User:', req.user)
+    // console.log('Current User:', req.user)
   }
   else {
-    console.log('Unauthenticated');
+    // console.log('Unauthenticated');
   }
   next();
 });
