@@ -3,6 +3,9 @@
 //      MAJOR TODO TODO 
 //          FoodId (store.food._id) is not a thing in this nested subdocument structure
 //          Perhaps food reviews go in the store with the food objects?
+//          Will figure this out as the review system gets fleshed out
+//      Check all of this logic 
+//          some of the randomization might have caused some items to be missed
 
 console.log("hello world!");
 var mongoose = require('mongoose');
@@ -155,7 +158,9 @@ var insertStoreReviews = function(pairs) {
             // NOTE interesting error
             //      If I do userId and storeId then both default to the same
             //      since they are being changed outside of the scope of this callback
-            insertFoodReview(review.userId, review.storeId);
+            
+            // TODO Temporarily disabled
+            // insertFoodReview(review.userId, review.storeId);
           }
         });
       }

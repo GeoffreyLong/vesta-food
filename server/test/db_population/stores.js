@@ -69,9 +69,9 @@ module.exports = [{
     overallRating: 3
   }]
 }, {
-  storeTitle: "Piecaken Nation",
+  storeTitle: "Jimmy's Store",
   pickupAddress: "3515 Rue Durocher",
-  description: "This is the best store you'll ever go to. I make lots of things.",
+  description: "You can have your (pie)cake(n), and eat it (stuffed with multiple pies) too.",
   neighborhood: "TODO",
   availability: "TODO",
   overallRating: 4,

@@ -156,6 +156,9 @@ angular.module('vestaApp')
   };
 }])
 .service('dataService', function() {
+  // TODO could use this to manage the client side session storage
+  // Take hints from cache algorithms like "least recently used" to push out stores
+
   this.storeData = null;
 
   this.setStore = function(store) {

@@ -54,13 +54,13 @@ angular.module('storesView').component('storesView', {
     // In this case go to the storefront with some sort of emphasis on the food item
     this.goToStore = function(store, itemIndex) {
       dataService.setStore(store);
-      console.log(dataService.getStore());
+      console.log("Store is: " + store);
       
       if (itemIndex >= 0) {
-        $location.path('/store/' + store.storeID + '#' + itemIndex);
+        $location.path('/store/' + store._id + '#' + itemIndex);
       }
       else {
-        $location.path('/store/' + store.storeID);
+        $location.path('/store/' + store._id);
       }
     }
   }

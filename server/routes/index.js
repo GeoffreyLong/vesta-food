@@ -11,6 +11,7 @@ module.exports = function(passport){
   var config = require('../../server/config');
   config = config[process.env.NODE_ENV] || config['development'];
 
+  var Stores = require('../models/store.js');
 
   // var mongoose = require('mongoose');
   // var mongo = require('mongodb');
@@ -83,144 +84,12 @@ module.exports = function(passport){
 
     console.log("hit stores");
 
-    var stores = [
-      {
-        userID: "123456789",
-        storeID: "123456789",
-        storeTitle: "Geoff's Store 1",
-        profilePhoto: "/images/chef_1_profile.jpg",
-        pickupAddress: "3515 Rue Durocher",
-        neighborhood: "TODO",
-        stripeAuth: "TODO",
-        description: "This is the best store you'll ever go to. I make lots of things.",
-        availability: "TODO",
-        overallRating: 4,
-        foods: [{
-          name: "Hamburger Pastry thingies",
-          photo: "/images/chef_1-1.png",
-          price: 10,
-          shelfLife: 3,
-          prepTime: 2,
-          overallRating: 5
-        }, {
-          name: "Schwarma Guy Wraps",
-          photo: "/images/chef_1-2.jpg",
-          price: 8,
-          shelfLife: 2,
-          prepTime: 4,
-          overallRating: 3
-        }, {
-          name: "Salmon Delight",
-          photo: "/images/chef_1-3.jpeg",
-          price: 8,
-          shelfLife: 1,
-          prepTime: 1,
-          overallRating: 2
-        }]
-      }, {
-        userID: "111111111",
-        storeID: "111111111",
-        storeTitle: "Store Des Ipsums",
-        profilePhoto: "TODO",
-        pickupAddress: "3515 Rue Durocher",
-        neighborhood: "TODO",
-        stripeAuth: "TODO",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." 
-          + "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." 
-          + "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        availability: "TODO",
-        overallRating: 4,
-        foods: [{
-          name: "Ipsum Salad",
-          photo: "/images/chef_2-1.jpg",
-          price: 10,
-          shelfLife: 3,
-          prepTime: 2,
-          overallRating: 3
-        }]
-      }, {
-        userID: "123456789",
-        storeID: "123456789",
-        storeTitle: "Piecaken Nation",
-        profilePhoto: "TODO",
-        pickupAddress: "3515 Rue Durocher",
-        neighborhood: "TODO",
-        stripeAuth: "TODO",
-        description: "This is the best store you'll ever go to. I make lots of things.",
-        availability: "TODO",
-        overallRating: 4,
-        foods: [{
-          name: "Brittle Peanuts",
-          photo: "/images/chef_3-1.jpg",
-          price: 10,
-          shelfLife: 3,
-          prepTime: 2,
-          overallRating: 3
-        }, {
-          name: "Brittle Peanuts",
-          photo: "/images/chef_3-2.jpg",
-          price: 10,
-          shelfLife: 3,
-          prepTime: 2,
-          overallRating: 3
-        }, {
-          name: "Brittle Peanuts",
-          photo: "/images/chef_3-3.jpg",
-          price: 10,
-          shelfLife: 3,
-          prepTime: 2,
-          overallRating: 3
-        }, {
-          name: "Brittle Peanuts",
-          photo: "/images/chef_3-4.jpg",
-          price: 10,
-          shelfLife: 3,
-          prepTime: 2,
-          overallRating: 3
-        }]
-      }, {
-        userID: "123456789",
-        storeID: "123456789",
-        storeTitle: "Geoff's Store 4",
-        profilePhoto: "TODO",
-        pickupAddress: "3515 Rue Durocher",
-        neighborhood: "TODO",
-        stripeAuth: "TODO",
-        description: "This is the best store you'll ever go to. I make lots of things.",
-        availability: "TODO",
-        overallRating: 4,
-        foods: [{
-          name: "Brittle Peanuts",
-          photo: "/images/chef_4-1.jpg",
-          price: 10,
-          shelfLife: 3,
-          prepTime: 2,
-          overallRating: 3
-        }]
-      }, {
-        userID: "8675309",
-        storeID: "123454321",
-        storeTitle: "Ronald's",
-        profilePhoto: "/images/chef_5_profile.jpg",
-        pickupAddress: "3515 Rue Durocher",
-        neighborhood: "TODO",
-        stripeAuth: "TODO",
-        description: "I will make you fat, that is a guarantee.", 
-        availability: "TODO",
-        overallRating: 4,
-        foods: [{
-          name: "Ipsum Salad",
-          photo: "/images/chef_2-1.jpg",
-          price: 10,
-          shelfLife: 3,
-          prepTime: 2,
-          overallRating: 3
-        }]
-      }
-    ];
+    Stores.find({}, function(err, stores){
+      if (err) res.status(400).send(err)
 
+      res.status(200).send(stores);
+    });
 
-    res.status(200).send(stores);
 
   });
 
