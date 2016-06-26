@@ -35,12 +35,14 @@ module.exports = function(passport){
           newUser.displayName = profile.displayName
 
           // save our user to the database
-          newUser.save(function(err) {
-            if (err)
-              throw err;
+          newUser.save(function(err, dbUser) {
+            if (err) throw err;
 
-            // if successful, return the new user
-            return done(null, newUser);
+            // If successful, return the new user
+            // TODO CHECKS
+            //    Check to ensure that this newUser has the _id with it
+            //    I would assume it does?
+            return done(null, dbUser);
           });
         }
       });

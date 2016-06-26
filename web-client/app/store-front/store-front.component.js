@@ -1,6 +1,6 @@
 angular.module('storeFront').component('storeFront', {
   templateUrl: 'store-front/store-front.template.html',
-  controller: function StoreFrontController($scope, dataService, $location, $http){
+  controller: function StoreFrontController($scope, dataService, authService, $location, $http){
     // TODO If for any reason we cannot get the store,
     //    like if this returns null, then we will use the :storeID on the url
     //    to get query the database for the store
@@ -102,8 +102,13 @@ angular.module('storeFront').component('storeFront', {
     }    
 
     // TODO this will check the session to see if the user is the owner of the store
+    // Interestingly enough, this fires multiple times since the scope reupdates
+    //    Maybe we only want to fetch the session once
     $scope.checkOwnership = function() {
-      return true;
+      var session = authService.getSession();
+      return (session && session.user && $scope.store
+              && (session.user.storeId == $scope.store._id)
+              && (session.user._id == $scope.store.userId));
     }
   }
 });
