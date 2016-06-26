@@ -4,12 +4,15 @@ var Store = mongoose.model('Store', {
   userID: String,
 	storeTitle: String,
 	profilePhoto: String,
+	description: String,
+	availability: String,
+	overallRating: Number,
+	neighborhood: String,
 	pickupAddress: {
     formatted: String,
     lat: Number,
     lng: Number
   },
-	neighborhood: String,
 	stripe: {
     access_token: String,
     livemode: Boolean,
@@ -19,9 +22,6 @@ var Store = mongoose.model('Store', {
     stripe_user_id: String,
     scope: String
   },
-	description: String,
-	availability: String,
-	overallRating: Number,
 	foods: [{
     name: String,
     photo: String,
