@@ -164,6 +164,45 @@ md-sidenav .childElement {
   color: #fca345;
 }
 /******************************** STORE FRONT ********************************/
+/* 
+    NOTE this is mostly repeated from the stores-view slick
+    The foodImageInfo logic didn't recycle very well though
+    Should condense this logic later
+*/
+store-front slick * {
+  min-height: 0;
+  min-width: 0;
+}
+store-front slick .slick-prev:before,
+store-front slick .slick-next:before {
+  font-family: 'Material Icons';
+  -webkit-font-feature-settings: 'liga';
+  color: #00d484;
+  font-size: 40px;
+}
+store-front slick .slick-prev,
+store-front slick .slick-next {
+  z-index: 1;
+}
+store-front slick .slick-prev:before {
+  content: "chevron_left";
+}
+store-front slick .slick-next:before {
+  content: "chevron_right";
+}
+store-front slick .slick-prev {
+  left: 0px;
+}
+store-front slick .slick-next {
+  right: 0px;
+}
+store-front slick .slick-slide {
+  transform: scale(0.6);
+  transition: all 0.5s;
+}
+store-front slick .slick-center {
+  transform: scale(1);
+}
 #editStore {
   position: fixed;
   bottom: 10px;
@@ -176,11 +215,6 @@ md-sidenav .childElement {
   width: 80%;
   margin-left: auto;
   margin-right: auto;
-/* 
-      NOTE this is mostly repeated from the stores-view slick
-      The foodImageInfo logic didn't recycle very well though
-      Should condense this logic later
-  */
 }
 #titleDiv #titleRow {
   padding: 10px;
@@ -208,40 +242,6 @@ md-sidenav .childElement {
 #titleDiv .underline {
   height: 5px;
   background-color: #00b36f;
-}
-#titleDiv slick * {
-  min-height: 0;
-  min-width: 0;
-}
-#titleDiv slick .slick-prev:before,
-#titleDiv slick .slick-next:before {
-  font-family: 'Material Icons';
-  -webkit-font-feature-settings: 'liga';
-  color: #00d484;
-  font-size: 40px;
-}
-#titleDiv slick .slick-prev,
-#titleDiv slick .slick-next {
-  z-index: 1;
-}
-#titleDiv slick .slick-prev:before {
-  content: "chevron_left";
-}
-#titleDiv slick .slick-next:before {
-  content: "chevron_right";
-}
-#titleDiv slick .slick-prev {
-  left: 0px;
-}
-#titleDiv slick .slick-next {
-  right: 0px;
-}
-#titleDiv slick .slick-slide {
-  transform: scale(0.6);
-  transition: all 0.5s;
-}
-#titleDiv slick .slick-center {
-  transform: scale(1);
 }
 /* TODO change the current buttons so that they are large chevrons */
 .foodImageInfo {

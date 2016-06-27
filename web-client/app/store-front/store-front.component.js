@@ -132,8 +132,6 @@ angular.module('storeFront').component('storeFront', {
       //      Either dynamically style it to pop up in the card (solving earlier issue)
       //      or add a 'x' close button in it
       //      of add some sort of onblur function
-      // TODO TODO
-      //      This gets all sorts of messed up when slick is engaged...
       $mdBottomSheet.show({
         templateUrl: 'store-front/bottom-sheet.template.html',
         parent: ev.currentTarget.closest('md-card-actions'),
