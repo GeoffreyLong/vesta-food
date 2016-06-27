@@ -1,0 +1,17 @@
+# TODO can make this path dynamic
+# then can have a config job which will basically 
+#   append the correct location based on the specific developer
+#   and can ln -s the file to the sites-enabled folder
+# Not really necessary yet since there are only two developers
+# Also there is probably a better way to handle all of this 
+server {
+    listen 80;
+    listen 8080;
+
+    location / {
+        root $rootloc;
+    }
+    location /api/ {
+        proxy_pass http://localhost:3000;
+    }
+}

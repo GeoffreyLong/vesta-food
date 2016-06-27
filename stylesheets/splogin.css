@@ -1,0 +1,394 @@
+/* $primaryColor= #00b376 */
+html,
+body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  line-height: 0;
+}
+body {
+  font: 14px "Roboto", Helvetica, Arial, sans-serif;
+}
+a {
+  color: #00b7ff;
+}
+.emailFormLink {
+  cursor: pointer;
+}
+.emailFormLink:hover {
+  color: #07d;
+}
+h4 {
+  font-weight: bold;
+  color: #00b36f;
+}
+#toaster {
+/* z-index of a modal is 1003 */
+  z-index: 1004;
+  position: fixed;
+  top: 85% !important;
+  width: 100%;
+  text-align: center;
+}
+#toaster #toast-container {
+  position: relative;
+  top: 0 !important;
+  left: 0 !important;
+  display: inline;
+  margin: auto;
+}
+#toaster #toast-container .toast {
+  margin: auto;
+}
+.toast {
+  background-color: #ea6e10;
+  position: relative;
+  left: 0px !important;
+}
+#theNav {
+  z-index: 10;
+  position: fixed;
+/* Make text unselectable */
+  -webkit-user-select: none; /* Chrome/Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
+/* Rules below not implemented in browsers yet */
+  -o-user-select: none;
+  user-select: none;
+}
+#theNav #brand-logo {
+  height: 40px;
+  width: auto;
+  margin-top: 10px;
+}
+#theNav li a {
+  font-weight: bold;
+  -webkit-transition: all 1s;
+  transition: all 0.5s ease;
+}
+#theNav li a:hover {
+  background-color: rgba(0,0,0,0.5) !important;
+  color: #ea6e10;
+}
+#theNav li #infoA,
+#theNav li #infoB {
+  color: #fca345;
+}
+#splashPane {
+  font-family: 'Avenir LT Std-Book', sans-serif;
+  height: 80%;
+  min-height: 350px;
+  max-width: 100%;
+/***** IMAGE STUFF ******/
+/*** Set the gradient ***/
+/* default */
+  background-image: url("../images/splash_one.jpg");
+/* For Safari 5.1 to 6.0 */
+  background: -webkit-linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url("../images/splash_one.jpg");
+/* For Opera 11.1 to 12.0 */
+  background: -o-linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url("../images/splash_one.jpg");
+/* For Firefox 3.6 to 15 */
+  background: -moz-linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url("../images/splash_one.jpg");
+/* Standard */
+  background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url("../images/splash_one.jpg");
+/*** Set the size ***/
+  background-size: cover;
+/*** Set the position (what part of image is shown) ***/
+  -ms-background-position-x: center;
+  -ms-background-position-y: center;
+  background-position: center;
+/* TODO test */
+/* ie8 workaround - http://louisremi.github.io/background-size-polyfill/ */
+  -ms-behavior: url("/backgroundsize.min.htc");
+  text-align: center;
+/***** FORM *****/
+}
+#splashPane #formContainer {
+  width: 100%;
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: 30%;
+}
+#splashPane #formContainer h4 {
+  position: relative;
+  color: #fff;
+}
+#splashPane #formContainer form {
+  margin: 0px;
+  padding: 0px;
+/* This removes the space between the input fields */
+  font-size: 0;
+}
+#splashPane #formContainer form input {
+  border-style: none;
+  height: 50px;
+  font-size: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+#splashPane #formContainer form input[type="text"] {
+  width: 250px;
+  border-radius: 4px 0px 0px 4px;
+  background-color: #fff;
+}
+#splashPane #formContainer form input[type="submit"] {
+  cursor: pointer;
+  color: #fff;
+  background-color: #fca345;
+  border-radius: 0px 4px 4px 0px;
+}
+#howWorks .header {
+  color: $importantColor;
+}
+#howWorks .descIcon {
+  color: #fca345;
+}
+#howWorks .expIcon {
+  float: right;
+}
+#howWorks .collapsible-header.active .expIcon {
+  -ms-transform: rotate(180deg); /* IE 9 */
+  -webkit-transform: rotate(180deg); /* Safari */
+  transform: rotate(180deg);
+}
+#howWorks .collapsible-header:hover .expIcon {
+  color: #ea6e10;
+}
+#newsletterPane {
+  width: 100%;
+}
+#newsletterPane h1 {
+  color: $importantColor;
+}
+#newsletterPane #menuDivContainer {
+  style: inline-block;
+  width: 30%;
+  margin-left: 10%;
+  margin-top: -20px !important;
+  float: left;
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+}
+#newsletterPane #menuDivContainer #menuDiv {
+  height: 275px;
+  width: 300px;
+  margin: auto;
+  background-image: url("../images/Menu_Alert_1.jpg");
+/*** Set the size ***/
+  background-size: cover;
+/*** Set the position (what part of image is shown) ***/
+  -ms-background-position-x: 50%;
+  -ms-background-position-y: 80%;
+  background-position: 50% 80%;
+/* TODO test */
+/* ie8 workaround - http://louisremi.github.io/background-size-polyfill/ */
+  -ms-behavior: url("/backgroundsize.min.htc");
+}
+#newsletterPane #menuDivContainer:hover {
+  color: $linkColor;
+}
+#newsletterPane #menuStepsContainer {
+  style: inline-block;
+  float: right;
+  width: 60%;
+}
+#menuModal .right {
+  padding: 10px;
+}
+#infoPane {
+  position: relative;
+  width: 100%;
+}
+#infoPane h1 {
+  color: $importantColor;
+}
+#infoPane h2 {
+  color: #fca345;
+}
+#infoPane .icon-block {
+  margin: 10px;
+}
+.arrow-down {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-top: 50px solid #3375aa;
+}
+#addChefPane {
+  min-height: 435px;
+  height: 80%;
+/* default */
+  background-image: url("../images/splash_two.jpg");
+/* For Safari 5.1 to 6.0 */
+  background: -webkit-linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url("../images/splash_two.jpg");
+/* For Opera 11.1 to 12.0 */
+  background: -o-linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url("../images/splash_two.jpg");
+/* For Firefox 3.6 to 15 */
+  background: -moz-linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url("../images/splash_two.jpg");
+/* Standard */
+  background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url("../images/splash_two.jpg");
+/*** Set the size ***/
+  background-size: cover;
+/*** Set the position (what part of image is shown) ***/
+  -ms-background-position-x: center;
+  -ms-background-position-y: center;
+  background-position: center;
+/* TODO test */
+/* ie8 workaround - http://louisremi.github.io/background-size-polyfill/ */
+  -ms-behavior: url("/backgroundsize.min.htc");
+  width: 100%;
+}
+#addChefPane .triangleBanner {
+  margin: 0 !important;
+}
+#addChefPane h2 {
+  padding: 20px;
+  width: 100%;
+  background-color: $importantColor;
+  color: #fff;
+  margin: 0px;
+}
+#addChefPane li {
+  margin: 20px;
+}
+#addChefPane .container {
+  width: 90%;
+}
+#addChefPane .container h5 {
+  color: #fff;
+}
+#addChefPane #becomeSeller {
+  background-color: $importantColor;
+}
+#addChefPane .photoBanner {
+  position: relative;
+  top: 20%;
+}
+/* TODO this moves the background elements a bit (removes scroll)... fix this */
+#becomeChef .modal-content {
+  overflow-x: hidden !important;
+}
+#becomeChef .row {
+  margin-bottom: 0;
+}
+#becomeChef #addAvailability {
+  cursor: pointer;
+}
+.strike {
+  position: relative;
+  top: 30px;
+  text-align: center;
+  color: $importantColor;
+}
+.strike:after {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 3px;
+  content: "";
+  background-color: $importantColor;
+}
+.strike h2 {
+  display: inline;
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: 0 10px;
+  background-color: #fff;
+  font-size: 3em;
+}
+#featuredPane {
+  background-color: #fff;
+  width: 100%;
+}
+#featuredPane img {
+  padding-bottom: 25px;
+  margin-bottom: 0px;
+}
+#featuredPane .row {
+  margin-top: 30px;
+  position: relative;
+  top: 12%;
+}
+#featuredPane .slick-dots {
+  bottom: 0;
+}
+#featuredPane .slick-dotted.slick-slider {
+  margin-bottom: 0px;
+}
+#featuredPane .container {
+  width: 90%;
+}
+#featuredPane #becomeSeller {
+  background-color: $importantColor;
+}
+#featuredPane .card-reveal {
+  z-index: 6;
+}
+#featuredPane .card-image .price {
+  position: absolute;
+  top: 0;
+  margin: auto;
+  padding: 10px;
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+}
+#theFooter {
+/* background-color: $primaryColor */
+  background-color: #2d8668;
+  padding-top: 0px !important;
+  padding: 5px;
+  margin-bottom: 0px;
+  color: #fff;
+}
+#theFooter img {
+  cursor: pointer;
+  margin: 10px;
+  height: 30px;
+  width: 30px;
+}
+#theFooter #footerContainer {
+  margin-bottom: 0px;
+}
+@media screen and (max-width: 1000px) {
+  input {
+    font-size: 20px !important;
+  }
+  input[type="text"] {
+    width: 200px !important;
+  }
+}
+@media screen and (max-width: 900px) {
+  #menuDivContainer {
+    width: 50% !important;
+    margin-left: auto !important;
+    float: none !important;
+  }
+  #menuStepsContainer {
+    width: 100% !important;
+  }
+}
+@media screen and (max-width: 750px) {
+  input {
+    font-size: 15px !important;
+  }
+  input[type="text"] {
+    width: 125px !important;
+  }
+  .photoBanner {
+    top: 0px !important;
+  }
+}
+@media screen and (max-height: 500px) {
+  #formContainer {
+    top: 125px !important;
+  }
+}
