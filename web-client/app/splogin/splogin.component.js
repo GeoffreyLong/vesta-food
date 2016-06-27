@@ -6,7 +6,10 @@ angular.module('splogin').component('splogin', {
     }
 
     $scope.placeChanged = function() {
-
+      // This can be useful in gathering coordinates and whatnot
+      // This way we only have to poll once if coordinates are ever needed
+      // TODO add coords into the session object
+      // console.log(this.getPlace());
     }
 
     $scope.addressSearch = function(address) {

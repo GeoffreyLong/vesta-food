@@ -259,9 +259,7 @@ slick .slick-center {
 }
 #descriptionPanel {
   margin-top: 50px;
-}
-#storeReviews {
-  margin-top: 50px;
+  margin-bottom: 50px;
 }
 #storeReviews .altCard {
   background-color: #fff;
@@ -308,4 +306,14 @@ slick .slick-center {
   width: 500px;
   height: 350px;
   margin: auto;
+}
+#storeDescriptionEdit {
+  margin-left: 5%;
+  min-height: 150px;
+  width: 80%;
+}
+#addressEdit {
+  margin-left: 5px;
+/* Could probably do this better with some sort of layout managing */
+  width: 60%;
 }

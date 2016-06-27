@@ -1,6 +1,7 @@
 angular.module('storeEdit').component('storeEdit', {
   templateUrl: 'store-edit/store-edit.template.html',
-  controller: function StoreEditController($scope, $location, $http, $mdDialog, $mdMedia, dataService) {
+  controller: function StoreEditController($scope, $location, $http, $mdDialog, $mdMedia, 
+                                          dataService, NgMap) {
     // This will almost certainly be cached
     // TODO add in the dataService function
 
@@ -8,6 +9,10 @@ angular.module('storeEdit').component('storeEdit', {
     //      This is the same way as is done in app.config.js
     var re = new RegExp("\/store\/(.*)\/edit");
     var storeId = re.exec($location.path())[1];    
+
+    // Temporary seed locations
+    var tempLat = 45.508596;
+    var tempLng = -73.57496800000001;
     
     // Needed to pass to dialog
     dataService.setStore($scope.store);
@@ -16,10 +21,13 @@ angular.module('storeEdit').component('storeEdit', {
       $http.get('/api/store/' + storeId).then(function(store) {
         $scope.store = store.data;
 
+        // Temporary seed locations
+        $scope.store.pickupAddress.lat = tempLat;
+        $scope.store.pickupAddress.lng = tempLng;
+
         // Needed to pass to dialog
         dataService.setStore($scope.store);
       }, function(err) {
-        
       });;
     }
 
@@ -80,6 +88,17 @@ angular.module('storeEdit').component('storeEdit', {
       });
     };
 
+    // Callback to set the map after map initializes
+    NgMap.getMap().then(function(map) {
+      $scope.map = map;
+    });
+    $scope.placeChanged = function() {
+      // console.log(this.getPlace());
+      var place = this.getPlace();
+      var coords = place.geometry.location;
+      $scope.store.pickupAddress.lat = coords.lat();
+      $scope.store.pickupAddress.lng = coords.lng();
+    }
 
     /*
     this.savePhoto = function(file) {
