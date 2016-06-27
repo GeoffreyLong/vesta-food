@@ -1,6 +1,7 @@
 angular.module('storeFront').component('storeFront', {
   templateUrl: 'store-front/store-front.template.html',
-  controller: function StoreFrontController($scope, dataService, authService, $location, $http){
+  controller: function StoreFrontController($scope, dataService, authService, 
+                                            $location, $http, $mdBottomSheet){
     // TODO add in the dataService function for getting stores
     //      Something like dataService.getStore('storeId')
     //      This will also handle the db query below if it isn't found?
@@ -118,6 +119,32 @@ angular.module('storeFront').component('storeFront', {
       //      Or by forcing the template heavy via JS I think
       //      That's a later problem though
       $location.path($location.path() + '/edit');
+    }
+
+    $scope.showBottomSheet = function(ev){
+      console.log(ev);
+      // TODO the parent isn't the best one 
+      //      Perhaps it isn't resolving with the updated css for card
+      //      This would look better if squares were forced
+      //      Worry about styling then
+      // TODO
+      //      The clickOutsideToClose only happens in the local md-card
+      //      Either dynamically style it to pop up in the card (solving earlier issue)
+      //      or add a 'x' close button in it
+      //      of add some sort of onblur function
+      // TODO TODO
+      //      This gets all sorts of messed up when slick is engaged...
+      $mdBottomSheet.show({
+        templateUrl: 'store-front/bottom-sheet.template.html',
+        parent: ev.currentTarget.closest('md-card-actions'),
+        clickOutsideToClose: true,
+        controller: function BottomSheetController(){
+
+          
+        }
+      }).then(function(clickedItem) {
+        // $scope.alert = clickedItem['name'] + ' clicked!';
+      });
     }
   }
 });
