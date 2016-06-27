@@ -5,45 +5,47 @@
     Add in ability to add food items to the seller stuff
 --}}
 
-{{!-- TODO Restyle this messaging }}
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : {{fbAppId}},
-      xfbml      : true,
-      version    : 'v2.6'
-    });
-  };
+{{!-- TODO Restyle this messaging --}}
+<!--<script>-->
+  <!--window.fbAsyncInit = function() {-->
+    <!--FB.init({-->
+      <!--appId      : {{fbAppId}},-->
+      <!--xfbml      : true,-->
+      <!--version    : 'v2.6'-->
+    <!--});-->
+  <!--};-->
 
-  (function(d, s, id){
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) {return;}
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-</script>
+  <!--(function(d, s, id){-->
+    <!--var js, fjs = d.getElementsByTagName(s)[0];-->
+    <!--if (d.getElementById(id)) {return;}-->
+    <!--js = d.createElement(s); js.id = id;-->
+    <!--js.src = "//connect.facebook.net/en_US/sdk.js";-->
+    <!--fjs.parentNode.insertBefore(js, fjs);-->
+  <!--}(document, 'script', 'facebook-jssdk'));-->
+<!--</script>-->
 
-<div class="fb-page" 
-     data-href="https://www.facebook.com/vestaFood/" 
-     data-tabs="messages" 
-     data-width="400" 
-     data-height="300" 
-     data-small-header="true">
-  <div class="fb-xfbml-parse-ignore">
-    <blockquote></blockquote>
-  </div>
-</div>
+<!--<div class="fb-page" -->
+     <!--data-href="https://www.facebook.com/vestaFood/" -->
+     <!--data-tabs="messages" -->
+     <!--data-width="400" -->
+     <!--data-height="300" -->
+     <!--data-small-header="true">-->
+  <!--<div class="fb-xfbml-parse-ignore">-->
+    <!--<blockquote></blockquote>-->
+  <!--</div>-->
+<!--</div>-->
 
+{{!-- Toast container --}}
 <div class="row valign-wrapper" id="toaster">
   <div id="toast-container" class="valign center"> </div>
 </div>
 
+{{!-- Navbar --}}
 <nav id="theNav" class="navbar transparent z-depth-0" role="navigation">
   <div class="nav-wrapper container">
     <img id="brand-logo" src="/images/Vesta_Logo.png" alt="VESTA"/>
     <ul class="right">
-      <li><a id="infoA"> What is Vesta? </a></li>
+      <li><a id="infoA"> How It Works </a></li>
       <li><a id="infoB"> Become A Chef </a></li>
     </ul>
   </div>
@@ -54,7 +56,7 @@
   <div id="formContainer">
     <h4> The Online Marketplace for Homemade Food </h4>
 
-    {{!-- TODO convert to a FB like button }}
+    {{!-- TODO convert to a FB like button --}}
     <form action="/newsletter" method="post" id="emailForm">
       <input type="text" placeholder="Email Address" id="email" name="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'" data-rule-required="true" data-rule-email="true" data-msg-required="" data-msg-email=""/>
       <input type="submit" id="newsletterButton" value="Subscribe to our Menu!"/>
@@ -63,7 +65,6 @@
   
   </div>
 </div>
-
 
 {{!-- On Newsletter Survey --}}
 <div id="survey" class="modal modal-fixed-footer">
@@ -84,65 +85,88 @@
 </div>
 
 {{!-- Description of how the newsletter / catalogue works --}}
-<div id="newsletterPane" class="row">
-  <div class="row container center">
-    <br> 
-    <h4> How Vesta Works </h4>
-    <h6> 
-      The Vesta Marketpace connects you to our network of licensed and reviewed
-      local chefs. When you join our community, you can view our chefs' meals, 
-      place an order, and pick up your food right from them.
-      <br>
-      <br>
-      Experience the culinary genius of the people in your neighborhood! 
-    </h6>
-    <br>
-    <br>
-  </div>
-  <div class="row valign-wrapper" id="menuDivContainer">
-    <div>
-      <p> Example Menu </p>
-      <div class="col s2 center" id="menuDiv"> </div>
+
+<div id="howItWorksPane">
+    <div class="row container">
+        <div class="col s12 m4">
+            <div class="icon-block">
+                <h2 class="center"><i class="large material-icons">people</i></h2>
+                <h5 class="center">Discover</h5>
+                <p class="light center"> Discover homemade meals cooked in your neighborhood. </p>
+            </div>
+        </div>
+        <div class="col s12 m4">
+            <div class="icon-block">
+                <h2 class="center"><i class="large material-icons">people</i></h2>
+                <h5 class="center">Order</h5>
+                <p class="light center"> Order your food directly through the website. </p>
+            </div>
+        </div>
+
+        <div class="col s12 m4">
+            <div class="icon-block">
+                <h2 class="center"><i class="large material-icons">people</i></h2>
+                <h5 class="center">Eat</h5>
+                <p class="light center">Eat food at your neighbors house or stay and chat a while.</p>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="row container valign-wrapper" id="menuStepsContainer">
-    <div class="col s12 valign">
-      <div class="row valign-wrapper">
-        <div class="col center s4 valign">
-           <i class="medium material-icons">person_add</i> 
-        </div>
-        <div class="col s12 valign">
-          Subscribe to our menu using the <a class="emailFormLink"> email form </a> 
-        </div>
-      </div>
-      <div class="row valign-wrapper">
-        <div class="col center s4 valign">
-           <i class="medium material-icons">contact_mail</i> 
-        </div>
-        <div class="col s12 valign">
-          Reply to a weekly menu email to get a chef's contact information 
-        </div>
-      </div>
-      <div class="row valign-wrapper">
-        <div class="col center s4 valign">
-           <i class="medium material-icons">add_shopping_cart</i> 
-        </div>
-        <div class="col s12 valign">
-          Place an order with the chef and arrange a pickup 
-        </div>
-      </div>
-      <div class="row valign-wrapper">
-        <div class="col center s4 valign">
-           <i class="medium material-icons">local_restaurant</i> 
-        </div>
-        <div class="col s12 valign">
-          Enjoy your homecooked meal!
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 
+<!--<div id="newsletterPane" class="row">-->
+  <!--<div class="row container center">-->
+    <!--<br> -->
+    <!--<h4> How Vesta Works </h4>-->
+    <!--<h6> -->
+      <!--The Vesta Marketpace connects you to our network of licensed and reviewed-->
+      <!--local chefs. When you join our community, you can view our chefs' meals, -->
+      <!--place an order, and pick up your food right from them.-->
+      <!--<br>-->
+      <!--<br>-->
+      <!--Experience the culinary genius of the people in your neighborhood! -->
+    <!--</h6>-->
+    <!--<br>-->
+    <!--<br>-->
+  <!--</div>-->
+  <!--<div class="row container valign-wrapper" id="menuStepsContainer">-->
+    <!--<div class="col s12 valign">-->
+      <!--<div class="row valign-wrapper">-->
+        <!--<div class="col center s4 valign">-->
+           <!--<i class="medium material-icons">person_add</i> -->
+        <!--</div>-->
+        <!--<div class="col s12 valign">-->
+          <!--Subscribe to our menu using the <a class="emailFormLink"> email form </a> -->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="row valign-wrapper">-->
+        <!--<div class="col center s4 valign">-->
+           <!--<i class="medium material-icons">contact_mail</i> -->
+        <!--</div>-->
+        <!--<div class="col s12 valign">-->
+          <!--Reply to a weekly menu email to get a chef's contact information -->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="row valign-wrapper">-->
+        <!--<div class="col center s4 valign">-->
+           <!--<i class="medium material-icons">add_shopping_cart</i> -->
+        <!--</div>-->
+        <!--<div class="col s12 valign">-->
+          <!--Place an order with the chef and arrange a pickup -->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="row valign-wrapper">-->
+        <!--<div class="col center s4 valign">-->
+           <!--<i class="medium material-icons">local_restaurant</i> -->
+        <!--</div>-->
+        <!--<div class="col s12 valign">-->
+          <!--Enjoy your homecooked meal!-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+
+{{!-- --}}
 <div id="menuModal" class="modal">
   {{!-- TODO consider making a fixed header icon --}}
   <div class="right"> 
@@ -153,7 +177,7 @@
   </div>
 </div>
 
-
+{{!-- Add A Chef Pane--}}
 <div id="addChefPane">
   <div class="center triangleBanner">
     <h2> Create Culinary Experiences </h2>
@@ -172,13 +196,11 @@
     <div class="row center">
       <a id="becomeSeller" class="btn-large waves-effect waves-light"> Become A Chef </a>
     </div>
-    </div>
-    <br><br>
   </div>
-
+    <br>
+    <br>
 </div>
 
-{{!-- TODO change to facebook messaging client? }}
 {{!-- Become a Chef Modal --}}
 <div id="becomeChef" class="modal modal-fixed-footer">
   <form id="becomeChefForm">
@@ -333,115 +355,6 @@
   </div>
 
 </div>
-
-
-
-{{!-- featured chefs space --}}
-{{!-- Postponed till we have chefs
-<div id="featuredPane">
-  <div class="container">
-    <div class="strike">
-      <h2>FEATURED CHEFS</h2>
-    </div>
-    <div class="row valign-wrapper">
-      <div class="col s4 offset-s1 valign">
-        <div class="card">
-          <div class="card-image">
-            <div> 
-              <img class="activator" src="images/chef_1-1.png"> 
-              <p class="price"> $10 </p>
-            </div>
-            <div> 
-              <img class="activator" src="images/chef_1-2.jpg"> 
-              <p class="price"> $8 </p>
-            </div>
-            <div> 
-              <img class="activator" src="images/chef_1-3.jpeg"> 
-              <p class="price"> $15 </p>
-            </div>
-          </div>
-          <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-            <p><a href="#">This is a link</a></p>
-          </div>
-          <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-            <p>Here is some more information about this product that is only revealed once clicked on.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col s4 offset-s2 valign">
-        <div class="card">
-          <div class="card-image">
-            <div>
-              <img class="activator" src="images/chef_2-1.jpg">
-              <p class="price"> $10 </p>
-            </div>
-          </div>
-          <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-            <p><a href="#">This is a link</a></p>
-          </div>
-          <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-            <p>Here is some more information about this product that is only revealed once clicked on.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col s4 offset-s1">
-        <div class="card">
-          <div class="card-image">
-            <div>
-              <img class="activator" src="images/chef_3-1.jpg">
-              <p class="price"> $10 </p>
-            </div> 
-            <div>
-              <img class="activator" src="images/chef_3-2.jpg">
-              <p class="price"> $10 </p>
-            <div>
-            </div> 
-              <img class="activator" src="images/chef_3-3.jpg">
-              <p class="price"> $10 </p>
-            </div> 
-            <div>
-              <img class="activator" src="images/chef_3-4.jpg">
-              <p class="price"> $10 </p>
-            </div> 
-          </div>
-          <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-            <p><a href="#">This is a link</a></p>
-          </div>
-          <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-            <p>Here is some more information about this product that is only revealed once clicked on.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col s4 offset-s2">
-        <div class="card">
-          <div class="card-image waves-effect waves-block waves-light">
-            <div>
-              <img class="activator" src="images/chef_4-1.jpg">
-              <p class="price"> $10 </p>
-            </div>
-          </div>
-          <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-            <p><a href="#">This is a link</a></p>
-          </div>
-          <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-            <p>Here is some more information about this product that is only revealed once clicked on.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
---}}
 
 {{!-- Non-fixed footer
       Contains information such as the company name, copyright, contact,
