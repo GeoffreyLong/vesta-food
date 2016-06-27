@@ -177,123 +177,137 @@ md-sidenav
 
 
 /******************************** STORE FRONT ********************************/
-store-front
-  #editStore
-    position: fixed
-    bottom: 10px
-    right: 10px
-    z-index: 10
-    background-color: $alertColor
+#editStore
+  position: fixed
+  bottom: 10px
+  right: 10px
+  z-index: 10
+  background-color: $alertColor
 
-  #titleDiv
-    margin-top: 20px
+#titleDiv
+  margin-top: 20px
+  width: 80%
+  margin-left: auto
+  margin-right: auto
+
+  #titleRow
+    padding: 10px
+
+  img
+    /* Height of md-display-3 */
+    height: 56px
+    border-radius: 50%
+
+  #storeTitle
+    display:inline-block
+
+  #titleStars
+    /* If I want the stars to lie low on the line */
+    /* Height of md-display-3 */
+    padding-top: 20px 
+    .star
+      color: $starColor
+      /* NOTE for whatever reason, this adds an overflow-x to the body */
+      font-size: 36px
+      height: 36px
+      width: 36px
+
+  .underline
+    height: 5px;
+    background-color: $primaryColor
+
+/* 
+    NOTE this is mostly repeated from the stores-view slick
+    The foodImageInfo logic didn't recycle very well though
+    Should condense this logic later
+*/
+slick
+  *
+    min-height: 0
+    min-width: 0
+
+  /* arrow styling */
+  .slick-prev:before, .slick-next:before
+    font-family: 'Material Icons'
+    -webkit-font-feature-settings: 'liga'
+    color: lighten($primaryColor, 10%)
+    font-size: 40px
+  .slick-prev, .slick-next
+    z-index: 1
+  .slick-prev:before
+    content: "chevron_left"
+  .slick-next:before
+    content: "chevron_right"
+  .slick-prev
+    left: 0px
+  .slick-next
+    right: 0px
+
+  .slick-slide
+    transform: scale(0.6)
+    transition: all 0.5s
+  .slick-center
+    transform: scale(1)
+
+
+/* TODO change the current buttons so that they are large chevrons */
+
+.foodImageInfo
+  padding: 5px
+  background: rgba(0,0,0,0.3)
+  margin-bottom: -34px 
+  z-index: 1
+
+  .foodPrice
+    color: #FFFFFF
+    font-weight: bold
+  
+  .star
+    color: $starColor
+  
+#descriptionPanel
+  margin-top: 50px
+
+#storeReviews
+  margin-top: 50px
+  .altCard
+    background-color: #FFFFFF
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12)
+    margin: 10px
+    padding: 10px
     width: 80%
     margin-left: auto
     margin-right: auto
 
-    #titleRow
-      padding: 10px
-
-    img
-      /* Height of md-display-3 */
-      height: 56px
-      border-radius: 50%
-
-    #storeTitle
-      display:inline-block
-
-    #titleStars
-      /* If I want the stars to lie low on the line */
-      /* Height of md-display-3 */
-      padding-top: 20px 
-      .star
-        color: $starColor
-        /* NOTE for whatever reason, this adds an overflow-x to the body */
-        font-size: 36px
-        height: 36px
-        width: 36px
-
-    .underline
-      height: 5px;
-      background-color: $primaryColor
-
-  /* 
-      NOTE this is mostly repeated from the stores-view slick
-      The foodImageInfo logic didn't recycle very well though
-      Should condense this logic later
-  */
-  slick
-    *
-      min-height: 0
-      min-width: 0
-
-    /* arrow styling */
-    .slick-prev:before, .slick-next:before
-      font-family: 'Material Icons'
-      -webkit-font-feature-settings: 'liga'
-      color: lighten($primaryColor, 10%)
-      font-size: 40px
-    .slick-prev, .slick-next
-      z-index: 1
-    .slick-prev:before
-      content: "chevron_left"
-    .slick-next:before
-      content: "chevron_right"
-    .slick-prev
-      left: 0px
-    .slick-next
-      right: 0px
-
-    .slick-slide
-      transform: scale(0.6)
-      transition: all 0.5s
-    .slick-center
-      transform: scale(1)
-
-
-  /* TODO change the current buttons so that they are large chevrons */
-
-  .foodImageInfo
-    padding: 5px
-    background: rgba(0,0,0,0.3)
-    margin-bottom: -34px 
-    z-index: 1
-
-    .foodPrice
-      color: #FFFFFF
-      font-weight: bold
-    
-    .star
+    .profilePhotoDiv
+      vertical-align: top
+      width: 10%
+      display: inline-block
+      .profilePhoto
+        border-radius: 50%
+        height: 48px;
+        width: 48px;
+    .reviewStars .star
       color: $starColor
-    
-  #descriptionPanel
-    margin-top: 50px
 
-  #storeReviews
-    margin-top: 50px
-    .altCard
-      background-color: #FFFFFF
-      box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12)
-      margin: 10px
-      padding: 10px
-      width: 80%
-      margin-left: auto
-      margin-right: auto
+    .reviewContentContainer
+      display: inline-block;
+      width: 85%
+      .reviewComment
+        font-weight: 100
+        margin-top: 10px
 
-      .profilePhotoDiv
-        vertical-align: top
-        width: 10%
-        display: inline-block
-        .profilePhoto
-          border-radius: 50%
-          height: 48px;
-          width: 48px;
-      .reviewStars .star
-        color: $starColor
 
-      .reviewContentContainer
-        display: inline-block;
-        width: 85%
-        .reviewComment
-          font-weight: 100
-          margin-top: 10px
+/******************************** STORE EDIT ********************************/
+#imageCropDialog
+  min-height: 500px
+  min-width: 350px
+  #imageFileEntry
+    margin-top: 10px
+    margin-bottom: 10px
+  .cropArea 
+    background: #E4E4E4
+    overflow: hidden
+    width:500px
+    height:350px
+    margin: auto

@@ -1,1 +1,109 @@
-hello world!
+
+<md-button id="editStore" ng-if="checkOwnership()" ng-click="editStore()">
+  <md-icon class="material-icons"> edit </md-icon> Edit!
+</md-button>
+  
+
+
+<div id="titleDiv">
+  <div id="titleRow" layout="row" layout-align="space-between center">
+    <!-- TODO use ng-upload... work on this when doing the food photo upload -->
+    <img src="{{store.profilePhoto}}" alt="Profile Picture" ng-click="showConfirm($event)"/>
+    <span id="storeTitle" class="md-display-2"> 
+      <!-- Limit the store title to 25 characters -->
+      <input type="text" ng-model="store.storeTitle" maxlength="25"/>
+    </span>
+    <div id="titleStars"> 
+      <md-icon class="star material-icons" ng-repeat="star in $ctrl.getNumber(store.overallRating) track by $index"> star </md-icon>
+    </div>
+  </div>
+  <div class="underline" flex/>
+</div>
+
+<slick settings="slickConfig">
+  <div ng-repeat="food in store.foods">
+    <!--  
+          TODO  Consider putting the food image as a background image to the card 
+                this might facilitate sizing and text placement
+          TODO  Consider an ng-if fix to slick issues 
+                Then could style cards to be auto-margined to center 
+                if few food options and no slick
+    -->
+    <md-card>
+      <div class="foodImageInfo" layout="row" layout-align="space-between center">
+        <span class="foodPrice"> ${{food.price}} </span>
+        <span class="foodRating" align="right"> 
+          <md-icon class="star material-icons" ng-repeat="star in $ctrl.getNumber(food.overallRating) track by $index"> star </md-icon>
+        </span>
+      </div>
+      <img ng-src="{{food.photo}}" class="md-card-image" alt="Store Image">      
+      
+
+      <md-card-actions layout="row" layout-align="center center">
+        <md-button ng-click="">Add to Cart</md-button>
+      </md-card-actions>
+    </md-card>
+  </div>
+</slick>
+
+<!-- Descriptions and chef info -->
+<div id="descriptionPanel" layout="row" layout-align="center center" layout-xs="column" layout-sm="column">
+  <!-- 
+        TODO this might be too sparse to lay side by side with a map
+        See if I can add more content to this
+        Could add like a "most popular dish" or something
+        Maybe I could even dynamically place it given the size of the description
+  -->
+  <div flex>
+    <span class='md-title'> Store Description: </span>
+    {{store.description}}
+  </div>
+  <!-- TODO maps... Will take care of this with address verification in one shot -->
+  <div flex style="background-color:#123456">
+    <ng-map center="41,-87" zoom="14"></ng-map>
+  </div>
+</div>
+
+<!-- 
+      TODO for a later version 
+        we can add the dishes they had too
+-->
+<!-- Review Stuff -->
+<!-- An alternative way of doing this would be with lists
+      https://material.angularjs.org/1.0.9/demo/list -->
+<div id="storeReviews">
+  <div ng-repeat="review in storeReviews">
+    <div class="altCard">
+      <div class="profilePhotoDiv">
+        <!-- 
+              NOTE should probably get a stock image for no-photo people 
+              if we even allow that to happen
+        -->
+        <img ng-src="{{review.buyer.photo}}" class="profilePhoto md-card-image" alt="Profile Image" />      
+      </div>
+      <div class="reviewContentContainer">
+        <div class="reviewHeader" layout="row" layout-align="space-between end">
+          <div class='md-title'> {{review.buyer.displayName}} </div>
+          <!-- NOTE not sure if I like this not lining up with the other stars -->
+          <div class="reviewStars"> 
+            <md-icon class="star material-icons" ng-repeat="star in $ctrl.getNumber(review.overall) track by $index"> star </md-icon>
+          </div>
+          <div> {{review.date}} </div>
+        </div>
+        <div ng-if="review.comment" class="reviewComment">
+          {{review.comment}}
+        </div>
+        <!-- 
+              NOTE could alternatively just have slightly different styling
+              Could also just require a comment
+        -->
+        <div ng-if="!review.comment" class="reviewComment">
+          <i>
+            No Review Comment Given!
+          </i>
+        </div>
+
+    </div>
+    </div>
+  </div>
+</div>

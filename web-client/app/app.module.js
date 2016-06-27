@@ -4,6 +4,7 @@ angular.module('vestaApp', [
     'rzModule',
     'slickCarousel',
     'ngMap',
+    'ngImgCrop',
     'vestaNav',
     'storesView',
     'becomeChef',

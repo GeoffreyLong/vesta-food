@@ -11,6 +11,9 @@ var STRIPE_CLIENT_ID = 'ca_89GeQlhMVoUResS0PeQm6XuCs6hoXgze';
 var STRIPE_API_KEY = 'sk_test_an3Nezne8XguJAefiBJgNV63';
 var STRIPE_TOKEN_URI = 'https://connect.stripe.com/oauth/token';
 
+// TODO TODO
+//      Create a default "user" object with default photo and whatnot
+//      This will help for the "edit" phase
 
 //
 router.get('/:id', function(req, res) {

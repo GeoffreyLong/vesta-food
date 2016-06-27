@@ -164,100 +164,106 @@ md-sidenav .childElement {
   color: #fca345;
 }
 /******************************** STORE FRONT ********************************/
-store-front #editStore {
+#editStore {
   position: fixed;
   bottom: 10px;
   right: 10px;
   z-index: 10;
   background-color: #ea6e10;
 }
-store-front #titleDiv {
+#titleDiv {
   margin-top: 20px;
   width: 80%;
   margin-left: auto;
   margin-right: auto;
 }
-store-front #titleDiv #titleRow {
+#titleDiv #titleRow {
   padding: 10px;
 }
-store-front #titleDiv img {
+#titleDiv img {
 /* Height of md-display-3 */
   height: 56px;
   border-radius: 50%;
 }
-store-front #titleDiv #storeTitle {
+#titleDiv #storeTitle {
   display: inline-block;
 }
-store-front #titleDiv #titleStars {
+#titleDiv #titleStars {
 /* If I want the stars to lie low on the line */
 /* Height of md-display-3 */
   padding-top: 20px;
 }
-store-front #titleDiv #titleStars .star {
+#titleDiv #titleStars .star {
   color: #ea6e10;
 /* NOTE for whatever reason, this adds an overflow-x to the body */
   font-size: 36px;
   height: 36px;
   width: 36px;
 }
-store-front #titleDiv .underline {
+#titleDiv .underline {
   height: 5px;
   background-color: #00b36f;
 }
-store-front slick * {
+/* 
+    NOTE this is mostly repeated from the stores-view slick
+    The foodImageInfo logic didn't recycle very well though
+    Should condense this logic later
+*/
+slick * {
   min-height: 0;
   min-width: 0;
 }
-store-front slick .slick-prev:before,
-store-front slick .slick-next:before {
+slick .slick-prev:before,
+slick .slick-next:before {
   font-family: 'Material Icons';
   -webkit-font-feature-settings: 'liga';
   color: #00d484;
   font-size: 40px;
 }
-store-front slick .slick-prev,
-store-front slick .slick-next {
+slick .slick-prev,
+slick .slick-next {
   z-index: 1;
 }
-store-front slick .slick-prev:before {
+slick .slick-prev:before {
   content: "chevron_left";
 }
-store-front slick .slick-next:before {
+slick .slick-next:before {
   content: "chevron_right";
 }
-store-front slick .slick-prev {
+slick .slick-prev {
   left: 0px;
 }
-store-front slick .slick-next {
+slick .slick-next {
   right: 0px;
 }
-store-front slick .slick-slide {
+slick .slick-slide {
   transform: scale(0.6);
   transition: all 0.5s;
 }
-store-front slick .slick-center {
+slick .slick-center {
   transform: scale(1);
 }
-store-front .foodImageInfo {
+/* TODO change the current buttons so that they are large chevrons */
+.foodImageInfo {
   padding: 5px;
   background: rgba(0,0,0,0.3);
   margin-bottom: -34px;
   z-index: 1;
 }
-store-front .foodImageInfo .foodPrice {
+.foodImageInfo .foodPrice {
   color: #fff;
   font-weight: bold;
 }
-store-front .foodImageInfo .star {
+.foodImageInfo .star {
   color: #ea6e10;
 }
-store-front #descriptionPanel {
+#descriptionPanel {
   margin-top: 50px;
 }
-store-front #storeReviews {
+#storeReviews {
   margin-top: 50px;
 }
-store-front #storeReviews .altCard {
+#storeReviews .altCard {
   background-color: #fff;
   box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2), 0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12);
   margin: 10px;
@@ -266,24 +272,40 @@ store-front #storeReviews .altCard {
   margin-left: auto;
   margin-right: auto;
 }
-store-front #storeReviews .altCard .profilePhotoDiv {
+#storeReviews .altCard .profilePhotoDiv {
   vertical-align: top;
   width: 10%;
   display: inline-block;
 }
-store-front #storeReviews .altCard .profilePhotoDiv .profilePhoto {
+#storeReviews .altCard .profilePhotoDiv .profilePhoto {
   border-radius: 50%;
   height: 48px;
   width: 48px;
 }
-store-front #storeReviews .altCard .reviewStars .star {
+#storeReviews .altCard .reviewStars .star {
   color: #ea6e10;
 }
-store-front #storeReviews .altCard .reviewContentContainer {
+#storeReviews .altCard .reviewContentContainer {
   display: inline-block;
   width: 85%;
 }
-store-front #storeReviews .altCard .reviewContentContainer .reviewComment {
+#storeReviews .altCard .reviewContentContainer .reviewComment {
   font-weight: 100;
   margin-top: 10px;
+}
+/******************************** STORE EDIT ********************************/
+#imageCropDialog {
+  min-height: 500px;
+  min-width: 350px;
+}
+#imageCropDialog #imageFileEntry {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+#imageCropDialog .cropArea {
+  background: #e4e4e4;
+  overflow: hidden;
+  width: 500px;
+  height: 350px;
+  margin: auto;
 }
