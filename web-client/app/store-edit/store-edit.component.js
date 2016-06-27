@@ -100,6 +100,12 @@ angular.module('storeEdit').component('storeEdit', {
       $scope.store.pickupAddress.lng = coords.lng();
     }
 
+
+    $scope.saveChanges = function() {
+      // TALK
+      // Should I be saving these as I go along?
+      // Probably wouldn't be too difficult
+    }
     /*
     this.savePhoto = function(file) {
       var fd = new FormData();

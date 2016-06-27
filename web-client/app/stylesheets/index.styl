@@ -216,38 +216,38 @@ md-sidenav
     height: 5px;
     background-color: $primaryColor
 
-/* 
-    NOTE this is mostly repeated from the stores-view slick
-    The foodImageInfo logic didn't recycle very well though
-    Should condense this logic later
-*/
-slick
-  *
-    min-height: 0
-    min-width: 0
+  /* 
+      NOTE this is mostly repeated from the stores-view slick
+      The foodImageInfo logic didn't recycle very well though
+      Should condense this logic later
+  */
+  slick
+    *
+      min-height: 0
+      min-width: 0
 
-  /* arrow styling */
-  .slick-prev:before, .slick-next:before
-    font-family: 'Material Icons'
-    -webkit-font-feature-settings: 'liga'
-    color: lighten($primaryColor, 10%)
-    font-size: 40px
-  .slick-prev, .slick-next
-    z-index: 1
-  .slick-prev:before
-    content: "chevron_left"
-  .slick-next:before
-    content: "chevron_right"
-  .slick-prev
-    left: 0px
-  .slick-next
-    right: 0px
+    /* arrow styling */
+    .slick-prev:before, .slick-next:before
+      font-family: 'Material Icons'
+      -webkit-font-feature-settings: 'liga'
+      color: lighten($primaryColor, 10%)
+      font-size: 40px
+    .slick-prev, .slick-next
+      z-index: 1
+    .slick-prev:before
+      content: "chevron_left"
+    .slick-next:before
+      content: "chevron_right"
+    .slick-prev
+      left: 0px
+    .slick-next
+      right: 0px
 
-  .slick-slide
-    transform: scale(0.6)
-    transition: all 0.5s
-  .slick-center
-    transform: scale(1)
+    .slick-slide
+      transform: scale(0.6)
+      transition: all 0.5s
+    .slick-center
+      transform: scale(1)
 
 
 /* TODO change the current buttons so that they are large chevrons */
@@ -268,6 +268,9 @@ slick
 #descriptionPanel
   margin-top: 50px
   margin-bottom: 50px
+  #storeDescription
+    margin-left: 5%
+    width: 100%
 
 #storeReviews
   .altCard
@@ -299,6 +302,7 @@ slick
 
 
 /******************************** STORE EDIT ********************************/
+/* TODO some (or most) of this can be condensed with the storefront */
 #imageCropDialog
   min-height: 500px
   min-width: 350px
@@ -313,9 +317,8 @@ slick
     margin: auto
 
 #storeDescriptionEdit
-  margin-left: 5%
-  min-height: 150px
   width: 80%
+  min-height: 150px
 
 #addressEdit
   margin-left: 5px

@@ -16,7 +16,7 @@
   <div class="underline" flex/>
 </div>
 
-<slick settings="slickConfig">
+<slick settings="slickConfig" id="storeFrontSlick">
   <div ng-repeat="food in store.foods">
     <!--  
           TODO  Consider putting the food image as a background image to the card 
@@ -45,18 +45,22 @@
 <!-- Descriptions and chef info -->
 <div id="descriptionPanel" layout="row" layout-align="center center" layout-xs="column" layout-sm="column">
   <!-- 
-        TODO this might be too sparse to lay side by side with a map
+        NOTE this might be too sparse to lay side by side with a map
         See if I can add more content to this
         Could add like a "most popular dish" or something
         Maybe I could even dynamically place it given the size of the description
   -->
   <div flex>
     <span class='md-title'> Store Description: </span>
-    {{store.description}}
+    <div id="storeDescription">
+      {{store.description}}
+    </div>
   </div>
-  <!-- TODO maps... Will take care of this with address verification in one shot -->
-  <div flex style="background-color:#123456">
-    <ng-map center="41,-87" zoom="14"></ng-map>
+  <div flex>
+    <!-- NOTE not currently error handling -->
+    <ng-map center="{{store.pickupAddress.lat}}, {{store.pickupAddress.lng}}" zoom="14">
+      <marker position="{{store.pickupAddress.lat}}, {{store.pickupAddress.lng}}" title="Store Location"></marker> 
+    </ng-map>
   </div>
 </div>
 

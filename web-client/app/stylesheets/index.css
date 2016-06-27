@@ -176,6 +176,11 @@ md-sidenav .childElement {
   width: 80%;
   margin-left: auto;
   margin-right: auto;
+/* 
+      NOTE this is mostly repeated from the stores-view slick
+      The foodImageInfo logic didn't recycle very well though
+      Should condense this logic later
+  */
 }
 #titleDiv #titleRow {
   padding: 10px;
@@ -204,43 +209,38 @@ md-sidenav .childElement {
   height: 5px;
   background-color: #00b36f;
 }
-/* 
-    NOTE this is mostly repeated from the stores-view slick
-    The foodImageInfo logic didn't recycle very well though
-    Should condense this logic later
-*/
-slick * {
+#titleDiv slick * {
   min-height: 0;
   min-width: 0;
 }
-slick .slick-prev:before,
-slick .slick-next:before {
+#titleDiv slick .slick-prev:before,
+#titleDiv slick .slick-next:before {
   font-family: 'Material Icons';
   -webkit-font-feature-settings: 'liga';
   color: #00d484;
   font-size: 40px;
 }
-slick .slick-prev,
-slick .slick-next {
+#titleDiv slick .slick-prev,
+#titleDiv slick .slick-next {
   z-index: 1;
 }
-slick .slick-prev:before {
+#titleDiv slick .slick-prev:before {
   content: "chevron_left";
 }
-slick .slick-next:before {
+#titleDiv slick .slick-next:before {
   content: "chevron_right";
 }
-slick .slick-prev {
+#titleDiv slick .slick-prev {
   left: 0px;
 }
-slick .slick-next {
+#titleDiv slick .slick-next {
   right: 0px;
 }
-slick .slick-slide {
+#titleDiv slick .slick-slide {
   transform: scale(0.6);
   transition: all 0.5s;
 }
-slick .slick-center {
+#titleDiv slick .slick-center {
   transform: scale(1);
 }
 /* TODO change the current buttons so that they are large chevrons */
@@ -260,6 +260,10 @@ slick .slick-center {
 #descriptionPanel {
   margin-top: 50px;
   margin-bottom: 50px;
+}
+#descriptionPanel #storeDescription {
+  margin-left: 5%;
+  width: 100%;
 }
 #storeReviews .altCard {
   background-color: #fff;
@@ -292,6 +296,7 @@ slick .slick-center {
   margin-top: 10px;
 }
 /******************************** STORE EDIT ********************************/
+/* TODO some (or most) of this can be condensed with the storefront */
 #imageCropDialog {
   min-height: 500px;
   min-width: 350px;
@@ -308,9 +313,8 @@ slick .slick-center {
   margin: auto;
 }
 #storeDescriptionEdit {
-  margin-left: 5%;
-  min-height: 150px;
   width: 80%;
+  min-height: 150px;
 }
 #addressEdit {
   margin-left: 5px;
