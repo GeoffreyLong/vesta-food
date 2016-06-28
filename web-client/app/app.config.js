@@ -212,12 +212,17 @@ angular.module('vestaApp')
 
   this.storeData = null;
   this.editPhoto = null;
+  this.clonedStore = null
 
   this.setStore = function(store) {
     this.storeData = store;
+    this.clonedStore = jQuery.extend(true, {}, store);
   }
   this.getStore = function() {
     return this.storeData;
+  }
+  this.getClonedStore = function() {
+    return this.clonedStore;
   }
 
   // To set and retreive photos for editing

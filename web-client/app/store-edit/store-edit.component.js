@@ -27,17 +27,15 @@ angular.module('storeEdit').component('storeEdit', {
 
         // Needed to pass to dialog
         dataService.setStore($scope.store);
+        $scope.clonedStore = dataService.getClonedStore();
       }, function(err) {
       });;
     }
 
+
     this.getNumber = function(num) {
       return new Array(num);   
     }        
-    
-    this.showPanel = function(ev) {
-      console.log("ok");
-    }
     
     $scope.showConfirm = function(ev, photo, num) {
       // So we can retreive the photo in the new scope
@@ -116,11 +114,33 @@ angular.module('storeEdit').component('storeEdit', {
       $scope.store.pickupAddress.lng = coords.lng();
     }
 
+    // INTERESTING  passing in store and cloned store to this fn renders this useless
+    //              I guess the variable binding makes this so
+    $scope.checkEquality = function(){
+      return (JSON.stringify($scope.store) !== JSON.stringify($scope.clonedStore));
+    }
 
+    $scope.saveStoreInfo = function() {
+
+    }
+    $scope.saveFoodItem = function() {
+
+    }
     $scope.saveChanges = function() {
-      // TALK
-      // Should I be saving these as I go along?
-      // Probably wouldn't be too difficult
+      var data = $scope.store;
+      $http.post('/api/store/edit', data, {
+          withCredentials: true,
+          headers: {'Content-Type': undefined },
+          transformRequest: angular.identity
+      }).then(function(store) {
+        console.log(store);     
+      }, function(err){
+        console.log(err);
+      });
+    }
+
+    $scope.resetChanges = function() {
+      $scope.store = dataService.getClonedStore();
     }
     /*
     this.savePhoto = function(file) {

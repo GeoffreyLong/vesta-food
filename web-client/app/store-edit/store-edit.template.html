@@ -1,3 +1,7 @@
+<md-button ng-if="checkEquality()" id="saveChanges" ng-click="saveChanges()"> 
+  Save Changes
+</md-button>
+
 <span class="md-display-2"> Store Information </span>
 <div id="storeInfoEditDiv">
   <md-card class="editCard">
@@ -47,16 +51,6 @@
       </div>
     </div>
 
-    <md-card-actions layout="row" layout-align="end center">
-      <!-- 
-            NOTE perhaps a "preview changes"? 
-            A preview might be better for the whole store though
-            A preview just for this content doesn't make sense
-      -->
-      <md-button ng-click="">Reject Changes</md-button>
-      <md-button ng-click="">Save Changes</md-button>
-    </md-card-actions>
-  
   </md-card>
 </div>
 
@@ -119,8 +113,8 @@
         <md-button ng-click="">Delete Food</md-button>
       </div>
       <div>
-        <md-button ng-click="">Reject Changes</md-button>
-        <md-button ng-click="">Save Changes</md-button>
+        <md-button ng-if="$index != 0" ng-click="">Move Food Up</md-button>
+        <md-button ng-if="$index != store.foods.length-1" ng-click="">Move Food Down</md-button>
       </div>
     </md-card-actions>
   </md-card>
