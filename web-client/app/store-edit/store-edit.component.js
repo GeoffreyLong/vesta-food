@@ -198,6 +198,15 @@ angular.module('storeEdit').component('storeEdit', {
       // On the server, if a photo has been changed, 
       // then move this photo to tmp/ and the tmp/ photo to images
       var storeData = $scope.store;
+      $http.post('api/store/edit', {
+        data: storeData
+      }).then(function(data) {
+        var re = new RegExp("\/store\/(.*)\/edit");
+        var storeId = re.exec($location.path())[1];    
+        $location.path("/store/" + storeId);
+      }, function(err) {
+        // TODO error handling
+      });
     }
 
     $scope.resetChanges = function() {

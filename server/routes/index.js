@@ -141,7 +141,7 @@ module.exports = function(passport){
     store.foods.forEach(function(food){
       var oldPhoto = food.photo;
       food.photo = food.photo.replace("/tmp",  "");
-      updatePath(oldPhoto, store.photo);
+      updatePath(oldPhoto, food.photo);
     });
 
     var id = store._id;
@@ -162,15 +162,15 @@ module.exports = function(passport){
         // Move the photos to the tmp folder
         // Alternatively could use timestamps in the titles or in the db
         if (store.profilePhoto !== oldStore.profilePhoto){
-          console.log(oldStore.profilePhoto.spliceTmp());
-          updatePath(oldStore.profilePhoto, oldStore.profilePhoto.spliceTmp());
+          console.log(spliceTmp(oldStore.profilePhoto));
+          updatePath(oldStore.profilePhoto, spliceTmp(oldStore.profilePhoto));
         }
         oldStore.foods.forEach(function(oldFood){
           var found = store.foods.some(function(food){
             return food.photo === oldFood.photo;
           });
           if (!found) {
-            updatePath(oldStore.photo, oldStore.photo.spliceTmp());
+            updatePath(oldFood.photo, spliceTmp(oldFood.photo));
           }
         });
         console.log(store);
@@ -182,15 +182,15 @@ module.exports = function(passport){
   var updatePath = function(oldPath, newPath){
     oldPath = '../web-client/app' + oldPath;
     newPath = '../web-client/app' + newPath;
-    console.log(oldPath, newPath);
     if (oldPath !== newPath){
+      console.log(oldPath, newPath);
       fs.rename(oldPath, newPath, function(err) {
         if ( err ) console.log('ERROR: ' + err);
       });
     }
   }
-  var spliceTmp = function() {
-    return this.slice(0, 8) + "tmp/" + this.slice(8);
+  var spliceTmp = function(string) {
+    return string.slice(0, 8) + "tmp/" + string.slice(8);
   }
 
   /* POST for new sellers 
