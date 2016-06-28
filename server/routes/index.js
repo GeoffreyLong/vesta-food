@@ -13,6 +13,19 @@ module.exports = function(passport){
 
   var Stores = require('../models/store.js');
 
+  var multer = require('multer');
+  var storage = multer.diskStorage({
+    destination: function(req, file, cb){
+      cb(null, '../web-client/app/images/tmp/'); 
+    },
+    /* alternate way of handling tmps
+    filename: function(req, file, cb){
+      cb(null, 'TMP_' + Date.now());
+    }
+    */
+  });
+  var upload = multer({storage: storage});
+
   // var mongoose = require('mongoose');
   // var mongo = require('mongodb');
   //
@@ -103,7 +116,32 @@ module.exports = function(passport){
 
   });
 
+  router.post('/store/edit/photo', upload.any('file'), function(req, res) {
+    console.log(req.files);
+    var photo = req.files[0];
 
+    if (photo && photo.filename) {
+      res.status(200).send('/images/tmp/' + photo.filename);
+    }
+    else {
+      res.status(500).send('');
+    }
+  });
+
+  router.post('/store/edit', upload.any('file'), function(req, res) {
+    fs.rename('/path/to/Afghanistan.png', '/path/to/AF.png', function(err) {
+      if ( err ) console.log('ERROR: ' + err);
+    });
+    res.end();
+    /*
+    Stores.findByIdAndUpdate(req.body.data._id, function(err, store){
+      if (err) res.status(500).send(err);
+    
+      console.log(store);
+      res.status(200).send('ok');
+    });
+*/
+  });
 
   /* POST for new sellers 
    * Occurs when the user uses the 'become a seller' modal on the splash page

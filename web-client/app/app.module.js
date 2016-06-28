@@ -5,6 +5,7 @@ angular.module('vestaApp', [
     'slickCarousel',
     'ngMap',
     'ngImgCrop',
+    'ngFileUpload',
     'vestaNav',
     'storesView',
     'becomeChef',

@@ -1,7 +1,7 @@
 angular.module('storeEdit').component('storeEdit', {
   templateUrl: 'store-edit/store-edit.template.html',
   controller: function StoreEditController($scope, $location, $http, $mdDialog, $mdMedia, 
-                                          dataService, NgMap) {
+                                          dataService, NgMap, Upload, $q) {
     // This will almost certainly be cached
     // TODO add in the dataService function
 
@@ -85,15 +85,10 @@ angular.module('storeEdit').component('storeEdit', {
       .then(function(answer) {
         // NOTE might want to consider saving this here to the DB as a temp file
         if (answer) {
-          if ($scope.photoNum == 0) {
-            $scope.store.profilePhoto = answer;
-          }
-          else {
-            $scope.store.foods[$scope.photoNum-1].photo = answer;
-          }
+          $scope.saveTempImage(answer);
         }
       }, function() {
-        // Error?
+        // Error handling?
       });
       $scope.$watch(function() {
         return $mdMedia('xs') || $mdMedia('sm');
@@ -101,6 +96,78 @@ angular.module('storeEdit').component('storeEdit', {
         $scope.customFullscreen = (wantsFullScreen === true);
       });
     };
+
+    $scope.saveTempImage = function(tmpImage) {
+      // Send the photo to the backend, 
+      // get the callback, save the photo as the callback
+
+      // Intermediate save so the website looks responsive 
+      // Update the photo for the view
+      // NOTE This if else is repeated, should condense logic
+      if ($scope.photoNum == 0) {
+        $scope.store.profilePhoto = tmpImage;
+      }
+      else {
+        $scope.store.foods[$scope.photoNum-1].photo = tmpImage;
+      }
+
+
+      var image = $scope.blobConversion(tmpImage);
+
+      var photoData = {
+        image: image,
+      };
+      var fd = new FormData();
+      fd.append('file', photoData);
+
+      Upload.upload({
+        url: '/api/store/edit/photo',
+        headers : {
+            'Content-Type': 'multipart/form-data'
+        },
+        arrayKey: '',
+        data: photoData
+      }).then(function(data, status, headers, config){
+        if (data.status == 200) {
+          if ($scope.photoNum == 0) {
+            // Update the photo for the view
+            $scope.store.profilePhoto = data.data;
+          }
+          else {
+            $scope.store.foods[$scope.photoNum-1].photo = data.data;
+          }
+        }
+        else {
+          //TODO error handling
+        }
+      });
+
+    };
+
+    $scope.alternatePhotoSave = function() {
+      // NOTE
+      //      It is possible to upload all of the data in one shot
+      //      For each photo that has been altered, first convert it to a blob
+      //      then use the foodName / profilePhoto to label 
+      //      fd.append('<fieldName>', storeData);
+      //      For instance, if the food was chili then
+      //        fd.append('chili', storeData);
+      //      Then on the server you could pair each req.file fieldname
+      //      with the proper field in the store object
+      //      This would reduce server load, but I think it might be bad practice?
+
+    }
+
+    $scope.blobConversion = function(image) {
+      // Convert to a format useable with ng-file-upload 
+      var binary = atob(image.split(',')[1]);
+      var mimeString = image.split(',')[0].split(':')[1].split(';')[0];
+      var array = [];
+      for(var i = 0; i < binary.length; i++) {
+        array.push(binary.charCodeAt(i));
+      }
+      return new Blob([new Uint8Array(array)], {type: mimeString});
+    }
 
     // Callback to set the map after map initializes
     NgMap.getMap().then(function(map) {
@@ -127,16 +194,10 @@ angular.module('storeEdit').component('storeEdit', {
 
     }
     $scope.saveChanges = function() {
-      var data = $scope.store;
-      $http.post('/api/store/edit', data, {
-          withCredentials: true,
-          headers: {'Content-Type': undefined },
-          transformRequest: angular.identity
-      }).then(function(store) {
-        console.log(store);     
-      }, function(err){
-        console.log(err);
-      });
+      // Send everything to the backend
+      // On the server, if a photo has been changed, 
+      // then move this photo to tmp/ and the tmp/ photo to images
+      var storeData = $scope.store;
     }
 
     $scope.resetChanges = function() {
