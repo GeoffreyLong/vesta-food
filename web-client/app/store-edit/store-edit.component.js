@@ -77,7 +77,7 @@ angular.module('storeEdit').component('storeEdit', {
       })
       .then(function(answer) {
         // NOTE might want to consider saving this here to the DB as a temp file
-        $scope.store.profilePhoto = answer;
+        if (answer) $scope.store.profilePhoto = answer;
       }, function() {
         // Error?
       });

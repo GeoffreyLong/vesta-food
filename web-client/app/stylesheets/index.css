@@ -321,3 +321,12 @@ store-front slick .slick-center {
 /* Could probably do this better with some sort of layout managing */
   width: 60%;
 }
+.editCard {
+  padding: 20px 20px 0px 20px;
+}
+.editCard #profilePhotoEdit {
+/* Height of md-display-3 */
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
