@@ -6,6 +6,7 @@ module.exports = function(passport){
   var express = require('express');
   var router = express.Router();
   var request = require('request');
+  var fs = require('fs');
 
   // Get the correct configuration down
   var config = require('../../server/config');
@@ -128,20 +129,69 @@ module.exports = function(passport){
     }
   });
 
-  router.post('/store/edit', upload.any('file'), function(req, res) {
-    fs.rename('/path/to/Afghanistan.png', '/path/to/AF.png', function(err) {
-      if ( err ) console.log('ERROR: ' + err);
+  router.post('/store/edit', function(req, res) {
+    // TODO check for possible errors with the asynchronous fs updates
+    //      Could do fs.renameSynch if I don't trust the code
+    var store = req.body.data;
+
+    var oldProfPath = store.profilePhoto;
+    store.profilePhoto = store.profilePhoto.replace("/tmp", ""); 
+    updatePath(oldProfPath, store.profilePhoto);
+
+    store.foods.forEach(function(food){
+      var oldPhoto = food.photo;
+      food.photo = food.photo.replace("/tmp",  "");
+      updatePath(oldPhoto, store.photo);
     });
-    res.end();
-    /*
-    Stores.findByIdAndUpdate(req.body.data._id, function(err, store){
-      if (err) res.status(500).send(err);
-    
-      console.log(store);
-      res.status(200).send('ok');
+
+    var id = store._id;
+    delete store._id;
+   
+    // {new: false} is unnecessary as it is already false by default
+    // I just wanted to emphasize that the object returned is the old object in the db
+    // This is so the old photos can be moved to tmp
+    Stores.findByIdAndUpdate(id, store, {new: false}, function(err, oldStore){
+      // UNKN
+      //      For whatever reason, res.send was not calling res.end 
+      //      and the next one was called resulting in an error
+      if (err) {
+        console.log(err);
+        res.status(500).send(err);
+      }
+      else {
+        // Move the photos to the tmp folder
+        // Alternatively could use timestamps in the titles or in the db
+        if (store.profilePhoto !== oldStore.profilePhoto){
+          console.log(oldStore.profilePhoto.spliceTmp());
+          updatePath(oldStore.profilePhoto, oldStore.profilePhoto.spliceTmp());
+        }
+        oldStore.foods.forEach(function(oldFood){
+          var found = store.foods.some(function(food){
+            return food.photo === oldFood.photo;
+          });
+          if (!found) {
+            updatePath(oldStore.photo, oldStore.photo.spliceTmp());
+          }
+        });
+        console.log(store);
+        res.status(200).send("");
+      }
     });
-*/
   });
+
+  var updatePath = function(oldPath, newPath){
+    oldPath = '../web-client/app' + oldPath;
+    newPath = '../web-client/app' + newPath;
+    console.log(oldPath, newPath);
+    if (oldPath !== newPath){
+      fs.rename(oldPath, newPath, function(err) {
+        if ( err ) console.log('ERROR: ' + err);
+      });
+    }
+  }
+  var spliceTmp = function() {
+    return this.slice(0, 8) + "tmp/" + this.slice(8);
+  }
 
   /* POST for new sellers 
    * Occurs when the user uses the 'become a seller' modal on the splash page
