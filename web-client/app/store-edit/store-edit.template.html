@@ -11,7 +11,7 @@
           <div layout="row" layout-align="start center">
             <div><span class='md-title'> Profile image: </span></div>
             <div>
-              <img id="profilePhotoEdit" src="{{store.profilePhoto}}" alt="Profile Picture" ng-click="showConfirm($event)"/>
+              <img id="profilePhotoEdit" src="{{store.profilePhoto}}" alt="Profile Picture" ng-click="showConfirm($event, store.profilePhoto, 0)"/>
             </div>
           </div>
         </div>
@@ -61,7 +61,7 @@
 </div>
 
 <span class="md-display-2"> Food Items </span>
-<div ng-repeat="food in store.foods" id="foodEditDiv">
+<div ng-repeat="food in store.foods track by $index" id="foodEditDiv">
   <md-card class="editCard">
     <div class="innerEditDiv"> 
       <div layout="row" layout-align="center center" layout-xs="column" layout-sm="column">
@@ -91,7 +91,7 @@
           <br>
           <br>
           <span class="md-title"> Food Photo: </span>
-          <md-button ng-click="editFoodPhoto(food.photo)">
+          <md-button ng-click="showConfirm($event, food.photo, $index+1)">
             Edit
           </md-button>
         </div>

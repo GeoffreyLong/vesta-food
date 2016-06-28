@@ -211,12 +211,21 @@ angular.module('vestaApp')
   // Should probably always keep the person's store cached
 
   this.storeData = null;
+  this.editPhoto = null;
 
   this.setStore = function(store) {
     this.storeData = store;
   }
-  this.getStore = function(store) {
+  this.getStore = function() {
     return this.storeData;
+  }
+
+  // To set and retreive photos for editing
+  this.setEditPhoto = function(photo){
+    this.editPhoto = photo;
+  }
+  this.getEditPhoto = function(){
+    return this.editPhoto;
   }
 })
 .service('locationService', function() {

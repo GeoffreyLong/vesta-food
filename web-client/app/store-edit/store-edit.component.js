@@ -39,16 +39,25 @@ angular.module('storeEdit').component('storeEdit', {
       console.log("ok");
     }
     
-    $scope.showConfirm = function(ev) {
+    $scope.showConfirm = function(ev, photo, num) {
+      // So we can retreive the photo in the new scope
+      dataService.setEditPhoto(photo);
+      
+      // TODO fix this hack
+      //      Need to be able to pass in a field 
+      //      that can be updated in the "then" callback.
+      //      The then works if I do something like $scope.store.profilePhoto = answer
+      //      but this is not extensible
+      $scope.photoNum = num;
+
       var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
       $mdDialog.show({
         controller: function DialogController(dataService, $scope, $mdDialog){
-          var store = dataService.getStore();
-          $scope.myImage = store.profilePhoto;
+          var photo = dataService.getEditPhoto();
+          $scope.myImage = photo;
           $scope.myCroppedImage='';
 
           $scope.handleFileSelect = function(files) {
-            console.log("ok");
             var file = files[0];
             var reader = new FileReader();
             reader.onload = function (evt) {
@@ -77,7 +86,14 @@ angular.module('storeEdit').component('storeEdit', {
       })
       .then(function(answer) {
         // NOTE might want to consider saving this here to the DB as a temp file
-        if (answer) $scope.store.profilePhoto = answer;
+        if (answer) {
+          if ($scope.photoNum == 0) {
+            $scope.store.profilePhoto = answer;
+          }
+          else {
+            $scope.store.foods[$scope.photoNum-1].photo = answer;
+          }
+        }
       }, function() {
         // Error?
       });
