@@ -192,12 +192,21 @@ h4 {
 #infoPane {
   position: relative;
   width: 100%;
+  /*color: #fca345;*/
 }
 #infoPane h2 {
   color: #fca345;
 }
-#infoPane .icon-block {
-  margin: 10px;
+.icon-block {
+  overflow: hidden;
+  width: 90%;
+}
+/*Icon color*/
+.icon-block i {
+  color: #fca345;
+}
+#emailButton {
+  background-color: #fca345;
 }
 .arrow-down {
   display: inline-block;

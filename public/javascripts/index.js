@@ -2,8 +2,8 @@ $(document).ready(function(){
   ////////////////////////////////////////////////////////////////////////////
                     /********** Header Scrolling **********/
   ////////////////////////////////////////////////////////////////////////////
-  $(document).on('scroll', function (e) { 
-    updateHeader(); 
+  $(document).on('scroll', function (e) {
+    updateHeader();
   });
   function updateHeader() {
     var o = $(document).scrollTop() / ($('#splashPane').height() - $('nav').height());

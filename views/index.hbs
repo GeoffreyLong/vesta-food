@@ -44,62 +44,76 @@
 <div id="splashPane">  
   <div id="formContainer">
     <h4> The Online Marketplace for Homemade Food </h4>
-
-    {{!-- TODO convert to a FB like button --}}
-    <form action="/newsletter" method="post" id="emailForm">
-      <input type="text" placeholder="Email Address" id="email" name="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'" data-rule-required="true" data-rule-email="true" data-msg-required="" data-msg-email=""/>
-      <input type="submit" id="newsletterButton" value="Subscribe to our Menu!"/>
-    </form>
-  
-  
   </div>
 </div>
 
-{{!-- On Newsletter Survey --}}
-<div id="survey" class="modal modal-fixed-footer">
-  <div class="modal-content">
+<div class="container">
+  <div id="howItWorksPane" class="section">
     <div class="row">
-      <div class="col s6"> 
-        <h4>Modal Header</h4>
+      <div class="col s12 m4">
+        <div class="icon-block">
+          <h2 class="center"><i class="large material-icons">people</i></h2>
+          <h5 class="center">Discover</h5>
+          <p class="light center"> Discover homemade meals cooked in your neighborhood. </p>
+        </div>
       </div>
-      <div class="right"> 
-        <i class="small material-icons modal-action modal-close waves-effect waves-red">close</i>
+      <div class="col s12 m4">
+        <div class="icon-block">
+          <h2 class="center"><i class="large material-icons">payment</i></h2>
+          <h5 class="center">Order</h5>
+          <p class="light center"> Order your food directly through Vesta's web application. </p>
+        </div>
+      </div>
+      <div class="col s12 m4">
+        <div class="icon-block">
+          <h2 class="center"><i class="large material-icons">restaurant_menu</i></h2>
+          <h5 class="center">Eat</h5>
+          <p class="light center">Pickup food from your neighbors house or stay and chat while you eat.</p>
+        </div>
       </div>
     </div>
-
   </div>
-  <div class="modal-footer">
-    <a id="surveyAgree" class="waves-effect waves-green btn-flat">Submit</a>
-  </div>
-</div>
 
-{{!-- Description of how the newsletter / catalogue works --}}
+  <div class="divider"></div>
 
-<div id="howItWorksPane">
-    <div class="row container">
-        <div class="col s12 m4">
-            <div class="icon-block">
-                <h2 class="center"><i class="large material-icons">people</i></h2>
-                <h5 class="center">Discover</h5>
-                <p class="light center"> Discover homemade meals cooked in your neighborhood. </p>
-            </div>
+  <div id="infoPane" class="section">
+    <div class="section no-pad-bot" id="index-banner">
+      <div class="row center">
+        <h5 class="center">Start Discovering Homemade Food Now</h5>
+        <p class="center light"> The Vesta application is still under development and will be completed in July, 2016! While our app is under development, check out who's sharing homemade food on our facebook page!
+        </p>
+      </div>
+      <div class="row center">
+        <div class="fb-page"
+             data-href="https://www.facebook.com/vestafood"
+             data-width="500"
+             data-hide-cover="false"
+             data-tabs="events"
+             data-show-facepile="true">
         </div>
-        <div class="col s12 m4">
-            <div class="icon-block">
-                <h2 class="center"><i class="large material-icons">people</i></h2>
-                <h5 class="center">Order</h5>
-                <p class="light center"> Order your food directly through the website. </p>
-            </div>
-        </div>
-
-        <div class="col s12 m4">
-            <div class="icon-block">
-                <h2 class="center"><i class="large material-icons">people</i></h2>
-                <h5 class="center">Eat</h5>
-                <p class="light center">Eat food at your neighbors house or stay and chat a while.</p>
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div id="becomeChef" class="section">
+    <div class="row">
+      <div class="col s12">
+        <h5 class="center">Become a Chef</h5>
+        <p class="center light"> If you are interested in sharing your homemade food with your community, we'd love to work with you. Just shoot us a one sentence email that tells us what you like to cook and we'll get back to you shortly! While our app is under development, we organize chef events through our facebook page. </p>
+      </div>
+    </div>
+    <div class="row section center-align">
+        <a id="emailButton"
+           class="btn waves-effect"
+           href="mailto:charlie@vestafood.ca?Subject=Cooking%20with%20Vesta%Food!">
+          <i class="material-icons right">email</i>
+            Send us an email!
+        </a>
+    </div>
+  </div>
+
 </div>
 
 {{!-- --}}
@@ -114,149 +128,33 @@
 </div>
 
 {{!-- Add A Chef Pane--}}
-<div id="addChefPane">
-  <div class="center triangleBanner">
-    <h2> Create Culinary Experiences </h2>
-    <div class="arrow-down"></div>
-  </div>
+<!--<div id="addChefPane">-->
+  <!--<div class="center triangleBanner">-->
+    <!--<h2> Create Culinary Experiences </h2>-->
+    <!--<div class="arrow-down"></div>-->
+  <!--</div>-->
 
-  <div class="container photoBanner">
-    <div class="row center valign-wrapper">
-      <h5 class="header col s10 offset-s1 light valign"> 
-        Live in Montreal? Have a passion for creating delicious meals? 
-        <br>
-        Join the Vesta community of chefs!
-        <br>
-      </h5>
-    </div>
-    <div class="row center">
-      <a id="becomeSeller" class="btn-large waves-effect waves-light"> Become A Chef </a>
-    </div>
-  </div>
-    <br>
-    <br>
-</div>
+  <!--<div class="container photoBanner">-->
+    <!--<div class="row center valign-wrapper">-->
+      <!--<h5 class="header col s10 offset-s1 light valign"> -->
+        <!--Live in Montreal? Have a passion for creating delicious meals? -->
+        <!--<br>-->
+        <!--Join the Vesta community of chefs!-->
+        <!--<br>-->
+      <!--</h5>-->
+    <!--</div>-->
+    <!--<div class="row center">-->
+      <!--<a id="becomeSeller" class="btn-large waves-effect waves-light"> Become A Chef </a>-->
+    <!--</div>-->
+  <!--</div>-->
+    <!--<br>-->
+    <!--<br>-->
+<!--</div>-->
 
 {{!-- Become a Chef Modal --}}
-<div id="becomeChef" class="modal modal-fixed-footer">
-  <form id="becomeChefForm">
-    <div class="modal-content">
-      <div class="row">
-        <div class="col s6"> 
-          <h4>Become a Chef</h4>
-        </div>
-        <div class="right"> 
-          <i class="small material-icons modal-action modal-close waves-effect waves-red">close</i>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s6">
-          <i class="material-icons prefix" id="chefNameIcon">account_circle</i>
-          <input id="chefFirst" type="text" class="validate" data-rule-required="true" data-msg-required="" data-error-message="First Name is Required">
-          <label for="icon_prefix">First Name</label>
-        </div>
-        <div class="input-field col s6">
-          <input id="chefLast" type="text" class="validate" data-rule-required="true" data-msg-required="" data-error-message="Last Name is Required">
-          <label for="icon_prefix">Last Name</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s6">
-          <i class="material-icons prefix">email</i>
-          <input id="chefEmail" type="email" class="validate" data-rule-required="true" data-rule-email="true" data-msg-required="" data-msg-email="" data-error-message="Invalid Email">
-          <label for="icon_email">Email</label>
-        </div>
-        {{!-- NOTE the validator also supports phoneUS --}}
-        <div class="input-field col s6">
-          <i class="material-icons prefix">phone</i>
-          <input id="chefPhone" type="tel" class="validate" data-rule-required="true" data-rule-phoneUS="true" data-msg-required="" data-msg-phoneUS="" data-error-message="Invalid Phone">
-          <label for="icon_telephone">XXX-XXX-XXXX</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <i class="material-icons prefix">store</i>
-          {{!-- <i class="material-icons prefix">place</i> --}}
-          <input id="chefAddress" type="text" class="validate" data-rule-required="true" data-msg-required="" data-error-message="Address is Required">
-          <label for="icon_location">Desired Pickup Location</label>
-        </div>
-      </div>
-      {{!-- TODO when we start taking IDs
-      <div class="row">
-        <div class="file-field input-field">
-          <div class="btn">
-            <span>File</span>
-            <input type="file">
-          </div>
-          <div class="file-path-wrapper">
-            <input class="chefId validate" type="text" placeholder="Government Issued ID">
-          </div>
-        </div>
-      </div>
-      --}}
-      {{!-- TODO add this
-      <div class="row">
-        <h5> Avalabilities: </h5>
-      </div>
-      <div class="row">
-        <div class="valign-wrapper" id="availability">
-          <i class="left material-icons valign small" id="addAvailability">add</i>
-          <div class="valign input-field col s6">
-            <i class="material-icons prefix">date_range</i>
-            <input id="chefPhone" type="date" class="datepicker">
-          </div>
-          <div class="valign input-field col s6">
-            <i class="material-icons prefix">alarm</i>
-            <input class="chefTime" type="tel" class="validate">
-            <label for="icon_telephone">Telephone</label>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s6">
-          <i class="material-icons prefix">phone</i>
-          <input id="chefPhone" type="tel" class="validate">
-          <label for="icon_telephone">Telephone</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s6">
-          <i class="material-icons prefix">phone</i>
-          <input id="chefPhone" type="tel" class="validate">
-          <label for="icon_telephone">Telephone</label>
-        </div>
-      </div>
-      --}}
-    </div>
-   
 
-    <div class="modal-footer">
-      <input type="submit" id="chefSubmit" class="waves-effect waves-green btn-flat" />
-    </div>
-  </form>
-</div>
 
 {{!-- Who we are / what we do --}}
-<div id="infoPane">
-  <div class="section no-pad-bot" id="index-banner">
-    <div class="container">
-      <div class="row center">
-        <h5 class="header col s12 light"> We will have a completed web application in July, 2016. In the meantime, check out our chefs' upcoming events on our facebook page!
-        </h5>
-      </div>
-      <br><br>
-      <div class="row center">
-        <div class="fb-page"
-             data-href="https://www.facebook.com/vestafood"
-             data-width="500"
-             data-hide-cover="false"
-             data-tabs="events"
-             data-show-facepile="true">
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 {{!-- Non-fixed footer
