@@ -212,12 +212,16 @@ store-front
       transform: scale(1)
 
 
-#editStore
+.importantFixedDiv
   position: fixed
   bottom: 10px
   right: 10px
   z-index: 10
-  background-color: $alertColor
+  .importantFixedButton
+    background-color: $alertColor
+  /* Override default hover behaviour */
+  .importantFixedButton:hover
+    background-color: $alertColor
 
 
 #titleDiv
@@ -336,3 +340,16 @@ store-front
     width: 100px
     border-radius: 50%
 
+#addFoodDiv
+  md-card
+    padding: 20px
+    transition: all 1s ease
+  md-card:hover
+    /* TODO fix the color and possibly the onclick border */
+    background-color: $alertColor
+  color: $primaryColor
+  md-icon
+    color: $primaryColor
+    font-weight: bold
+    height: 40px
+    font-size: 40px

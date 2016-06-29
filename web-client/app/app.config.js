@@ -1,3 +1,10 @@
+// TODO (I guess I will put app wide TODOs here)
+//      Might want to separate the images that are user generated 
+//      from those that are for the website (logos, default profiles, etc) in the directories. 
+//      Could consider putting the app ones on client and user on server
+//      This would certainly avoid the current madness of referencing 
+//      web-client from the server to save images
+
 angular.module('vestaApp')
 .config(['$mdThemingProvider', '$locationProvider', '$routeProvider', '$httpProvider',
   function config($mdThemingProvider, $locationProvider, $routeProvider, $httpProvider) {

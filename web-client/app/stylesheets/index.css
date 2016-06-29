@@ -203,11 +203,17 @@ store-front slick .slick-slide {
 store-front slick .slick-center {
   transform: scale(1);
 }
-#editStore {
+.importantFixedDiv {
   position: fixed;
   bottom: 10px;
   right: 10px;
   z-index: 10;
+/* Override default hover behaviour */
+}
+.importantFixedDiv .importantFixedButton {
+  background-color: #ea6e10;
+}
+.importantFixedDiv .importantFixedButton:hover {
   background-color: #ea6e10;
 }
 #titleDiv {
@@ -329,4 +335,21 @@ store-front slick .slick-center {
   height: 100px;
   width: 100px;
   border-radius: 50%;
+}
+#addFoodDiv {
+  color: #00b36f;
+}
+#addFoodDiv md-card {
+  padding: 20px;
+  transition: all 1s ease;
+}
+#addFoodDiv md-card:hover {
+/* TODO fix the color and possibly the onclick border */
+  background-color: #ea6e10;
+}
+#addFoodDiv md-icon {
+  color: #00b36f;
+  font-weight: bold;
+  height: 40px;
+  font-size: 40px;
 }

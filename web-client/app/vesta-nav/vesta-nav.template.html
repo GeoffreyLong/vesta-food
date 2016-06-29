@@ -25,10 +25,16 @@
         <md-menu-item class="md-indent">
           <md-icon class="material-icons"> store </md-icon>
           <md-button ng-if="$ctrl.session.user.storeId" href="#!/store/{{$ctrl.session.user.storeId}}">
-            Visit / Edit your Store
+            Visit your Store
           </md-button>
           <md-button ng-if="!$ctrl.session.user.storeId" href="#!/becomeAChef">
             Create a Storefront
+          </md-button>
+        </md-menu-item>
+        <md-menu-item ng-if="$ctrl.session.user.storeId" class="md-indent">
+          <md-icon class="material-icons"> edit </md-icon>
+          <md-button ng-if="$ctrl.session.user.storeId" href="#!/store/{{$ctrl.session.user.storeId}}/edit">
+            Edit your Store
           </md-button>
         </md-menu-item>
         <md-menu-item class="md-indent">

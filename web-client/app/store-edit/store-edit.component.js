@@ -120,6 +120,8 @@ angular.module('storeEdit').component('storeEdit', {
       var fd = new FormData();
       fd.append('file', photoData);
 
+      // Can add progress which is kindof cool 
+      //    .progress(function(evt) { parseInt(100.0 * evt.loaded / evt.total); });
       Upload.upload({
         url: '/api/store/edit/photo',
         headers : {
@@ -212,45 +214,17 @@ angular.module('storeEdit').component('storeEdit', {
     $scope.resetChanges = function() {
       $scope.store = dataService.getClonedStore();
     }
-    /*
-    this.savePhoto = function(file) {
-      var fd = new FormData();
-      //Take the first selected file
-      fd.append("file", files[0]);
-
-      $http.post(uploadUrl, fd, {
-          withCredentials: true,
-          headers: {'Content-Type': undefined },
-          transformRequest: angular.identity
-      }).success( ...all right!... ).error( ..damn!... );
-    })
-    */
 
 
-    /*  IF I WANT TO GO WITH NG-FILE-UPLOAD
-    //inject angular file upload directives and service.
-    angular.module('myApp', ['angularFileUpload']);
-
-    var MyCtrl = [ '$scope', '$upload', function($scope, $upload) {
-      $scope.onFileSelect = function($files) {
-        //$files: an array of files selected, each file has name, size, and type.
-        for (var i = 0; i < $files.length; i++) {
-          var file = $files[i];
-          $scope.upload = $upload.upload({
-            url: 'server/upload/url', //upload.php script, node.js route, or servlet url
-            data: {myObj: $scope.myModelObj},
-            file: file,
-          }).progress(function(evt) {
-            console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
-          }).success(function(data, status, headers, config) {
-            // file is uploaded successfully
-            console.log(data);
-          });
-        }
-      };
-    }];
-    */
-
-
+    $scope.addFood = function() {
+      // TODO should avoid the client adding multiple of these dummy fields
+      //      possibly by putting things like <> in the name which is prohibited elsewise
+      // NOTE could make the transition a bit swankier... 
+      //      like scroll down with the add button
+      var newFood = {
+        // I could put things like default photos in here...
+      }
+      $scope.store.foods.push(newFood);
+    }
   }
 });
