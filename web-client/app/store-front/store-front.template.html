@@ -61,6 +61,7 @@
   </div>
   <div flex>
     <!-- NOTE not currently error handling -->
+    <!-- NOTE could add in the current user location -->
     <ng-map center="{{store.pickupAddress.lat}}, {{store.pickupAddress.lng}}" zoom="14">
       <marker position="{{store.pickupAddress.lat}}, {{store.pickupAddress.lng}}" title="Store Location"></marker> 
     </ng-map>

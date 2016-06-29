@@ -50,10 +50,11 @@ angular.module('storeEdit').component('storeEdit', {
 
       var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
       $mdDialog.show({
-        controller: function DialogController(dataService, $scope, $mdDialog){
+        controller: function DialogController(dataService, $scope, $mdDialog, locals){
           var photo = dataService.getEditPhoto();
           $scope.myImage = photo;
           $scope.myCroppedImage='';
+          $scope.photoNum = locals.photoNum;
 
           $scope.handleFileSelect = function(files) {
             var file = files[0];
@@ -80,10 +81,12 @@ angular.module('storeEdit').component('storeEdit', {
         parent: angular.element(document.body),
         targetEvent: ev,
         clickOutsideToClose:true,
-        fullscreen: useFullScreen
+        fullscreen: useFullScreen,
+        locals: { photoNum: $scope.photoNum }
       })
       .then(function(answer) {
         // NOTE might want to consider saving this here to the DB as a temp file
+        console.log(answer);
         if (answer) {
           $scope.saveTempImage(answer);
         }

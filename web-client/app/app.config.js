@@ -229,7 +229,7 @@ angular.module('vestaApp')
     return this.storeData;
   }
   this.getClonedStore = function() {
-    return this.clonedStore;
+    return jQuery.extend(true, {}, this.clonedStore);
   }
 
   // To set and retreive photos for editing
