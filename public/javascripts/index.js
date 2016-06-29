@@ -30,21 +30,21 @@ $(document).ready(function(){
   ////////////////////////////////////////////////////////////////////////////
                       /********** Header Links **********/
   ////////////////////////////////////////////////////////////////////////////
-  $('#infoA').on('click', function(){
+  $('#howItWorks').on('click', function(){
     $('html, body').animate({
         scrollTop: $('#howItWorksPane').offset().top - $('.navbar').height() + 1
     }, 500);
     return false;
   });
-  $('#infoB').on('click', function(){
+  $('#upcomingEvents').on('click', function(){
     $('html, body').animate({
-        scrollTop: $('#addChefPane').offset().top - $('.navbar').height() + 1
+        scrollTop: $('#infoPane').offset().top - $('.navbar').height() + 1
     }, 500);
     return false;
   });
-  $('#infoC').on('click', function(){
+  $('#becomeAChef').on('click', function(){
     $('html, body').animate({
-      scrollTop: $('#infoPane').offset().top - $('.navbar').height() + 1
+      scrollTop: $('#becomeChefPane').offset().top - $('.navbar').height() + 1
     }, 500);
     return false;
   });
