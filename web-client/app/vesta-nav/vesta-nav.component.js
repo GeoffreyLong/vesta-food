@@ -1,6 +1,7 @@
 angular.module('vestaNav').component('vestaNav', {
   templateUrl: 'vesta-nav/vesta-nav.template.html',
-  controller: function VestaNavController($scope, $mdSidenav, authService, $location, $mdMenu) {
+  controller: function VestaNavController($scope, $mdSidenav, authService, $location, 
+                                          $mdMenu, dataService, $mdDialog, $mdMedia) {
     this.session = authService.getSession();
     this.currentPath = $location.path();
 
@@ -67,6 +68,41 @@ angular.module('vestaNav').component('vestaNav', {
       console.log('Tag selections: ' + $scope.selection);
     }
 
+
+    /********************* CART STUFF *************************************/
+    $scope.showCart = function(ev){
+      var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+      $mdDialog.show({
+        controller: function DialogController(dataService, $scope, $mdDialog){
+
+          $scope.hide = function() {
+            $mdDialog.hide();
+          };
+          $scope.cancel = function() {
+            $mdDialog.cancel();
+          };
+          $scope.answer = function(answer) {
+            $mdDialog.hide(answer);
+          };
+        },
+        templateUrl: 'vesta-nav/cartDialog.template.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose:true,
+        fullscreen: useFullScreen
+      })
+      .then(function(answer) {
+        // NOTE might want to consider saving this here to the DB as a temp file
+        console.log(answer);
+      }, function() {
+        // Error handling?
+      });
+      $scope.$watch(function() {
+        return $mdMedia('xs') || $mdMedia('sm');
+      }, function(wantsFullScreen) {
+        $scope.customFullscreen = (wantsFullScreen === true);
+      });
+    }
 
   }
 });
