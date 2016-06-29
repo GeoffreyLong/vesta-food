@@ -1,9 +1,12 @@
 // TODO 
 //      Purchases
 //      MAJOR TODO TODO 
-//          FoodId (store.food._id) is not a thing in this nested subdocument structure
+//          FoodId (store.food[idx]._id) is not a thing in this nested subdocument structure
 //          Perhaps food reviews go in the store with the food objects?
 //          Will figure this out as the review system gets fleshed out
+//          WAIT WHAT???
+//              I just checked again and store.food._id is a thing
+//              Why did I not find it before...???
 //      Check all of this logic 
 //          some of the randomization might have caused some items to be missed
 
@@ -66,7 +69,6 @@ var insertUsers = function(){
   })
 }
 
-// TODO need to add in test stores
 var insertStores = function(pairings){
   // Remove all stores and add in the test stores
   Stores.remove({}, function(err){
@@ -155,7 +157,7 @@ var insertStoreReviews = function(pairs) {
             console.log("ERROR: " + err);
           }
           else {
-            // NOTE interesting error
+            // COOL interesting error
             //      If I do userId and storeId then both default to the same
             //      since they are being changed outside of the scope of this callback
             

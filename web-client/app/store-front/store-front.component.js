@@ -1,7 +1,7 @@
 angular.module('storeFront').component('storeFront', {
   templateUrl: 'store-front/store-front.template.html',
   controller: function StoreFrontController($scope, dataService, authService, 
-                                            $location, $http, $mdBottomSheet){
+                                            $location, $http, $mdBottomSheet, cartService){
     // TODO add in the dataService function for getting stores
     //      Something like dataService.getStore('storeId')
     //      This will also handle the db query below if it isn't found?
@@ -143,6 +143,19 @@ angular.module('storeFront').component('storeFront', {
       }).then(function(clickedItem) {
         // $scope.alert = clickedItem['name'] + ' clicked!';
       });
+    }
+
+    $scope.addToCart = function(food) {
+      // NOTE here is where it gets tricky
+      //      So someone could edit the food item after posting it
+      //      But I guess the food's _id remains the same, which is cool
+      //      I feel like this could be the cause of issues later on
+      // NOTE I'm gonna go ahead and use localStorage for this
+      //      Initially I planned on placing it inside the user session object
+      //      I think it is better to not have to deal 
+      //      with passing this info back and forth though
+      cartService.addToCart($scope.store._id, food);
+      cartService.getCart();
     }
   }
 });

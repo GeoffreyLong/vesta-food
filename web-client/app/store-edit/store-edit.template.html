@@ -65,6 +65,10 @@
     <div class="innerEditDiv"> 
       <div layout="row" layout-align="center center" layout-xs="column" layout-sm="column">
         <div flex=65>
+          <!-- 
+                TODO  require things, make sure the max lengths are correct,
+                      alter the units so they accept the right things, etc
+          -->
           <span class="md-title"> Food Name: </span>
           <input type="text" ng-model="food.name" maxlength="25"/>
           <br>
@@ -86,7 +90,7 @@
           <br>
           <br>
           <span class="md-title"> Food Prep Time (might not need): </span>
-          <input type="text" ng-model="food.description" maxlength="25"/>
+          <input type="text" ng-model="food.prepTime" maxlength="25"/>
           <br>
           <br>
           <span class="md-title"> Food Photo: </span>
