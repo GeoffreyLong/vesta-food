@@ -5,35 +5,24 @@
     Add in ability to add food items to the seller stuff
 --}}
 
-<!--{{!-- TODO Restyle this messaging --}}-->
-<!--<script>-->
-  <!--window.fbAsyncInit = function() {-->
-    <!--FB.init({-->
-      <!--appId      : {{fbAppId}},-->
-      <!--xfbml      : true,-->
-      <!--version    : 'v2.6'-->
-    <!--});-->
-  <!--};-->
+<!-- Load facebook script -->
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '592850390877879',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
 
-  <!--(function(d, s, id){-->
-    <!--var js, fjs = d.getElementsByTagName(s)[0];-->
-    <!--if (d.getElementById(id)) {return;}-->
-    <!--js = d.createElement(s); js.id = id;-->
-    <!--js.src = "//connect.facebook.net/en_US/sdk.js";-->
-    <!--fjs.parentNode.insertBefore(js, fjs);-->
-  <!--}(document, 'script', 'facebook-jssdk'));-->
-<!--</script>-->
-
-<!--<div class="fb-page" -->
-     <!--data-href="https://www.facebook.com/vestaFood/" -->
-     <!--data-tabs="messages" -->
-     <!--data-width="400" -->
-     <!--data-height="300" -->
-     <!--data-small-header="true">-->
-  <!--<div class="fb-xfbml-parse-ignore">-->
-    <!--<blockquote></blockquote>-->
-  <!--</div>-->
-<!--</div>-->
+  (function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
 
 <div class="row valign-wrapper" id="toaster">
   <div id="toast-container" class="valign center"> </div>
@@ -46,6 +35,7 @@
     <ul class="right">
       <li><a id="infoA"> How It Works </a></li>
       <li><a id="infoB"> Become A Chef </a></li>
+      <li><a id="infoC"> Upcoming Events </a></li>
     </ul>
   </div>
 </nav>
@@ -251,56 +241,23 @@
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <div class="row center">
-        <h5 class="header col s12 light"> Vesta is currently expanding its presence. 
-          We hope to have our fully integrated web marketplace available by Mid-July. 
-          For now, please <a class="emailFormLink"> subscribe to our menu </a> to receive listings of 
-          great homemeade meals from local chefs.
+        <h5 class="header col s12 light"> We will have a completed web application in July, 2016. In the meantime, check out our chefs' upcoming events on our facebook page!
         </h5>
-        {{!-- TODO add in a button "subscribe" as per before which will bring user to form --}}
       </div>
       <br><br>
-
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="section" id="quickOverview">
-
-      {{!-- TODO could add the seller vetting information here --}}
-      <!--   Icon Section   -->
-      <div class="row">
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center"><i class="large material-icons">people</i></h2>
-            <h5 class="center">Community Focused</h5>
-            <p class="light"> Get to know your neighborhood and your neighbors through culinary experiences.  </p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center"><i class="large material-icons">thumbs_up_down</i></h2>
-            <h5 class="center">Comprehensive Review System</h5>
-            <p class="light"> Vesta is committed to ensuring the highest quality experience. To achieve this, we offer a comprehensive review system for both buyers and sellers. </p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center"><i class="large material-icons">restaurant</i></h2>
-            <h5 class="center"> Homemade Variety </h5>
-            <p class="light"> 
-              Gain access to a range of homemade meals. 
-              Experience new culinary styles that might otherwise be unavailable to you.
-            </p>
-          </div>
+      <div class="row center">
+        <div class="fb-page"
+             data-href="https://www.facebook.com/vestafood"
+             data-width="500"
+             data-hide-cover="false"
+             data-tabs="events"
+             data-show-facepile="true">
         </div>
       </div>
-
     </div>
   </div>
-
 </div>
+
 
 {{!-- Non-fixed footer
       Contains information such as the company name, copyright, contact,
