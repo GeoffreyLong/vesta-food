@@ -73,7 +73,14 @@ angular.module('vestaNav').component('vestaNav', {
     $scope.showCart = function(ev){
       var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
       $mdDialog.show({
-        controller: function DialogController(dataService, $scope, $mdDialog){
+        controller: function DialogController(cartService, $scope, $mdDialog, 
+                                              $location, dataService){
+          $scope.cart = cartService.getCart();
+
+          $scope.purchaseItem(storeCart){
+            dataService.setPurchaseItem(storeCart);
+            $location.path('/purchase');
+          }
 
           $scope.hide = function() {
             $mdDialog.hide();
@@ -81,22 +88,13 @@ angular.module('vestaNav').component('vestaNav', {
           $scope.cancel = function() {
             $mdDialog.cancel();
           };
-          $scope.answer = function(answer) {
-            $mdDialog.hide(answer);
-          };
         },
-        templateUrl: 'vesta-nav/cartDialog.template.html',
+        templateUrl: 'vesta-nav/cart-dialog.template.html',
         parent: angular.element(document.body),
         targetEvent: ev,
         clickOutsideToClose:true,
         fullscreen: useFullScreen
       })
-      .then(function(answer) {
-        // NOTE might want to consider saving this here to the DB as a temp file
-        console.log(answer);
-      }, function() {
-        // Error handling?
-      });
       $scope.$watch(function() {
         return $mdMedia('xs') || $mdMedia('sm');
       }, function(wantsFullScreen) {

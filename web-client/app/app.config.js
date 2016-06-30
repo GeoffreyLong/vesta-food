@@ -217,16 +217,18 @@ angular.module('vestaApp')
   // Take hints from cache algorithms like "least recently used" to push out stores
   // Should probably always keep the person's store cached
 
-  this.storeData = null;
-  this.editPhoto = null;
+  this.store = null;
   this.clonedStore = null
+  this.editPhoto = null;
+  this.storeCart = null;
+  
 
   this.setStore = function(store) {
-    this.storeData = store;
+    this.store = store;
     this.clonedStore = jQuery.extend(true, {}, store);
   }
   this.getStore = function() {
-    return this.storeData;
+    return this.store;
   }
   this.getClonedStore = function() {
     return jQuery.extend(true, {}, this.clonedStore);
@@ -238,6 +240,18 @@ angular.module('vestaApp')
   }
   this.getEditPhoto = function(){
     return this.editPhoto;
+  }
+
+  // For the purchases
+  this.setPurchaseItem = function(storeCart) {
+    this.storeCart = storeCart;
+  }
+  // Destructive get method?
+  // NOTE I don't know if this is actually necessary
+  this.getPurchaseItem = function() {
+    var tempStoreCart = jQuery.extend(true, {}, this.storeCart);
+    this.storeCart = null;
+    return tempStoreCart;
   }
 })
 .service('locationService', function() {
