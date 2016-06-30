@@ -69,6 +69,7 @@
                 TODO  require things, make sure the max lengths are correct,
                       alter the units so they accept the right things, etc
           -->
+          <!-- Should probably make these md-inputs -->
           <span class="md-title"> Food Name: </span>
           <input type="text" ng-model="food.name" maxlength="25"/>
           <br>
@@ -99,6 +100,9 @@
           </md-button>
         </div>
         <div flex=35>
+          <!-- TODO disable all buttons here -->
+          <!-- TODO make clear that this is a rep of the food in the storefront -->
+          <!-- TODO add in the descriptions functionality -->
           <md-card>
             <div class="foodImageInfo" layout="row" layout-align="space-between center">
               <span class="foodPrice"> ${{food.price}} </span>

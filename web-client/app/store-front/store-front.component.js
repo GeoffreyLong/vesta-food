@@ -1,6 +1,6 @@
 angular.module('storeFront').component('storeFront', {
   templateUrl: 'store-front/store-front.template.html',
-  controller: function StoreFrontController($scope, dataService, authService, 
+  controller: function StoreFrontController($scope, dataService, authService, $mdToast,
                                             $location, $http, $mdBottomSheet, cartService){
     // TODO add in the dataService function for getting stores
     //      Something like dataService.getStore('storeId')
@@ -145,7 +145,7 @@ angular.module('storeFront').component('storeFront', {
       });
     }
 
-    $scope.addToCart = function(food) {
+    $scope.addToCart = function(ev, food) {
       // NOTE here is where it gets tricky
       //      So someone could edit the food item after posting it
       //      But I guess the food's _id remains the same, which is cool
@@ -154,8 +154,14 @@ angular.module('storeFront').component('storeFront', {
       //      Initially I planned on placing it inside the user session object
       //      I think it is better to not have to deal 
       //      with passing this info back and forth though
-      cartService.addToCart($scope.store._id, food);
-      cartService.getCart();
+      var foodQty = cartService.addToCart($scope.store._id, food);
+      $mdToast.show(
+        $mdToast.simple()
+          .textContent(foodQty + ' of item added to cart')
+          .position('bottom left right')
+          .hideDelay(3000)
+          .parent(ev.srcElement.closest('md-card'))
+      );
     }
   }
 });

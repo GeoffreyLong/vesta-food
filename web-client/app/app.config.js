@@ -97,7 +97,20 @@ angular.module('vestaApp')
             return authService.requireStore();
           }
         }
-      });
+      })
+      .when('/purchase', {
+        template: '<vesta-nav></vesta-nav>'
+          + '<div id="nonNavContainer" class="sideNavOpen">'
+          + '<purchase></purchase>'
+          + '</div>',
+        resolve: {
+          // Going to the stores view only requires a session
+          auth: function ($q, authService) {
+            return authService.getSession();
+          }
+        }
+      })
+      .otherwise({redirectTo:'/'});
   },
 ]).run(["$rootScope", "$location", "$window", function ($rootScope, $location, $window) {
   $rootScope.$on("$routeChangeSuccess", function (userInfo) {
@@ -217,16 +230,18 @@ angular.module('vestaApp')
   // Take hints from cache algorithms like "least recently used" to push out stores
   // Should probably always keep the person's store cached
 
-  this.storeData = null;
-  this.editPhoto = null;
+  this.store = null;
   this.clonedStore = null
+  this.editPhoto = null;
+  this.storeCart = null;
+  
 
   this.setStore = function(store) {
-    this.storeData = store;
+    this.store = store;
     this.clonedStore = jQuery.extend(true, {}, store);
   }
   this.getStore = function() {
-    return this.storeData;
+    return this.store;
   }
   this.getClonedStore = function() {
     return jQuery.extend(true, {}, this.clonedStore);
@@ -238,6 +253,18 @@ angular.module('vestaApp')
   }
   this.getEditPhoto = function(){
     return this.editPhoto;
+  }
+
+  // For the purchases
+  this.setPurchaseOrder = function(storeCart) {
+    this.storeCart = storeCart;
+  }
+  // Destructive get method?
+  // NOTE I don't know if this is actually necessary
+  this.getPurchaseOrder = function() {
+    var tempStoreCart = jQuery.extend(true, {}, this.storeCart);
+    this.storeCart = null;
+    return tempStoreCart;
   }
 })
 .service('locationService', function() {
@@ -281,24 +308,24 @@ angular.module('vestaApp')
   // TODO TODO TODO 
   //      Using sessionStorage for testing, switch to localstorage for prod
   //      This will solve any persistency issues
-  if (sessionStorage && sessionStorage.cart) {
-    this.cart = JSON.parse(sessionStorage.cart);
-  }
 
   // Return foodQuantity in the cart as returnQuantity
   // Returns 0 if error
   this.addToCart = function(storeId, food) {
+    // TODO I think we want to do this if they don't have storage
+    if (!sessionStorage) return 0;
+
+    var cart = [];
+    if (sessionStorage.cart) cart = JSON.parse(sessionStorage.cart);
+
     // NOTE instead of dealing with these booleans, could simply return when found
     // NOTE It would be cool if I could dynamically name the keys
     var foundStore = false;
     var returnQuantity = 0;
     
-    // If the cart doesn't exist, then create it
-    if (!this.cart) this.cart = [];
-
 
     // Iterate through the individual stores in the cart
-    this.cart.forEach(function(storeCart){
+    cart.forEach(function(storeCart){
       if (storeCart.storeId == storeId) {
         foundStore = true;
         var foundFood = false;
@@ -329,13 +356,14 @@ angular.module('vestaApp')
       returnQuantity = 1;
       food.quantity = 1;
       storeCart.foods.push(food);
-      this.cart.push(storeCart);
+      cart.push(storeCart);
     }
 
+    sessionStorage.cart = JSON.stringify(cart);
     return returnQuantity;
   }
   
   this.getCart = function() {
-    console.log(this.cart);
+    return JSON.parse(sessionStorage.cart);
   }
 });

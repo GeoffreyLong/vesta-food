@@ -1,0 +1,36 @@
+<md-dialog ng-cloak>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Cart</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon class="material-icons"> close </md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      {{cart}}
+      <md-card ng-repeat="storeCart in cart">
+        <!-- TODO style like a materialize collection 
+                  I like "avatar content" in http://materializecss.com/collections.html
+        -->
+        <md-list>
+          <md-subheader class="md-no-sticky"> {{storeCart.storeId}} </md-title>
+          <md-list-item class="md-3-line" ng-repeat="food in storeCart.foods">
+            <img ng-src="{{food.photo}}" class="md-avatar" alt="Food Photo"/>
+            <div class="md-list-item-text" layout="column">
+              <h3>Name: {{ food.name }}</h3>
+              <h4>Quantity: {{ food.quantity }}; Price per item: {{ food.price }}</h4>
+              <p>Total Price: TODO </p>
+            </div>
+          </md-list-item>
+        </md-list>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button ng-click="purchaseOrder(storeCart)">Make Purchase</md-button>
+        </md-card-actions>      
+      </md-card>
+    </md-dialog-content>
+  </form>
+</md-dialog>
+
