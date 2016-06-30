@@ -281,24 +281,24 @@ angular.module('vestaApp')
   // TODO TODO TODO 
   //      Using sessionStorage for testing, switch to localstorage for prod
   //      This will solve any persistency issues
-  if (sessionStorage && sessionStorage.cart) {
-    this.cart = JSON.parse(sessionStorage.cart);
-  }
 
   // Return foodQuantity in the cart as returnQuantity
   // Returns 0 if error
   this.addToCart = function(storeId, food) {
+    // TODO I think we want to do this if they don't have storage
+    if (!sessionStorage) return 0;
+
+    var cart = [];
+    if (sessionStorage.cart) cart = JSON.parse(sessionStorage.cart);
+
     // NOTE instead of dealing with these booleans, could simply return when found
     // NOTE It would be cool if I could dynamically name the keys
     var foundStore = false;
     var returnQuantity = 0;
     
-    // If the cart doesn't exist, then create it
-    if (!this.cart) this.cart = [];
-
 
     // Iterate through the individual stores in the cart
-    this.cart.forEach(function(storeCart){
+    cart.forEach(function(storeCart){
       if (storeCart.storeId == storeId) {
         foundStore = true;
         var foundFood = false;
@@ -329,13 +329,14 @@ angular.module('vestaApp')
       returnQuantity = 1;
       food.quantity = 1;
       storeCart.foods.push(food);
-      this.cart.push(storeCart);
+      cart.push(storeCart);
     }
 
+    sessionStorage.cart = JSON.stringify(cart);
     return returnQuantity;
   }
   
   this.getCart = function() {
-    console.log(this.cart);
+    return JSON.parse(sessionStorage.cart);
   }
 });
