@@ -97,7 +97,20 @@ angular.module('vestaApp')
             return authService.requireStore();
           }
         }
-      });
+      })
+      .when('/purchase', {
+        template: '<vesta-nav></vesta-nav>'
+          + '<div id="nonNavContainer" class="sideNavOpen">'
+          + '<purchase></purchase>'
+          + '</div>',
+        resolve: {
+          // Going to the stores view only requires a session
+          auth: function ($q, authService) {
+            return authService.getSession();
+          }
+        }
+      })
+      .otherwise({redirectTo:'/'});
   },
 ]).run(["$rootScope", "$location", "$window", function ($rootScope, $location, $window) {
   $rootScope.$on("$routeChangeSuccess", function (userInfo) {
@@ -243,12 +256,12 @@ angular.module('vestaApp')
   }
 
   // For the purchases
-  this.setPurchaseItem = function(storeCart) {
+  this.setPurchaseOrder = function(storeCart) {
     this.storeCart = storeCart;
   }
   // Destructive get method?
   // NOTE I don't know if this is actually necessary
-  this.getPurchaseItem = function() {
+  this.getPurchaseOrder = function() {
     var tempStoreCart = jQuery.extend(true, {}, this.storeCart);
     this.storeCart = null;
     return tempStoreCart;

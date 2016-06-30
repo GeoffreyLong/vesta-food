@@ -11,5 +11,6 @@ angular.module('vestaApp', [
     'becomeChef',
     'splogin',
     'storeFront',
-    'storeEdit'
+    'storeEdit',
+    'purchase'
 ]);

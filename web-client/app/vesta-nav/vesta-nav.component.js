@@ -77,8 +77,9 @@ angular.module('vestaNav').component('vestaNav', {
                                               $location, dataService){
           $scope.cart = cartService.getCart();
 
-          $scope.purchaseItem(storeCart){
-            dataService.setPurchaseItem(storeCart);
+          $scope.purchaseOrder = function(storeCart){
+            dataService.setPurchaseOrder(storeCart);
+            $mdDialog.hide();
             $location.path('/purchase');
           }
 
