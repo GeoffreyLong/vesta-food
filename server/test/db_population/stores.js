@@ -6,7 +6,9 @@ module.exports = [{
   overallRating: 4,
   neighborhood: "TODO",
   pickupAddress: {
-    formatted: "3515 Rue Durocher, Montreal Qc H2X 2E7"
+    formatted: "3515 Rue Durocher, Montreal Qc H2X 2E7",
+    lat: 45.508596,
+    lng: -73.57496800000001
   },
   stripe: {
     access_token : "sk_test_j6pZcwy6xAic5jObtpS15eWJ",
@@ -58,6 +60,8 @@ module.exports = [{
   neighborhood: "TODO",
   pickupAddress: {
     formatted: "3552 Coloniale Avenue, Montreal Qc",
+    lat: 45.51455329999999,
+    lng: -73.57138750000001
   },
   stripe: {
     access_token : "sk_test_j6pZcwy6xAic5jObtpS15eWJ",
@@ -83,6 +87,11 @@ module.exports = [{
   neighborhood: "TODO",
   availability: "TODO",
   overallRating: 4,
+  pickupAddress: {
+    formatted: "3552 Coloniale Avenue, Montreal Qc",
+    lat: 45.51455329999999,
+    lng: -73.57138750000001
+  },
   foods: [{
     name: "Brittle Peanuts",
     photo: "/images/chef_3-1.jpg",
@@ -120,6 +129,11 @@ module.exports = [{
   description: "I will make you fat, that is a guarantee.", 
   availability: "TODO",
   overallRating: 4,
+  pickupAddress: {
+    formatted: "3552 Coloniale Avenue, Montreal Qc",
+    lat: 45.51455329999999,
+    lng: -73.57138750000001
+  },
   foods: [{
     name: "Ribz",
     photo: "/images/chef_4-1.jpg",
