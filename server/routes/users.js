@@ -1,14 +1,11 @@
 var express = require('express');
 var request = require('request');
 var router = express.Router();
+var config = require('./common').config();
 
 var Users = require('../models/user');
 var Store = require('../models/store');
 
-
-// TODO put these values in config.js
-var STRIPE_CLIENT_ID = 'ca_89GeQlhMVoUResS0PeQm6XuCs6hoXgze';
-var STRIPE_API_KEY = 'sk_test_an3Nezne8XguJAefiBJgNV63';
 var STRIPE_TOKEN_URI = 'https://connect.stripe.com/oauth/token';
 
 // TODO TODO
@@ -29,8 +26,8 @@ router.post('/becomeChef', function(req, res) {
     url: STRIPE_TOKEN_URI,
     form: {
       grant_type: 'authorization_code',
-      client_id: STRIPE_CLIENT_ID,
-      client_secret: STRIPE_API_KEY,
+      client_id: config.stripe.clientID,
+      client_secret: config.stripe.apiKey,
       code: req.body.code
     }
   }, function (stripeError, response, body) {
@@ -43,6 +40,8 @@ router.post('/becomeChef', function(req, res) {
 
       store.save(function (storeError) {
         if (!storeError) {
+          console.log("successfully saved store to db");
+          console.log(store);
           res.status(200).send();
         }
         else {

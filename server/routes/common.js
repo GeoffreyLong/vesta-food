@@ -1,8 +1,8 @@
 // A file for commonly used functions
 
-var env = require('../env.json');
+var config = require('../config');
 
-exports.config = function() {
+module.exports.config = function() {
   var node_env = process.env.NODE_ENV || 'development';
-  return env[node_env];
+  return config[node_env];
 };
