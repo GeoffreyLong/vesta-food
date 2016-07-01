@@ -200,8 +200,15 @@ store-front slick .slick-slide {
   transform: scale(0.6);
   transition: all 0.5s;
 }
+store-front slick .slick-slide md-card-actions {
+  display: none;
+}
 store-front slick .slick-center {
   transform: scale(1);
+}
+store-front slick .slick-center md-card-actions {
+  display: flex;
+/* Transitions don't seem to be working for this */
 }
 .importantFixedDiv {
   position: fixed;

@@ -82,11 +82,13 @@ angular.module('storeFront').component('storeFront', {
           // NOTE Might be better to do this template side 
           //      I could possibly do this with an ng-if so I don't load slick
           //      if it is not being used
+          // TODO should probably center the elements... 
           if ($('.slick-slide').length <= 3) {
             $('.slick-slide').css({
               'transition': 'none',
               'transform': 'scale(1)'
             });
+            $('md-card-actions').css({ 'display': 'flex' });
           }
         },
         beforeChange: function (event, slick, currentSlide, nextSlide) {
