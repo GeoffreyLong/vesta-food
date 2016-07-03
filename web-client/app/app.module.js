@@ -12,5 +12,9 @@ angular.module('vestaApp', [
     'splogin',
     'storeFront',
     'storeEdit',
-    'purchase'
+    'purchase',
+    'authService',
+    'dataService',
+    'locationService',
+    'cartService'
 ]);
