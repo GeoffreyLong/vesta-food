@@ -3,8 +3,17 @@
 </div>
 
 <form stripe-form="stripeCallback">
-  <input ng-model="number" placeholder="Card Number" />
-  <input ng-model="expiry" placeholder="Expiration" />
-  <input ng-model="cvc" placeholder="CVC" />
+  <input ng-model="number"
+         placeholder="Card Number"
+         payments-format="card"
+         payments-validate="card"/>
+  <input ng-model="expiry"
+         placeholder="Expiration"
+         payments-format="expiry"
+         payments-validate="expiry"/>
+  <input ng-model="cvc"
+         placeholder="CVC"
+         payments-format="cvc"
+         payments-validate="cvc"/>
   <button type="submit">Submit</button>
 </form>

@@ -5,18 +5,24 @@ angular
   })
   .component('purchase', {
     templateUrl: 'purchase/purchase.template.html',
-    controller: function PurchaseController($scope, dataService, authService){
+    controller: function PurchaseController($scope, $http, dataService, authService){
       // This has userId in it
       $scope.session = authService.getSession();
-  
       $scope.storeCart = dataService.getPurchaseOrder();
-      console.log($scope.storeCart);
 
       $scope.stripeCallback = function (code, result) {
         if (result.error) {
           window.alert('it failed! error: ' + result.error.message);
         } else {
-          window.alert('success! token: ' + result.id);
+          $http.post("/api/users/purchases", {
+            storeId: $scope.storeCart.storeId,
+            foods: $scope.storeCart.foods,
+            stripePaymentToken: result.id
+          }).then(function success(response) {
+            
+          }, function error(response) {
+
+          })
         }
       };
     }
