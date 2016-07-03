@@ -2,7 +2,7 @@ var express = require('express');
 var request = require('request');
 var router = express.Router();
 
-var config = require('./common').config();
+var config = require('../config')();
 var stripe = require('stripe')(config.stripe.apiKey);
 
 var User = require('../models/user');

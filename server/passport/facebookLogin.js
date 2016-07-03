@@ -3,8 +3,7 @@ module.exports = function(passport){
   var User = require('../models/user');
 
   // Get the correct configuration down
-  var config = require('../config');
-  config = config[process.env.NODE_ENV] || config['development'];
+  var config = require('../config')();
 
 	passport.use(new FacebookStrategy({
                   clientID: config.facebook.appID,

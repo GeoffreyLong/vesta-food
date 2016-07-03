@@ -25,8 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 // Get the correct configuration down
-var config = require('./config');
-config = config[process.env.NODE_ENV] || config['development'];
+var config = require('./config')();
 
 // Start up the DB
 mongoose.connect(config.database.url, function (error) {
