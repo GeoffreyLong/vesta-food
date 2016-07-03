@@ -1,1 +1,3 @@
-angular.module('purchase', []);
+angular.module('purchase', [
+  'angularPayments'
+]);
