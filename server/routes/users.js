@@ -76,10 +76,9 @@ router.post('/becomeChef', function(req, res) {
  * }
  */
 router.post('/purchases', function (req, res) {
-  var content = JSON.parse(req.body);
-  var storeId = content.storeId;
-  var foods = content.foods;
-  var stripePaymentToken = content.paymentToken;
+  var storeId = req.body.storeId;
+  var foods = req.body.foods;
+  var stripePaymentToken = req.body.stripePaymentToken;
 
   var totalCost = 0;
   for (var food in foods) {
