@@ -22,6 +22,21 @@ router.get('/:id', function(req, res) {
 
 
 //
+router.get('/:id/purchases', function (req, res) {
+  var buyerId = req.params.id;
+  Purchase
+    .where('buyerId', buyerId)
+    .find()
+    .exec()
+    .then(function successCallback(purchases) {
+      res.status(200).send(purchases);
+    }, function errorCallback(error) {
+      res.status(500).send(error);
+    });
+})
+
+
+//
 router.post('/:id/store', function(req, res) {
   console.log(req.body.scope + ' : ' + req.body.code);
 

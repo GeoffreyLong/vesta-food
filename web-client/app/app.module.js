@@ -13,7 +13,7 @@ angular.module('vestaApp', [
   'storeFront',
   'storeEdit',
   'purchase',
-  'dashboard',
+  'buyerDashboard',
 
   'authService',
   'dataService',

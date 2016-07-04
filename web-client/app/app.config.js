@@ -116,7 +116,7 @@ angular
         .when('/dashboard', {
           template: '<vesta-nav></vesta-nav>'
           + '<div id="nonNavContainer" class="sideNavOpen">'
-          + '<dashboard></dashboard>'
+          + '<buyer-dashboard></buyer-dashboard>'
           + '</div>',
           resolve: {
             // Going to the stores view only requires a session
