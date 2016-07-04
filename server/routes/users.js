@@ -66,13 +66,13 @@ router.post('/becomeChef', function(req, res) {
 /**
  * Create a new order
  * req.body: {
- *  storeID: String
+ *  storeId: String
  *  foods: [{
  *    name: String
  *    price: Number
  *
  *  }]
- *  paymentToken
+ *  stripePaymentToken
  * }
  */
 router.post('/purchases', function (req, res) {
@@ -81,11 +81,14 @@ router.post('/purchases', function (req, res) {
   var stripePaymentToken = req.body.stripePaymentToken;
 
   var totalCost = 0;
-  for (var food in foods) {
-    totalCost += food.price * food.quantity;
+  for (var i = 0; i < foods.length; i++) {
+    var food = foods[i];
+    //dollar to cent conversion
+    console.log(JSON.stringify(food));
+    totalCost += food.price * food.quantity * 100;
   }
 
-  var applicationFee = totalCost * 0.14;
+  var applicationFee = Math.round(totalCost * 0.14);
 
   Store.findById(storeId, function (storeError, store) {
     if (storeError) {
@@ -107,9 +110,7 @@ router.post('/purchases', function (req, res) {
         console.log(charge);
         var purchase = new Purchase({
           //FIXME need to fix model
-          stripeCharge: charge,
-          storeId: storeId,
-          foods: foods
+          stripeCharge: charge
         }).save(function (purchaseError) {
           if (purchaseError) {
             console.log('error saving purchase to db');
@@ -117,7 +118,6 @@ router.post('/purchases', function (req, res) {
             res.status(500).send();
           }
           else {
-            console.log
             res.status(200).send();
           }
         })
