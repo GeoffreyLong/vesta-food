@@ -5,7 +5,7 @@ angular
   })
   .component('purchase', {
     templateUrl: 'purchase/purchase.template.html',
-    controller: function PurchaseController($scope, $http, dataService, authService){
+    controller: function PurchaseController($scope, $http, $location, dataService, authService){
       // This has userId in it
       $scope.session = authService.getSession();
       $scope.storeCart = dataService.getPurchaseOrder();
@@ -19,7 +19,7 @@ angular
             foods: $scope.storeCart.foods,
             stripePaymentToken: result.id
           }).then(function success(response) {
-            
+            $location.path('/dashboard');
           }, function error(response) {
 
           })
