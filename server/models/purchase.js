@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
 
 var Purchase = mongoose.model('Purchase', {
-  stripeCharge: {
-    
-  }
+  buyerId: String,
+  storeId: String,
+  stripeCharge: {}
 });
 
 module.exports = Purchase;

@@ -14,7 +14,9 @@ angular
         if (result.error) {
           window.alert('it failed! error: ' + result.error.message);
         } else {
-          $http.post("/api/users/purchases", {
+          var userId = authService.getSession().user._id;
+          var url = "/api/users/" + userId + "/purchases";
+          $http.post(url, {
             storeId: $scope.storeCart.storeId,
             foods: $scope.storeCart.foods,
             stripePaymentToken: result.id

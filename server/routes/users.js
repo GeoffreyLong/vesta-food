@@ -75,7 +75,8 @@ router.post('/becomeChef', function(req, res) {
  *  stripePaymentToken
  * }
  */
-router.post('/purchases', function (req, res) {
+router.post('/:id/purchases', function (req, res) {
+  var buyerId = req.params.id;
   var storeId = req.body.storeId;
   var foods = req.body.foods;
   var stripePaymentToken = req.body.stripePaymentToken;
@@ -110,6 +111,8 @@ router.post('/purchases', function (req, res) {
         console.log(charge);
         var purchase = new Purchase({
           //FIXME need to fix model
+          buyerId: buyerId,
+          storeId: storeId,
           stripeCharge: charge
         }).save(function (purchaseError) {
           if (purchaseError) {
@@ -127,7 +130,7 @@ router.post('/purchases', function (req, res) {
         res.status(500).send();
       })
     }
-  })
-})
+  });
+});
 
 module.exports = router;
