@@ -22,7 +22,7 @@ router.get('/:id', function(req, res) {
 
 
 //
-router.post('/becomeChef', function(req, res) {
+router.post('/:id/store', function(req, res) {
   console.log(req.body.scope + ' : ' + req.body.code);
 
   request.post({
@@ -41,6 +41,7 @@ router.post('/becomeChef', function(req, res) {
         stripe: JSON.parse(body)
       });
 
+      //FIXME save store id in user
       store.save(function (storeError) {
         if (!storeError) {
           console.log("successfully saved store to db");

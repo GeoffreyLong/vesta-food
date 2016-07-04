@@ -49,12 +49,13 @@ angular
         })
         .when('/becomeAChef/stripeCallback', {
           template: '<p>become a chef callback TODO loading screen?</p>',
-          controller: function($location, $http) {
+          controller: function($location, $http, authService) {
             var stripeParams = $location.search();
-            console.log(JSON.stringify(stripeParams));
 
+            var userId = authService.getSession().user._id;
+            var url = '/api/users/' + userId + '/store';
             $http
-              .post('/api/users/becomeChef', stripeParams)
+              .post(url, stripeParams)
               .then(function onSuccess(response) {
                 console.log('success');
                 console.log(response);
