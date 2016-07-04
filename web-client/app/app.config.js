@@ -112,6 +112,18 @@ angular
             }
           }
         })
+        .when('/dashboard', {
+          template: '<vesta-nav></vesta-nav>'
+          + '<div id="nonNavContainer" class="sideNavOpen">'
+          + '<dashboard></dashboard>'
+          + '</div>',
+          resolve: {
+            // Going to the stores view only requires a session
+            auth: function ($q, authService) {
+              return authService.getSession();
+            }
+          }
+        })
         .otherwise({
           redirectTo: '/'
         });
