@@ -14,6 +14,7 @@ angular.module('vestaApp', [
   'storeEdit',
   'purchase',
   'buyerDashboard',
+  'sellerDashboard',
 
   'authService',
   'dataService',

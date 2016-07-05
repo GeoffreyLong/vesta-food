@@ -125,6 +125,18 @@ angular
             }
           }
         })
+        .when('/sellerDashboard', {
+          template: '<vesta-nav></vesta-nav>'
+          + '<div id="nonNavContainer" class="sideNavOpen">'
+          + '<seller-dashboard></seller-dashboard>'
+          + '</div>',
+          resolve: {
+            // Going to the stores view only requires a session
+            auth: function ($q, authService) {
+              return authService.getSession();
+            }
+          }
+        })
         .otherwise({
           redirectTo: '/'
         });
