@@ -56,9 +56,29 @@ router.post('/:id/store', function(req, res) {
       //FIXME save store id in user
       store.save(function (storeError) {
         if (!storeError) {
-          console.log("successfully saved store to db");
-          console.log(store);
-          res.status(200).send();
+          User
+            .where('_id', req.params.id)
+            .findOne()
+            .exec()
+            .then(function successCallback(user) {
+              user.storeId = store._id;
+              user.save(function (storeError) {
+                if (!storeError) {
+                  console.log("successfully saved store to db");
+                  console.log(store);
+                  res.status(200).send();
+                }
+                else {
+                  console.log("mongoose error saving store");
+                  console.log(storeError);
+                  res.status(500).send();
+                }
+              })
+            }, function errorCallback(error) {
+              console.log("mongoose error finding user");
+              console.log("store error");
+              res.status(500).send(storeError);
+            });
         }
         else {
           console.log('mongoose error creating store');
