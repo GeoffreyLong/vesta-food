@@ -24,11 +24,8 @@ router.get('/:id', function(req, res) {
 //
 router.get('/:id/purchases', function (req, res) {
   var buyerId = req.params.id;
-  Purchase
-    .where('buyerId', buyerId)
-    .find()
-    .exec()
-    .then(function successCallback(purchases) {
+  Purchase.allByUser(buyerId).then(
+    function successCallback(purchases) {
       res.status(200).send(purchases);
     }, function errorCallback(error) {
       res.status(500).send(error);
@@ -88,9 +85,7 @@ router.get('/:userId/store/purchases', function(req, res) {
     .then(function successCallback(store) {
       var storeId = store._id;
       Purchase
-        .where('storeId', storeId)
-        .find()
-        .exec()
+        .allByStore(storeId)
         .then(function successCallback(purchases) {
           res.status(200).send(purchases);
         }, function errorCallback(purchaseError) {
@@ -152,21 +147,18 @@ router.post('/:id/purchases', function (req, res) {
       }).then(function (charge) {
         console.log('submitting charge to stripe');
         console.log(charge);
-        var purchase = new Purchase({
-          //FIXME need to fix model
+        Purchase.create({
           buyerId: buyerId,
           storeId: storeId,
+          foods: foods,
           pickupTime: pickupTime,
           stripeCharge: charge
-        }).save(function (purchaseError) {
-          if (purchaseError) {
-            console.log('error saving purchase to db');
-            console.log(purchaseError);
-            res.status(500).send();
-          }
-          else {
-            res.status(200).send();
-          }
+        }).then(function successCallback(purchase) {
+          res.status(200).send();
+        }, function errorCallback(purchaseError) {
+          console.log('error saving purchase to db');
+          console.log(purchaseError);
+          res.status(500).send();
         })
       }).catch(function (stripeError) {
         console.log('error creating charge with stripe');

@@ -7,4 +7,26 @@ var Purchase = mongoose.model('Purchase', {
   stripeCharge: mongoose.Schema.Types.Mixed
 });
 
-module.exports = Purchase;
+var create = function (purchase) {
+  return new Purchase(purchase).save();
+}
+
+var allByStore = function (storeId) {
+  return Purchase
+    .where('storeId', storeId)
+    .find()
+    .exec();
+}
+
+var allByUser = function (userId) {
+  return Purchase
+    .where('buyerId', userId)
+    .find()
+    .exec();
+}
+
+module.exports = {
+  create: create,
+  allByStore: allByStore,
+  allByUser: allByUser
+};
