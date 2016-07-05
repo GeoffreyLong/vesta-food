@@ -15,15 +15,27 @@ var STRIPE_TOKEN_URI = 'https://connect.stripe.com/oauth/token';
 //      Create a default "user" object with default photo and whatnot
 //      This will help for the "edit" phase
 
-//
-router.get('/:id', function(req, res) {
-
+/**
+ * User info of given user.
+ * TODO NOT USED FOR ANYTHING???
+ */
+router.get('/:userId', function(req, res) {
+  User
+    .findById(req.params.userId)
+    .exec()
+    .then(function successCallback(user) {
+      res.status(200).send(user);
+    }, function errorCallback(error) {
+      res.status(500).send(error);
+    })
 });
 
 
-//
-router.get('/:id/purchases', function (req, res) {
-  var buyerId = req.params.id;
+/**
+ * Purchases made by the given user.
+ */
+router.get('/:userId/purchases', function (req, res) {
+  var buyerId = req.params.userId;
   Purchase.allByUser(buyerId).then(
     function successCallback(purchases) {
       res.status(200).send(purchases);
@@ -33,8 +45,10 @@ router.get('/:id/purchases', function (req, res) {
 })
 
 
-//
-router.post('/:id/store', function(req, res) {
+/**
+ * Create a store for a given user.
+ */
+router.post('/:userId/store', function(req, res) {
   console.log(req.body.scope + ' : ' + req.body.code);
 
   request.post({
@@ -57,7 +71,7 @@ router.post('/:id/store', function(req, res) {
       store.save(function (storeError) {
         if (!storeError) {
           User
-            .where('_id', req.params.id)
+            .where('_id', req.params.userId)
             .findOne()
             .exec()
             .then(function successCallback(user) {
@@ -96,7 +110,10 @@ router.post('/:id/store', function(req, res) {
   })
 });
 
-//orders for a given store
+
+/**
+ * Purchases for a given user's store.
+ */
 router.get('/:userId/store/purchases', function(req, res) {
   Store
     .where('userId', req.params.userId)
@@ -120,6 +137,7 @@ router.get('/:userId/store/purchases', function(req, res) {
     });
 })
 
+
 /**
  * Create a new order
  * req.body: {
@@ -132,8 +150,8 @@ router.get('/:userId/store/purchases', function(req, res) {
  *  stripePaymentToken
  * }
  */
-router.post('/:id/purchases', function (req, res) {
-  var buyerId = req.params.id;
+router.post('/:userId/purchases', function (req, res) {
+  var buyerId = req.params.userId;
   var storeId = req.body.storeId;
   var pickupTime = Date.parse(req.body.pickupTime);
   var foods = req.body.foods;
