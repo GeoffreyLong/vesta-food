@@ -94,6 +94,7 @@ router.post('/:id/store', function(req, res) {
 router.post('/:id/purchases', function (req, res) {
   var buyerId = req.params.id;
   var storeId = req.body.storeId;
+  var pickupTime = Date.parse(req.body.pickupTime);
   var foods = req.body.foods;
   var stripePaymentToken = req.body.stripePaymentToken;
 
@@ -129,6 +130,7 @@ router.post('/:id/purchases', function (req, res) {
           //FIXME need to fix model
           buyerId: buyerId,
           storeId: storeId,
+          pickupTime: pickupTime,
           stripeCharge: charge
         }).save(function (purchaseError) {
           if (purchaseError) {

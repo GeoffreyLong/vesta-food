@@ -19,6 +19,7 @@ angular
           $http.post(url, {
             storeId: $scope.storeCart.storeId,
             foods: $scope.storeCart.foods,
+            pickupTime: $scope.pickupTime,
             stripePaymentToken: result.id
           }).then(function success(response) {
             $location.path('/dashboard');
