@@ -79,6 +79,32 @@ router.post('/:id/store', function(req, res) {
   })
 });
 
+//orders for a given store
+router.get('/:userId/store/purchases', function(req, res) {
+  Store
+    .where('userId', req.params.userId)
+    .findOne()
+    .exec()
+    .then(function successCallback(store) {
+      var storeId = store._id;
+      Purchase
+        .where('storeId', storeId)
+        .find()
+        .exec()
+        .then(function successCallback(purchases) {
+          res.status(200).send(purchases);
+        }, function errorCallback(purchaseError) {
+          console.log('purchaseError');
+          console.log(purchaseError);
+          res.status(500).send(purchaseError);
+        })
+    }, function errorCallback(storeError) {
+      console.log('storeError');
+      console.log(storeError);
+      res.status(500).send(storeError);
+    });
+})
+
 /**
  * Create a new order
  * req.body: {
