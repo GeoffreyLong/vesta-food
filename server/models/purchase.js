@@ -1,10 +1,10 @@
 var mongoose = require('mongoose');
 
 var Purchase = mongoose.model('Purchase', {
-  buyerId: String,
-  storeId: String,
+  buyerId: mongoose.Schema.Types.ObjectId,
+  storeId: mongoose.Schema.Types.ObjectId,
   pickupTime: Date,
-  stripeCharge: {}
+  stripeCharge: mongoose.Schema.Types.Mixed
 });
 
 module.exports = Purchase;
