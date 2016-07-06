@@ -55,7 +55,7 @@ router.post('/:userId/store', function(req, res) {
     url: STRIPE_TOKEN_URI,
     form: {
       grant_type: 'authorization_code',
-      client_id: config.stripe.clientID,
+      client_id: config.stripe.clientId,
       client_secret: config.stripe.apiKey,
       code: req.body.code
     }

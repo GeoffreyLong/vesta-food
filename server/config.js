@@ -14,7 +14,7 @@ var config = {
       serverKey: "AIzaSyDmoJrfXcTd5i_v88O-VzLrtcKd7nrNQvA"
     },
     stripe: {
-      clientID: "ca_89GeQlhMVoUResS0PeQm6XuCs6hoXgze",
+      clientId: "ca_89GeQlhMVoUResS0PeQm6XuCs6hoXgze",
       apiKey: "sk_test_an3Nezne8XguJAefiBJgNV63"
     }
   },
@@ -29,7 +29,7 @@ var config = {
       callbackUrl: "http://localhost:80/api/auth/facebook/callback"
     },
     stripe: {
-      clientID: "ca_89GeQlhMVoUResS0PeQm6XuCs6hoXgze",
+      clientId: "ca_89GeQlhMVoUResS0PeQm6XuCs6hoXgze",
       apiKey: "sk_test_an3Nezne8XguJAefiBJgNV63"
     }
   }
