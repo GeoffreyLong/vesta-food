@@ -33,6 +33,12 @@
       </md-card-title>
       <md-card-content>
         <p>
+          From: {{store.from | date:'MM/dd/yyyy @ h:mma'}}
+        </p>
+        <p>
+          To: {{store.to | date:'MM/dd/yyyy @ h:mma'}}
+        </p>
+        <p>
           {{store.description}}
         </p>
       </md-card-content>
