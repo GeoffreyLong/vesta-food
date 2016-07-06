@@ -4,7 +4,7 @@ var router = express.Router();
 
 var config = require('../config')();
 var stripe = require('stripe')(config.stripe.apiKey);
-var _ = require('underscore');
+var _ = require('lodash');
 
 var User = require('../models/user');
 var Store = require('../models/store');
@@ -28,7 +28,7 @@ router.get('/:userId', function(req, res) {
       res.status(200).send(user);
     }, function errorCallback(error) {
       res.status(500).send(error);
-    })
+    });
 });
 
 
@@ -113,7 +113,7 @@ router.post('/:userId/store', function(req, res) {
  */
 router.get('/:userId/store/purchases', function(req, res) {
   Store
-    .getById(req.params.userId)
+    .getByUser(req.params.userId)
     .then(function successCallback(store) {
       if (store == null) {
         return res.status(404).send('purchases for the requested store can not be found because the requested store does not exist');
@@ -158,10 +158,8 @@ router.post('/:userId/purchases', function (req, res) {
 
   var totalCost = 0;
   for (var i = 0; i < foods.length; i++) {
-    var food = foods[i];
-    //dollar to cent conversion
-    console.log(JSON.stringify(food));
-    totalCost += food.price * food.quantity * 100;
+    // times one hundred b/c stripe charges are in cents
+    totalCost += foods[i].price * foods[i].quantity * 100;
   }
 
   var applicationFee = Math.round(totalCost * 0.14);
@@ -180,7 +178,7 @@ router.post('/:userId/purchases', function (req, res) {
       }).then(function (charge) {
         var foodIds = _.map(foods, function (food) {
           return food._id;
-        })
+        });
 
         Purchase.create({
           buyerId: buyerId,
@@ -189,7 +187,7 @@ router.post('/:userId/purchases', function (req, res) {
           pickupTime: pickupTime,
           stripeCharge: charge
         }).then(function successCallback(purchase) {
-          res.status(200).send();
+          res.status(200).send(purchase);
         }, function errorCallback(purchaseError) {
           console.log('error saving purchase to db');
           console.log(purchaseError);

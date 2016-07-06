@@ -35,7 +35,15 @@ module.exports.create = function (store) {
 
 module.exports.all = function () {
   return Store
-    .find({})
+    .find()
+    .populate('foods')
+    .exec();
+}
+
+module.exports.getByUser = function (userId) {
+  return Store
+    .where('userId', userId)
+    .find()
     .populate('foods')
     .exec();
 }
