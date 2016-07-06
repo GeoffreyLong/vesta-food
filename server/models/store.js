@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var Food = require('./food'); // needed to use query.populate
  
 var Store = mongoose.model('Store', {
   userId: String,

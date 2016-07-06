@@ -63,13 +63,11 @@ router.post('/:userId/store', function(req, res) {
     if (!stripeError) {
       console.log(body);
 
-      var store = new Store({
-        stripe: JSON.parse(body)
-      });
-
-      //FIXME save store id in user
-      store.save(function (storeError) {
-        if (!storeError) {
+      Store
+        .create({
+          stripe: JSON.parse(body)
+        })
+        .then(function (store) {
           User
             .where('_id', req.params.userId)
             .findOne()
@@ -93,13 +91,11 @@ router.post('/:userId/store', function(req, res) {
               console.log("store error");
               res.status(500).send(storeError);
             });
-        }
-        else {
+        }, function (storeError) {
           console.log('mongoose error creating store');
           console.log(storeError);
           res.status(500).send(storeError);
-        }
-      })
+        });
     }
 
     else {
@@ -116,9 +112,7 @@ router.post('/:userId/store', function(req, res) {
  */
 router.get('/:userId/store/purchases', function(req, res) {
   Store
-    .where('userId', req.params.userId)
-    .findOne()
-    .exec()
+    .getById(req.params.userId)
     .then(function successCallback(store) {
       if (store == null) {
         return res.status(404).send('purchases for the requested store can not be found because the requested store does not exist');
@@ -171,13 +165,9 @@ router.post('/:userId/purchases', function (req, res) {
 
   var applicationFee = Math.round(totalCost * 0.14);
 
-  Store.findById(storeId, function (storeError, store) {
-    if (storeError) {
-      console.log('error finding store by id');
-      console.log(storeError);
-      res.status(500).send();
-    }
-    else {
+  Store
+    .getById(storeId)
+    .then(function (store) {
       var sellerAccountId = store.stripe.stripe_user_id;
 
       stripe.charges.create({
@@ -207,8 +197,11 @@ router.post('/:userId/purchases', function (req, res) {
         console.log(stripeError);
         res.status(500).send();
       })
-    }
-  });
+    }, function (storeError) {
+      console.log('error finding store by id');
+      console.log(storeError);
+      res.status(500).send();
+    });
 });
 
 module.exports = router;
