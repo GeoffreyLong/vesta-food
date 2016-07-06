@@ -1,8 +1,16 @@
-<md-card>
-  <md-card-header>
-    Header
-  </md-card-header>
-  <md-card-content>
-    {{$ctrl.purchases}}
-  </md-card-content>
+<md-card ng-repeat="purchase in $ctrl.purchases">
+  <md-list>
+    <md-title class="md-no-sticky"> purchase._id </md-title>
+      <md-list-item class="md-3-line" ng-repeat="food in purchase.foods">
+        <img ng-src="{{food.photo}}" class="md-avatar" alt="Food Photo"/>
+        <div class="md-list-item-text" layout="column">
+          <h3>Name: {{ food.name }}</h3>
+          <h4>Quantity: {{ food.quantity }}; Price per item: {{ food.price }}</h4>
+          <p>Total Price: TODO </p>
+        </div>
+      </md-list-item>
+  </md-list>
+  <md-card-actions layout="row" layout-align="end center">
+    <md-button ng-click="purchaseOrder(storeCart)">Contact Seller</md-button>
+  </md-card-actions>
 </md-card>
