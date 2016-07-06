@@ -8,11 +8,11 @@ var Purchase = mongoose.model('Purchase', {
   pickupTime: Date
 });
 
-var create = function (purchase) {
+module.exports.create = function (purchase) {
   return new Purchase(purchase).save();
 }
 
-var allByStore = function (storeId) {
+module.exports.allByStore = function (storeId) {
   return Purchase
     .where('storeId', storeId)
     .populate('foods')
@@ -20,16 +20,10 @@ var allByStore = function (storeId) {
     .exec();
 }
 
-var allByUser = function (userId) {
+module.exports.allByUser = function (userId) {
   return Purchase
     .where('buyerId', userId)
     .populate('foods')
     .find()
     .exec();
 }
-
-module.exports = {
-  create: create,
-  allByStore: allByStore,
-  allByUser: allByUser
-};
