@@ -10,6 +10,8 @@ module.exports = function(passport){
 
   // Get the correct configuration down
   var config = require('../config')();
+
+  var Food = require('../models/food')
   var Stores = require('../models/store.js');
 
   var multer = require('multer');
@@ -94,25 +96,25 @@ module.exports = function(passport){
     // TODO figure out a good distance... perhaps this is something the user can spec
     //      in the store search sidenav
 
-    Stores.find({}, function(err, stores){
-      if (err) res.status(400).send(err)
-
-      res.status(200).send(stores);
-    });
-
-
+    Stores
+      .all()
+      .then(function(stores) {
+        res.status(200).send(stores);
+      }, function (error) {
+        res.status(400).send(error);
+      });
   });
 
 
 
   router.get('/store/:storeId', function(req, res) {
-    Stores.findById(req.params.storeId, function(err, store){
-      if (err) res.status(400).send(err)
-
-      res.status(200).send(store);
-    });
-
-
+    Stores
+      .getById(req.params.storeId)
+      .then(function (store) {
+        res.status(200).send(store);
+      }, function (storeError) {
+        res.status(400).send(storeError);
+      });
   });
 
   router.post('/store/edit/photo', upload.any('file'), function(req, res) {

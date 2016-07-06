@@ -22,6 +22,8 @@ var StoreReviews = require('../models/storeReview.js');
 var storeReviewsArray = require('./db_population/storeReviews.js');
 var FoodReviews = require('../models/foodReview.js');
 var foodReviewsArray = require('./db_population/foodReviews.js');
+var Foods = require('../models/food');
+var foodsArray = require('./db_population/foods');
 
 var userIds = [];
 var storeIds = [];
@@ -71,30 +73,34 @@ var insertUsers = function(){
 var insertStores = function(pairings){
   // Remove all stores and add in the test stores
   Stores.remove({}, function(err){
-    Stores.collection.insert(storesArray, function(err, docs) {
-      if (err){
-        console.log(err);
-        console.log("Failed to initialize Stores");
+    Foods.collection.insert(foodsArray, function (err, foodDocs) {
+      for (var i = 0; i < storesArray.length; i ++) {
+        var store = storesArray[i];
+        store.foods = foodDocs.insertedIds;
       }
-      else {
-        console.log("Added Stores: " + docs.insertedIds);
 
-        storeIds = docs.insertedIds;
+      Stores.collection.insert(storesArray, function(err, storeDocs) {
+        if (err){
+          console.log(err);
+          console.log("Failed to initialize Stores");
+        }
+        else {
+          console.log("Added Stores: " + storeDocs.insertedIds);
+          storeIds = storeDocs.insertedIds;
+          // Pair up the stores and the users
+          var newPairs = [];
+          storeDocs.insertedIds.forEach(function(storeId, index){
+            // There will always be more users than stores
+            var pair = pairings[index];
+            pair.storeId = storeId;
+            newPairs.push(pair);
+          });
 
-        // Pair up the stores and the users
-        var newPairs = [];
-        docs.insertedIds.forEach(function(storeId, index){
-          // There will always be more users than stores
-          var pair = pairings[index];
-          pair.storeId = storeId;
-          newPairs.push(pair);
-        });
-
-        updatePairs(newPairs);
-        insertStoreReviews(newPairs);
-      }
-    });
-
+          updatePairs(newPairs);
+          insertStoreReviews(newPairs);
+        }
+      });
+    })
   });
 }
 

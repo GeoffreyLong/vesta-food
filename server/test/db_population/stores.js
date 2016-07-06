@@ -19,36 +19,7 @@ module.exports = [{
 		stripe_user_id : "acct_18QQTFL3tT16l2Km",
 		scope : "read_write"
   },
-  foods: [{
-    name: "Hamburger Pastry thingies",
-    photo: "/images/chef_1-1.png",
-    price: 10,
-    shelfLife: 3,
-    prepTime: 2,
-    overallRating: 5
-  }, {
-    name: "Schwarma Guy Wraps",
-    photo: "/images/chef_1-2.jpg",
-    price: 8,
-    shelfLife: 2,
-    prepTime: 4,
-    overallRating: 3
-  }, {
-    name: "Salmon Delight",
-    photo: "/images/chef_1-3.jpeg",
-    price: 8,
-    shelfLife: 1,
-    prepTime: 1,
-    overallRating: 2
-  }, {
-    name: "They're called MILANOS",
-    photo: "/images/chef_1-4.png",
-    price: 4,
-    shelfLife: 500,
-    prepTime: 0,
-    overallRating: 4,
-    description: "I like these alot, but they are called Milanos."
-  }]
+  foods: []
 }, {
   storeTitle: "Charlie's Store",
   profilePhoto: "TODO",
@@ -72,14 +43,7 @@ module.exports = [{
 		stripe_user_id : "acct_18QQTFL3tT16l2Km",
 		scope : "read_write"
   },
-  foods: [{
-    name: "Ipsum Salad",
-    photo: "/images/chef_2-1.jpg",
-    price: 10,
-    shelfLife: 3,
-    prepTime: 2,
-    overallRating: 3
-  }]
+  foods: []
 }, {
   storeTitle: "Jimmy's Store",
   pickupAddress: "3515 Rue Durocher",
@@ -92,35 +56,7 @@ module.exports = [{
     lat: 45.51455329999999,
     lng: -73.57138750000001
   },
-  foods: [{
-    name: "Brittle Peanuts",
-    photo: "/images/chef_3-1.jpg",
-    price: 10,
-    shelfLife: 3,
-    prepTime: 2,
-    overallRating: 3
-  }, {
-    name: "Brittle Peanuts",
-    photo: "/images/chef_3-2.jpg",
-    price: 10,
-    shelfLife: 3,
-    prepTime: 2,
-    overallRating: 3
-  }, {
-    name: "Brittle Peanuts",
-    photo: "/images/chef_3-3.jpg",
-    price: 10,
-    shelfLife: 3,
-    prepTime: 2,
-    overallRating: 3
-  }, {
-    name: "Brittle Peanuts",
-    photo: "/images/chef_3-4.jpg",
-    price: 10,
-    shelfLife: 3,
-    prepTime: 2,
-    overallRating: 3
-  }]
+  foods: []
 }, {
   storeTitle: "Ronald's",
   profilePhoto: "/images/chef_5_profile.jpg",
@@ -134,13 +70,6 @@ module.exports = [{
     lat: 45.51455329999999,
     lng: -73.57138750000001
   },
-  foods: [{
-    name: "Ribz",
-    photo: "/images/chef_4-1.jpg",
-    price: 10,
-    shelfLife: 3,
-    prepTime: 2,
-    overallRating: 3
-  }]
+  foods: []
 }];
 

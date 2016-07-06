@@ -23,14 +23,25 @@ var Store = mongoose.model('Store', {
     scope: String
   },
 	foods: [{
-    name: String,
-    photo: String,
-    price: Number,
-    description: String,
-    shelfLife: Number,
-    prepTime: Number,
-    overallRating: Number
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Food'
   }]
 });
 
-module.exports = Store;
+module.exports.create = function (store) {
+  return new Store(store).save();
+}
+
+module.exports.all = function () {
+  return Store
+    .find({})
+    .populate('foods')
+    .exec();
+}
+
+module.exports.getById = function (storeId) {
+  return Store
+    .findById(storeId)
+    .populate('foods')
+    .exec();
+}
