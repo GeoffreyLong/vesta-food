@@ -120,6 +120,10 @@ router.get('/:userId/store/purchases', function(req, res) {
     .findOne()
     .exec()
     .then(function successCallback(store) {
+      if (store == null) {
+        return res.status(404).send('purchases for the requested store can not be found because the requested store does not exist');
+      }
+
       var storeId = store._id;
       Purchase
         .allByStore(storeId)
@@ -129,7 +133,7 @@ router.get('/:userId/store/purchases', function(req, res) {
           console.log('purchaseError');
           console.log(purchaseError);
           res.status(500).send(purchaseError);
-        })
+        });
     }, function errorCallback(storeError) {
       console.log('storeError');
       console.log(storeError);
