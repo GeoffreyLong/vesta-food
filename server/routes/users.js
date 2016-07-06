@@ -4,6 +4,7 @@ var router = express.Router();
 
 var config = require('../config')();
 var stripe = require('stripe')(config.stripe.apiKey);
+var _ = require('underscore');
 
 var User = require('../models/user');
 var Store = require('../models/store');
@@ -177,12 +178,14 @@ router.post('/:userId/purchases', function (req, res) {
         application_fee: applicationFee,
         destination: sellerAccountId
       }).then(function (charge) {
-        console.log('submitting charge to stripe');
-        console.log(charge);
+        var foodIds = _.map(foods, function (food) {
+          return food._id;
+        })
+
         Purchase.create({
           buyerId: buyerId,
           storeId: storeId,
-          foods: foods,
+          foods: foodIds,
           pickupTime: pickupTime,
           stripeCharge: charge
         }).then(function successCallback(purchase) {
