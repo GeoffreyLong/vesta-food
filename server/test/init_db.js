@@ -72,14 +72,14 @@ var insertUsers = function(){
 
 var insertStores = function(pairings){
   // Remove all stores and add in the test stores
-  Stores.remove({}, function(err){
+  Stores.model.remove({}, function(err){
     Foods.collection.insert(foodsArray, function (err, foodDocs) {
       for (var i = 0; i < storesArray.length; i ++) {
         var store = storesArray[i];
         store.foods = foodDocs.insertedIds;
       }
 
-      Stores.collection.insert(storesArray, function(err, storeDocs) {
+      Stores.model.collection.insert(storesArray, function(err, storeDocs) {
         if (err){
           console.log(err);
           console.log("Failed to initialize Stores");
@@ -116,7 +116,7 @@ var updatePairs = function(pairs) {
       }
     });
 
-    Stores.findByIdAndUpdate(pair.storeId, { userId: pair.userId }, function(err, store){
+    Stores.model.findByIdAndUpdate(pair.storeId, { userId: pair.userId }, function(err, store){
       if (err) {
         console.log(err);
         console.log("Failed to update store: " + pair.storeId + " with user: " + pair.userId);
@@ -178,7 +178,7 @@ var insertStoreReviews = function(pairs) {
 var insertFoodReview = function(userId, storeId) {
   var numFoodReviews = foodReviewsArray.length;
   
-  Stores.findById(storeId, function(err, store){
+  Stores.model.findById(storeId, function(err, store){
     if (err) {
       console.log("Couldn't find storeId: " + storeId);
     }

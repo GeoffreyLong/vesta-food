@@ -55,3 +55,5 @@ module.exports.getById = function (storeId) {
     .populate('foods')
     .exec();
 }
+
+module.exports.model = Store;
