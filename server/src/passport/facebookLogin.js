@@ -1,6 +1,6 @@
 module.exports = function(passport){
   var FacebookStrategy   = require('passport-facebook').Strategy;
-  var User = require('../models/user');
+  var User = require('./user');
 
   // Get the correct configuration down
   var config = require('../config')();

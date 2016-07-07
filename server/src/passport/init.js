@@ -1,5 +1,5 @@
 var facebookLogin = require('./facebookLogin');
-var User = require('../models/user');
+var User = require('./user');
 
 module.exports = function(passport){
 

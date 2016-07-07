@@ -63,7 +63,6 @@ app.use(function(req, res, next) {
   next();
 });
 
-
 // Routes
 var routes = require('./routes/index')(passport);
 var users = require('./routes/users');

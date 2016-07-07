@@ -14,15 +14,15 @@ console.log("hello world!");
 var mongoose = require('mongoose');
 
 
-var Users = require('../models/user');
+var Users = require('../src/models/user');
 var usersArray = require('./db_population/users.js');
-var Stores = require('../models/store');
+var Stores = require('../src/models/store');
 var storesArray = require('./db_population/stores.js');
-var StoreReviews = require('../models/storeReview.js');
+var StoreReviews = require('../src/models/storeReview.js');
 var storeReviewsArray = require('./db_population/storeReviews.js');
-var FoodReviews = require('../models/foodReview.js');
+var FoodReviews = require('../src/models/foodReview.js');
 var foodReviewsArray = require('./db_population/foodReviews.js');
-var Foods = require('../models/food');
+var Foods = require('../src/models/food');
 var foodsArray = require('./db_population/foods');
 
 var userIds = [];
@@ -30,7 +30,7 @@ var storeIds = [];
 
 // Require that we be in development mode 
 // NOTE might want a 'test' mode down the road
-var config = require('../config')();
+var config = require('../src/config')();
 
 // Start up the DB
 mongoose.connect(config.database.url, function (error) {

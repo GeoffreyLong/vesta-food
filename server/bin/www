@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 var debug = require('debug')('VestaFood');
-var app = require('../app');
+var app = require('../src/app');
 
-var config = require('../config')();
+var config = require('../src/config')();
 
 app.set('port', config.port || 3000);
 

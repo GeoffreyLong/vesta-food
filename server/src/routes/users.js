@@ -6,9 +6,9 @@ var config = require('../config')();
 var stripe = require('stripe')(config.stripe.apiKey);
 var _ = require('lodash');
 
-var User = require('../models/user');
-var Store = require('../models/store');
-var Purchase = require('../models/purchase');
+var User = require('./user');
+var Store = require('./store');
+var Purchase = require('./purchase');
 
 var STRIPE_TOKEN_URI = 'https://connect.stripe.com/oauth/token';
 
@@ -119,6 +119,7 @@ router.get('/:userId/store/purchases', function(req, res) {
         return res.status(404).send('purchases for the requested store can not be found because the requested store does not exist');
       }
 
+      console.log(store);
       var storeId = store._id;
       Purchase
         .allByStore(storeId)

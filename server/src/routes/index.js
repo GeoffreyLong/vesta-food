@@ -11,8 +11,8 @@ module.exports = function(passport){
   // Get the correct configuration down
   var config = require('../config')();
 
-  var Food = require('../models/food')
-  var Stores = require('../models/store.js');
+  var Food = require('./food')
+  var Stores = require('./store.js');
 
   var multer = require('multer');
   var storage = multer.diskStorage({
