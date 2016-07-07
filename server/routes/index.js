@@ -9,9 +9,7 @@ module.exports = function(passport){
   var fs = require('fs');
 
   // Get the correct configuration down
-  var config = require('../../server/config');
-  config = config[process.env.NODE_ENV] || config['development'];
-
+  var config = require('../config')();
   var Stores = require('../models/store.js');
 
   var multer = require('multer');

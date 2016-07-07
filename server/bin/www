@@ -2,8 +2,7 @@
 var debug = require('debug')('VestaFood');
 var app = require('../app');
 
-var common = require('../routes/common');
-var config = common.config();
+var config = require('../config')();
 
 app.set('port', config.port || 3000);
 

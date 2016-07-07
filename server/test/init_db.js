@@ -28,8 +28,7 @@ var storeIds = [];
 
 // Require that we be in development mode 
 // NOTE might want a 'test' mode down the road
-var config = require('../config');
-config = config['development'];
+var config = require('../config')();
 
 // Start up the DB
 mongoose.connect(config.database.url, function (error) {

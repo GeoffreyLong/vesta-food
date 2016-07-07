@@ -38,6 +38,14 @@
           </md-button>
         </md-menu-item>
         <md-menu-item class="md-indent">
+          <md-icon class="material-icons"> dashboard </md-icon>
+          <md-button href="#!/dashboard"> Buyer Dashboard </md-button>
+        </md-menu-item>
+        <md-menu-item class="md-indent" ng-if="$ctrl.session.user.storeId">
+          <md-icon class="material-icons"> dashboard </md-icon>
+          <md-button href="#!/sellerDashboard"> Seller Dashboard </md-button>
+        </md-menu-item>
+        <md-menu-item class="md-indent">
           <md-icon class="material-icons"> person </md-icon>
           <md-button ng-click="logout()">
             Logout
