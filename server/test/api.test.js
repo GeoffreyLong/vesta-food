@@ -3,7 +3,7 @@ var request = require('supertest');
 var assert = require('chai').assert;
 var app = require('../src/app');
 
-describe("status endpoint", function () {
+describe("/api/status", function () {
   it("returns status 200", function (done) {
     request(app)
       .get("/api/status")
@@ -11,7 +11,7 @@ describe("status endpoint", function () {
   });
 });
 
-describe("store endpoint", function () {
+describe("/api/stores", function () {
   it("returns status 200", function (done) {
     request(app)
       .get("/api/stores")
