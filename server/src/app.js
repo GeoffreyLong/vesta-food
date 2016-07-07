@@ -71,6 +71,9 @@ var auth = require('./routes/auth');
 app.use('/api', routes);
 app.use('/api/auth', auth);
 app.use('/api/users', users);
+app.get('/api/status', function (req, res) {
+  res.status(200).send();
+});
 
 
 // catch 404 and forward to error handler
