@@ -6,9 +6,9 @@ var config = require('../config')();
 var stripe = require('stripe')(config.stripe.apiKey);
 var _ = require('lodash');
 
-var User = require('./user');
-var Store = require('./store');
-var Purchase = require('./purchase');
+var User = require('../models/user');
+var Store = require('../models/store');
+var Purchase = require('../models/purchase');
 
 var STRIPE_TOKEN_URI = 'https://connect.stripe.com/oauth/token';
 
