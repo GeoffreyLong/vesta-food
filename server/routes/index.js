@@ -15,7 +15,7 @@ module.exports = function(passport){
   var multer = require('multer');
   var storage = multer.diskStorage({
     destination: function(req, file, cb){
-      cb(null, '../web-client/app/images/tmp/'); 
+      cb(null, 'public/images/tmp/'); 
     },
     /* alternate way of handling tmps
     filename: function(req, file, cb){
@@ -120,7 +120,7 @@ module.exports = function(passport){
     var photo = req.files[0];
 
     if (photo && photo.filename) {
-      res.status(200).send('/images/tmp/' + photo.filename);
+      res.status(200).send('/public/images/tmp/' + photo.filename);
     }
     else {
       res.status(500).send('');

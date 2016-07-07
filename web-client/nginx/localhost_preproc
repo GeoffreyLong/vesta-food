@@ -9,7 +9,10 @@ server {
     listen 8080;
 
     location / {
-        root $rootloc/app;
+        root $appRoot/app;
+    }
+    location /public/ {
+        root $serverRoot/public;
     }
     location /api/ {
         proxy_pass http://localhost:3000;
