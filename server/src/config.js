@@ -1,5 +1,28 @@
 var config = {
+
+  //Stateful database used in development.
   development: {
+    port: 3000,
+    database: {
+      url: 'mongodb://localhost/VestaFoodDevelopment'
+    },
+    facebook: {
+      appID: "592850390877879",
+      appSecret: "9d74b20152449f942818ab1cd2558e46",
+      callbackUrl: "http://localhost:80/api/auth/facebook/callback"
+    },
+    googleMaps: {
+      clientKey: "AIzaSyBr9CgN3xm551js9nkeFykGZUtgyrJp6Rg",
+      serverKey: "AIzaSyDmoJrfXcTd5i_v88O-VzLrtcKd7nrNQvA"
+    },
+    stripe: {
+      clientId: "ca_89GeQlhMVoUResS0PeQm6XuCs6hoXgze",
+      apiKey: "sk_test_an3Nezne8XguJAefiBJgNV63"
+    }
+  },
+
+  //Used in unit tests. All dbs are dropped after each run.
+  test: {
     port: 3000,
     database: {
       url: 'mongodb://localhost/VestaFoodTest'
@@ -17,7 +40,11 @@ var config = {
       clientId: "ca_89GeQlhMVoUResS0PeQm6XuCs6hoXgze",
       apiKey: "sk_test_an3Nezne8XguJAefiBJgNV63"
     }
+
+
   },
+
+  //Used in production.
   production: {
     port: 80,
     database: {
