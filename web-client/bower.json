@@ -20,7 +20,8 @@
     "ng-file-upload-shim": "^12.0.4",
     "ng-file-upload": "^12.0.4",
     "angular-payments": "*",
-    "moment": "^2.14.1"
+    "moment": "^2.14.1",
+    "angular-messages": "^1.5.7"
   },
   "resolutions": {
     "angular": "1.5.6",

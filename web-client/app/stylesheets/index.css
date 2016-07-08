@@ -340,6 +340,9 @@ md-card md-toast.md-bottom {
 #addressEdit {
   margin-bottom: -24px;
 }
+#addressEdit.ng-invalid {
+  margin-bottom: 0px;
+}
 /* Override the autocomplete addition of a placeholder */
 #addressEdit::-webkit-input-placeholder {
 /* Chrome/Opera/Safari */
@@ -368,6 +371,10 @@ md-card md-toast.md-bottom {
   height: 100px;
   width: 100px;
   border-radius: 50%;
+  margin-right: 10%;
+}
+.editCard #nonMapDiv {
+  padding-right: 30px;
 }
 #addFoodDiv {
   color: #00b36f;

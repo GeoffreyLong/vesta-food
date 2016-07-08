@@ -19,51 +19,75 @@
               Could add like a "most popular dish" or something
               Maybe I could even dynamically place it given the size of the description
         -->
-        <div flex>
-          <md-input-container class="md-block">
-            <label class="md-title"> Store Name: </label>
-            <input type="text" name="storeTitle" ng-model="store.storeTitle" maxlength="25" md-maxlength="25" required />
-            <div ng-messages="storeForm.storeTitle.$error">
-              <div ng-message="required">This is required.</div>
-            </div>
-          </md-input-container>
-          
+        <div flex id="nonMapDiv">
+          <div layout="row" layout-align="space-between center">
+            <md-input-container class="md-block">
+              <label class="md-title"> Store Name: </label>
+              <input  type="text" name="storeTitle" ng-model="store.storeTitle" 
+                      maxlength="25" md-maxlength="25" required />
+              <div ng-messages="storeForm.storeTitle.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
+            </md-input-container>
+
+            <img id="profilePhotoEdit" src="{{store.profilePhoto}}" alt="Profile Picture" ng-click="showConfirm($event, store.profilePhoto, 0)"/>
+          </div>
+
           <md-input-container class="md-block">
             <label class='md-title'> Store Description: </label>
             <!-- TODO restrict from pressing "enter" a bunch... or at all -->
-            <textarea id="storeDescriptionEdit"
-                      ng-model="store.description" md-maxlength="150">
+            <textarea id="storeDescriptionEdit" name="description"
+                      ng-model="store.description" md-maxlength="150" maxlength="150" 
+                      required>
             </textarea>
+            <div ng-messages="storeForm.description.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
           </md-input-container>
 
           <span class='md-title'> Store Hours: </span>
 
           <div layout="row" id="storeHours" layout-align="space-between start">
-            <md-datepicker ng-model="store.date" md-placeholder="Enter date">
-            </md-datepicker>
+            <div>
+              <!-- TODO must be today or after -->
+              <md-datepicker  ng-model="store.date" md-placeholder="Enter date" 
+                              required name="date">
+              </md-datepicker>
+              <div  ng-messages="storeForm.date.$error" 
+                    ng-show="storeForm.date.$touched"
+                    style="margin-left:65px; color:#FF6D00">
+                <div ng-message="valid">Invalid Date.</div>
+                <div ng-message="required">This is required.</div>
+              </div>
+            </div>
+
+            <!-- TODO assert start before end -->
+            <!-- TODO find how to error message invalid times -->
             <md-input-container flex class="md-block">
               <label class="md-title"> Start Time: </label>
-              <input type="time" ng-model="store.startTime"/>
+              <input type="time" ng-model="store.startTime" name="startTime" required/>
+              <div ng-messages="storeForm.startTime.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
             </md-input-container>
             <md-input-container flex class="md-block">
               <label class="md-title"> End Time: </label>
-              <input type="time" ng-model="store.endTime"/>
+              <input type="time" ng-model="store.endTime" name="endTime" required/>
+              <div ng-messages="storeForm.endTime.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
             </md-input-container>
           </div>
         </div>
         
-        <!-- TODO maps... Will take care of this with address verification in one shot -->
         <div flex>
-          <div layout="row" layout-align="start center">
-            <div><span class='md-title'> Profile image: </span></div>
-            <div>
-              <img id="profilePhotoEdit" src="{{store.profilePhoto}}" alt="Profile Picture" ng-click="showConfirm($event, store.profilePhoto, 0)"/>
-            </div>
-          </div>
           <md-input-container class="md-block" id="addressEditContainer">
             <label class="md-title"> Pickup Address: </label>
             <input  id="addressEdit" places-auto-complete types="['geocode']" ng-model="store.pickupAddress.formatted" 
-                    on-place-changed="placeChanged()" />
+                    on-place-changed="placeChanged()" name="address" required/>
+            <div ng-messages="storeForm.address.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
           </md-input-container>
           <ng-map center="{{store.pickupAddress.lat}}, {{store.pickupAddress.lng}}" zoom="14">
             <marker position="{{store.pickupAddress.lat}}, {{store.pickupAddress.lng}}" title="Store Location"></marker> 
