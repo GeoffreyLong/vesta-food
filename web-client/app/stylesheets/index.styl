@@ -336,14 +336,35 @@ md-card
     height:350px
     margin: auto
 
+/* TODO should I do this? 
+        Then if they enter a bunch the info gets 'lost' due to no scroll
 #storeDescriptionEdit
-  width: 80%
-  min-height: 150px
+  max-height: 150px
+*/
 
+/* Overridde the margins and whatnot of the address entry input */
+#addressEditContainer
+  margin-bottom: 0px
 #addressEdit
-  margin-left: 5px
-  /* Could probably do this better with some sort of layout managing */
-  width: 60%
+  margin-bottom:-24px
+
+/* Override the autocomplete addition of a placeholder */
+#addressEdit::-webkit-input-placeholder 
+  /* Chrome/Opera/Safari */
+  opacity: 0
+#addressEdit::-moz-placeholder 
+  /* Firefox 19+ */
+  opacity: 0
+#addressEdit:-ms-input-placeholder 
+  /* IE 10+ */
+  opacity: 0
+#addressEdit:-moz-placeholder  
+  /* Firefox 18- */
+  opacity: 0
+
+#storeHours
+  md-input-container
+    margin-top: 3px
 
 .editCard
   padding: 20px 20px 0px 20px 

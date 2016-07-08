@@ -1,8 +1,9 @@
-<div class="importantFixedDiv" layout="column">
-  <md-button class="importantFixedButton" ng-if="checkEquality()" ng-click="saveChanges()"> 
+<form name="storeForm">
+<div class="importantFixedDiv" layout="column" ng-if="!checkEquality()">
+  <md-button class="importantFixedButton" ng-click="saveChanges()"> 
     Save Changes
   </md-button>
-  <md-button class="importantFixedButton" ng-if="checkEquality()" ng-click="resetChanges()"> 
+  <md-button class="importantFixedButton" ng-click="resetChanges()"> 
     Undo Changes
   </md-button>
 </div>
@@ -11,21 +12,7 @@
 <div id="storeInfoEditDiv">
   <md-card class="editCard">
     <div class="innerEditDiv"> 
-      <div layout="row" layout-align="center center">
-        <div flex=50>
-          <span class="md-title"> Store Name: </span>
-          <input type="text" ng-model="store.storeTitle" maxlength="25"/>
-        </div>
-        <div flex=50>
-          <div layout="row" layout-align="start center">
-            <div><span class='md-title'> Profile image: </span></div>
-            <div>
-              <img id="profilePhotoEdit" src="{{store.profilePhoto}}" alt="Profile Picture" ng-click="showConfirm($event, store.profilePhoto, 0)"/>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="descriptionPanel" layout="row" layout-align="center center" layout-xs="column" layout-sm="column">
+      <div id="descriptionPanel" layout="row" layout-align-gt-sm="center center" layout-xs="column" layout-sm="column">
         <!-- 
               TODO this might be too sparse to lay side by side with a map
               See if I can add more content to this
@@ -33,22 +20,51 @@
               Maybe I could even dynamically place it given the size of the description
         -->
         <div flex>
-          <span class='md-title'> TODO HOURS?: </span>
-          <br>
-          <br>
-          <span class='md-title'> Store Description: </span>
-          <br>
-          <div id="storeDescription">
-            <textarea id="storeDescriptionEdit" type='textarea' ng-model="store.description">
+          <md-input-container class="md-block">
+            <label class="md-title"> Store Name: </label>
+            <input type="text" name="storeTitle" ng-model="store.storeTitle" maxlength="25" md-maxlength="25" required />
+            <div ng-messages="storeForm.storeTitle.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          
+          <md-input-container class="md-block">
+            <label class='md-title'> Store Description: </label>
+            <!-- TODO restrict from pressing "enter" a bunch... or at all -->
+            <textarea id="storeDescriptionEdit"
+                      ng-model="store.description" md-maxlength="150">
             </textarea>
+          </md-input-container>
+
+          <span class='md-title'> Store Hours: </span>
+
+          <div layout="row" id="storeHours" layout-align="space-between start">
+            <md-datepicker ng-model="store.date" md-placeholder="Enter date">
+            </md-datepicker>
+            <md-input-container flex class="md-block">
+              <label class="md-title"> Start Time: </label>
+              <input type="time" ng-model="store.startTime"/>
+            </md-input-container>
+            <md-input-container flex class="md-block">
+              <label class="md-title"> End Time: </label>
+              <input type="time" ng-model="store.endTime"/>
+            </md-input-container>
           </div>
-          <br>
         </div>
+        
         <!-- TODO maps... Will take care of this with address verification in one shot -->
         <div flex>
-          <span class="md-title"> Pickup Address: </span>
-          <input  id="addressEdit" places-auto-complete types="['geocode']" ng-model="store.pickupAddress.formatted" 
-                  on-place-changed="placeChanged()" />
+          <div layout="row" layout-align="start center">
+            <div><span class='md-title'> Profile image: </span></div>
+            <div>
+              <img id="profilePhotoEdit" src="{{store.profilePhoto}}" alt="Profile Picture" ng-click="showConfirm($event, store.profilePhoto, 0)"/>
+            </div>
+          </div>
+          <md-input-container class="md-block" id="addressEditContainer">
+            <label class="md-title"> Pickup Address: </label>
+            <input  id="addressEdit" places-auto-complete types="['geocode']" ng-model="store.pickupAddress.formatted" 
+                    on-place-changed="placeChanged()" />
+          </md-input-container>
           <ng-map center="{{store.pickupAddress.lat}}, {{store.pickupAddress.lng}}" zoom="14">
             <marker position="{{store.pickupAddress.lat}}, {{store.pickupAddress.lng}}" title="Store Location"></marker> 
           </ng-map>
@@ -83,7 +99,7 @@
           <br>
           <br>
           <span class="md-title"> Food Description: </span>
-          <input type="text" ng-model="food.description" maxlength="25"/>
+          <input type="text" ng-model="food.description" maxlength="100"/>
           <br>
           <br>
           <span class="md-title"> Shelf Life (days): </span>
@@ -145,3 +161,4 @@
   </div>
   </md-card>
 </div>
+</form>

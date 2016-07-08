@@ -10,20 +10,13 @@ angular.module('storeEdit').component('storeEdit', {
     var re = new RegExp("\/store\/(.*)\/edit");
     var storeId = re.exec($location.path())[1];    
 
-    // Temporary seed locations
-    var tempLat = 45.508596;
-    var tempLng = -73.57496800000001;
-    
     // Needed to pass to dialog
     dataService.setStore($scope.store);
+    $scope.clonedStore = dataService.getClonedStore();
 
     if (!$scope.store){
       $http.get('/api/store/' + storeId).then(function(store) {
         $scope.store = store.data;
-
-        // Temporary seed locations
-        $scope.store.pickupAddress.lat = tempLat;
-        $scope.store.pickupAddress.lng = tempLng;
 
         // Needed to pass to dialog
         dataService.setStore($scope.store);
@@ -189,7 +182,10 @@ angular.module('storeEdit').component('storeEdit', {
     // INTERESTING  passing in store and cloned store to this fn renders this useless
     //              I guess the variable binding makes this so
     $scope.checkEquality = function(){
-      return (JSON.stringify($scope.store) !== JSON.stringify($scope.clonedStore));
+      // If either is undefined then just say they are equal 
+      // This will avoid the initial flash at the beginning
+      if (!$scope.store || !$scope.clonedStore) return true;
+      return (JSON.stringify($scope.store) === JSON.stringify($scope.clonedStore));
     }
 
     $scope.saveStoreInfo = function() {
