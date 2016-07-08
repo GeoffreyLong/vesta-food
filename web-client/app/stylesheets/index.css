@@ -10,13 +10,8 @@ body {
 }
 #nonNavContainer {
   padding-top: 50px;
-  transition: all 0.1s ease-in;
   width: 80%;
   margin: auto;
-}
-#nonNavContainer.sideNavOpen {
-  padding-left: 225px;
-  transition: all 0.15s ease-in;
 }
 /******************************** TOP NAV BAR ********************************/
 /* NOTE a few of these attributes can be encapsulated in a header elements class */

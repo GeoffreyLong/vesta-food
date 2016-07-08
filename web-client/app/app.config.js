@@ -25,7 +25,7 @@ angular
       $routeProvider
         .when('/', {
           template: '<vesta-nav></vesta-nav>'
-            + '<div id="nonNavContainer" class="sideNavOpen">'
+            + '<div id="nonNavContainer">'
             + '<stores-view></stores-view>'
             + '</div>',
           resolve: {
@@ -37,7 +37,7 @@ angular
         })
         .when('/becomeAChef', {
           template: '<vesta-nav></vesta-nav>'
-            + '<div id="nonNavContainer" class="sideNavOpen">'
+            + '<div id="nonNavContainer">'
             + '<become-chef></become-chef>'
             + '</div>',
           resolve: {
@@ -79,7 +79,7 @@ angular
         })
         .when('/store/:storeID', {
           template: '<vesta-nav></vesta-nav>'
-            + '<div id="nonNavContainer" class="sideNavOpen">'
+            + '<div id="nonNavContainer">'
             + '<store-front></store-front>'
             + '</div>',
           resolve: {
@@ -91,7 +91,7 @@ angular
         })
         .when('/store/:storeID/edit', {
           template: '<vesta-nav></vesta-nav>'
-            + '<div id="nonNavContainer" class="sideNavOpen">'
+            + '<div id="nonNavContainer">'
             + '<store-edit></store-edit>'
             + '</div>',
           resolve: {
@@ -103,7 +103,7 @@ angular
         })
         .when('/purchase', {
           template: '<vesta-nav></vesta-nav>'
-            + '<div id="nonNavContainer" class="sideNavOpen">'
+            + '<div id="nonNavContainer">'
             + '<purchase></purchase>'
             + '</div>',
           resolve: {
@@ -115,7 +115,7 @@ angular
         })
         .when('/dashboard', {
           template: '<vesta-nav></vesta-nav>'
-          + '<div id="nonNavContainer" class="sideNavOpen">'
+          + '<div id="nonNavContainer">'
           + '<buyer-dashboard></buyer-dashboard>'
           + '</div>',
           resolve: {
@@ -127,7 +127,7 @@ angular
         })
         .when('/sellerDashboard', {
           template: '<vesta-nav></vesta-nav>'
-          + '<div id="nonNavContainer" class="sideNavOpen">'
+          + '<div id="nonNavContainer">'
           + '<seller-dashboard></seller-dashboard>'
           + '</div>',
           resolve: {
