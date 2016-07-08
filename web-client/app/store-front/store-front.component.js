@@ -82,11 +82,13 @@ angular.module('storeFront').component('storeFront', {
           // NOTE Might be better to do this template side 
           //      I could possibly do this with an ng-if so I don't load slick
           //      if it is not being used
+          // TODO should probably center the elements... 
           if ($('.slick-slide').length <= 3) {
             $('.slick-slide').css({
               'transition': 'none',
               'transform': 'scale(1)'
             });
+            $('md-card-actions').css({ 'display': 'flex' });
           }
         },
         beforeChange: function (event, slick, currentSlide, nextSlide) {
@@ -121,8 +123,7 @@ angular.module('storeFront').component('storeFront', {
       $location.path($location.path() + '/edit');
     }
 
-    $scope.showBottomSheet = function(ev){
-      console.log(ev);
+    $scope.showBottomSheet = function(ev, food){
       // TODO the parent isn't the best one 
       //      Perhaps it isn't resolving with the updated css for card
       //      This would look better if squares were forced
@@ -134,11 +135,12 @@ angular.module('storeFront').component('storeFront', {
       //      of add some sort of onblur function
       $mdBottomSheet.show({
         templateUrl: 'store-front/bottom-sheet.template.html',
-        parent: ev.currentTarget.closest('md-card-actions'),
+        parent: ev.currentTarget.closest('md-card'),
         clickOutsideToClose: true,
-        controller: function BottomSheetController(){
-
-          
+        disableParentScroll: false,
+        locals: {food: food}, 
+        controller: function BottomSheetController($scope, locals){
+          $scope.food = locals.food;
         }
       }).then(function(clickedItem) {
         // $scope.alert = clickedItem['name'] + ' clicked!';

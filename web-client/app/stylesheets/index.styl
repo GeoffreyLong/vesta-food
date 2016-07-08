@@ -21,12 +21,8 @@ html, body
 
 #nonNavContainer
   padding-top: $headerHeight
-  transition: all 0.1s ease-in
   width: 80%
   margin: auto
-#nonNavContainer.sideNavOpen
-  padding-left: $sideNavWidth
-  transition: all 0.15s ease-in
 
 
 /******************************** TOP NAV BAR ********************************/
@@ -208,8 +204,15 @@ store-front
     .slick-slide
       transform: scale(0.6)
       transition: all 0.5s
+      md-card-actions
+        display:none
     .slick-center
       transform: scale(1)
+      md-card-actions
+        display: flex
+        /* Transitions don't seem to be working for this */
+      md-bottom-sheet
+        margin: 8px 8px 88px 8px
 
 
 .importantFixedDiv
@@ -329,14 +332,35 @@ md-card
     height:350px
     margin: auto
 
+/* TODO should I do this? 
+        Then if they enter a bunch the info gets 'lost' due to no scroll
 #storeDescriptionEdit
-  width: 80%
-  min-height: 150px
+  max-height: 150px
+*/
 
+/* Overridde the margins and whatnot of the address entry input */
+#addressEditContainer
+  margin-bottom: 0px
 #addressEdit
-  margin-left: 5px
-  /* Could probably do this better with some sort of layout managing */
-  width: 60%
+  margin-bottom:-24px
+
+/* Override the autocomplete addition of a placeholder */
+#addressEdit::-webkit-input-placeholder 
+  /* Chrome/Opera/Safari */
+  opacity: 0
+#addressEdit::-moz-placeholder 
+  /* Firefox 19+ */
+  opacity: 0
+#addressEdit:-ms-input-placeholder 
+  /* IE 10+ */
+  opacity: 0
+#addressEdit:-moz-placeholder  
+  /* Firefox 18- */
+  opacity: 0
+
+#storeHours
+  md-input-container
+    margin-top: 3px
 
 .editCard
   padding: 20px 20px 0px 20px 
