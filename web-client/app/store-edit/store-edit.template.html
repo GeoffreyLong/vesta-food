@@ -110,30 +110,33 @@
                       alter the units so they accept the right things, etc
           -->
           <!-- Should probably make these md-inputs -->
-          <span class="md-title"> Food Name: </span>
-          <input type="text" ng-model="food.name" maxlength="25"/>
-          <br>
-          <br>
-          <span class="md-title"> Food Price: </span>
-          <input type="text" ng-model="food.price" maxlength="25"/>
-          <br>
-          <br>
-          <span class="md-title"> Portion Size (optional): </span>
-          <input type="text" ng-model="food.portionSize" maxlength="25"/>
-          <br>
-          <br>
-          <span class="md-title"> Food Description: </span>
-          <input type="text" ng-model="food.description" maxlength="100"/>
-          <br>
-          <br>
-          <span class="md-title"> Shelf Life (days): </span>
-          <input type="text" ng-model="food.shelfLife" maxlength="25"/>
-          <br>
-          <br>
-          <span class="md-title"> Food Prep Time (might not need): </span>
-          <input type="text" ng-model="food.prepTime" maxlength="25"/>
-          <br>
-          <br>
+
+          <md-input-container flex class="md-block">
+            <label class="md-title"> Name </label>
+            <input type="text" ng-model="food.name" name="name" required />
+            <div ng-messages="storeForm.name.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          <md-input-container flex class="md-block">
+            <label class="md-title"> Price </label>
+            <input type="text" ng-model="food.price" name="price" required />
+            <div ng-messages="storeForm.price.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          <md-input-container flex class="md-block">
+            <label class="md-title"> Portion Size </label>
+            <input type="text" ng-model="food.portionSize" />
+          </md-input-container>
+          <md-input-container flex class="md-block">
+            <label class="md-title"> Description </label>
+            <input type="text" ng-model="food.description" name="foodDescription" required />
+            <div ng-messages="storeForm.foodDescription.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+
           <span class="md-title"> Food Photo: </span>
           <md-button ng-click="showConfirm($event, food.photo, $index+1)">
             Edit
