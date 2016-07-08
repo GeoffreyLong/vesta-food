@@ -1,6 +1,7 @@
 angular.module('vestaApp', [
   'ngMaterial',
   'ngRoute',
+  'ngMessages',
   'rzModule',
   'slickCarousel',
   'ngMap',
@@ -15,7 +16,6 @@ angular.module('vestaApp', [
   'purchase',
   'buyerDashboard',
   'sellerDashboard',
-
   'authService',
   'dataService',
   'locationService',
