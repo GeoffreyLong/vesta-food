@@ -25,6 +25,8 @@ Startup Ye Ye!
 - `git clone https://github.com/GeoffreyLong/vesta-food.git`
 - `cd vesta-food/server`
 - `npm install`
+- `npm install -g forever`
+- `forever start bin/www`
 - `cd ../web-client`
 - `npm install`
 - `npm install -g stylus`
