@@ -15,10 +15,11 @@ module.exports = function(passport){
   var Food = require('../models/food');
   var Stores = require('../models/store.js');
 
+  var imageLocation = '../../web-client/app';
   var multer = require('multer');
   var storage = multer.diskStorage({
     destination: function(req, file, cb){
-      cb(null, '../web-client/app/images/tmp/'); 
+      cb(null, imageLocation + '/images/tmp/'); 
     },
     /* alternate way of handling tmps
     filename: function(req, file, cb){
@@ -137,12 +138,10 @@ module.exports = function(passport){
     // TODO check for possible errors with the asynchronous fs updates
     //      Could do fs.renameSynch if I don't trust the code
     var store = req.body.data;
-    console.log(store);
 
     var oldProfPath = store.profilePhoto;
     store.profilePhoto = store.profilePhoto.replace("/tmp", "");
 
-    console.log(oldProfPath);
     updatePath(oldProfPath, store.profilePhoto);
 
 
@@ -152,9 +151,6 @@ module.exports = function(passport){
       updatePath(oldPhoto, food.photo);
     });
 
-    // var id = store._id;
-    // delete store._id;
-    console.log("query");
     Food
       .collection
       .insert(store.foods)
@@ -212,8 +208,8 @@ module.exports = function(passport){
   });
 
   var updatePath = function(oldPath, newPath){
-    oldPath = '../web-client/app' + oldPath;
-    newPath = '../web-client/app' + newPath;
+    oldPath = imageLocation + oldPath;
+    newPath = imageLocation + newPath;
     if (oldPath !== newPath){
       console.log(oldPath, newPath);
       fs.rename(oldPath, newPath, function(err) {
