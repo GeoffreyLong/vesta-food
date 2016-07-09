@@ -274,5 +274,12 @@ angular.module('storeEdit').component('storeEdit', {
       }
       $scope.store.foods.push(newFood);
     }
+
+    // Takes the foodIndex as an argument
+    // Removes the food item at the foodIndex in the foods array
+    $scope.deleteFood = function(foodIndex) {
+      $scope.store.foods.splice(foodIndex,1);
+      console.log($scope.store);
+    }
   }
 });
