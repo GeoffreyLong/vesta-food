@@ -393,3 +393,6 @@ md-card md-toast.md-bottom {
   height: 40px;
   font-size: 40px;
 }
+#foodPriceContainer {
+  width: 60px;
+}
