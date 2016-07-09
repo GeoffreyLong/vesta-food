@@ -196,18 +196,67 @@ angular.module('storeEdit').component('storeEdit', {
     }
     $scope.saveChanges = function() {
       // Send everything to the backend
-      // On the server, if a photo has been changed, 
-      // then move this photo to tmp/ and the tmp/ photo to images
-      var storeData = $scope.store;
-      $http.post('api/stores/' + storeData._id, {
-        data: storeData
-      }).then(function(data) {
-        var re = new RegExp("\/store\/(.*)\/edit");
-        var storeId = re.exec($location.path())[1];    
-        $location.path("/store/" + storeId);
-      }, function(err) {
-        // TODO error handling
+      // Photos are moved from /tmp to the regular img directory
+
+      // Validate the forms and the photos 
+      // If falid then send the updated / new store to the servers
+      if (checkForms() && checkPhotos()){
+        var storeData = $scope.store;
+        $http.post('api/stores/' + storeData._id, {
+          data: storeData
+        }).then(function(data) {
+          var re = new RegExp("\/store\/(.*)\/edit");
+          var storeId = re.exec($location.path())[1];    
+          $location.path("/store/" + storeId);
+        }, function(err) {
+          // TODO error handling
+        });
+      }
+
+    }
+
+    checkForms = function(){
+      // If there is an error, loop over all the error fields to display the errors 
+      if ($scope.storeForm.$error || $scope.foodForm.$error){
+        angular.forEach($scope.storeForm.$error, function (field) {
+          angular.forEach(field, function(errorField){
+            errorField.$setTouched();
+          })
+        });
+        // TODO is there a better way to do this?
+        angular.forEach($scope.foodFormContainer.$error, function (field) {
+          angular.forEach(field, function(innerForm){
+            angular.forEach(innerForm.$error, function(innerField){
+              angular.forEach(innerField, function(innerErrorField){
+                innerErrorField.$setTouched();
+              })
+            })
+          })
+        });
+        alert("See Form Errors!");
+        return false;
+      }
+      return true;
+    }
+
+    checkPhotos = function(){
+      if (!$scope.store.profilePhoto){
+        alert("Need a Profile Photo!");
+        return false;
+      }
+
+      var numMissingPhotos = 0;
+      $scope.store.foods.forEach(function(food){
+        if (!food.photo){
+          numMissingPhotos ++;
+        }
       });
+      if (numMissingPhotos !== 0) {
+        alert("Missing " + numMissingPhotos + " food Photos!");
+        return false;
+      }
+
+      return true;
     }
 
     $scope.resetChanges = function() {
