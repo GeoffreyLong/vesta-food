@@ -10,8 +10,9 @@ module.exports = function(passport){
 
   // Get the correct configuration down
   var config = require('../config')();
+  var _ = require('lodash');
 
-  var Food = require('../models/food')
+  var Food = require('../models/food');
   var Stores = require('../models/store.js');
 
   var multer = require('multer');
@@ -129,14 +130,21 @@ module.exports = function(passport){
     }
   });
 
-  router.post('/store/edit', function(req, res) {
+  /**
+   * Create or edit store
+   */
+  router.post('/stores/:storeId', function(req, res) {
     // TODO check for possible errors with the asynchronous fs updates
     //      Could do fs.renameSynch if I don't trust the code
     var store = req.body.data;
+    console.log(store);
 
     var oldProfPath = store.profilePhoto;
-    store.profilePhoto = store.profilePhoto.replace("/tmp", ""); 
+    store.profilePhoto = store.profilePhoto.replace("/tmp", "");
+
+    console.log(oldProfPath);
     updatePath(oldProfPath, store.profilePhoto);
+
 
     store.foods.forEach(function(food){
       var oldPhoto = food.photo;
@@ -144,39 +152,63 @@ module.exports = function(passport){
       updatePath(oldPhoto, food.photo);
     });
 
-    var id = store._id;
-    delete store._id;
+    // var id = store._id;
+    // delete store._id;
+    console.log("query");
+    Food
+      .collection
+      .insert(store.foods)
+      .then(function (foods) {
+        var foodIds = _.map(foods, function (food) {
+          return food._id;
+        });
+        store.foods = foodIds;
+        console.log(store);
+
+        Stores
+          .model
+          .findByIdAndUpdate(req.params.storeId, store)
+          .then(function (store) {
+            res.status(200).send(store);
+          }, function (storeError) {
+            res.status(500).send(storeError);
+          });
+      }, function (error) {
+        res.status(500).send(error);
+      });
    
     // {new: false} is unnecessary as it is already false by default
     // I just wanted to emphasize that the object returned is the old object in the db
     // This is so the old photos can be moved to tmp
-    Stores.findByIdAndUpdate(id, store, {new: false}, function(err, oldStore){
-      // UNKN
-      //      For whatever reason, res.send was not calling res.end 
-      //      and the next one was called resulting in an error
-      if (err) {
-        console.log(err);
-        res.status(500).send(err);
-      }
-      else {
-        // Move the photos to the tmp folder
-        // Alternatively could use timestamps in the titles or in the db
-        if (store.profilePhoto !== oldStore.profilePhoto){
-          console.log(spliceTmp(oldStore.profilePhoto));
-          updatePath(oldStore.profilePhoto, spliceTmp(oldStore.profilePhoto));
-        }
-        oldStore.foods.forEach(function(oldFood){
-          var found = store.foods.some(function(food){
-            return food.photo === oldFood.photo;
-          });
-          if (!found) {
-            updatePath(oldFood.photo, spliceTmp(oldFood.photo));
-          }
-        });
-        console.log(store);
-        res.status(200).send("");
-      }
-    });
+    // Stores
+    //   .model
+    //   .findByIdAndUpdate(id, store, {new: false}, function(err, oldStore){
+    //   // UNKN
+    //   //      For whatever reason, res.send was not calling res.end
+    //   //      and the next one was called resulting in an error
+    //   if (err) {
+    //     console.log(err);
+    //     res.status(500).send(err);
+    //   }
+    //   else {
+    //     // Move the photos to the tmp folder
+    //     // Alternatively could use timestamps in the titles or in the db
+    //     if (store.profilePhoto !== oldStore.profilePhoto){
+    //       console.log(spliceTmp(oldStore.profilePhoto));
+    //       updatePath(oldStore.profilePhoto, spliceTmp(oldStore.profilePhoto));
+    //     }
+    //     oldStore.foods.forEach(function(oldFood){
+    //       var found = store.foods.some(function(food){
+    //         return food.photo === oldFood.photo;
+    //       });
+    //       if (!found) {
+    //         updatePath(oldFood.photo, spliceTmp(oldFood.photo));
+    //       }
+    //     });
+    //     console.log(store);
+    //     res.status(200).send("");
+    //   }
+    // });
   });
 
   var updatePath = function(oldPath, newPath){
