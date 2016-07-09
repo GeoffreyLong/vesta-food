@@ -9,6 +9,7 @@ angular.module('storeFront').component('storeFront', {
     if (!$scope.store){
       $http.get('/api' + $location.path()).then(function(store) {
         $scope.store = store.data;
+        $scope.foodLoaded = true;
       }, function(err) {
         
       });;
@@ -104,16 +105,7 @@ angular.module('storeFront').component('storeFront', {
       return new Array(num);   
     }    
 
-    // Hopefully this solves the image loading bug on first visit
-    // If not try wrapping this in an image loading event
-    //    so it fires after the images have been sent
-    var refreshSlick = setInterval(function() {
-      if ($('.slider').length > 0) {
-        clearInterval(refreshSlick);
-        $('.slider').slick('setPosition');
-      }
-    }, 1000);
-
+    
 
     // TODO this will check the session to see if the user is the owner of the store
     // Interestingly enough, this fires multiple times since the scope reupdates
