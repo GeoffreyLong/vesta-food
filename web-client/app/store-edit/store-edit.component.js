@@ -199,7 +199,7 @@ angular.module('storeEdit').component('storeEdit', {
       // On the server, if a photo has been changed, 
       // then move this photo to tmp/ and the tmp/ photo to images
       var storeData = $scope.store;
-      $http.post('api/store/edit', {
+      $http.post('api/stores/' + storeData._id, {
         data: storeData
       }).then(function(data) {
         var re = new RegExp("\/store\/(.*)\/edit");
