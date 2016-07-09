@@ -105,16 +105,16 @@
   <form name="foodForm">
     <md-card class="editCard">
       <div class="innerEditDiv"> 
-        <div layout="row" layout-align="center center" layout-xs="column" layout-sm="column">
-          <div flex=65>
+        <div layout="row" layout-align-gt-sm="space-between center" layout-xs="column" layout-sm="column">
+          <div flex>
             <!-- 
                   TODO  require things, make sure the max lengths are correct,
                         alter the units so they accept the right things, etc
             -->
             <!-- Should probably make these md-inputs -->
 
-            <div layout="column" layout-gt-sm="row">
-              <md-input-container flex class="md-block">
+            <div layout="column" layout-gt-xs="row">
+              <md-input-container>
                 <label class="md-title"> Name </label>
                 <input  type="text" ng-model="food.name" name="name" 
                         maxlength="25" md-maxlength="25" required />
@@ -122,9 +122,10 @@
                   <div ng-message="required">This is required.</div>
                 </div>
               </md-input-container>
-              <md-input-container class="md-block">
+              <md-input-container flex>
                 <label class="md-title"> Price </label>
-                <input type="number" step="0.01" type="text" ng-model="food.price" name="price" required />
+                <input  type="number" step="0.01" ng-model="food.price" 
+                        name="price" required />
                 <div ng-messages="foodForm.price.$error">
                   <div ng-message="required">This is required.</div>
                 </div>
@@ -153,7 +154,7 @@
             </md-input-container>
 
           </div>
-          <div flex=35>
+          <div flex>
             <!-- TODO disable all buttons here -->
             <!-- TODO make clear that this is a rep of the food in the storefront -->
             <!-- TODO add in the descriptions functionality -->
