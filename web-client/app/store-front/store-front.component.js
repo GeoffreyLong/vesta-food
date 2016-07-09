@@ -9,6 +9,7 @@ angular.module('storeFront').component('storeFront', {
     if (!$scope.store){
       $http.get('/api' + $location.path()).then(function(store) {
         $scope.store = store.data;
+        $scope.foodLoaded = true;
       }, function(err) {
         
       });;
@@ -103,6 +104,8 @@ angular.module('storeFront').component('storeFront', {
     this.getNumber = function(num) {
       return new Array(num);   
     }    
+
+    
 
     // TODO this will check the session to see if the user is the owner of the store
     // Interestingly enough, this fires multiple times since the scope reupdates

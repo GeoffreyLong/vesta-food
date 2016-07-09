@@ -364,10 +364,10 @@ nav li a:hover {
   width: 30px;
 }
 @media screen and (max-width: 1000px) {
-  input {
+  #splashPane input {
     font-size: 20px !important;
   }
-  input[type="text"] {
+  #splashPane input[type="text"] {
     width: 200px !important;
   }
 }
@@ -382,10 +382,10 @@ nav li a:hover {
   }
 }
 @media screen and (max-width: 750px) {
-  input {
+  #splashPane input {
     font-size: 15px !important;
   }
-  input[type="text"] {
+  #splashPane input[type="text"] {
     width: 125px !important;
   }
   .photoBanner {

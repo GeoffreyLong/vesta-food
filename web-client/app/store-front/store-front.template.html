@@ -18,7 +18,7 @@
   <div class="underline" flex/>
 </div>
 
-<slick settings="slickConfig" id="storeFrontSlick">
+<slick ng-if="foodLoaded" settings="slickConfig" id="storeFrontSlick">
   <div ng-repeat="food in store.foods">
     <!--  
           TODO  Consider putting the food image as a background image to the card 
