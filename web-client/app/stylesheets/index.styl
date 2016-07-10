@@ -122,13 +122,39 @@ md-sidenav
   width: 0px
 
 
+/******************************* SLICK STUFF ********************************/
+/* NOTE might want dots div so uniform padding if only one image */
+
+/* arrow styling */
+slick
+  .slick-prev:before, .slick-next:before
+    font-family: 'Material Icons'
+    -webkit-font-feature-settings: 'liga'
+    color: #000000
+    font-size: 40px
+  .slick-prev, .slick-next
+    z-index: 1
+  .slick-prev:before
+    content: "chevron_left"
+  .slick-next:before
+    content: "chevron_right"
+  .slick-arrow.slick-prev
+    left: 0
+  .slick-arrow.slick-next
+    right: 20px
+  .slick-arrow.slick-prev:before, .slick-arrow.slick-next:before
+    opacity: 1
+  .slick-arrow.slick-prev:focus:before, .slick-arrow.slick-next:focus:before
+    opacity: 1
+  .slick-arrow.slick-prev:hover:before, .slick-arrow.slick-next:hover:before
+    opacity: 1
+    color: $primaryColor 
 
 
 
 /******************************** STORES VIEW ********************************/
 /* Hacky workaround to make flexbox images scale correctly */
 /* Allegedly adding flex="none" on a child may work, I haven't seen success */
-/* TODO should probably prohibit strangely sized images (far away from 50-50) */
 #storesContainer *
   min-height: 0
   min-width: 0
@@ -141,26 +167,6 @@ md-sidenav
     .md-headline
       cursor: pointer
 
-  /* SLICK STUFF */
-  /* NOTE not so sure I like the buttons changing position with the image swaps 
-      I guess it is the best way to do it though */
-  /* TODO might want dots div so uniform padding if only one image */
-  slick
-    .slick-arrow
-      z-index: 1
-    .slick-arrow:before
-      font-size: 40px
-    .slick-arrow.slick-prev
-      left: 0
-    .slick-arrow.slick-next
-      right: 20px
-    .slick-arrow.slick-prev:before, .slick-arrow.slick-next:before
-      opacity: 0.75
-    .slick-arrow.slick-prev:focus:before, .slick-arrow.slick-next:focus:before
-      opacity: 0.75
-    .slick-arrow.slick-prev:hover:before, .slick-arrow.slick-next:hover:before
-      opacity: 1
-      color: $secondaryColor 
 
     .foodImageInfo
       padding: 5px
@@ -184,34 +190,9 @@ md-sidenav
 
 
 /******************************** STORE FRONT ********************************/
-/* 
-    NOTE this is mostly repeated from the stores-view slick
-    The foodImageInfo logic didn't recycle very well though
-    Should condense this logic later
-*/
 store-front
   slick
-    *
-      min-height: 0
-      min-width: 0
-
-    /* arrow styling */
-    .slick-prev:before, .slick-next:before
-      font-family: 'Material Icons'
-      -webkit-font-feature-settings: 'liga'
-      color: lighten($primaryColor, 10%)
-      font-size: 40px
-    .slick-prev, .slick-next
-      z-index: 1
-    .slick-prev:before
-      content: "chevron_left"
-    .slick-next:before
-      content: "chevron_right"
-    .slick-prev
-      left: 0px
-    .slick-next
-      right: 0px
-
+    /* Make the center slide larger */
     .slick-slide
       transform: scale(0.6)
       transition: all 0.5s
@@ -221,7 +202,7 @@ store-front
       transform: scale(1)
       md-card-actions
         display: flex
-        /* Transitions don't seem to be working for this */
+      /* HACK Display the bottom sheet appropriately */
       md-bottom-sheet
         margin: 8px 8px 88px 8px
 

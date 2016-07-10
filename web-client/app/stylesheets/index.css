@@ -99,10 +99,48 @@ md-sidenav .childElement {
   height: 0px;
   width: 0px;
 }
+/******************************* SLICK STUFF ********************************/
+/* NOTE might want dots div so uniform padding if only one image */
+/* arrow styling */
+slick .slick-prev:before,
+slick .slick-next:before {
+  font-family: 'Material Icons';
+  -webkit-font-feature-settings: 'liga';
+  color: #000;
+  font-size: 40px;
+}
+slick .slick-prev,
+slick .slick-next {
+  z-index: 1;
+}
+slick .slick-prev:before {
+  content: "chevron_left";
+}
+slick .slick-next:before {
+  content: "chevron_right";
+}
+slick .slick-arrow.slick-prev {
+  left: 0;
+}
+slick .slick-arrow.slick-next {
+  right: 20px;
+}
+slick .slick-arrow.slick-prev:before,
+slick .slick-arrow.slick-next:before {
+  opacity: 1;
+}
+slick .slick-arrow.slick-prev:focus:before,
+slick .slick-arrow.slick-next:focus:before {
+  opacity: 1;
+}
+slick .slick-arrow.slick-prev:hover:before,
+slick .slick-arrow.slick-next:hover:before {
+  opacity: 1;
+  color: #00b36f;
+}
 /******************************** STORES VIEW ********************************/
 /* Hacky workaround to make flexbox images scale correctly */
 /* Allegedly adding flex="none" on a child may work, I haven't seen success */
-/* TODO should probably prohibit strangely sized images (far away from 50-50) */
 #storesContainer * {
   min-height: 0;
   min-width: 0;
@@ -110,10 +148,6 @@ md-sidenav .childElement {
 #storesContainer {
   overflow-x: hidden;
   background-color: #f2f2f2;
-/* SLICK STUFF */
-/* NOTE not so sure I like the buttons changing position with the image swaps 
-      I guess it is the best way to do it though */
-/* TODO might want dots div so uniform padding if only one image */
 }
 #storesContainer md-card-title {
   padding-top: 0;
@@ -121,86 +155,29 @@ md-sidenav .childElement {
 #storesContainer md-card-title .md-headline {
   cursor: pointer;
 }
-#storesContainer slick .slick-arrow {
-  z-index: 1;
-}
-#storesContainer slick .slick-arrow:before {
-  font-size: 40px;
-}
-#storesContainer slick .slick-arrow.slick-prev {
-  left: 0;
-}
-#storesContainer slick .slick-arrow.slick-next {
-  right: 20px;
-}
-#storesContainer slick .slick-arrow.slick-prev:before,
-#storesContainer slick .slick-arrow.slick-next:before {
-  opacity: 0.75;
-}
-#storesContainer slick .slick-arrow.slick-prev:focus:before,
-#storesContainer slick .slick-arrow.slick-next:focus:before {
-  opacity: 0.75;
-}
-#storesContainer slick .slick-arrow.slick-prev:hover:before,
-#storesContainer slick .slick-arrow.slick-next:hover:before {
-  opacity: 1;
-  color: #fca345;
-}
-#storesContainer slick .foodImageInfo {
+#storesContainer md-card-title .foodImageInfo {
   padding: 5px;
   display: block;
   background: rgba(0,0,0,0.3);
   position: absolute;
   width: inherit;
 }
-#storesContainer slick .foodImageInfo .foodPrice {
+#storesContainer md-card-title .foodImageInfo .foodPrice {
   display: inline-block;
   color: #fff;
   font-weight: bold;
   padding: 4px;
 }
-#storesContainer slick .foodImageInfo .foodRating {
+#storesContainer md-card-title .foodImageInfo .foodRating {
   float: right;
 }
-#storesContainer slick .foodImageInfo .foodRating .star {
+#storesContainer md-card-title .foodImageInfo .foodRating .star {
   color: #ea6e10;
 }
-#storesContainer slick .foodImageInfo .foodRating .star md-icon {
+#storesContainer md-card-title .foodImageInfo .foodRating .star md-icon {
   color: #fca345;
 }
 /******************************** STORE FRONT ********************************/
-/* 
-    NOTE this is mostly repeated from the stores-view slick
-    The foodImageInfo logic didn't recycle very well though
-    Should condense this logic later
-*/
-store-front slick * {
-  min-height: 0;
-  min-width: 0;
-}
-store-front slick .slick-prev:before,
-store-front slick .slick-next:before {
-  font-family: 'Material Icons';
-  -webkit-font-feature-settings: 'liga';
-  color: #00d484;
-  font-size: 40px;
-}
-store-front slick .slick-prev,
-store-front slick .slick-next {
-  z-index: 1;
-}
-store-front slick .slick-prev:before {
-  content: "chevron_left";
-}
-store-front slick .slick-next:before {
-  content: "chevron_right";
-}
-store-front slick .slick-prev {
-  left: 0px;
-}
-store-front slick .slick-next {
-  right: 0px;
-}
 store-front slick .slick-slide {
   transform: scale(0.6);
   transition: all 0.5s;
@@ -210,10 +187,10 @@ store-front slick .slick-slide md-card-actions {
 }
 store-front slick .slick-center {
   transform: scale(1);
+/* HACK Display the bottom sheet appropriately */
 }
 store-front slick .slick-center md-card-actions {
   display: flex;
-/* Transitions don't seem to be working for this */
 }
 store-front slick .slick-center md-bottom-sheet {
   margin: 8px 8px 88px 8px;
