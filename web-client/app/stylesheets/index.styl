@@ -211,52 +211,48 @@ store-front
       /* HACK Display the bottom sheet appropriately */
       md-bottom-sheet
         margin: 8px 8px 88px 8px
+        #foodPrice
+          padding-top: 10px
+          font-style: italic
 
+  #titleDiv
+    margin-top: 20px
+    width: 80%
+    margin-left: auto
+    margin-right: auto
 
-.importantFixedDiv
-  position: fixed
-  bottom: 10px
-  right: 10px
-  z-index: 10
-  .importantFixedButton
-    background-color: $alertColor
-  /* Override default hover behaviour */
-  .importantFixedButton:hover
-    background-color: $alertColor
+    #titleRow
+      padding: 10px
 
+    img
+      /* Height of md-display-3 */
+      height: 56px
+      border-radius: 50%
 
-#titleDiv
-  margin-top: 20px
-  width: 80%
-  margin-left: auto
-  margin-right: auto
+    #storeTitle
+      display:inline-block
 
-  #titleRow
-    padding: 10px
+    #titleStars
+      /* If I want the stars to lie low on the line */
+      /* Height of md-display-3 */
+      padding-top: 20px 
+      .star
+        color: $starColor
+        /* NOTE for whatever reason, this adds an overflow-x to the body */
+        font-size: 36px
+        height: 36px
+        width: 36px
 
-  img
-    /* Height of md-display-3 */
-    height: 56px
-    border-radius: 50%
+    .underline
+      height: 5px;
+      background-color: $primaryColor
 
-  #storeTitle
-    display:inline-block
-
-  #titleStars
-    /* If I want the stars to lie low on the line */
-    /* Height of md-display-3 */
-    padding-top: 20px 
-    .star
-      color: $starColor
-      /* NOTE for whatever reason, this adds an overflow-x to the body */
-      font-size: 36px
-      height: 36px
-      width: 36px
-
-  .underline
-    height: 5px;
-    background-color: $primaryColor
-
+  #descriptionPanel
+    margin-top: 50px
+    margin-bottom: 50px
+    #storeDescription
+      padding-left: 5%
+      width: 90%
 
 /* TODO change the current buttons so that they are large chevrons */
 
@@ -273,13 +269,6 @@ store-front
   .star
     color: $starColor
   
-#descriptionPanel
-  margin-top: 50px
-  margin-bottom: 50px
-  #storeDescription
-    margin-left: 5%
-    width: 100%
-
 /* Styling for the toast */
 md-card
   md-toast.md-bottom
@@ -313,6 +302,20 @@ md-card
       .reviewComment
         font-weight: 100
         margin-top: 10px
+
+
+.importantFixedDiv
+  position: fixed
+  bottom: 10px
+  right: 10px
+  z-index: 10
+  .importantFixedButton
+    background-color: $alertColor
+  /* Override default hover behaviour */
+  .importantFixedButton:hover
+    background-color: $alertColor
+
+
 
 
 /******************************** STORE EDIT ********************************/

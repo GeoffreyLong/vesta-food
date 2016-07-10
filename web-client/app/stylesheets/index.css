@@ -204,51 +204,50 @@ store-front slick .slick-center md-card-actions {
 store-front slick .slick-center md-bottom-sheet {
   margin: 8px 8px 88px 8px;
 }
-.importantFixedDiv {
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  z-index: 10;
-/* Override default hover behaviour */
+store-front slick .slick-center md-bottom-sheet #foodPrice {
+  padding-top: 10px;
+  font-style: italic;
 }
-.importantFixedDiv .importantFixedButton {
-  background-color: #ea6e10;
-}
-.importantFixedDiv .importantFixedButton:hover {
-  background-color: #ea6e10;
-}
-#titleDiv {
+store-front #titleDiv {
   margin-top: 20px;
   width: 80%;
   margin-left: auto;
   margin-right: auto;
 }
-#titleDiv #titleRow {
+store-front #titleDiv #titleRow {
   padding: 10px;
 }
-#titleDiv img {
+store-front #titleDiv img {
 /* Height of md-display-3 */
   height: 56px;
   border-radius: 50%;
 }
-#titleDiv #storeTitle {
+store-front #titleDiv #storeTitle {
   display: inline-block;
 }
-#titleDiv #titleStars {
+store-front #titleDiv #titleStars {
 /* If I want the stars to lie low on the line */
 /* Height of md-display-3 */
   padding-top: 20px;
 }
-#titleDiv #titleStars .star {
+store-front #titleDiv #titleStars .star {
   color: #ea6e10;
 /* NOTE for whatever reason, this adds an overflow-x to the body */
   font-size: 36px;
   height: 36px;
   width: 36px;
 }
-#titleDiv .underline {
+store-front #titleDiv .underline {
   height: 5px;
   background-color: #00b36f;
+}
+store-front #descriptionPanel {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+store-front #descriptionPanel #storeDescription {
+  padding-left: 5%;
+  width: 90%;
 }
 /* TODO change the current buttons so that they are large chevrons */
 .foodImageInfo {
@@ -263,14 +262,6 @@ store-front slick .slick-center md-bottom-sheet {
 }
 .foodImageInfo .star {
   color: #ea6e10;
-}
-#descriptionPanel {
-  margin-top: 50px;
-  margin-bottom: 50px;
-}
-#descriptionPanel #storeDescription {
-  margin-left: 5%;
-  width: 100%;
 }
 /* Styling for the toast */
 md-card md-toast.md-bottom {
@@ -306,6 +297,19 @@ md-card md-toast.md-bottom {
 #storeReviews .altCard .reviewContentContainer .reviewComment {
   font-weight: 100;
   margin-top: 10px;
+}
+.importantFixedDiv {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 10;
+/* Override default hover behaviour */
+}
+.importantFixedDiv .importantFixedButton {
+  background-color: #ea6e10;
+}
+.importantFixedDiv .importantFixedButton:hover {
+  background-color: #ea6e10;
 }
 /******************************** STORE EDIT ********************************/
 /* TODO some (or most) of this can be condensed with the storefront */
