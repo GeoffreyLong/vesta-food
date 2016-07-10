@@ -184,8 +184,8 @@
           <md-button ng-click="deleteFood($index)">Delete Food</md-button>
         </div>
         <div>
-          <md-button ng-if="$index != 0" ng-click="">Move Food Up</md-button>
-          <md-button ng-if="$index != store.foods.length-1" ng-click="">Move Food Down</md-button>
+          <md-button ng-if="$index != 0" ng-click="swapFoods($index, $index-1)">Move Food Up</md-button>
+          <md-button ng-if="$index != store.foods.length-1" ng-click="swapFoods($index, $index+1)">Move Food Down</md-button>
         </div>
       </md-card-actions>
     </md-card>

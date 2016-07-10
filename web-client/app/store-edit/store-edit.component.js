@@ -263,6 +263,11 @@ angular.module('storeEdit').component('storeEdit', {
       $scope.store = dataService.getClonedStore();
     }
 
+    $scope.swapFoods = function(indexOne, indexTwo) {
+      var temp = $scope.store.foods[indexOne];
+      $scope.store.foods[indexOne] = $scope.store.foods[indexTwo];
+      $scope.store.foods[indexTwo] = temp;
+    }
 
     $scope.addFood = function() {
       // TODO should avoid the client adding multiple of these dummy fields
