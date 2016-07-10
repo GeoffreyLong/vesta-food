@@ -10,12 +10,13 @@
       </div>
     </md-toolbar>
     <md-dialog-content>
+      {{cart}}
       <md-card ng-repeat="storeCart in cart">
         <!-- TODO style like a materialize collection 
                   I like "avatar content" in http://materializecss.com/collections.html
         -->
         <md-list>
-          <md-subheader class="md-no-sticky"> {{storeCart.storeId}} </md-title>
+          <md-subheader class="md-no-sticky storeTitle" ng-click="routeToStore(storeCart.storeId)"> {{storeCart.storeTitle}} </md-subheader>
           <div layout="row" layout-align="space-between start" ng-repeat="food in storeCart.foods">
               <md-button class="md-icon-button" ng-click="removeFood($parent.$index, $index)">
                 <md-icon class="material-icons"> close </md-icon>

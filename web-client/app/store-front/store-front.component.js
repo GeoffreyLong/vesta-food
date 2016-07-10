@@ -160,7 +160,7 @@ angular.module('storeFront').component('storeFront', {
       //      Initially I planned on placing it inside the user session object
       //      I think it is better to not have to deal 
       //      with passing this info back and forth though
-      var foodQty = cartService.addToCart($scope.store._id, food);
+      var foodQty = cartService.addToCart($scope.store._id, $scope.store.storeTitle, food);
       $mdToast.show(
         $mdToast.simple()
           .textContent(foodQty + ' of item added to cart')

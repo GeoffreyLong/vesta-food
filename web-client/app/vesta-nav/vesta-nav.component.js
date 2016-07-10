@@ -68,6 +68,11 @@ angular.module('vestaNav').component('vestaNav', {
                                               $location, dataService){
           $scope.cart = cartService.getCart();
 
+          $scope.routeToStore = function(storeId) {
+            $mdDialog.hide();
+            $location.path('/store/' + storeId);
+          }
+
           // TODO it would probably be super smart to add error handling to this
           // NOTE not the fastest to keep passing it back to the cartService
           //      I tried to finagle with updating with the onRemoving field to no avail

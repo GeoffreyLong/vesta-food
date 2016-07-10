@@ -67,6 +67,15 @@ md-menu-content .material-icons {
   width: auto;
 }
 /******************************** CART ********************************/
+#cart .storeTitle {
+  cursor: pointer;
+}
+#cart .storeTitle .md-subheader-inner {
+  padding: 8px 0px 8px 16px;
+}
+#cart .storeTitle:hover {
+  color: #00b7ff;
+}
 #cart md-dialog-content {
   padding: 20px;
 }

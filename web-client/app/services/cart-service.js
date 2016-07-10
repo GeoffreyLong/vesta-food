@@ -5,10 +5,28 @@ angular
     //      Using sessionStorage for testing, switch to localstorage for prod
     //      This will solve any persistency issues
 
-    // Return foodQuantity in the cart as returnQuantity
-    // Returns 0 if error
-    this.addToCart = function(storeId, food) {
-      // TODO I think we want to do this if they don't have storage
+
+    /**
+     * Will add the food item to the cart and return the quantity of the specific item.
+     * If the store's subcart is not already in the cart, it is created. 
+     * If the food item already exists in the cart, it's quantity is incremented.
+     * <p>
+     * This function does this by finding the specific store id in the cart. 
+     * If the store id does not exist, a subcart is created. 
+     * This subcart contains the store id, the name of the store, and an array of foods. 
+     * Once the store has been found / added, the function finds the food in the subcart.
+     * If the specific food exists, then the quantity is incremented, 
+     * else the food is added into the foods array with a quantity of one.
+     * The quantity of the given food is then returned; a zero being returned on error.
+     *
+     * @param   storeId     The id of the store
+     * @param   storeTitle  The name of the store, saved here for easy retreival
+     * @param   food        The food object to be added to the cart
+     * @return              The number of the specific food item in the cart. 
+     *                      Returns 0 on error.
+     */
+    this.addToCart = function(storeId, storeTitle, food) {
+      // NOTE I think we want to do this if they don't have storage
       if (!sessionStorage) return 0;
 
       // This will protect us from the sessionStorage being empty
@@ -49,6 +67,7 @@ angular
       if (!foundStore) {
         var storeCart = {};
         storeCart.storeId = storeId;
+        storeCart.storeTitle = storeTitle;
         storeCart.foods = [];
 
         returnQuantity = 1;
@@ -62,6 +81,7 @@ angular
     }
 
     this.getCart = function() {
+        console.log(JSON.parse(sessionStorage.cart));
       return JSON.parse(sessionStorage.cart);
     }
 
