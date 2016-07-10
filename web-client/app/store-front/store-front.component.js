@@ -137,7 +137,7 @@ angular.module('storeFront').component('storeFront', {
       //      or add a 'x' close button in it
       //      of add some sort of onblur function
       $mdBottomSheet.show({
-        templateUrl: 'store-front/bottom-sheet.template.html',
+        templateUrl: 'store-front/food-info-bsheet.template.html',
         parent: ev.currentTarget.closest('md-card'),
         clickOutsideToClose: true,
         disableParentScroll: false,
