@@ -94,8 +94,11 @@ angular.module('storeFront').component('storeFront', {
           }
         },
         beforeChange: function (event, slick, currentSlide, nextSlide) {
-          // TODO either disable or remove the buttons (esp add to cart)
-          //    from the non-focused elements
+          // NOTE Not the best implementation, but it works
+          //      could probably stop the animation
+          if (currentSlide !== nextSlide) {
+            $mdBottomSheet.hide();
+          }
         },
         afterChange: function (event, slick, currentSlide, nextSlide) {
         }
