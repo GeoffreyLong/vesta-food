@@ -198,11 +198,18 @@ store-front slick .slick-center {
   transform: scale(1);
 /* HACK Display the bottom sheet appropriately */
 }
+store-front slick .slick-center md-card {
+  position: relative;
+}
 store-front slick .slick-center md-card-actions {
   display: flex;
+  z-index: 71;
+  margin: 0;
+  padding: 8px;
+  background-color: #fff;
 }
 store-front slick .slick-center md-bottom-sheet {
-  margin: 8px 8px 88px 8px;
+  margin-bottom: 90px;
 }
 store-front slick .slick-center md-bottom-sheet #foodPrice {
   padding-top: 10px;

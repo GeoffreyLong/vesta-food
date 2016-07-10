@@ -137,18 +137,24 @@ angular.module('storeFront').component('storeFront', {
       //      Either dynamically style it to pop up in the card (solving earlier issue)
       //      or add a 'x' close button in it
       //      of add some sort of onblur function
-      $mdBottomSheet.show({
-        templateUrl: 'store-front/food-info-bsheet.template.html',
-        parent: ev.currentTarget.closest('md-card'),
-        clickOutsideToClose: true,
-        disableParentScroll: false,
-        locals: {food: food}, 
-        controller: function BottomSheetController($scope, locals){
-          $scope.food = locals.food;
-        }
-      }).then(function(clickedItem) {
-        // $scope.alert = clickedItem['name'] + ' clicked!';
-      });
+
+      if ($('md-bottom-sheet').length == 0) {
+        $mdBottomSheet.show({
+          templateUrl: 'store-front/food-info-bsheet.template.html',
+          parent: ev.currentTarget.closest('md-card'),
+          clickOutsideToClose: true,
+          disableParentScroll: false,
+          locals: {food: food}, 
+          controller: function BottomSheetController($scope, locals){
+            $scope.food = locals.food;
+          }
+        }).then(function(clickedItem) {
+          // $scope.alert = clickedItem['name'] + ' clicked!';
+        });
+      }
+      else {
+        $mdBottomSheet.hide();
+      }
     }
 
     $scope.addToCart = function(ev, food) {

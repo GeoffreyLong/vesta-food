@@ -206,11 +206,17 @@ store-front
         display:none
     .slick-center
       transform: scale(1)
+      md-card
+        position: relative
       md-card-actions
         display: flex
+        z-index: 71
+        margin: 0
+        padding: 8px
+        background-color: #FFFFFF
       /* HACK Display the bottom sheet appropriately */
       md-bottom-sheet
-        margin: 8px 8px 88px 8px
+        margin-bottom: 90px
         #foodPrice
           padding-top: 10px
           font-style: italic
