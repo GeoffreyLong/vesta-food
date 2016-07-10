@@ -71,7 +71,7 @@ angular.module('vestaNav').component('vestaNav', {
           // TODO it would probably be super smart to add error handling to this
           // NOTE not the fastest to keep passing it back to the cartService
           //      I tried to finagle with updating with the onRemoving field to no avail
-          //      I didn't try for too long so their might be a solution if inclined
+          //      I didn't try for too long so there might be a solution if one were inclined
           $scope.increaseQty = function(storeCartIdx, foodIdx){
             $scope.cart[storeCartIdx].foods[foodIdx].quantity ++;
             cartService.updateCart($scope.cart);
@@ -82,10 +82,25 @@ angular.module('vestaNav').component('vestaNav', {
               cartService.updateCart($scope.cart);
             }
           }
+          $scope.removeFood = function(storeCartIdx, foodIdx){
+            // Remove the item from the cart
+            $scope.cart[storeCartIdx].foods.splice(foodIdx, 1);
 
+            // If the storeCart is empty then remove that object
+            if ($scope.cart[storeCartIdx].foods.length == 0) {
+              // This will handle updating the cart in cartService and our scope
+              $scope.removeOrder($scope.cart[storeCartIdx]);
+            }
+            else {
+              // If the storeCart is not empty then we have to update the cart
+              cartService.updateCart($scope.cart);
+            }
+          }
+
+          // TODO would probably be good to refactor this so the changes are made locally
+          //      then pushed to the cart service, like how they are in the other fns
           $scope.removeOrder = function(storeCart) {
-            cartService.removeStoreCart(storeCart);
-            $scope.cart = cartService.getCart();
+            $scope.cart = cartService.removeStoreCart(storeCart);
           }
 
           $scope.purchaseOrder = function(storeCart) {

@@ -10,21 +10,26 @@
       </div>
     </md-toolbar>
     <md-dialog-content>
-      {{cart}}
       <md-card ng-repeat="storeCart in cart">
         <!-- TODO style like a materialize collection 
                   I like "avatar content" in http://materializecss.com/collections.html
         -->
         <md-list>
           <md-subheader class="md-no-sticky"> {{storeCart.storeId}} </md-title>
-          <div layout="row" layout-align="space-between center" ng-repeat="food in storeCart.foods">
+          <div layout="row" layout-align="space-between start" ng-repeat="food in storeCart.foods">
+              <md-button class="md-icon-button" ng-click="removeFood($parent.$index, $index)">
+                <md-icon class="material-icons"> close </md-icon>
+              </md-button>
+
             <md-list-item class="md-3-line">
               <img ng-src="{{food.photo}}" class="md-avatar" alt="Food Photo"/>
-                <div class="md-list-item-text" layout="column">
-                  <h3>Name: {{ food.name }}</h3>
-                  <h4>Quantity: {{ food.quantity }}; Price per item: {{ food.price }}</h4>
-                  <p>Total Price: TODO </p>
-                </div>
+              <div class="md-list-item-text" layout="column">
+                <h3>Name: {{ food.name }}</h3>
+                <h4>Quantity: {{ food.quantity }}; Price per item: {{ food.price }}</h4>
+                <p>Total Price: TODO </p>
+              </div>
+              <!-- NOTE this also shrinks the dialog -->
+              <md-divider ng-if="!$last"></md-divider>
             </md-list-item>
             <div layout="column" layout-align="center center">
               <md-button class="md-icon-button changeQty" ng-click="increaseQty($parent.$index, $index)">
