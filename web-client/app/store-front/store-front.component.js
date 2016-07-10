@@ -71,6 +71,7 @@ angular.module('storeFront').component('storeFront', {
       slidesToScroll: 1,
       touchMove: false,
       centerMode: true,
+      focusOnSelect: true,
       method: {},
       event: {
         init: function (event, slick) {
