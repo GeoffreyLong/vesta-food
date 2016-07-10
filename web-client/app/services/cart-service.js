@@ -11,8 +11,10 @@ angular
       // TODO I think we want to do this if they don't have storage
       if (!sessionStorage) return 0;
 
+      // This will protect us from the sessionStorage being empty
+      // And from sessionStorage.cart being empty
       var cart = [];
-      if (sessionStorage.cart) cart = JSON.parse(sessionStorage.cart);
+      if (sessionStorage.cart) cart = JSON.parse(sessionStorage.cart || []);
 
       // NOTE instead of dealing with these booleans, could simply return when found
       // NOTE It would be cool if I could dynamically name the keys
