@@ -97,11 +97,21 @@ angular.module('vestaNav').component('vestaNav', {
             }
           }
 
+          
+          $scope.calculateTotal = function(storeCartIdx) {
+            var total = 0;
+            $scope.cart[storeCartIdx].foods.forEach(function(food) {
+              total += food.quantity * food.price;
+            });
+
+            return total;
+          }
+  
+
           $scope.removeOrder = function(storeCartIdx) {
             $scope.cart.splice(storeCartIdx, 1);
             cartService.updateCart($scope.cart);
           }
-
           $scope.purchaseOrder = function(storeCart) {
             dataService.setPurchaseOrder(storeCart);
             $mdDialog.hide();
