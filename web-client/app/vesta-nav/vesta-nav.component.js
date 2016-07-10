@@ -74,6 +74,21 @@ angular.module('vestaNav').component('vestaNav', {
             $location.path('/purchase');
           }
 
+          // TODO it would probably be super smart to add error handling to this
+          // NOTE not the fastest to keep passing it back to the cartService
+          //      I tried to finagle with updating with the onRemoving field to no avail
+          //      I didn't try for too long so their might be a solution if inclined
+          $scope.increaseQty = function(storeCartIdx, foodIdx){
+            $scope.cart[storeCartIdx].foods[foodIdx].quantity ++;
+            cartService.updateCart($scope.cart);
+          }
+          $scope.decreaseQty = function(storeCartIdx, foodIdx){
+            if ($scope.cart[storeCartIdx].foods[foodIdx].quantity != 0) {
+              $scope.cart[storeCartIdx].foods[foodIdx].quantity --;
+              cartService.updateCart($scope.cart);
+            }
+          }
+
           $scope.hide = function() {
             $mdDialog.hide();
           };
@@ -85,7 +100,7 @@ angular.module('vestaNav').component('vestaNav', {
         parent: angular.element(document.body),
         targetEvent: ev,
         clickOutsideToClose:true,
-        fullscreen: useFullScreen
+        fullscreen: useFullScreen,
       })
       $scope.$watch(function() {
         return $mdMedia('xs') || $mdMedia('sm');

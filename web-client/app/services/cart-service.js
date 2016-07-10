@@ -62,4 +62,8 @@ angular
     this.getCart = function() {
       return JSON.parse(sessionStorage.cart);
     }
+
+    this.updateCart = function(cart) {
+      sessionStorage.cart = JSON.stringify(cart);
+    }
   });
