@@ -15,7 +15,7 @@ module.exports = function(passport){
   var Food = require('../models/food');
   var Stores = require('../models/store.js');
 
-  var imageLocation = '../../web-client/app';
+  var imageLocation = '../web-client/app';
   var multer = require('multer');
   var storage = multer.diskStorage({
     destination: function(req, file, cb){
