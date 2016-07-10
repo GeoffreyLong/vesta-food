@@ -89,7 +89,7 @@ angular.module('vestaNav').component('vestaNav', {
             // If the storeCart is empty then remove that object
             if ($scope.cart[storeCartIdx].foods.length == 0) {
               // This will handle updating the cart in cartService and our scope
-              $scope.removeOrder($scope.cart[storeCartIdx]);
+              $scope.removeOrder(storeCartIdx);
             }
             else {
               // If the storeCart is not empty then we have to update the cart
@@ -97,10 +97,9 @@ angular.module('vestaNav').component('vestaNav', {
             }
           }
 
-          // TODO would probably be good to refactor this so the changes are made locally
-          //      then pushed to the cart service, like how they are in the other fns
-          $scope.removeOrder = function(storeCart) {
-            $scope.cart = cartService.removeStoreCart(storeCart);
+          $scope.removeOrder = function(storeCartIdx) {
+            $scope.cart.splice(storeCartIdx, 1);
+            cartService.updateCart($scope.cart);
           }
 
           $scope.purchaseOrder = function(storeCart) {
