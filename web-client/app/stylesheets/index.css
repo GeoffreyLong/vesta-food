@@ -200,11 +200,13 @@ store-front slick .slick-center {
 }
 store-front slick .slick-center md-card {
   position: relative;
+  margin-bottom: 0;
 }
 store-front slick .slick-center md-card-actions {
   display: flex;
   z-index: 71;
   margin: 0;
+  margin-bottom: 2px;
   padding: 8px;
   background-color: #fff;
 }
@@ -214,6 +216,9 @@ store-front slick .slick-center md-bottom-sheet {
 store-front slick .slick-center md-bottom-sheet #foodPrice {
   padding-top: 10px;
   font-style: italic;
+}
+store-front slick .slick-center md-backdrop {
+  margin-bottom: 2px;
 }
 store-front #titleDiv {
   margin-top: 20px;
