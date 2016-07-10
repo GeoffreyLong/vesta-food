@@ -153,14 +153,12 @@ module.exports = function(passport){
 
     Food
       .collection
-      .insert(store.foods)
-      .then(function (foods) {
-        var foodIds = _.map(foods, function (food) {
-          return food._id;
-        });
-        store.foods = foodIds;
-        console.log(store);
+      .insert(store.foods, function (error, foodDocs) {
+        if (error) {
+          return res.status(500).send(error);
+        }
 
+        store.foods = foodDocs.insertedIds;
         Stores
           .model
           .findByIdAndUpdate(req.params.storeId, store)
@@ -169,8 +167,6 @@ module.exports = function(passport){
           }, function (storeError) {
             res.status(500).send(storeError);
           });
-      }, function (error) {
-        res.status(500).send(error);
       });
    
     // {new: false} is unnecessary as it is already false by default
