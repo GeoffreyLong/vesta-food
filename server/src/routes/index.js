@@ -15,7 +15,7 @@ module.exports = function(passport){
   var Food = require('../models/food');
   var Stores = require('../models/store.js');
 
-  var imageLocation = '../../web-client/app';
+  var imageLocation = '../web-client/app';
   var multer = require('multer');
   var storage = multer.diskStorage({
     destination: function(req, file, cb){
@@ -153,14 +153,12 @@ module.exports = function(passport){
 
     Food
       .collection
-      .insert(store.foods)
-      .then(function (foods) {
-        var foodIds = _.map(foods, function (food) {
-          return food._id;
-        });
-        store.foods = foodIds;
-        console.log(store);
+      .insert(store.foods, function (error, foodDocs) {
+        if (error) {
+          return res.status(500).send(error);
+        }
 
+        store.foods = foodDocs.insertedIds;
         Stores
           .model
           .findByIdAndUpdate(req.params.storeId, store)
@@ -169,8 +167,6 @@ module.exports = function(passport){
           }, function (storeError) {
             res.status(500).send(storeError);
           });
-      }, function (error) {
-        res.status(500).send(error);
       });
    
     // {new: false} is unnecessary as it is already false by default
