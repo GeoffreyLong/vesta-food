@@ -131,8 +131,8 @@ md-sidenav
 /******************************* SLICK STUFF ********************************/
 /* NOTE might want dots div so uniform padding if only one image */
 
-/* arrow styling */
 slick
+  /* arrow styling */
   .slick-prev:before, .slick-next:before
     font-family: 'Material Icons'
     -webkit-font-feature-settings: 'liga'
@@ -149,12 +149,24 @@ slick
   .slick-arrow.slick-next
     right: 20px
   .slick-arrow.slick-prev:before, .slick-arrow.slick-next:before
-    opacity: 1
+    opacity: 0
   .slick-arrow.slick-prev:focus:before, .slick-arrow.slick-next:focus:before
-    opacity: 1
+    opacity: 0
   .slick-arrow.slick-prev:hover:before, .slick-arrow.slick-next:hover:before
     opacity: 1
     color: $primaryColor 
+
+  /* Dots styling */
+  .slick-dots
+    .slick-active
+      button:before
+        color: $primaryColor
+
+/* Arrow Hovering Styling */
+slick:hover
+  .slick-arrow.slick-prev:before, .slick-arrow.slick-next:before
+    opacity: 1
+
 
 
 
@@ -168,36 +180,43 @@ slick
 #storesContainer
   overflow-x: hidden
   background-color: $backgroundColor
-  md-card-title
-    padding-top: 0
-    .md-headline
-      cursor: pointer
+  md-card
+    margin-left: 40px
+    margin-right: 40px
+    md-card-title
+      padding-top: 0
+      .md-headline
+        cursor: pointer
 
 
-    .foodImageInfo
-      padding: 5px
-      display: block
-      background: rgba(0,0,0,0.3)
-      position: absolute
-      width: inherit
+      .foodImageInfo
+        padding: 5px
+        display: block
+        background: rgba(0,0,0,0.3)
+        position: absolute
+        width: inherit
 
-      .foodPrice
-        display: inline-block
-        color: #FFFFFF
-        font-weight: bold
-        padding: 4px
+        .foodPrice
+          display: inline-block
+          color: #FFFFFF
+          font-weight: bold
+          padding: 4px
 
-      .foodRating
-        float: right;
-        .star 
-          color: $starColor
-          md-icon
-            color: $secondaryColor
+        .foodRating
+          float: right;
+          .star 
+            color: $starColor
+            md-icon
+              color: $secondaryColor
 
 
 /******************************** STORE FRONT ********************************/
 store-front
   slick
+    .slick-arrow.slick-prev:before, .slick-arrow.slick-next:before
+      opacity: 1
+    .slick-arrow.slick-prev:focus:before, .slick-arrow.slick-next:focus:before
+      opacity: 1
     /* Make the center slide larger */
     .slick-slide
       transform: scale(0.6)

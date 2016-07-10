@@ -110,7 +110,6 @@ md-sidenav .childElement {
 }
 /******************************* SLICK STUFF ********************************/
 /* NOTE might want dots div so uniform padding if only one image */
-/* arrow styling */
 slick .slick-prev:before,
 slick .slick-next:before {
   font-family: 'Material Icons';
@@ -136,16 +135,24 @@ slick .slick-arrow.slick-next {
 }
 slick .slick-arrow.slick-prev:before,
 slick .slick-arrow.slick-next:before {
-  opacity: 1;
+  opacity: 0;
 }
 slick .slick-arrow.slick-prev:focus:before,
 slick .slick-arrow.slick-next:focus:before {
-  opacity: 1;
+  opacity: 0;
 }
 slick .slick-arrow.slick-prev:hover:before,
 slick .slick-arrow.slick-next:hover:before {
   opacity: 1;
   color: #00b36f;
+}
+slick .slick-dots .slick-active button:before {
+  color: #00b36f;
+}
+/* Arrow Hovering Styling */
+slick:hover .slick-arrow.slick-prev:before,
+slick:hover .slick-arrow.slick-next:before {
+  opacity: 1;
 }
 /******************************** STORES VIEW ********************************/
 /* Hacky workaround to make flexbox images scale correctly */
@@ -158,35 +165,47 @@ slick .slick-arrow.slick-next:hover:before {
   overflow-x: hidden;
   background-color: #f2f2f2;
 }
-#storesContainer md-card-title {
+#storesContainer md-card {
+  margin-left: 40px;
+  margin-right: 40px;
+}
+#storesContainer md-card md-card-title {
   padding-top: 0;
 }
-#storesContainer md-card-title .md-headline {
+#storesContainer md-card md-card-title .md-headline {
   cursor: pointer;
 }
-#storesContainer md-card-title .foodImageInfo {
+#storesContainer md-card md-card-title .foodImageInfo {
   padding: 5px;
   display: block;
   background: rgba(0,0,0,0.3);
   position: absolute;
   width: inherit;
 }
-#storesContainer md-card-title .foodImageInfo .foodPrice {
+#storesContainer md-card md-card-title .foodImageInfo .foodPrice {
   display: inline-block;
   color: #fff;
   font-weight: bold;
   padding: 4px;
 }
-#storesContainer md-card-title .foodImageInfo .foodRating {
+#storesContainer md-card md-card-title .foodImageInfo .foodRating {
   float: right;
 }
-#storesContainer md-card-title .foodImageInfo .foodRating .star {
+#storesContainer md-card md-card-title .foodImageInfo .foodRating .star {
   color: #ea6e10;
 }
-#storesContainer md-card-title .foodImageInfo .foodRating .star md-icon {
+#storesContainer md-card md-card-title .foodImageInfo .foodRating .star md-icon {
   color: #fca345;
 }
 /******************************** STORE FRONT ********************************/
+store-front slick .slick-arrow.slick-prev:before,
+store-front slick .slick-arrow.slick-next:before {
+  opacity: 1;
+}
+store-front slick .slick-arrow.slick-prev:focus:before,
+store-front slick .slick-arrow.slick-next:focus:before {
+  opacity: 1;
+}
 store-front slick .slick-slide {
   transform: scale(0.6);
   transition: all 0.5s;
