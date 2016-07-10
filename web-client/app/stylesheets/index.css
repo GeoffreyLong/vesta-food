@@ -67,6 +67,12 @@ md-menu-content .material-icons {
   width: auto;
 }
 /******************************** CART ********************************/
+#cart md-dialog-content {
+  padding: 20px;
+}
+#cart md-list-item {
+  padding-left: 0px;
+}
 #cart .changeQty {
   padding: 2px;
 }
@@ -396,6 +402,11 @@ md-card md-toast.md-bottom {
   font-weight: bold;
   height: 40px;
   font-size: 40px;
+}
+#foodEditDiv .editCard md-card {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 400px;
 }
 #foodPriceContainer {
   width: 60px;
