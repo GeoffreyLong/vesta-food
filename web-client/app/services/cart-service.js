@@ -55,11 +55,32 @@ angular
         cart.push(storeCart);
       }
 
-      sessionStorage.cart = JSON.stringify(cart);
+      this.updateCart(cart);
       return returnQuantity;
     }
 
     this.getCart = function() {
       return JSON.parse(sessionStorage.cart);
+    }
+
+    this.updateCart = function(cart) {
+      sessionStorage.cart = JSON.stringify(cart);
+    }
+
+    this.removeStoreCart = function(storeCart) {
+      console.log(storeCart);
+      // Get the cart
+      var cart = [];
+      if (sessionStorage.cart) cart = JSON.parse(sessionStorage.cart);
+
+      // Iterate through the individual stores in the cart
+      storeId = storeCart.storeId;
+      cart.forEach(function(storeCart, index){
+        if (storeCart.storeId == storeId) {
+          cart.splice(index, 1);
+        }
+      });
+
+      this.updateCart(cart);
     }
   });

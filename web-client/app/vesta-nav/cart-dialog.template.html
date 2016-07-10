@@ -1,4 +1,4 @@
-<md-dialog ng-cloak>
+<md-dialog id="cart" ng-cloak>
   <form>
     <md-toolbar>
       <div class="md-toolbar-tools">
@@ -17,16 +17,30 @@
         -->
         <md-list>
           <md-subheader class="md-no-sticky"> {{storeCart.storeId}} </md-title>
-          <md-list-item class="md-3-line" ng-repeat="food in storeCart.foods">
-            <img ng-src="{{food.photo}}" class="md-avatar" alt="Food Photo"/>
-            <div class="md-list-item-text" layout="column">
-              <h3>Name: {{ food.name }}</h3>
-              <h4>Quantity: {{ food.quantity }}; Price per item: {{ food.price }}</h4>
-              <p>Total Price: TODO </p>
+          <div layout="row" layout-align="space-between center" ng-repeat="food in storeCart.foods">
+            <md-list-item class="md-3-line">
+              <img ng-src="{{food.photo}}" class="md-avatar" alt="Food Photo"/>
+                <div class="md-list-item-text" layout="column">
+                  <h3>Name: {{ food.name }}</h3>
+                  <h4>Quantity: {{ food.quantity }}; Price per item: {{ food.price }}</h4>
+                  <p>Total Price: TODO </p>
+                </div>
+            </md-list-item>
+            <div layout="column" layout-align="center center">
+              <md-button class="md-icon-button changeQty" ng-click="increaseQty($parent.$index, $index)">
+                <md-icon class="material-icons"> keyboard_arrow_up </md-icon>
+              </md-button>
+              <div>
+                {{food.quantity}}
+              </div>
+              <md-button class="md-icon-button changeQty" ng-click="decreaseQty($parent.$index, $index)">
+                <md-icon class="material-icons"> keyboard_arrow_down </md-icon>
+              </md-button>
             </div>
-          </md-list-item>
+          </div>
         </md-list>
         <md-card-actions layout="row" layout-align="end center">
+          <md-button ng-click="removeOrder(storeCart)">Remove Order</md-button>
           <md-button ng-click="purchaseOrder(storeCart)">Make Purchase</md-button>
         </md-card-actions>      
       </md-card>

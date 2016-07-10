@@ -66,6 +66,10 @@ md-toolbar #navDropdown .md-menu button {
 md-menu-content .material-icons {
   width: auto;
 }
+/******************************** CART ********************************/
+#cart .changeQty {
+  padding: 2px;
+}
 /******************************** SIDE NAV BAR ********************************/
 md-sidenav {
   position: fixed;
@@ -392,4 +396,7 @@ md-card md-toast.md-bottom {
   font-weight: bold;
   height: 40px;
   font-size: 40px;
+}
+#foodPriceContainer {
+  width: 60px;
 }
