@@ -81,8 +81,13 @@ angular
     }
 
     this.getCart = function() {
-        console.log(JSON.parse(sessionStorage.cart));
-      return JSON.parse(sessionStorage.cart);
+      // This will protect us from the sessionStorage being empty
+      // And from sessionStorage.cart being empty
+      var cart = [];
+      if (sessionStorage && sessionStorage.cart) 
+        cart = JSON.parse(sessionStorage.cart || []);
+
+      return cart;
     }
 
     this.updateCart = function(cart) {

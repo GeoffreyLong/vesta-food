@@ -1,56 +1,60 @@
 <md-dialog id="cart" ng-cloak>
-  <form>
-    <md-toolbar>
-      <div class="md-toolbar-tools">
-        <h2>Cart</h2>
-        <span flex></span>
-        <md-button class="md-icon-button" ng-click="cancel()">
-          <md-icon class="material-icons"> close </md-icon>
-        </md-button>
-      </div>
-    </md-toolbar>
-    <md-dialog-content>
-      {{cart}}
-      <md-card ng-repeat="storeCart in cart">
-        <!-- TODO style like a materialize collection 
-                  I like "avatar content" in http://materializecss.com/collections.html
-        -->
-        <md-list>
-          <md-subheader class="md-no-sticky storeTitle" ng-click="routeToStore(storeCart.storeId)"> {{storeCart.storeTitle}} </md-subheader>
-          <div layout="row" layout-align="space-between start" ng-repeat="food in storeCart.foods">
-              <md-button class="md-icon-button" ng-click="removeFood($parent.$index, $index)">
-                <md-icon class="material-icons"> close </md-icon>
-              </md-button>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Cart</h2>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="cancel()">
+        <md-icon class="material-icons"> close </md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content>
+    <div id="cartEmpty" ng-if="cart.length === 0">
+      There's nothing in your cart.
+    </div>
+    <div ng-if="cart.length !== 0">
+      <form>
+        <md-card ng-repeat="storeCart in cart">
+          <!-- TODO style like a materialize collection 
+                    I like "avatar content" in http://materializecss.com/collections.html
+          -->
+          <md-list>
+            <md-subheader class="md-no-sticky storeTitle" ng-click="routeToStore(storeCart.storeId)"> {{storeCart.storeTitle}} </md-subheader>
+            <div layout="row" layout-align="space-between start" ng-repeat="food in storeCart.foods">
+                <md-button class="md-icon-button" ng-click="removeFood($parent.$index, $index)">
+                  <md-icon class="material-icons"> close </md-icon>
+                </md-button>
 
-            <md-list-item class="md-3-line">
-              <img ng-src="{{food.photo}}" class="md-avatar" alt="Food Photo"/>
-              <div class="md-list-item-text" layout="column">
-                <h3>{{ food.name }}</h3>
-                <h4> Price per Portion: ${{ food.price }}</h4>
-                <p> Total Price: ${{ food.price * food.quantity }} </p>
+              <md-list-item class="md-3-line">
+                <img ng-src="{{food.photo}}" class="md-avatar" alt="Food Photo"/>
+                <div class="md-list-item-text" layout="column">
+                  <h3>{{ food.name }}</h3>
+                  <h4> Price per Portion: ${{ food.price }}</h4>
+                  <p> Total Price: ${{ food.price * food.quantity }} </p>
+                </div>
+                <!-- NOTE this also shrinks the dialog -->
+                <md-divider ng-if="!$last"></md-divider>
+              </md-list-item>
+              <div layout="column" layout-align="center center">
+                <md-button class="md-icon-button changeQty" ng-click="increaseQty($parent.$index, $index)">
+                  <md-icon class="material-icons"> keyboard_arrow_up </md-icon>
+                </md-button>
+                <div>
+                  {{food.quantity}}
+                </div>
+                <md-button class="md-icon-button changeQty" ng-click="decreaseQty($parent.$index, $index)">
+                  <md-icon class="material-icons"> keyboard_arrow_down </md-icon>
+                </md-button>
               </div>
-              <!-- NOTE this also shrinks the dialog -->
-              <md-divider ng-if="!$last"></md-divider>
-            </md-list-item>
-            <div layout="column" layout-align="center center">
-              <md-button class="md-icon-button changeQty" ng-click="increaseQty($parent.$index, $index)">
-                <md-icon class="material-icons"> keyboard_arrow_up </md-icon>
-              </md-button>
-              <div>
-                {{food.quantity}}
-              </div>
-              <md-button class="md-icon-button changeQty" ng-click="decreaseQty($parent.$index, $index)">
-                <md-icon class="material-icons"> keyboard_arrow_down </md-icon>
-              </md-button>
             </div>
-          </div>
-        </md-list>
-        <md-card-actions layout="row" layout-align="space-between center">
-          <md-button ng-click="removeOrder($index)">Remove Order</md-button>
-          <md-button ng-click="purchaseOrder(storeCart)">Make Purchase for ${{calculateTotal($index)}}</md-button>
-        </md-card-actions>      
-      </md-card>
-    </md-dialog-content>
-  </form>
+          </md-list>
+          <md-card-actions layout="row" layout-align="space-between center">
+            <md-button ng-click="removeOrder($index)">Remove Order</md-button>
+            <md-button ng-click="purchaseOrder(storeCart)">Make Purchase for ${{calculateTotal($index)}}</md-button>
+          </md-card-actions>      
+        </md-card>
+      </form>
+    </div>
+  </md-dialog-content>
 </md-dialog>
 

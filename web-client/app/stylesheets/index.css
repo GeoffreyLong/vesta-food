@@ -85,6 +85,9 @@ md-menu-content .material-icons {
 #cart .changeQty {
   padding: 2px;
 }
+#cart #cartEmpty {
+  padding: 30px 50px 30px 50px;
+}
 /******************************** SIDE NAV BAR ********************************/
 md-sidenav {
   position: fixed;
