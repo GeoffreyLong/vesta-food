@@ -79,7 +79,6 @@ angular.module('storeEdit').component('storeEdit', {
       })
       .then(function(answer) {
         // NOTE might want to consider saving this here to the DB as a temp file
-        console.log(answer);
         if (answer) {
           $scope.saveTempImage(answer);
         }
@@ -216,27 +215,32 @@ angular.module('storeEdit').component('storeEdit', {
     }
 
     checkForms = function(){
+      // Check to see if the error objects are empty
+      // If they are then return true
+      if ($.isEmptyObject($scope.storeForm.$error) && $.isEmptyObject($scope.foodFormContainer.$error)){
+        return true;
+      }
+
       // If there is an error, loop over all the error fields to display the errors 
-      if ($scope.storeForm.$error || $scope.foodForm.$error){
-        angular.forEach($scope.storeForm.$error, function (field) {
-          angular.forEach(field, function(errorField){
-            errorField.$setTouched();
-          })
-        });
-        // TODO is there a better way to do this?
-        angular.forEach($scope.foodFormContainer.$error, function (field) {
-          angular.forEach(field, function(innerForm){
-            angular.forEach(innerForm.$error, function(innerField){
-              angular.forEach(innerField, function(innerErrorField){
-                innerErrorField.$setTouched();
-              })
+      angular.forEach($scope.storeForm.$error, function (field) {
+        angular.forEach(field, function(errorField){
+          errorField.$setTouched();
+          console.log(errorField.$name);
+        })
+      });
+      // TODO is there a better way to do this?
+      angular.forEach($scope.foodFormContainer.$error, function (field) {
+        angular.forEach(field, function(innerForm){
+          angular.forEach(innerForm.$error, function(innerField){
+            angular.forEach(innerField, function(innerErrorField){
+              innerErrorField.$setTouched();
+              console.log(innerErrorField.$name);
             })
           })
-        });
-        alert("See Form Errors!");
-        return false;
-      }
-      return true;
+        })
+      });
+      alert("See Form Errors!");
+      return false;
     }
 
     checkPhotos = function(){
