@@ -15,11 +15,11 @@ module.exports = function(passport){
   var Food = require('../models/food');
   var Stores = require('../models/store.js');
 
-  var imageLocation = '../web-client/app';
+  var imageLocation = '../web-client/app/images/user';
   var multer = require('multer');
   var storage = multer.diskStorage({
     destination: function(req, file, cb){
-      cb(null, imageLocation + '/images/tmp/'); 
+      cb(null, imageLocation + '/tmp/'); 
     },
     /* alternate way of handling tmps
     filename: function(req, file, cb){
@@ -124,7 +124,7 @@ module.exports = function(passport){
     var photo = req.files[0];
 
     if (photo && photo.filename) {
-      res.status(200).send('/images/tmp/' + photo.filename);
+      res.status(200).send('/images/user/tmp/' + photo.filename);
     }
     else {
       res.status(500).send('');

@@ -1,6 +1,6 @@
 module.exports = [{
   storeTitle: "Geoff's Store",
-  profilePhoto: "/images/chef_1_profile.jpg",
+  profilePhoto: "/images/user/chef_1_profile.jpg",
   description: "This is the best store you'll ever go to. I make lots of things.",
   from: new Date(),
   to: new Date(),
@@ -62,7 +62,7 @@ module.exports = [{
   foods: []
 }, {
   storeTitle: "Ronald's",
-  profilePhoto: "/images/chef_5_profile.jpg",
+  profilePhoto: "/images/user/chef_5_profile.jpg",
   pickupAddress: "3515 Rue Durocher",
   neighborhood: "TODO",
   description: "I will make you fat, that is a guarantee.",
