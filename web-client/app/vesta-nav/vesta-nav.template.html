@@ -23,7 +23,7 @@
           <md-button ng-if="$ctrl.session.user.storeId" href="#!/store/{{$ctrl.session.user.storeId}}">
             Visit your Store
           </md-button>
-          <md-button ng-if="!$ctrl.session.user.storeId" href="showStripeDialog($event)">
+          <md-button ng-if="!$ctrl.session.user.storeId" ng-click="showStripeDialog($event)">
             Create a Storefront
           </md-button>
         </md-menu-item>
