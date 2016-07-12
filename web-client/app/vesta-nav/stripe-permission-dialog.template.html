@@ -1,0 +1,27 @@
+<md-dialog id="stripeRedirDialog" ng-cloak>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Stripe Redirection</h2>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="cancel()">
+        <md-icon class="material-icons"> close </md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content>
+    <span>
+    Our application uses the payment platform Stripe for authentication. 
+    Stripe is a trusted system used by 100,000+ companies including as Kickstarter,
+    Twitter, Shopify, Pintrest, and Lyft. 
+    <br>
+    <br>
+    The button below will take you to their signup page. 
+    This will allow our users pay you.
+    </span>
+    <br>
+    <div id="stripeRedirButton">
+      <md-button  class="md-raised" 
+                  href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_89GeQlhMVoUResS0PeQm6XuCs6hoXgze&scope=read_write" > Auth with Stripe </md-button>
+    </div>
+  </md-dialog-content>
+</md-dialog>

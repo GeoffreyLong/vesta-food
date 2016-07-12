@@ -88,6 +88,18 @@ md-menu-content .material-icons {
 #cart #cartEmpty {
   padding: 30px 50px 30px 50px;
 }
+/************************* STRIPE REDIRECTION DIALOG *************************/
+#stripeRedirDialog {
+  max-width: 600px;
+}
+#stripeRedirDialog md-dialog-content {
+  padding: 20px;
+}
+#stripeRedirDialog md-dialog-content #stripeRedirButton {
+  text-align: center;
+  margin: auto;
+  margin-top: 20px;
+}
 /******************************** SIDE NAV BAR ********************************/
 md-sidenav {
   position: fixed;

@@ -60,8 +60,33 @@ angular.module('vestaNav').component('vestaNav', {
     }
 
 
+    $scope.showStripeDialog = function(ev) {
+      var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+      $mdDialog.show({
+        controller: function DialogController($scope){
+          $scope.hide = function() {
+            $mdDialog.hide();
+          };
+          $scope.cancel = function() {
+            $mdDialog.cancel();
+          };
+        },
+        templateUrl: 'vesta-nav/stripe-permission-dialog.template.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose:true,
+        fullscreen: useFullScreen,
+      })
+      $scope.$watch(function() {
+        return $mdMedia('xs') || $mdMedia('sm');
+      }, function(wantsFullScreen) {
+        $scope.customFullscreen = (wantsFullScreen === true);
+      });
+
+    }
+
     /********************* CART STUFF *************************************/
-    $scope.showCart = function(ev){
+    $scope.showCart = function(ev) {
       var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
       $mdDialog.show({
         controller: function DialogController(cartService, $scope, $mdDialog, 
