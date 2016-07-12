@@ -138,15 +138,12 @@ angular.module('vestaNav').component('vestaNav', {
                   $http.post(url, {
                     data: storeCart
                   }).then(function success(response) {
+                    $mdDialog.hide();
                     $location.path('/dashboard');
                   }, function error(response) {
 
                   })
                 }
-
-                console.log("hello");
-                // Use the token to create the charge with a server-side script.
-                // You can access the token ID with `token.id`
               }
             });
             handler.open({
