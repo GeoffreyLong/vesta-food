@@ -153,7 +153,6 @@ router.get('/:userId/store/purchases', function(req, res) {
 router.post('/:userId/purchases', function (req, res) {
   var buyerId = req.params.userId;
   var storeId = req.body.storeId;
-  var pickupTime = Date.parse(req.body.pickupTime);
   var foods = req.body.foods;
   var stripePaymentToken = req.body.stripePaymentToken;
 
@@ -185,7 +184,6 @@ router.post('/:userId/purchases', function (req, res) {
           buyerId: buyerId,
           storeId: storeId,
           foods: foodIds,
-          pickupTime: pickupTime,
           stripeCharge: charge
         }).then(function successCallback(purchase) {
           res.status(200).send(purchase);

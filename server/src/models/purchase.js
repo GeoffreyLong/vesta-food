@@ -4,8 +4,7 @@ var Purchase = mongoose.model('Purchase', {
   buyerId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   storeId: {type: mongoose.Schema.Types.ObjectId, ref: 'Store'},
   foods: [{type: mongoose.Schema.Types.ObjectId, ref: 'Food'}],
-  stripeCharge: mongoose.Schema.Types.Mixed,
-  pickupTime: Date
+  stripeCharge: mongoose.Schema.Types.Mixed
 });
 
 module.exports.create = function (purchase) {
