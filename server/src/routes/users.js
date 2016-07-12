@@ -177,14 +177,18 @@ router.post('/:userId/purchases', function (req, res) {
         application_fee: applicationFee,
         destination: sellerAccountId
       }).then(function (charge) {
-        var foodIds = _.map(foods, function (food) {
-          return food._id;
+        //convert to representation that works with database model
+        var purchaseFoods = _.map(foods, function (food) {
+          return {
+            id: food._id,
+            quantity: food.quantity
+          }
         });
 
         Purchase.create({
           buyerId: buyerId,
           storeId: storeId,
-          foods: foodIds,
+          foods: purchaseFoods,
           stripeCharge: charge,
           stripeToken: stripePaymentToken
         }).then(function successCallback(purchase) {
