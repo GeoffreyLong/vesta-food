@@ -33,13 +33,9 @@
       </md-card-title>
       <md-card-content>
         <p>
-          From: {{store.from | date:'MM/dd/yyyy @ h:mma'}}
-        </p>
-        <p>
-          To: {{store.to | date:'MM/dd/yyyy @ h:mma'}}
-        </p>
-        <p>
-          {{store.description}}
+          Upcoming Store Hours: 
+          <br>
+          {{store.from | date:'MM/dd/yyyy @ h:mma'}} - {{store.to | date:'h:mma'}}
         </p>
       </md-card-content>
       <md-card-actions layout="row" layout-align="end center">
