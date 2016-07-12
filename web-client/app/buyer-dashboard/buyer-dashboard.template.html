@@ -1,21 +1,32 @@
-<md-card ng-repeat="purchase in $ctrl.purchases">
-  <md-list>
-    <md-subheader class="md-no-sticky storeTitle"> {{purchase.storeId.storeTitle}} </md-subheader>
-    <div layout="row" layout-align="space-between start" ng-repeat="food in purchase.foods">
-      <md-list-item class="md-3-line">
-        <img ng-src="{{food.id.photo}}" class="md-avatar" alt="Food Photo"/>
-        <div class="md-list-item-text" layout="column">
-          <h3>{{ food.id.name }}</h3>
-          <h4 ng-if="food.quantity === 1"> 1 portion for ${{food.id.price}}. </h4>
-          <h4 ng-if="food.quantity !== 1"> {{food.quantity}} portions for ${{ food.id.price }} each.</h4>
-          <p> Total Price: ${{ food.id.price * food.quantity }} </p>
-        </div>
-        <!-- NOTE this also shrinks the dialog -->
-        <md-divider ng-if="!$last"></md-divider>
-      </md-list-item>
+<br>
+<md-content>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <div>
+        Your Purchases
+      </div>
     </div>
-  </md-list>
-  <md-card-actions layout="row" layout-align="space-between center">
-    <md-button>Make Purchase</md-button>
-  </md-card-actions>
-</md-card>
+  </md-toolbar>
+  <br>
+  <md-card ng-repeat="purchase in $ctrl.purchases">
+    <md-list>
+      <md-subheader class="md-no-sticky storeTitle"> {{purchase.storeId.storeTitle}} </md-subheader>
+      <div layout="row" layout-align="space-between start" ng-repeat="food in purchase.foods">
+        <md-list-item class="md-3-line">
+          <img ng-src="{{food.id.photo}}" class="md-avatar" alt="Food Photo"/>
+          <div class="md-list-item-text" layout="column">
+            <h3>{{ food.id.name }}</h3>
+            <h4 ng-if="food.quantity === 1"> 1 portion for ${{food.id.price}}. </h4>
+            <h4 ng-if="food.quantity !== 1"> {{food.quantity}} portions for ${{ food.id.price }} each.</h4>
+            <p> Total Price: ${{ food.id.price * food.quantity }} </p>
+          </div>
+          <!-- NOTE this also shrinks the dialog -->
+          <md-divider ng-if="!$last"></md-divider>
+        </md-list-item>
+      </div>
+    </md-list>
+    <md-card-actions layout="row" layout-align="space-between center">
+      <md-button>Make Purchase</md-button>
+    </md-card-actions>
+  </md-card>
+</md-content>
