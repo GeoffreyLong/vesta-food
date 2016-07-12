@@ -65,7 +65,7 @@ angular.module('vestaNav').component('vestaNav', {
       var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
       $mdDialog.show({
         controller: function DialogController(cartService, $scope, $mdDialog, 
-                                              $location, dataService){
+                                              $location, dataService, $http){
           $scope.cart = cartService.getCart();
 
           $scope.routeToStore = function(storeId) {
@@ -113,14 +113,47 @@ angular.module('vestaNav').component('vestaNav', {
           }
   
 
+
+
           $scope.removeOrder = function(storeCartIdx) {
             $scope.cart.splice(storeCartIdx, 1);
             cartService.updateCart($scope.cart);
           }
-          $scope.purchaseOrder = function(storeCart) {
-            dataService.setPurchaseOrder(storeCart);
-            $mdDialog.hide();
-            $location.path('/purchase');
+          // NOTE might be nice to put the chef's image here instead of the logo 
+          $scope.purchaseOrder = function(storeCartIdx) {
+            var storeCart = $scope.cart[storeCartIdx];
+            var handler = StripeCheckout.configure({
+              key: 'pk_test_LuReqVByWV1HR5HQTFjaEBSZ',
+              image: '/img/documentation/checkout/marketplace.png',
+              token: function(token) {
+                storeCart.token = token;
+                if (token.error) {
+                  window.alert('Payment failed! error: ' + result.error.message);
+                } 
+                else {
+                  $scope.removeOrder(storeCartIdx);
+                  console.log(storeCart);
+                  var userId = authService.getSession().user._id;
+                  var url = "/api/users/" + userId + "/purchases";
+                  $http.post(url, {
+                    data: storeCart
+                  }).then(function success(response) {
+                    $location.path('/dashboard');
+                  }, function error(response) {
+
+                  })
+                }
+
+                console.log("hello");
+                // Use the token to create the charge with a server-side script.
+                // You can access the token ID with `token.id`
+              }
+            });
+            handler.open({
+              name: storeCart.storeTitle,
+              description: "Make a purchase from " + storeCart.storeTitle,
+              amount: $scope.calculateTotal(storeCartIdx) * 100
+            });
           }
 
           $scope.hide = function() {
