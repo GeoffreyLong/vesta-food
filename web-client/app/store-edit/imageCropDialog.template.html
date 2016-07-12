@@ -17,8 +17,11 @@
         <input type="file" id="fileInput" onchange="angular.element(this).scope().handleFileSelect(this.files)"/>
       </div>
       <div class="cropArea">
-        <img-crop ng-if="photoNum === 0" image="$parent.myImage" result-image="$parent.myCroppedImage" area-type="circle"></img-crop>
-        <img-crop ng-if="photoNum !== 0" image="$parent.myImage" result-image="$parent.myCroppedImage" area-type="square"></img-crop>
+        <img-crop ng-if="photoNum === 0" image="$parent.myImage" 
+                  result-image="$parent.myCroppedImage" area-type="circle"></img-crop>
+        <img-crop ng-if="photoNum !== 0" image="$parent.myImage" 
+                  result-image="$parent.myCroppedImage" area-type="rectangle"
+                  aspect-ratio="1.7"></img-crop>
       </div>
       <!-- If we want to show the result image... IMO takes too much space
       <div id="resultImageDiv">
