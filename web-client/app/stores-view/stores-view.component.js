@@ -43,12 +43,15 @@ angular.module('storesView').component('storesView', {
     // Hopefully this solves the image loading bug on first visit
     // If not try wrapping this in an image loading event
     //    so it fires after the images have been sent
+    // This will also hide the elements until they are ready to be rendered
+    $('#storesContainer').hide();
     var refreshSlick = setInterval(function() {
       if ($('.slider').length > 0) {
+        $('#storesContainer').show();
         clearInterval(refreshSlick);
         $('.slider').slick('setPosition');
       }
-    }, 1000);
+    }, 500);
 
     // If itemIndex is set to one of the photos, then one of the foods was clicked
     // In this case go to the storefront with some sort of emphasis on the food item

@@ -10,7 +10,8 @@ var Purchase = mongoose.model('Purchase', {
     },
     quantity: Number
   }],
-  stripeCharge: mongoose.Schema.Types.Mixed
+  stripeCharge: mongoose.Schema.Types.Mixed,
+  stripeToken: mongoose.Schema.Types.Mixed
 });
 
 module.exports.create = function (purchase) {

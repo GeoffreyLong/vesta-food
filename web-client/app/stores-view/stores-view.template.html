@@ -12,7 +12,6 @@
               This would lead to the food #'ed in the store page 
               Maybe a button within will bring you to the food in the page? 
         -->
-        <!-- NOTE would be cool if hovering made the slick autoplay -->
         <div ng-repeat="food in store.foods">
           <div class="foodImageInfo" layout="row" layout-align="space-between center">
             <span class="foodPrice"> ${{food.price}} </span>
@@ -20,9 +19,6 @@
               <md-icon class="star material-icons" ng-repeat="star in $ctrl.getNumber(food.overallRating) track by $index"> star </md-icon>
             </span>
           </div>
-          <!-- Not sure if we want this
-          <span class="foodName"> {{food.name}} </span>
-          -->
           <img ng-src="{{food.photo}}" class="md-card-image" alt="Store Image">
         </div>
       </slick>
@@ -33,13 +29,9 @@
       </md-card-title>
       <md-card-content>
         <p>
-          From: {{store.from | date:'MM/dd/yyyy @ h:mma'}}
-        </p>
-        <p>
-          To: {{store.to | date:'MM/dd/yyyy @ h:mma'}}
-        </p>
-        <p>
-          {{store.description}}
+          Upcoming Store Hours: 
+          <br>
+          {{store.from | date:'MM/dd/yyyy @ h:mma'}} - {{store.to | date:'h:mma'}}
         </p>
       </md-card-content>
       <md-card-actions layout="row" layout-align="end center">

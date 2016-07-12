@@ -397,9 +397,6 @@ md-card md-toast.md-bottom {
 #storeHours md-input-container {
   margin-top: 3px;
 }
-.editCard {
-  padding: 20px 20px 0px 20px;
-}
 .editCard #profilePhotoEdit {
 /* Height of md-display-3 */
   height: 100px;
@@ -409,6 +406,12 @@ md-card md-toast.md-bottom {
 }
 .editCard #nonMapDiv {
   padding-right: 30px;
+}
+#storeInfoEditDiv .editCard {
+  padding: 20px;
+}
+.foodEditDiv .editCard {
+  padding: 20px 20px 0px 20px;
 }
 #addFoodDiv {
   color: #00b36f;

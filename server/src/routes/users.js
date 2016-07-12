@@ -152,9 +152,10 @@ router.get('/:userId/store/purchases', function(req, res) {
  */
 router.post('/:userId/purchases', function (req, res) {
   var buyerId = req.params.userId;
-  var storeId = req.body.storeId;
-  var foods = req.body.foods;
-  var stripePaymentToken = req.body.stripePaymentToken;
+  var storeCart = req.body.data;
+  var storeId = storeCart.storeId;
+  var foods = storeCart.foods;
+  var stripePaymentToken = storeCart.token;
 
   var totalCost = 0;
   for (var i = 0; i < foods.length; i++) {
@@ -172,7 +173,7 @@ router.post('/:userId/purchases', function (req, res) {
       stripe.charges.create({
         amount: totalCost,
         currency: 'cad',
-        source: stripePaymentToken,
+        source: stripePaymentToken.id,
         application_fee: applicationFee,
         destination: sellerAccountId
       }).then(function (charge) {
@@ -188,7 +189,8 @@ router.post('/:userId/purchases', function (req, res) {
           buyerId: buyerId,
           storeId: storeId,
           foods: purchaseFoods,
-          stripeCharge: charge
+          stripeCharge: charge,
+          stripeToken: stripePaymentToken
         }).then(function successCallback(purchase) {
           res.status(200).send(purchase);
         }, function errorCallback(purchaseError) {
