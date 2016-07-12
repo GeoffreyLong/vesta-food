@@ -1,16 +1,21 @@
 <md-card ng-repeat="purchase in $ctrl.purchases">
   <md-list>
-    <md-title class="md-no-sticky"> purchase._id </md-title>
-      <md-list-item class="md-3-line" ng-repeat="food in purchase.foods">
-        <img ng-src="{{food.photo}}" class="md-avatar" alt="Food Photo"/>
+    <md-subheader class="md-no-sticky storeTitle"> {{purchase.storeId.storeTitle}} </md-subheader>
+    <div layout="row" layout-align="space-between start" ng-repeat="food in purchase.foods">
+      <md-list-item class="md-3-line">
+        <img ng-src="{{food.id.photo}}" class="md-avatar" alt="Food Photo"/>
         <div class="md-list-item-text" layout="column">
-          <h3>Name: {{ food.name }}</h3>
-          <h4>Quantity: {{ food.quantity }}; Price per item: {{ food.price }}</h4>
-          <p>Total Price: TODO </p>
+          <h3>{{ food.id.name }}</h3>
+          <h4 ng-if="food.quantity === 1"> 1 portion for ${{food.id.price}}. </h4>
+          <h4 ng-if="food.quantity !== 1"> {{food.quantity}} portions for ${{ food.id.price }} each.</h4>
+          <p> Total Price: ${{ food.id.price * food.quantity }} </p>
         </div>
+        <!-- NOTE this also shrinks the dialog -->
+        <md-divider ng-if="!$last"></md-divider>
       </md-list-item>
+    </div>
   </md-list>
-  <md-card-actions layout="row" layout-align="end center">
-    <md-button ng-click="purchaseOrder(storeCart)">Contact Seller</md-button>
+  <md-card-actions layout="row" layout-align="space-between center">
+    <md-button>Make Purchase</md-button>
   </md-card-actions>
 </md-card>
