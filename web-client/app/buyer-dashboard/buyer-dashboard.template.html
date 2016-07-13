@@ -29,4 +29,13 @@
       <md-button>Make Purchase</md-button>
     </md-card-actions>
   </md-card>
+
+  <div ng-hide="$ctrl.purchases.length" layout="column" layout-align="center center">
+    <p>
+      Looks like you haven't made any purchases yet!
+    </p>
+    <p>
+      Check out the homepage for upcoming events near you.
+    </p>
+  </div>
 </md-content>
