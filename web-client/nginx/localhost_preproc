@@ -10,6 +10,7 @@ server {
 
     location / {
         root $rootloc/app;
+        try_files $uri $uri/ /index.html;
     }
     location /api/ {
         proxy_pass http://localhost:3000;

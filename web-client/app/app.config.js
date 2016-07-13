@@ -21,7 +21,7 @@ angular
         .warnPalette('orange');
 
       // TODO decide if this is something we want
-      $locationProvider.hashPrefix('!');
+      $locationProvider.html5Mode(true).hashPrefix('!');
       $routeProvider
         .when('/', {
           template: '<vesta-nav></vesta-nav>'
