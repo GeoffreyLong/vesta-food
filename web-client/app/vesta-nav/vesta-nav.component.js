@@ -63,8 +63,8 @@ angular.module('vestaNav').component('vestaNav', {
     $scope.showStripeDialog = function(ev) {
       var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
       $mdDialog.show({
-        controller: function DialogController($scope){
-          $scope.stripeCallback = "http://localhost/becomeAChef/stripeCallback";
+        controller: function DialogController($scope, CONFIG){
+          $scope.stripeCallbackUri = CONFIG.STRIPE.CALLBACK_URI;
 
           $scope.hide = function() {
             $mdDialog.hide();
@@ -92,7 +92,7 @@ angular.module('vestaNav').component('vestaNav', {
       var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
       $mdDialog.show({
         controller: function DialogController(cartService, $scope, $mdDialog, 
-                                              $location, dataService, $http){
+                                              $location, dataService, $http, CONFIG){
           $scope.cart = cartService.getCart();
 
           $scope.routeToStore = function(storeId) {
@@ -150,7 +150,7 @@ angular.module('vestaNav').component('vestaNav', {
           $scope.purchaseOrder = function(storeCartIdx) {
             var storeCart = $scope.cart[storeCartIdx];
             var handler = StripeCheckout.configure({
-              key: 'pk_test_LuReqVByWV1HR5HQTFjaEBSZ',
+              key: CONFIG.STRIPE.PUBLIC_KEY,
               image: '/img/documentation/checkout/marketplace.png',
               token: function(token) {
                 storeCart.token = token;

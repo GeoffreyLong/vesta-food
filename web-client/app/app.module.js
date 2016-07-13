@@ -18,5 +18,6 @@ angular.module('vestaApp', [
   'authService',
   'dataService',
   'locationService',
-  'cartService'
+  'cartService',
+  'config'
 ]);
