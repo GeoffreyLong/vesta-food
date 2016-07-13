@@ -7,6 +7,7 @@ module.exports = function(passport){
   var router = express.Router();
   var request = require('request');
   var fs = require('fs');
+  var mongoose = require('mongoose');
 
   // Get the correct configuration down
   var config = require('../config')();
@@ -147,6 +148,9 @@ module.exports = function(passport){
     // Create an unordered bulk op
     var bulk = Food.collection.initializeUnorderedBulkOp();
 
+    // Create an array to store food ids
+    var foodIds = [];
+
     store.foods.forEach(function(food){ 
       // Update the food photo
       var oldPhoto = food.photo;
@@ -155,8 +159,10 @@ module.exports = function(passport){
 
       // Add to bulk operation
       var id = food._id;
+      foodIds.push(id);
       delete food._id;
-      bulk.find({_id: id}).upsert().updateOne(food);
+      console.log(id);
+      bulk.find({'_id': mongoose.Types.ObjectId(id)}).upsert().updateOne(food);
     });
 
     bulk.execute(function (error, foodDocs) {
@@ -164,13 +170,12 @@ module.exports = function(passport){
         return res.status(500).send(error);
       }
 
-      // Get the food ids from the foodDocs return statement
-      var foodIds = [];
-      var foods = foodDocs.getInsertedIds();
-      foods.push(foodDocs.getUpsertedIds());
+      // Get the food ids from the foodDocs if upserted
+      var newFoods = foodDocs.getUpsertedIds();
+      console.log(foodDocs);
       // Need to flatten the array
-      foods = [].concat.apply([], foods);
-      foods.forEach(function(food){
+      newFoods = [].concat.apply([], newFoods);
+      newFoods.forEach(function(food){
         console.log(food);
         if (food._id) {
           console.log("has Id");
