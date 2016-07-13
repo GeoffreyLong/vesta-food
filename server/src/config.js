@@ -4,7 +4,7 @@ var config = {
   local: {
     port: 3000,
     database: {
-      url: 'mongodb://localhost/VestaFoodDevelopment'
+      url: 'mongodb://localhost/VestaFoodDev'
     },
     facebook: {
       appID: "592850390877879",
@@ -46,12 +46,12 @@ var config = {
   development: {
     port: 3000,
     database: {
-      url: 'mongodb://localhost/VestaFoodStaging'
+      url: 'mongodb://localhost/VestaFoodDev'
     },
     facebook: {
       appID: "592850390877879",
       appSecret: "9d74b20152449f942818ab1cd2558e46",
-      callbackUrl: "http://staging.vestafood.ca/api/auth/facebook/callback"
+      callbackUrl: "http://dev.vestafood.ca/api/auth/facebook/callback"
     },
     googleMaps: {
       clientKey: "AIzaSyBr9CgN3xm551js9nkeFykGZUtgyrJp6Rg",
