@@ -18,10 +18,11 @@
       </div>
       <div class="cropArea">
         <img-crop ng-if="photoNum === 0" image="$parent.myImage" 
-                  result-image="$parent.myCroppedImage" area-type="circle"></img-crop>
+                  result-image="$parent.myCroppedImage" area-type="circle"
+                  result-image-size="'max'"></img-crop>
         <img-crop ng-if="photoNum !== 0" image="$parent.myImage" 
                   result-image="$parent.myCroppedImage" area-type="rectangle"
-                  aspect-ratio="1.7"></img-crop>
+                  aspect-ratio="1.7" result-image-size="'max'"></img-crop>
       </div>
       <!-- If we want to show the result image... IMO takes too much space
       <div id="resultImageDiv">

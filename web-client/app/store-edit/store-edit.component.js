@@ -198,9 +198,8 @@ angular.module('storeEdit').component('storeEdit', {
       // Photos are moved from /tmp to the regular img directory
 
       // Validate the forms and the photos 
-      // If falid then send the updated / new store to the servers
-
-      console.log($scope.store);
+      // If valid then send the updated / new store to the servers
+      if (checkForms() && checkPhotos()){
         var storeData = $scope.store;
         $http.post('api/stores/' + storeData._id, {
           data: storeData
@@ -209,8 +208,10 @@ angular.module('storeEdit').component('storeEdit', {
           var storeId = re.exec($location.path())[1];    
           $location.path("/store/" + storeId);
         }, function(err) {
+          // TODO error handling
           console.log(err);
         });
+      }
 
     }
 
