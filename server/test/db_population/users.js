@@ -13,5 +13,4 @@ module.exports = [{
 }, {
   fbID: '3333333333',
   displayName: 'Ronald',
-}]
-
+}];
