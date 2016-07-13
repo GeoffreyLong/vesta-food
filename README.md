@@ -32,7 +32,9 @@ Startup Ye Ye!
 - `npm install -g stylus`
 - `npm install -g nib`
 - `npm install -g bower`
+- `npm install -g grunt-cli`
 - `bower --allow-root install`
+- `grunt ngconstant:ENV`
 - `rm /etc/nginx/sites-enabled/default`
 - `./setup.sh`
 - `chmod -R 755 /root`
