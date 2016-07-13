@@ -70,37 +70,39 @@ var insertUsers = function(){
   })
 }
 
-var insertStores = function(pairings){
+var insertStores = function(pairings) {
   // Remove all stores and add in the test stores
-  Stores.model.remove({}, function(err){
-    Foods.collection.insert(foodsArray, function (err, foodDocs) {
-      for (var i = 0; i < storesArray.length; i ++) {
-        var store = storesArray[i];
-        store.foods = foodDocs.insertedIds;
-      }
-
-      Stores.model.collection.insert(storesArray, function(err, storeDocs) {
-        if (err){
-          console.log(err);
-          console.log("Failed to initialize Stores");
+  Stores.model.remove({}, function(err) {
+    Foods.remove({}, function(err) {
+      Foods.collection.insert(foodsArray, function (err, foodDocs) {
+        for (var i = 0; i < storesArray.length; i ++) {
+          var store = storesArray[i];
+          store.foods = foodDocs.insertedIds;
         }
-        else {
-          console.log("Added Stores: " + storeDocs.insertedIds);
-          storeIds = storeDocs.insertedIds;
-          // Pair up the stores and the users
-          var newPairs = [];
-          storeDocs.insertedIds.forEach(function(storeId, index){
-            // There will always be more users than stores
-            var pair = pairings[index];
-            pair.storeId = storeId;
-            newPairs.push(pair);
-          });
 
-          updatePairs(newPairs);
-          insertStoreReviews(newPairs);
-        }
+        Stores.model.collection.insert(storesArray, function(err, storeDocs) {
+          if (err){
+            console.log(err);
+            console.log("Failed to initialize Stores");
+          }
+          else {
+            console.log("Added Stores: " + storeDocs.insertedIds);
+            storeIds = storeDocs.insertedIds;
+            // Pair up the stores and the users
+            var newPairs = [];
+            storeDocs.insertedIds.forEach(function(storeId, index){
+              // There will always be more users than stores
+              var pair = pairings[index];
+              pair.storeId = storeId;
+              newPairs.push(pair);
+            });
+
+            updatePairs(newPairs);
+            insertStoreReviews(newPairs);
+          }
+        });
       });
-    })
+    });
   });
 }
 

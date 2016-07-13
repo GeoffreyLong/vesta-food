@@ -139,35 +139,58 @@ module.exports = function(passport){
     //      Could do fs.renameSynch if I don't trust the code
     var store = req.body.data;
 
+    // Update the profile photo
     var oldProfPath = store.profilePhoto;
-    store.profilePhoto = store.profilePhoto.replace("/tmp", "");
-
+    store.profilePhoto = store.profilePhoto.replace("/tmp/", "/");
     updatePath(oldProfPath, store.profilePhoto);
 
+    // Create an unordered bulk op
+    var bulk = Food.collection.initializeUnorderedBulkOp();
 
-    store.foods.forEach(function(food){
+    store.foods.forEach(function(food){ 
+      // Update the food photo
       var oldPhoto = food.photo;
-      food.photo = food.photo.replace("/tmp",  "");
+      food.photo = food.photo.replace("/tmp/",  "/");
       updatePath(oldPhoto, food.photo);
+
+      // Add to bulk operation
+      var id = food._id;
+      delete food._id;
+      bulk.find({_id: id}).upsert().updateOne(food);
     });
 
-    console.log(store.foods);
-    Food
-      .collection
-      .insert(store.foods, function (error, foodDocs) {
-        if (error) {
-          return res.status(500).send(error);
-        }
+    bulk.execute(function (error, foodDocs) {
+      if (error) {
+        return res.status(500).send(error);
+      }
 
-        store.foods = foodDocs.insertedIds;
-        Stores
-          .model
-          .findByIdAndUpdate(req.params.storeId, store)
-          .then(function (store) {
-            res.status(200).send(store);
-          }, function (storeError) {
-            res.status(500).send(storeError);
-          });
+      // Get the food ids from the foodDocs return statement
+      var foodIds = [];
+      var foods = foodDocs.getInsertedIds();
+      foods.push(foodDocs.getUpsertedIds());
+      // Need to flatten the array
+      foods = [].concat.apply([], foods);
+      foods.forEach(function(food){
+        console.log(food);
+        if (food._id) {
+          console.log("has Id");
+          foodIds.push(food._id);
+        }
+      });
+
+      // Add foods field, remove the _id field
+      store.foods = foodIds;
+      delete store._id;
+
+      Stores
+        .model
+        .findByIdAndUpdate(req.params.storeId, store, {upsert: true})
+        .then(function (store) {
+          // NOTE will return the old store unless new: true
+          res.status(200).send(store);
+        }, function (storeError) {
+          res.status(500).send(storeError);
+        });
       });
    
     // {new: false} is unnecessary as it is already false by default
