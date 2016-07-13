@@ -24,9 +24,13 @@ module.exports = [{
 }, {
   storeTitle: "Charlie's Store",
   profilePhoto: "TODO",
-  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." 
-    + "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." 
-    + "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do" +
+                  "eiusmod tempor incididunt ut labore et dolore magna aliqua." +
+                  "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut " +
+                  "aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in " +
+                  "voluptate velit esse cillum dolore eu fugiat nulla pariatur." +
+                  "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia " +
+                  "deserunt mollit anim id est laborum.",
   from: new Date(),
   to: new Date(),
   overallRating: 4,
@@ -48,7 +52,6 @@ module.exports = [{
   foods: []
 }, {
   storeTitle: "Jimmy's Store",
-  pickupAddress: "3515 Rue Durocher",
   description: "You can have your (pie)cake(n), and eat it (stuffed with multiple pies) too.",
   neighborhood: "TODO",
   from: new Date(),
@@ -63,7 +66,6 @@ module.exports = [{
 }, {
   storeTitle: "Ronald's",
   profilePhoto: "/images/user/chef_5_profile.jpg",
-  pickupAddress: "3515 Rue Durocher",
   neighborhood: "TODO",
   description: "I will make you fat, that is a guarantee.",
   from: new Date(),

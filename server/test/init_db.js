@@ -67,8 +67,8 @@ var insertUsers = function(){
         insertStores(pairings);
       }
     });
-  })
-}
+  });
+};
 
 var insertStores = function(pairings) {
   // Remove all stores and add in the test stores
@@ -104,7 +104,7 @@ var insertStores = function(pairings) {
       });
     });
   });
-}
+};
 
 
 var updatePairs = function(pairs) {
@@ -127,7 +127,8 @@ var updatePairs = function(pairs) {
       }
     });
   });
-}
+};
+
 
 var insertStoreReviews = function(pairs) {
   FoodReviews.remove({}, function(err){
@@ -153,29 +154,17 @@ var insertStoreReviews = function(pairs) {
         
         var userId = userIds[Math.floor(Math.random() * numUsers)];
         while (userId == pair.userId) {
-          var userId = userIds[Math.floor(Math.random() * numUsers)];
+          userId = userIds[Math.floor(Math.random() * numUsers)];
         }
 
         var review = new StoreReviews(storeReviewsArray[Math.floor(Math.random() * numReviewOptions)]);
         review.userId = userId;
         review.storeId = storeId;
-        review.save(function(err, review){
-          if (err) {
-            console.log("ERROR: " + err);
-          }
-          else {
-            // COOL interesting error
-            //      If I do userId and storeId then both default to the same
-            //      since they are being changed outside of the scope of this callback
-            
-            // TODO Temporarily disabled
-            // insertFoodReview(review.userId, review.storeId);
-          }
-        });
+        saveReview(review);
       }
     });
   });
-}
+};
 
 var insertFoodReview = function(userId, storeId) {
   var numFoodReviews = foodReviewsArray.length;
@@ -204,16 +193,21 @@ var insertFoodReview = function(userId, storeId) {
         review.userId = userId;
         review.foodId = foodId;
         // Save the food review
-        review.save(function(err, review){
-          if (err) {
-            console.log("ERROR: " + err);
-          }
-          else {
-            console.log(review);
-          }
-        });
+        saveReview(review);
       }
     }
   });
-}
+};
 
+
+// Only did this since jslint didn't like .save in a loop
+var saveReview = function(review) {
+  review.save(function(err, review){
+    if (err) {
+      console.log("ERROR: " + err);
+    }
+    else {
+      // console.log(review);
+    }
+  });
+};
