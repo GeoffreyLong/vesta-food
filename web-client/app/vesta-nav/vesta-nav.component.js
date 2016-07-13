@@ -64,6 +64,8 @@ angular.module('vestaNav').component('vestaNav', {
       var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
       $mdDialog.show({
         controller: function DialogController($scope){
+          $scope.stripeCallback = "http://localhost/becomeAChef/stripeCallback";
+
           $scope.hide = function() {
             $mdDialog.hide();
           };
