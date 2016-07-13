@@ -12,14 +12,14 @@ module.exports = function(passport){
   var config = require('../config')();
   var _ = require('lodash');
 
-  var Food = require('../models/food');
+  var Food = require('../models/food.js');
   var Stores = require('../models/store.js');
 
-  var imageLocation = '../web-client/app/images/user';
+  var imageLocation = '../web-client/app';
   var multer = require('multer');
   var storage = multer.diskStorage({
     destination: function(req, file, cb){
-      cb(null, imageLocation + '/tmp/'); 
+      cb(null, imageLocation + '/images/user/tmp/'); 
     },
     /* alternate way of handling tmps
     filename: function(req, file, cb){
@@ -151,6 +151,7 @@ module.exports = function(passport){
       updatePath(oldPhoto, food.photo);
     });
 
+    console.log(store.foods);
     Food
       .collection
       .insert(store.foods, function (error, foodDocs) {
