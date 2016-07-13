@@ -2,3 +2,4 @@ node_modules/
 app/bower_components/
 .idea
 .DS_Store
+app/config.js

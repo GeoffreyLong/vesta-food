@@ -215,10 +215,12 @@ angular.module('storeEdit').component('storeEdit', {
 
     }
 
-    checkForms = function(){
+    var checkForms = function() {
       // Check to see if the error objects are empty
       // If they are then return true
-      if ($.isEmptyObject($scope.storeForm.$error) && $.isEmptyObject($scope.foodFormContainer.$error)){
+      if ($.isEmptyObject($scope.storeForm.$error) 
+          && $.isEmptyObject($scope.foodFormContainer.$error)
+          && checkStoreHours()){
         return true;
       }
 
@@ -226,7 +228,6 @@ angular.module('storeEdit').component('storeEdit', {
       angular.forEach($scope.storeForm.$error, function (field) {
         angular.forEach(field, function(errorField){
           errorField.$setTouched();
-          console.log(errorField.$name);
         })
       });
       // TODO is there a better way to do this?
@@ -235,7 +236,6 @@ angular.module('storeEdit').component('storeEdit', {
           angular.forEach(innerForm.$error, function(innerField){
             angular.forEach(innerField, function(innerErrorField){
               innerErrorField.$setTouched();
-              console.log(innerErrorField.$name);
             })
           })
         })
@@ -244,7 +244,33 @@ angular.module('storeEdit').component('storeEdit', {
       return false;
     }
 
-    checkPhotos = function(){
+    var checkStoreHours = function() {
+      var store = $scope.store;
+      var date = store.date;
+      var startTime = store.startTime;
+      var endTime = store.endTime;
+
+      if (!date || !startTime || !endTime) {
+        return false;
+      } 
+
+      // Construct a start DateTime without modifying store.date
+      var start = new Date(date);
+      start.setHours(startTime.getHours());
+      start.setMinutes(startTime.getMinutes());
+
+      // Ensure start DateTime is later than right now
+      // TODO Specific $error messages
+      //      Like $scope.storeForm.date.$setValidity("afterNow", false);
+      if (start < Date.now() || endTime <= startTime) {
+        alert("Store Hour Errors");
+        return false;
+      }
+
+      return true;
+    }
+
+    var checkPhotos = function(){
       if (!$scope.store.profilePhoto){
         alert("Need a Profile Photo!");
         return false;
