@@ -1,7 +1,7 @@
 <!-- Neither of these components support theming I don't think, perhaps in later release -->
 
 <md-toolbar layout="row" class="md-whiteframe-z2" style="z-index:10; padding:0px; margin-bottom:0px; position:fixed; top: 0px">
-  <md-button href="#!/">
+  <md-button href="/">
     <img id='brand-logo' src="/images/vesta/vesta_logo_new.png" alt="Vesta" />
   </md-button>
 
@@ -20,7 +20,7 @@
       <md-menu-content>
         <md-menu-item class="md-indent">
           <md-icon class="material-icons"> store </md-icon>
-          <md-button ng-if="$ctrl.session.user.storeId" href="#!/store/{{$ctrl.session.user.storeId}}">
+          <md-button ng-if="$ctrl.session.user.storeId" href="/store/{{$ctrl.session.user.storeId}}">
             Visit your Store
           </md-button>
           <md-button ng-if="!$ctrl.session.user.storeId" ng-click="showStripeDialog($event)">
@@ -29,17 +29,17 @@
         </md-menu-item>
         <md-menu-item ng-if="$ctrl.session.user.storeId" class="md-indent">
           <md-icon class="material-icons"> edit </md-icon>
-          <md-button ng-if="$ctrl.session.user.storeId" href="#!/store/{{$ctrl.session.user.storeId}}/edit">
+          <md-button ng-if="$ctrl.session.user.storeId" href="/store/{{$ctrl.session.user.storeId}}/edit">
             Edit your Store
           </md-button>
         </md-menu-item>
         <md-menu-item class="md-indent">
           <md-icon class="material-icons"> dashboard </md-icon>
-          <md-button href="#!/dashboard"> Buyer Dashboard </md-button>
+          <md-button href="/dashboard"> Buyer Dashboard </md-button>
         </md-menu-item>
         <md-menu-item class="md-indent" ng-if="$ctrl.session.user.storeId">
           <md-icon class="material-icons"> dashboard </md-icon>
-          <md-button href="#!/sellerDashboard"> Seller Dashboard </md-button>
+          <md-button href="/sellerDashboard"> Seller Dashboard </md-button>
         </md-menu-item>
         <md-menu-item class="md-indent">
           <md-icon class="material-icons"> person </md-icon>
