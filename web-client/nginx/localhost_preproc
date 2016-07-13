@@ -7,6 +7,8 @@
 server {
     listen 80;
     listen 8080;
+    # Put limit of request size at 100mb
+    client_max_body_size 100m;
 
     location / {
         root $rootloc/app;
