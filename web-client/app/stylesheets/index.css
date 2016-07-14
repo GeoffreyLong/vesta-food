@@ -179,6 +179,7 @@ slick:hover .slick-arrow.slick-next:before {
 #storesContainer {
   overflow-x: hidden;
   background-color: #f2f2f2;
+  padding: 16px 0px 16px 0px;
 }
 #storesContainer md-card {
   max-width: 450px;
@@ -192,7 +193,7 @@ slick:hover .slick-arrow.slick-next:before {
 #storesContainer md-card .foodImageInfo {
   padding: 5px;
   display: block;
-  background: rgba(0,0,0,0.3);
+  background: rgba(0,0,0,0.5);
   position: absolute;
   width: inherit;
 }
@@ -214,10 +215,17 @@ slick:hover .slick-arrow.slick-next:before {
 #storesContainer md-card md-card-content {
   padding-top: 0px;
 }
+#storesContainer md-card md-card-content .avatar {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin-top: -20px;
+}
 #storesContainer md-card md-card-content .headlineContent {
   font-size: 24px;
   font-weight: 600;
   cursor: pointer;
+  margin-left: 5px;
 }
 #storesContainer md-card md-card-content .headlineContent:hover {
   text-decoration: underline;
@@ -226,6 +234,7 @@ slick:hover .slick-arrow.slick-next:before {
   font-size: 14px;
   font-weight: 600;
   color: #777;
+  margin-left: -5px;
 }
 /******************************** STORE FRONT ********************************/
 store-front slick .slick-arrow.slick-prev:before,
