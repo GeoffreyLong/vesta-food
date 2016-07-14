@@ -130,7 +130,7 @@
                     <div ng-message="required">This is required.</div>
                   </div>
                 </md-input-container>
-                <md-input-container id="foodPriceContainer">
+                <md-input-container class="foodPriceContainer">
                   <label class="md-title"> Price </label>
                   <!-- TODO can set a minimum price here -->
                   <input  type="number" min="0" step="0.01" ng-model="food.price" 
@@ -164,9 +164,9 @@
             </md-input-container>
 
           </div>
-          <div flex flex-gt-sm=35>
-            <!-- TODO make clear that this is a rep of the food in the storefront -->
-            <!-- TODO add in the descriptions functionality -->
+          <div  class="foodPreview" flex flex-gt-sm=35 
+                layout="column" layout-align="center center">
+            <span style="font-weight:600"> FOOD PREVIEW </span>
             <food-card food="food"></food-card>
           </div>
 

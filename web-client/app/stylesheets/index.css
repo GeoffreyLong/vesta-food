@@ -448,6 +448,13 @@ store-front #descriptionPanel #storeDescription {
 .foodEditDiv .editCard {
   padding: 20px 20px 0px 20px;
 }
+.foodEditDiv .foodPriceContainer {
+  width: 60px;
+}
+.foodEditDiv .foodPreview {
+  background-color: #f2f2f2;
+  padding: 5px 5px 10px 5px;
+}
 #addFoodDiv {
   color: #00b36f;
 }
@@ -464,12 +471,4 @@ store-front #descriptionPanel #storeDescription {
   font-weight: bold;
   height: 40px;
   font-size: 40px;
-}
-#foodEditDiv .editCard md-card {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 400px;
-}
-#foodPriceContainer {
-  width: 60px;
 }
