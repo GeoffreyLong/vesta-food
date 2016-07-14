@@ -48,7 +48,13 @@ angular
           }
         })
         .when('/becomeAChef/stripeCallback', {
-          template: '<p>become a chef callback TODO loading screen?</p>',
+          template: '<vesta-nav></vesta-nav>' + 
+                    //'<div layout="row" layout-align="space-around"' +
+                    //      'style="margin-top:50%; height:100%">' +
+                    '<div style="position: fixed; top:45%; left:45%">' + 
+                      '<md-progress-circular md-mode="indeterminate" md-diameter="100">' + 
+                      '</md-progress-circular>' +
+                    '</div>',
           controller: function($location, $http, authService) {
             var stripeParams = $location.search();
 
