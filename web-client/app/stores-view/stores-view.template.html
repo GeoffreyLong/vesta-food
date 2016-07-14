@@ -24,6 +24,7 @@
         </div>
       </slick>
       <md-card-content>
+        <div class="slickPadding" ng-if="store.foods.length <= 1"> </div>
         <div layout="row" layout-align="start center">
           <div>
             <img class="avatar" ng-src="{{store.profilePhoto}}"/>
