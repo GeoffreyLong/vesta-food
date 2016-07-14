@@ -18,6 +18,14 @@ angular.module('foodCard').component('foodCard', {
       return false;
     }
 
+    // TODO might be nice to make the images clickable
+    //      When the user is in the stores view a click should take you to the store
+    //      with a focus on the specific food selected
+    //      When the user is in edit, it should launch the edit dialog
+    $scope.imageAction = function(){
+
+    }
+
     $scope.showBottomSheet = function(ev, food){
       // TODO the parent isn't the best one 
       //      Perhaps it isn't resolving with the updated css for card

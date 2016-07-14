@@ -6,9 +6,9 @@
     </span>
   </div>
   <img  ng-if="food.photo" ng-src="{{food.photo}}" 
-        class="md-card-image" alt="Food Image">      
+        class="md-card-image" alt="Food Image" ng-click="imageAction()">      
   <img  ng-if="!food.photo" ng-src="/images/user/default_food.jpg" 
-        class="md-card-image" alt="Food Image">
+        class="md-card-image" alt="Food Image" ng-click="imageAction()">
   
 
   <md-card-actions class="md-whiteframe-1dp" layout="row" layout-align="center center">
