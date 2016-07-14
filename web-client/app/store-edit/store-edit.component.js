@@ -199,7 +199,7 @@ angular.module('storeEdit').component('storeEdit', {
 
       // Validate the forms and the photos 
       // If valid then send the updated / new store to the servers
-      if (checkForms() && checkPhotos()){
+      if (checkForFood() && checkForms() && checkPhotos()){
         var storeData = $scope.store;
         $http.post('api/stores/' + storeData._id, {
           data: storeData
@@ -214,6 +214,19 @@ angular.module('storeEdit').component('storeEdit', {
       }
 
     }
+
+
+    // Simply checks to see if a food object is there
+    // NOTE may not want to require in later versions
+    var checkForFood = function() {
+      console.log("hello");
+      console.log($scope.store.foods);
+      if (!$scope.store.foods || $scope.store.foods.length === 0){
+        alert("You need at least one food item in your store");
+        return false;
+      }
+      return true;
+    };
 
     var checkForms = function() {
       // Check to see if the error objects are empty
@@ -242,7 +255,7 @@ angular.module('storeEdit').component('storeEdit', {
       });
       alert("See Form Errors!");
       return false;
-    }
+    };
 
     var checkStoreHours = function() {
       var store = $scope.store;
@@ -268,7 +281,7 @@ angular.module('storeEdit').component('storeEdit', {
       }
 
       return true;
-    }
+    };
 
     var checkPhotos = function(){
       if (!$scope.store.profilePhoto){
