@@ -266,22 +266,26 @@ store-front slick .slick-center md-card-actions {
 store-front slick md-card {
   position: relative;
   margin-bottom: 0;
+/* HACK Display the bottom sheet appropriately */
 }
-store-front slick md-card-actions {
+store-front slick md-card .foodImageInfo {
+  margin-bottom: -29px;
+}
+store-front slick md-card md-card-actions {
   z-index: 71;
   margin: 0;
   margin-bottom: 2px;
   padding: 8px;
   background-color: #fff;
 }
-store-front slick md-bottom-sheet {
+store-front slick md-card md-bottom-sheet {
   margin-bottom: 90px;
 }
-store-front slick md-bottom-sheet #foodPrice {
+store-front slick md-card md-bottom-sheet #foodPrice {
   padding-top: 10px;
   font-style: italic;
 }
-store-front slick md-backdrop {
+store-front slick md-card md-backdrop {
   margin-bottom: 2px;
 }
 store-front #titleDiv {
@@ -289,6 +293,7 @@ store-front #titleDiv {
   width: 80%;
   margin-left: auto;
   margin-right: auto;
+/* Will center the storeTitle in absence of reviews */
 }
 store-front #titleDiv #titleRow {
   padding: 10px;
@@ -301,17 +306,8 @@ store-front #titleDiv img {
 store-front #titleDiv #storeTitle {
   display: inline-block;
 }
-store-front #titleDiv #titleStars {
-/* If I want the stars to lie low on the line */
-/* Height of md-display-3 */
-  padding-top: 20px;
-}
-store-front #titleDiv #titleStars .star {
-  color: #ea6e10;
-/* NOTE for whatever reason, this adds an overflow-x to the body */
-  font-size: 36px;
-  height: 36px;
-  width: 36px;
+store-front #titleDiv #starPlaceholder {
+  width: 56px;
 }
 store-front #titleDiv .underline {
   height: 5px;

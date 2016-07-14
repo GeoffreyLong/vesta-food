@@ -15,52 +15,6 @@ angular.module('storeFront').component('storeFront', {
       });;
     }
 
-    // To get this we will have to do a join on buyer and the storeId
-    // TODO remove
-    $scope.storeReviews = [{
-      storeID: 123456789,
-      buyer: {
-        _id: 111111111,
-        displayName: 'Dude Guy Kid',
-        photo: '/images/chef_1_profile.jpg'
-      },
-      date: "TODO",
-      overall: 4,
-      comment: "This was pretty good. Not as good as the person claimed, but good enough"
-    }, {
-      storeID: 123456789,
-      buyer: {
-        _id: 123212321,
-        displayName: 'Jameis No Namesly',
-      },
-      date: "TODO",
-      overall: 5,
-      comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." 
-        + "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." 
-        + "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-    }, {
-      storeID: 123456789,
-      buyer: {
-        _id: 121212121,
-        displayName: 'Another One',
-        photo: '/images/chef_5_profile.jpg'
-      },
-      date: "TODO",
-      overall: 5,
-      comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." 
-        + "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." 
-        + "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-    }, {
-      storeID: 123456789,
-      buyer: {
-        _id: 111111111,
-        displayName: 'Dude Guy Kid',
-        photo: '/images/chef_1_profile.jpg'
-      },
-      date: "TODO",
-      overall: 4,
-      comment: null
-    }];
 
     $scope.slickConfig = {
       dots: true,

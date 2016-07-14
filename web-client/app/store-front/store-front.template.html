@@ -11,9 +11,7 @@
     <!-- TODO will need to deal with long titles here -->
     <img src="{{store.profilePhoto}}" alt="Profile Picture"/>
     <span id="storeTitle" class="md-display-3"> {{store.storeTitle}} </span>
-    <div id="titleStars"> 
-      <md-icon class="star material-icons" ng-repeat="star in $ctrl.getNumber(store.overallRating) track by $index"> star </md-icon>
-    </div>
+    <div id="starPlaceholder"> </div>
   </div>
   <div class="underline" flex/>
 </div>
@@ -30,8 +28,8 @@
     <md-card>
       <div class="foodImageInfo" layout="row" layout-align="space-between center">
         <span class="foodPrice"> ${{food.price}} </span>
-        <span class="foodRating" align="right"> 
-          <md-icon class="star material-icons" ng-repeat="star in $ctrl.getNumber(food.overallRating) track by $index"> star </md-icon>
+        <span class="foodRating foodPrice" align="right"> 
+          {{food.name}}
         </span>
       </div>
       <img ng-src="{{food.photo}}" class="md-card-image" alt="Store Image">      

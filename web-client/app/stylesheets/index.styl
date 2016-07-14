@@ -264,20 +264,22 @@ store-front
     md-card
       position: relative
       margin-bottom: 0
-    md-card-actions
-      z-index: 71
-      margin: 0
-      margin-bottom: 2px
-      padding: 8px
-      background-color: #FFFFFF
-    /* HACK Display the bottom sheet appropriately */
-    md-bottom-sheet
-      margin-bottom: 90px
-      #foodPrice
-        padding-top: 10px
-        font-style: italic
-    md-backdrop
-      margin-bottom: 2px
+      .foodImageInfo
+        margin-bottom: -29px
+      md-card-actions
+        z-index: 71
+        margin: 0
+        margin-bottom: 2px
+        padding: 8px
+        background-color: #FFFFFF
+      /* HACK Display the bottom sheet appropriately */
+      md-bottom-sheet
+        margin-bottom: 90px
+        #foodPrice
+          padding-top: 10px
+          font-style: italic
+      md-backdrop
+        margin-bottom: 2px
 
   #titleDiv
     margin-top: 20px
@@ -296,16 +298,9 @@ store-front
     #storeTitle
       display:inline-block
 
-    #titleStars
-      /* If I want the stars to lie low on the line */
-      /* Height of md-display-3 */
-      padding-top: 20px 
-      .star
-        color: $starColor
-        /* NOTE for whatever reason, this adds an overflow-x to the body */
-        font-size: 36px
-        height: 36px
-        width: 36px
+    /* Will center the storeTitle in absence of reviews */
+    #starPlaceholder
+      width: 56px
 
     .underline
       height: 5px;
