@@ -2,8 +2,9 @@ module.exports = [{
   storeTitle: "Geoff's Store",
   profilePhoto: "/images/user/chef_1_profile.jpg",
   description: "This is the best store you'll ever go to. I make lots of things.",
-  from: new Date(),
-  to: new Date(),
+  date: new Date(),
+  startTime: new Date(),
+  endTime: new Date(),
   overallRating: 4,
   neighborhood: "TODO",
   pickupAddress: {
@@ -31,8 +32,9 @@ module.exports = [{
                   "voluptate velit esse cillum dolore eu fugiat nulla pariatur." +
                   "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia " +
                   "deserunt mollit anim id est laborum.",
-  from: new Date(),
-  to: new Date(),
+  date: new Date(),
+  startTime: new Date(),
+  endTime: new Date(),
   overallRating: 4,
   neighborhood: "TODO",
   pickupAddress: {
@@ -54,8 +56,9 @@ module.exports = [{
   storeTitle: "Jimmy's Store",
   description: "You can have your (pie)cake(n), and eat it (stuffed with multiple pies) too.",
   neighborhood: "TODO",
-  from: new Date(),
-  to: new Date(),
+  date: new Date(),
+  startTime: new Date(),
+  endTime: new Date(),
   overallRating: 4,
   pickupAddress: {
     formatted: "3552 Coloniale Avenue, Montreal Qc",
@@ -68,8 +71,9 @@ module.exports = [{
   profilePhoto: "/images/user/chef_5_profile.jpg",
   neighborhood: "TODO",
   description: "I will make you fat, that is a guarantee.",
-  from: new Date(),
-  to: new Date(),
+  date: new Date(),
+  startTime: new Date(),
+  endTime: new Date(),
   overallRating: 4,
   pickupAddress: {
     formatted: "3552 Coloniale Avenue, Montreal Qc",

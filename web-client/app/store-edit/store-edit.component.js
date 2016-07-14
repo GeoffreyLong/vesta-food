@@ -18,9 +18,15 @@ angular.module('storeEdit').component('storeEdit', {
       $http.get('/api/store/' + storeId).then(function(store) {
         $scope.store = store.data;
 
+        console.log($scope.store);
+        $scope.store.date = new Date($scope.store.date);
+        $scope.store.startTime = new Date($scope.store.startTime);
+        $scope.store.endTime = new Date($scope.store.endTime);
+
         // Needed to pass to dialog
         dataService.setStore($scope.store);
         $scope.clonedStore = dataService.getClonedStore();
+        console.log($scope.store);
       }, function(err) {
       });;
     }
@@ -200,6 +206,7 @@ angular.module('storeEdit').component('storeEdit', {
       // Validate the forms and the photos 
       // If valid then send the updated / new store to the servers
       if (checkForFood() && checkForms() && checkPhotos()){
+        console.log($scope.store);
         var storeData = $scope.store;
         $http.post('api/stores/' + storeData._id, {
           data: storeData
@@ -219,8 +226,6 @@ angular.module('storeEdit').component('storeEdit', {
     // Simply checks to see if a food object is there
     // NOTE may not want to require in later versions
     var checkForFood = function() {
-      console.log("hello");
-      console.log($scope.store.foods);
       if (!$scope.store.foods || $scope.store.foods.length === 0){
         alert("You need at least one food item in your store");
         return false;
@@ -275,6 +280,10 @@ angular.module('storeEdit').component('storeEdit', {
       // Ensure start DateTime is later than right now
       // TODO Specific $error messages
       //      Like $scope.storeForm.date.$setValidity("afterNow", false);
+      //      Then in template have an ng-message for date.$error.afterNow
+      //      Like ng-message="afterNow"
+      //      You might actually just add this to the ngModel though
+      //      So like ngModel.$setValidity("afterNow", false)... I'm not 100p on this
       if (start < Date.now() || endTime <= startTime) {
         alert("Store Hour Errors");
         return false;

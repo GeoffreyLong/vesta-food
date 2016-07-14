@@ -31,9 +31,11 @@
           <div>
             <span class="headlineContent" ng-click="$ctrl.goToStore(store, -1)">{{store.storeTitle}}</span>
             <br>
-            <span class="subContent"> 
+            <span ng-if="store.date" class="subContent"> 
               Available:
-              {{store.from | date:'MM/dd/yyyy @ h:mma'}} - {{store.to | date:'h:mma'}}
+              {{store.date | date:'MM/dd/yyyy'}} 
+              @ {{store.startTime | date:'h:mma'}} 
+              - {{store.endTime | date:'h:mma'}}
             </span>
           </div>
         </div>
