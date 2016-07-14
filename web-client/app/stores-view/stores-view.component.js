@@ -18,12 +18,22 @@ angular.module('storesView').component('storesView', {
       // This gives the number of rows
       // Three looks good on my screen
       // Might want to make it dynamic based on screen size
-      $scope.chunkedData = chunk(data.data, 3);
+      $scope.chunkedData = chunk(data.data);
     }, function(err) {
       console.log(err);
     });
 
-    function chunk(arr, size) {
+    // This will only fire once
+    // I could probably move the $scope.chunkedData to another location
+    // But I don't think we need to be too dynamic, 
+    // As long as it sets correctly the first time.
+    function chunk(arr) {
+      var size = 2;
+      console.log(window.innerWidth);
+      if (window.innerWidth > 1500) {
+        size = 3;
+      }
+
       var newArr = [];
       for (var i = 0; i < size; i ++) {
         var tempArr = [];
@@ -47,6 +57,11 @@ angular.module('storesView').component('storesView', {
     $('#storesContainer').hide();
     var refreshSlick = setInterval(function() {
       if ($('.slider').length > 0) {
+        // HACK to avoid slick styling bugs when one column
+        // Still a minor flicker which might be avoidable 
+        // through a setTimeout on the next lines
+        $(window).resize();
+        
         $('#storesContainer').show();
         clearInterval(refreshSlick);
         $('.slider').slick('setPosition');

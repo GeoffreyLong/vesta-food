@@ -192,33 +192,44 @@ slick:hover
   overflow-x: hidden
   background-color: $backgroundColor
   md-card
-    margin-left: 40px
-    margin-right: 40px
+    max-width: 450px
     md-card-title
       padding-top: 0
       .md-headline
         cursor: pointer
 
+    .foodImageInfo
+      padding: 5px
+      display: block
+      background: rgba(0,0,0,0.3)
+      position: absolute
+      width: inherit
 
-      .foodImageInfo
-        padding: 5px
-        display: block
-        background: rgba(0,0,0,0.3)
-        position: absolute
-        width: inherit
+      .foodPrice
+        display: inline-block
+        color: #FFFFFF
+        font-weight: bold
+        padding: 4px
 
-        .foodPrice
-          display: inline-block
-          color: #FFFFFF
-          font-weight: bold
-          padding: 4px
+      .foodRating
+        float: right;
+        .star 
+          color: $starColor
+          md-icon
+            color: $secondaryColor
 
-        .foodRating
-          float: right;
-          .star 
-            color: $starColor
-            md-icon
-              color: $secondaryColor
+    md-card-content
+      padding-top: 0px
+      .headlineContent
+        font-size: 24px
+        font-weight: 600
+        cursor: pointer
+      .headlineContent:hover
+        text-decoration: underline
+      .subContent
+        font-size: 14px
+        font-weight: 600
+        color: #777777
 
 
 /******************************** STORE FRONT ********************************/

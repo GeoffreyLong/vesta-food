@@ -181,8 +181,7 @@ slick:hover .slick-arrow.slick-next:before {
   background-color: #f2f2f2;
 }
 #storesContainer md-card {
-  margin-left: 40px;
-  margin-right: 40px;
+  max-width: 450px;
 }
 #storesContainer md-card md-card-title {
   padding-top: 0;
@@ -190,27 +189,43 @@ slick:hover .slick-arrow.slick-next:before {
 #storesContainer md-card md-card-title .md-headline {
   cursor: pointer;
 }
-#storesContainer md-card md-card-title .foodImageInfo {
+#storesContainer md-card .foodImageInfo {
   padding: 5px;
   display: block;
   background: rgba(0,0,0,0.3);
   position: absolute;
   width: inherit;
 }
-#storesContainer md-card md-card-title .foodImageInfo .foodPrice {
+#storesContainer md-card .foodImageInfo .foodPrice {
   display: inline-block;
   color: #fff;
   font-weight: bold;
   padding: 4px;
 }
-#storesContainer md-card md-card-title .foodImageInfo .foodRating {
+#storesContainer md-card .foodImageInfo .foodRating {
   float: right;
 }
-#storesContainer md-card md-card-title .foodImageInfo .foodRating .star {
+#storesContainer md-card .foodImageInfo .foodRating .star {
   color: #ea6e10;
 }
-#storesContainer md-card md-card-title .foodImageInfo .foodRating .star md-icon {
+#storesContainer md-card .foodImageInfo .foodRating .star md-icon {
   color: #fca345;
+}
+#storesContainer md-card md-card-content {
+  padding-top: 0px;
+}
+#storesContainer md-card md-card-content .headlineContent {
+  font-size: 24px;
+  font-weight: 600;
+  cursor: pointer;
+}
+#storesContainer md-card md-card-content .headlineContent:hover {
+  text-decoration: underline;
+}
+#storesContainer md-card md-card-content .subContent {
+  font-size: 14px;
+  font-weight: 600;
+  color: #777;
 }
 /******************************** STORE FRONT ********************************/
 store-front slick .slick-arrow.slick-prev:before,
