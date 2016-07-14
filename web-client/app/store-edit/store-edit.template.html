@@ -165,26 +165,9 @@
 
           </div>
           <div flex flex-gt-sm=35>
-            <!-- TODO disable all buttons here -->
             <!-- TODO make clear that this is a rep of the food in the storefront -->
             <!-- TODO add in the descriptions functionality -->
-            <md-card>
-              <div class="foodImageInfo" layout="row" layout-align="space-between center">
-                <span class="foodPrice"> ${{food.price}} </span>
-                <span class="foodRating" align="right"> 
-                  <md-icon class="star material-icons" ng-repeat="star in $ctrl.getNumber(food.overallRating) track by $index"> star </md-icon>
-                </span>
-              </div>
-              <img  ng-if="food.photo" ng-src="{{food.photo}}" 
-                    class="md-card-image" alt="Store Image">      
-              <img  ng-if="!food.photo" ng-src="/images/user/default_food.jpg" 
-                    class="md-card-image" alt="Store Image">      
-              
-
-              <md-card-actions layout="row" layout-align="center center">
-                <md-button ng-click="" ng-disabled="true">Add to Cart</md-button>
-              </md-card-actions>
-            </md-card>
+            <food-card food="food"></food-card>
           </div>
 
         </div>

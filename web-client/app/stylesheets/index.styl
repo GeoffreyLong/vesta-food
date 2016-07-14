@@ -77,6 +77,9 @@ md-toolbar
       button
         /* Doesn't seem to work with md-open */
         cursor: pointer
+
+#topBar
+  z-index: 72
         
     
 
@@ -244,6 +247,42 @@ slick:hover
         margin-left: -5px
 
 
+/******************************** FOOD CARD **********************************/
+food-card
+  md-card
+    position: relative
+    margin-bottom: 0
+    .foodImageInfo
+      padding: 5px
+      background: rgba(0,0,0,0.3)
+      margin-bottom: -29px 
+      z-index: 1
+    md-card-actions
+      z-index: 71
+      margin: 0
+      margin-bottom: 2px
+      padding: 8px
+      background-color: #FFFFFF
+    /* HACK Display the bottom sheet appropriately */
+    md-bottom-sheet
+      margin-bottom: 90px
+      #foodPrice
+        padding-top: 10px
+        font-style: italic
+    md-backdrop
+      margin-bottom: 2px
+    /* Styling for the toast */
+    md-toast.md-bottom
+      bottom: 50px
+      text-align: center
+
+    .foodPrice
+      color: #FFFFFF
+      font-weight: bold
+
+
+
+
 /******************************** STORE FRONT ********************************/
 store-front
   slick
@@ -261,25 +300,6 @@ store-front
       transform: scale(1)
       md-card-actions
         display: flex
-    md-card
-      position: relative
-      margin-bottom: 0
-      .foodImageInfo
-        margin-bottom: -29px
-      md-card-actions
-        z-index: 71
-        margin: 0
-        margin-bottom: 2px
-        padding: 8px
-        background-color: #FFFFFF
-      /* HACK Display the bottom sheet appropriately */
-      md-bottom-sheet
-        margin-bottom: 90px
-        #foodPrice
-          padding-top: 10px
-          font-style: italic
-      md-backdrop
-        margin-bottom: 2px
 
   #titleDiv
     margin-top: 20px
@@ -313,26 +333,7 @@ store-front
       padding-left: 5%
       width: 90%
 
-/* TODO change the current buttons so that they are large chevrons */
-
-.foodImageInfo
-  padding: 5px
-  background: rgba(0,0,0,0.3)
-  margin-bottom: -34px 
-  z-index: 1
-
-  .foodPrice
-    color: #FFFFFF
-    font-weight: bold
   
-  .star
-    color: $starColor
-  
-/* Styling for the toast */
-md-card
-  md-toast.md-bottom
-    bottom: 50px
-    text-align: center
 
 #storeReviews
   .altCard

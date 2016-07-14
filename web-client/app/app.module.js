@@ -15,6 +15,7 @@ angular.module('vestaApp', [
   'purchase',
   'buyerDashboard',
   'sellerDashboard',
+  'foodCard',
   'authService',
   'dataService',
   'locationService',
