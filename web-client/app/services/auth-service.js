@@ -74,8 +74,7 @@ angular
         }
         else {
           getSessionFromDB().then(function(session){
-            if (session && session.user && session.user.storeId) {
-          console.log("returning" + session);
+            if (session && session.length !== 0 && session.user && session.user.storeId) {
               deferred.resolve(session);
             }
             else{

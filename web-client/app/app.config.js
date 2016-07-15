@@ -170,6 +170,9 @@ angular
         if (eventObj.storeOwner === false) {
           $window.history.back();
         }
+        if (eventObj.store === false) {
+          $location.path("/");
+        }
       });
     }
   ]);
