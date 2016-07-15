@@ -156,7 +156,7 @@ angular.module('vestaNav').component('vestaNav', {
             var storeCart = $scope.cart[storeCartIdx];
             var handler = StripeCheckout.configure({
               key: CONFIG.STRIPE.PUBLIC_KEY,
-              image: '/img/documentation/checkout/marketplace.png',
+              image: '/images/vesta/vesta_logo_greenbg.png',
               token: function(token) {
                 storeCart.token = token;
                 if (token.error) {
