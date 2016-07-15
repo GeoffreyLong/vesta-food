@@ -6,9 +6,8 @@ var Store = mongoose.model('Store', {
 	storeTitle: String,
 	profilePhoto: String,
 	description: String,
-	date: Date,
-  startTime: Date,
-  endTime: Date,
+  startDateTime: Date,
+  endDateTime: Date,
 	overallRating: Number,
 	neighborhood: String,
 	pickupAddress: {

@@ -70,14 +70,16 @@
               <!-- TODO find how to error message invalid times -->
               <md-input-container flex class="md-block">
                 <label class="md-title"> Start Time: </label>
-                <input type="time" ng-model="store.startTime" name="startTime" required/>
+                <input  type="time" ng-model="store.startTime" name="startTime" 
+                        placeholder="HH:mm" required/>
                 <div ng-messages="storeForm.startTime.$error">
                   <div ng-message="required">This is required.</div>
                 </div>
               </md-input-container>
               <md-input-container flex class="md-block">
                 <label class="md-title"> End Time: </label>
-                <input type="time" ng-model="store.endTime" name="endTime" required/>
+                <input  type="time" ng-model="store.endTime" name="endTime" 
+                        placeholder="HH:mm" required/>
                 <div ng-messages="storeForm.endTime.$error">
                   <div ng-message="required">This is required.</div>
                 </div>

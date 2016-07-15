@@ -64,13 +64,17 @@ router.post('/:userId/store', function(req, res) {
     if (!stripeError) {
       console.log(body);
 
+      // Create a formatted date
+      var date = new Date();
+      var date = new Date(date.getFullYear(), date.getMonth(), date.getDate(),
+                          date.getHours(), date.getMinutes());
+
       Store
         .create({
           stripe: JSON.parse(body),
           userId: req.params.userId,
-          date: Date.now(),
-          startTime: Date.now(),
-          endTime: Date.now(),
+          startDateTime: date,
+          endDateTime: date,
         })
         .then(function (store) {
           User

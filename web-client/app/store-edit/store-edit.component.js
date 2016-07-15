@@ -1,7 +1,7 @@
 angular.module('storeEdit').component('storeEdit', {
   templateUrl: 'store-edit/store-edit.template.html',
   controller: function StoreEditController($scope, $location, $http, $mdDialog, $mdMedia, 
-                                          dataService, NgMap, Upload, $q) {
+                                          dataService, NgMap, Upload, $q, $filter) {
     // This will almost certainly be cached
     // TODO add in the dataService function
 
@@ -10,26 +10,23 @@ angular.module('storeEdit').component('storeEdit', {
     var re = new RegExp("\/store\/(.*)\/edit");
     var storeId = re.exec($location.path())[1];    
 
-    // Needed to pass to dialog
-    dataService.setStore($scope.store);
-    $scope.clonedStore = dataService.getClonedStore();
+    $http.get('/api/store/' + storeId).then(function(store) {
+      $scope.store = store.data;
 
-    if (!$scope.store){
-      $http.get('/api/store/' + storeId).then(function(store) {
-        $scope.store = store.data;
+      $scope.store.date = new Date($scope.store.startDateTime);
+      $scope.store.startTime = new Date($scope.store.startDateTime);
+      $scope.store.endTime = new Date($scope.store.endDateTime);
 
-        console.log($scope.store);
-        $scope.store.date = new Date($scope.store.date);
-        $scope.store.startTime = new Date($scope.store.startTime);
-        $scope.store.endTime = new Date($scope.store.endTime);
 
-        // Needed to pass to dialog
-        dataService.setStore($scope.store);
-        $scope.clonedStore = dataService.getClonedStore();
-        console.log($scope.store);
-      }, function(err) {
-      });;
-    }
+      // Needed to pass to dialog
+      dataService.setStore($scope.store);
+      $scope.clonedStore = dataService.getClonedStore();
+      console.log($scope.storeForm.$error);
+      setTimeout(function(){
+        $('.md-datepicker-input-container').removeClass('md-datepicker-invalid');
+      }, 100);
+    }, function(err) {
+    });
 
 
     this.getNumber = function(num) {
@@ -277,6 +274,11 @@ angular.module('storeEdit').component('storeEdit', {
       start.setHours(startTime.getHours());
       start.setMinutes(startTime.getMinutes());
 
+      // Construct a start DateTime without modifying store.date
+      var end = new Date(date);
+      end.setHours(endTime.getHours());
+      end.setMinutes(endTime.getMinutes());
+
       // Ensure start DateTime is later than right now
       // TODO Specific $error messages
       //      Like $scope.storeForm.date.$setValidity("afterNow", false);
@@ -289,6 +291,8 @@ angular.module('storeEdit').component('storeEdit', {
         return false;
       }
 
+      $scope.store.startDateTime = start;
+      $scope.store.endDateTime = end;
       return true;
     };
 
