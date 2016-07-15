@@ -2,8 +2,13 @@ angular.module('vestaNav').component('vestaNav', {
   templateUrl: 'vesta-nav/vesta-nav.template.html',
   controller: function VestaNavController($scope, $mdSidenav, authService, $location, 
                                           $mdMenu, dataService, $mdDialog, $mdMedia) {
-    this.session = authService.getSession();
-    this.currentPath = $location.path();
+    authService.getSession().then(function(session){
+      $scope.session = session;
+    }, function(err) {
+
+    });
+
+    $scope.currentPath = $location.path();
 
     $scope.fblogin = function(){
       authService.fblogin();

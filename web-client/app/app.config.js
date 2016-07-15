@@ -23,6 +23,9 @@ angular
       // TODO decide if this is something we want
       $locationProvider.html5Mode(true).hashPrefix('!');
       $routeProvider
+        .when('/splash', {
+          template: '<splogin></splogin>'
+        })
         .when('/', {
           template: '<vesta-nav></vesta-nav>'
             + '<div id="nonNavContainer">'
@@ -43,7 +46,7 @@ angular
           resolve: {
             // Becoming a chef requires a login
             auth: function ($q, authService) {
-              return authService.getSession(true);
+              return authService.getUserSession();
             }
           }
         })
@@ -58,14 +61,19 @@ angular
           controller: function($location, $http, authService) {
             var stripeParams = $location.search();
 
-            var userId = authService.getSession().user._id;
+            var userId = authService.getSessionSynch().user._id;
             var url = '/api/users/' + userId + '/store';
             $http
               .post(url, stripeParams)
               .then(function onSuccess(response) {
                 console.log('success');
                 console.log(response);
-                $location.path('/store/:storeID/edit');
+
+                // Save the storeId in the 
+
+                // NOTE could also put this store into the dataService to save a call
+                //      Else, the edit page will reload an object we just had
+                $location.path('/store/' + response.data._id + '/edit');
               }, function onError(response) {
                 // TODO might want an error Page
                 console.log('error');
@@ -76,12 +84,9 @@ angular
           resolve: {
             // Becoming a chef requires a login
             auth: function ($q, authService) {
-              return authService.getSession(true);
+              return authService.getUserSession();
             }
           }
-        })
-        .when('/splash', {
-          template: '<splogin></splogin>'
         })
         .when('/store/:storeID', {
           template: '<vesta-nav></vesta-nav>'
@@ -103,7 +108,7 @@ angular
           resolve: {
             // Going to the stores view only requires a session
             auth: function ($q, authService) {
-              return authService.requireStore();
+              return authService.storeEditAuth();
             }
           }
         })
@@ -125,9 +130,8 @@ angular
           + '<buyer-dashboard></buyer-dashboard>'
           + '</div>',
           resolve: {
-            // Going to the stores view only requires a session
             auth: function ($q, authService) {
-              return authService.getSession();
+              return authService.getUserSession();
             }
           }
         })
@@ -137,9 +141,8 @@ angular
           + '<seller-dashboard></seller-dashboard>'
           + '</div>',
           resolve: {
-            // Going to the stores view only requires a session
             auth: function ($q, authService) {
-              return authService.getSession();
+              return authService.getStoreSession();
             }
           }
         })
@@ -156,12 +159,14 @@ angular
 
       $rootScope.$on("$routeChangeError", function (event, current, previous, eventObj) {
         console.log("Route Change Error for " + $location.url());
+        console.log("Error = " + eventObj.sessioned);
         if (eventObj.sessioned === false) {
           $location.path("/splash");
         }
         if (eventObj.authenticated === false) {
           $location.path("/login");
         }
+        // Might cause issues if errored on stripe callback to store edit transition
         if (eventObj.storeOwner === false) {
           $window.history.back();
         }

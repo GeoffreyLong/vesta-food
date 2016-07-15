@@ -6,7 +6,7 @@
   </md-button>
 
 
-  <md-menu-bar id="navDropdown" ng-if="$ctrl.session.user">
+  <md-menu-bar id="navDropdown" ng-if="session.user">
     <md-menu>
       <!-- 
             NOTE this causes a "Cannot read property 'setAttribute' of null" TypeError
@@ -15,21 +15,21 @@
             it should remain as is
       -->
       <md-button ng-click="$mdOpenMenu()">
-        {{$ctrl.session.user.displayName}}
+        {{session.user.displayName}}
       </md-button>
       <md-menu-content>
         <md-menu-item class="md-indent">
           <md-icon class="material-icons"> store </md-icon>
-          <md-button ng-if="$ctrl.session.user.storeId" href="/store/{{$ctrl.session.user.storeId}}">
+          <md-button ng-if="session.user.storeId" href="/store/{{session.user.storeId}}">
             Visit your Store
           </md-button>
-          <md-button ng-if="!$ctrl.session.user.storeId" ng-click="showStripeDialog($event)">
+          <md-button ng-if="!session.user.storeId" ng-click="showStripeDialog($event)">
             Create a Storefront
           </md-button>
         </md-menu-item>
-        <md-menu-item ng-if="$ctrl.session.user.storeId" class="md-indent">
+        <md-menu-item ng-if="session.user.storeId" class="md-indent">
           <md-icon class="material-icons"> edit </md-icon>
-          <md-button ng-if="$ctrl.session.user.storeId" href="/store/{{$ctrl.session.user.storeId}}/edit">
+          <md-button ng-if="session.user.storeId" href="/store/{{session.user.storeId}}/edit">
             Edit your Store
           </md-button>
         </md-menu-item>
@@ -37,7 +37,7 @@
           <md-icon class="material-icons"> dashboard </md-icon>
           <md-button href="/dashboard"> Buyer Dashboard </md-button>
         </md-menu-item>
-        <md-menu-item class="md-indent" ng-if="$ctrl.session.user.storeId">
+        <md-menu-item class="md-indent" ng-if="session.user.storeId">
           <md-icon class="material-icons"> dashboard </md-icon>
           <md-button href="/sellerDashboard"> Seller Dashboard </md-button>
         </md-menu-item>
@@ -51,7 +51,7 @@
     </md-menu>
   </md-menu-bar>
   
-  <md-menu-bar id="navDropdown" ng-if="!$ctrl.session.user">
+  <md-menu-bar id="navDropdown" ng-if="!session.user">
     <md-menu>
       <md-button ng-click="$mdOpenMenu()">
         Sign Up!

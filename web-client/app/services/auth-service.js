@@ -20,22 +20,69 @@ angular
         });
       }
 
-      function getSession(requireSession, requireUser, requireStore) {
+      // If we know the session object exists and don't think we need to defer
+      function getSessionSynch(){
+        return session;
+      }
+
+      function getSession() {
         var deferred = $q.defer();
-        if (session && (requireSession && (session.address || requireUser())
-                    && (requireUser && requreUser()) 
-                    && (requireStore && requireStore())){
+        if (session && (session.address || (session.user && session.user._id))) {
           deferred.resolve(session);
         }
         else {
-          getSessionFromDB().then(function(err){
-            deferred.reject({acquired: false});
-          }, function(session){
-            if (session && (requireSession && (session.address || requireUser())
-                        && (requireUser && requreUser()) 
-                        && (requireStore && requireStore())){
+          getSessionFromDB().then(function(session){
+            if (session && (session.address || (session.user && session.user._id))) {
               deferred.resolve(session);
             }
+            else {
+              deferred.reject({sessioned: false}); 
+            }
+          }, function(err){
+            deferred.reject({sessioned: false});
+          });
+        }
+        return deferred.promise;
+      }
+
+      // Gets the session object but doesn't update for stores
+      function getUserSession() {
+        var deferred = $q.defer();
+        if (session && session.user && session.user._id) {
+          deferred.resolve(session);
+        }
+        else {
+          getSessionFromDB().then(function(session){
+            if (session && session.user && session.user._id) {
+              deferred.resolve(session);
+            }
+            else{
+              deferred.reject({user: false});
+            }
+          }, function(err){
+            deferred.reject({user: false});
+          });
+        }
+        return deferred.promise;
+      }
+
+      // Gets the full session object
+      function getStoreSession() {
+        var deferred = $q.defer();
+        if (session && session.user && session.user.storeId) {
+          deferred.resolve(session);
+        }
+        else {
+          getSessionFromDB().then(function(session){
+            if (session && session.user && session.user.storeId) {
+          console.log("returning" + session);
+              deferred.resolve(session);
+            }
+            else{
+              deferred.reject({store: false});
+            }
+          }, function(err){
+            deferred.reject({store: false});
           });
         }
         return deferred.promise;
@@ -46,38 +93,21 @@ angular
         var deferred = $q.defer();
 
         $http.get("/api/auth/session").then(function (result) {
-          if ((!requireUser && result.data.address)
-            || (result.data.user && result.data.user._id)) {
             session = result.data;
             deferred.resolve(session);
             // TODO could speed up using session storage
             //    $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
-          }
-          else {
-            if (requireUser) deferred.reject({authenticated: false});
-            deferred.reject({sessioned: false});
-          }
         }, function (error) {
           // TODO redirect to "Temporary Maintanence page or something"
           console.log("server out");
-          deferred.reject({sessioned: false});
+          deferred.reject({retrieved: false});
         });
 
         return deferred.promise;
       }
 
-      function requireSession(){
-        
-      }
 
-      function requireUser(){
-
-
-
-        return deferred.promse;
-      }
-
-      function requireStore(){
+      function storeEditAuth(){
         // NOTE might not be the best way to handle the path...
         //      Seems rather shotty to me...
         // TODO make this extensible to other things needing a store
@@ -95,7 +125,7 @@ angular
         }
 
         var deferred = $q.defer();
-        getSession(true).then(function(session){
+        getStoreSession().then(function(session){
           if (session && session.user && storeId
             && (session.user.storeId == storeId)) {
             deferred.resolve(session)
@@ -119,8 +149,11 @@ angular
       return {
         fblogin: fblogin,
         logout: logout,
+        getSessionSynch: getSessionSynch,
         getSession: getSession,
-        requireStore: requireStore
+        getUserSession: getUserSession,
+        getStoreSession: getStoreSession,
+        storeEditAuth: storeEditAuth
       };
     }
   ]);

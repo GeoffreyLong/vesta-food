@@ -7,7 +7,7 @@ angular
       console.log(authService.getSession().user);
       var self = this;
 
-      var userId = authService.getSession().user._id;
+      var userId = authService.getSessionSynch().user._id;
       var url = "/api/users/" + userId + "/purchases";
       $http
         .get(url)

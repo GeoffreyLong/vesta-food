@@ -7,7 +7,7 @@ angular
     templateUrl: 'purchase/purchase.template.html',
     controller: function PurchaseController($scope, $http, $location, dataService, authService){
       // This has userId in it
-      $scope.session = authService.getSession();
+      $scope.session = authService.getSessionSynch();
       $scope.storeCart = dataService.getPurchaseOrder();
 
       $scope.stripeCallback = function (code, result) {

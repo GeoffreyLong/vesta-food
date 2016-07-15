@@ -69,7 +69,10 @@ angular.module('storeFront').component('storeFront', {
     // Interestingly enough, this fires multiple times since the scope reupdates
     //    Maybe we only want to fetch the session once
     $scope.checkOwnership = function() {
-      var session = authService.getSession();
+      var session = authService.getSessionSynch();
+      console.log(session && session.user && $scope.store
+              && (session.user.storeId == $scope.store._id)
+              && (session.user._id == $scope.store.userId))
       return (session && session.user && $scope.store
               && (session.user.storeId == $scope.store._id)
               && (session.user._id == $scope.store.userId));
