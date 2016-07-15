@@ -66,7 +66,11 @@ router.post('/:userId/store', function(req, res) {
 
       Store
         .create({
-          stripe: JSON.parse(body)
+          stripe: JSON.parse(body),
+          userId: req.params.userId,
+          date: Date.now(),
+          startTime: Date.now(),
+          endTime: Date.now(),
         })
         .then(function (store) {
           User
@@ -79,7 +83,9 @@ router.post('/:userId/store', function(req, res) {
                 if (!storeError) {
                   console.log("successfully saved store to db");
                   console.log(store);
-                  res.status(200).send();
+                  // Update the parameters for authentication purposes
+                  req.user.storeId = store._id;
+                  res.status(200).send(store);
                 }
                 else {
                   console.log("mongoose error saving store");

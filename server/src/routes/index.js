@@ -159,9 +159,11 @@ module.exports = function(passport){
 
       // Add to bulk operation
       var id = food._id;
-      foodIds.push(id);
-      delete food._id;
-      console.log(id);
+      if (id) {
+        foodIds.push(id);
+        delete food._id;
+        console.log(id);
+      }
       bulk.find({'_id': mongoose.Types.ObjectId(id)}).upsert().updateOne(food);
     });
 
@@ -172,13 +174,10 @@ module.exports = function(passport){
 
       // Get the food ids from the foodDocs if upserted
       var newFoods = foodDocs.getUpsertedIds();
-      console.log(foodDocs);
       // Need to flatten the array
       newFoods = [].concat.apply([], newFoods);
       newFoods.forEach(function(food){
-        console.log(food);
         if (food._id) {
-          console.log("has Id");
           foodIds.push(food._id);
         }
       });
@@ -186,12 +185,14 @@ module.exports = function(passport){
       // Add foods field, remove the _id field
       store.foods = foodIds;
       delete store._id;
+      delete store.__v;
 
       Stores
         .model
         .findByIdAndUpdate(req.params.storeId, store, {upsert: true})
         .then(function (store) {
           // NOTE will return the old store unless new: true
+          req.user.storeId = store._id;
           res.status(200).send(store);
         }, function (storeError) {
           res.status(500).send(storeError);
