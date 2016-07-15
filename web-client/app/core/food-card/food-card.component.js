@@ -11,7 +11,6 @@ angular.module('foodCard').component('foodCard', {
       var re = new RegExp("\/store\/(.*)\/edit");
       var storeId = re.exec($location.path());    
     
-      console.log(storeId);
       if (storeId) {
         return true;
       }

@@ -3,7 +3,7 @@
   <md-toolbar>
     <div class="md-toolbar-tools">
       <div>
-        Purchases for your event
+        Purchases from your Store
       </div>
     </div>
   </md-toolbar>
@@ -26,4 +26,16 @@
       </div>
     </md-list>
   </md-card>
+
+  <div  ng-hide="$ctrl.purchases.length !== 0" layout="column" layout-align="center center"
+        style="padding:0px 10px 15px 10px">
+    <div>
+      There have been no purchases from your store. 
+      <br>
+      <br>
+    </div>
+    <div>
+      Please check back later!
+    </div>
+  <div>
 </md-content>

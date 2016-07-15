@@ -70,9 +70,6 @@ angular.module('storeFront').component('storeFront', {
     //    Maybe we only want to fetch the session once
     $scope.checkOwnership = function() {
       var session = authService.getSessionSynch();
-      console.log(session && session.user && $scope.store
-              && (session.user.storeId == $scope.store._id)
-              && (session.user._id == $scope.store.userId))
       return (session && session.user && $scope.store
               && (session.user.storeId == $scope.store._id)
               && (session.user._id == $scope.store.userId));
