@@ -9,20 +9,22 @@
     </div>
   </md-toolbar>
   <md-dialog-content>
-    <span>
-    Our application uses the payment platform Stripe for authentication. 
-    Stripe is a trusted system used by 100,000+ companies including as Kickstarter,
-    Twitter, Shopify, Pintrest, and Lyft. 
-    <br>
-    <br>
-    The button below will take you to their signup page. 
-    This will allow our users pay you.
-    </span>
-    <br>
-    <div id="stripeRedirButton">
-      <a ng-href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_89GeQlhMVoUResS0PeQm6XuCs6hoXgze&scope=read_write&redirect_uri={{stripeCallbackUri}}">
-        <img src="images/vesta/blue-on-light.png"/>
-      </a>
+    <div layout="column" layout-align="center center">
+      <img ng-src="images/vesta/stripe_logo.jpg" style="height:100px"/>
+      <div>
+        Our application uses the payment platform Stripe for payments. 
+        Stripe is a trusted system used by 100,000+ companies including as Kickstarter,
+        Twitter, Shopify, Pintrest, and Lyft. The button below will take you to their
+        website, which will help you set up your payment processing.
+      </div>
+      <div layout="row" layout-align="space-between center" style="width:90%; margin-top:30px">
+        <img id="poweredByStripe" ng-src="images/vesta/powered_by_stripe.png"/>
+        <div id="stripeRedirButton">
+          <a ng-href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_89GeQlhMVoUResS0PeQm6XuCs6hoXgze&scope=read_write&redirect_uri={{stripeCallbackUri}}">
+            <img src="images/vesta/blue-on-light.png"/>
+          </a>
+        </div>
+      </div>
     </div>
   </md-dialog-content>
 </md-dialog>
