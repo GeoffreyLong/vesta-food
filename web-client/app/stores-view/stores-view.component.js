@@ -13,19 +13,33 @@ angular.module('storesView').component('storesView', {
     //    There might be a good way to do this
     $http({
       method: 'GET',
-      url: 'api/stores'
+      url: 'api/stores?current=true'
     }).then(function(data) {
       // This gives the number of rows
       // Three looks good on my screen
       // Might want to make it dynamic based on screen size
-      $scope.chunkedData = chunk(data.data);
+      $scope.currentStores = chunk(data.data);
+      console.log($scope.currentStores);
+    }, function(err) {
+      console.log(err);
+    });
+
+    // Get the past stores from a given location
+    $http({
+      method: 'GET',
+      url: 'api/stores?current=false'
+    }).then(function(data) {
+      // This gives the number of rows
+      // Three looks good on my screen
+      // Might want to make it dynamic based on screen size
+      $scope.previousStores = chunk(data.data);
     }, function(err) {
       console.log(err);
     });
 
     // This will only fire once
-    // I could probably move the $scope.chunkedData to another location
-    // But I don't think we need to be too dynamic, 
+    // I could probably move the $scope.currentStores and $scope.previousStores
+    // to another location, but I don't think we need to be too dynamic, 
     // As long as it sets correctly the first time.
     function chunk(arr) {
       var size = 2;

@@ -87,21 +87,24 @@ module.exports = function(passport){
     res.status(200).send(searchAddress);
   });
 
-    // TODO TODO 
-    // For images in the stores we might want to consider
-    // /images/chefs/:chefId for the personal photos
-    // /images/foods/:foodId for the food photos
-    // We will have to decide if we want to use something like GridFS with mongo
-    //    or just use a file system to save these images
-    //    I don't know the benefits of each... will have to weigh pros/cons  
-  router.get('/stores', function(req, res) {
-    // Basically search the DB for stores with a set distance of the user
-    // TODO figure out a good distance... perhaps this is something the user can spec
-    //      in the store search sidenav
 
-    Stores
-      .all()
-      .then(function(stores) {
+  router.get('/stores', function(req, res) {
+    // TODO give this locations params too
+    
+    var date = new Date();
+    var query;
+    if (req.query.current === 'true') {
+      query = Stores.model.find({'startDateTime': {$gt: date}});
+    }
+    else if (req.query.current === 'false') {
+      query = Stores.model.find({'startDateTime': {$lte: date}});
+    }
+    else {
+      query = Stores.model.all();
+    }
+    
+    query.populate('foods').then(function(stores) {
+        // Default is to send all
         res.status(200).send(stores);
       }, function (error) {
         res.status(400).send(error);
