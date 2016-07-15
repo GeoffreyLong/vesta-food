@@ -10,6 +10,7 @@ var Store = mongoose.model('Store', {
   endDateTime: Date,
 	overallRating: Number,
 	neighborhood: String,
+  isValid: Boolean,
 	pickupAddress: {
     formatted: String,
     lat: Number,

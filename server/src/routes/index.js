@@ -94,13 +94,13 @@ module.exports = function(passport){
     var date = new Date();
     var query;
     if (req.query.current === 'true') {
-      query = Stores.model.find({'startDateTime': {$gt: date}});
+      query = Stores.model.find({'startDateTime': {$gt: date}, 'isValid': true});
     }
     else if (req.query.current === 'false') {
-      query = Stores.model.find({'startDateTime': {$lte: date}});
+      query = Stores.model.find({'startDateTime': {$lte: date}, 'isValid': true});
     }
     else {
-      query = Stores.model.all();
+      query = Stores.model.find({'isValid': true});
     }
     
     query.populate('foods').then(function(stores) {
@@ -185,10 +185,15 @@ module.exports = function(passport){
         }
       });
 
-      // Add foods field, remove the _id field
+      // Add foods field, remove the _id and __v fields
       store.foods = foodIds;
       delete store._id;
       delete store.__v;
+
+      // Set the isValid flag to true
+      // This flag means that the object has passed all the client side form validations
+      // Therefore it is probably a valid store
+      store.isValid = true;
 
       Stores
         .model
