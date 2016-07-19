@@ -1,13 +1,86 @@
-#imageBanner img {
-  width: 100%;
-}
+/********************************** SPLOGIN **********************************/
+splogin
+  #splashPane
+    font-family: 'Avenir LT Std-Book', sans-serif;
+    height: 80vh
+    min-height: 400px
+    max-width: 100%
+    /***** IMAGE STUFF ******/
+    /*** Set the gradient ***/
+    /* default */
+    background-image: url("../images/vesta/jean.jpg") 
+    /* For Safari 5.1 to 6.0 */
+    background: -webkit-linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url("../images/vesta/jean.jpg")     
+    /* For Opera 11.1 to 12.0 */
+    background: -o-linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url("../images/vesta/jean.jpg") 
+    /* For Firefox 3.6 to 15 */
+    background: -moz-linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url("../images/vesta/jean.jpg")  
+    /* Standard */
+    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url("../images/vesta/jean.jpg")
+    
+    /*** Set the size ***/
+    background-size: cover
 
-.column-container {
-  padding-left: 10%;
-  padding-right: 10%;
-}
+    /*** Set the position (what part of image is shown) ***/
+    -ms-background-position-x: center;
+    -ms-background-position-y: bottom;
+    background-position: center bottom;
+    /* TODO test */
+    /* ie8 workaround - http://louisremi.github.io/background-size-polyfill/ */
+    -ms-behavior: url(/backgroundsize.min.htc)
 
-.row-container {
-  padding-top: 3%;
-  padding-bottom: 3%;
-}
+    text-align: center
+
+
+    /***** FORM *****/
+    #formContainer
+      width:100%
+      display: inline-block
+      position: absolute
+      left:0
+      top: 40%;
+
+      #splashTag
+        color: #FFFFFF
+        font-weight: bold
+        font-size: 48px
+
+      form
+        margin: 0px
+        padding: 0px
+        /* This removes the space between the input fields */
+        font-size: 0
+
+        input
+          border-style: none
+          height: 50px
+          font-size: 20px
+          padding-left: 10px
+          padding-right: 10px
+        
+        input[type="text"]
+          width: 250px
+          border-radius: 4px 0px 0px 4px
+          background-color: #FFFFFF
+          
+        input[type="submit"]
+          cursor: pointer
+          width: 100px
+          color: #FFFFFF
+          background-color: $importantColor
+          border-radius: 0px 4px 4px 0px
+
+
+  .column-container {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+
+  .md-card-image
+    padding-top: 10px
+    padding-bottom: 0
+
+  .row-container {
+    padding-top: 3%;
+    padding-bottom: 3%;
+  }

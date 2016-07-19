@@ -17,17 +17,31 @@
 
 <vesta-nav></vesta-nav>
 
-<md-whiteframe class="md-whiteframe-1dp">
-  <div id="imageBanner">
-    <img ng-src="images/vesta/jean.jpg"/>
+<div id="splashPane">  
+  <div id="formContainer">
+    <!-- Change header to the "I want my food to be..." 
+          Convenient
+          Delicious
+          Nutritious
+        These swap out... I forget what website has this TODO find
+    -->
+    <span id="splashTag"> The Online Marketplace for Homemade Food </span>
+    <!-- Temp removal
+            NOTE could add a navigator geolocation like in stores-view
+            This could be in a button like "use my current location"
+    <form id="locationSearch">
+      <input  places-auto-complete types="['geocode']" ng-model="address.address" 
+              on-place-changed="placeChanged()" />
+
+      <input type="submit" id="exploreButton" value="Explore!" ng-click="addressSearch(address)"/>
+    </form>
+    --> 
   </div>
-</md-whiteframe>
+</div>
+
 
 <md-content layout="column" class="column-container">
-
-  <div id="howItWorks"
-       layout="column"
-       class="row-container">
+  <div id="howItWorks" layout="column" class="row-container">
     <div align="center">
       <h2> How It Works </h2>
     </div>
