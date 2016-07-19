@@ -158,6 +158,7 @@ angular.module('storeEdit').component('storeEdit', {
 
     }
 
+
     $scope.blobConversion = function(image) {
       // Convert to a format useable with ng-file-upload 
       var binary = atob(image.split(',')[1]);
@@ -176,9 +177,11 @@ angular.module('storeEdit').component('storeEdit', {
     $scope.placeChanged = function() {
       // console.log(this.getPlace());
       var place = this.getPlace();
-      var coords = place.geometry.location;
-      $scope.store.pickupAddress.lat = coords.lat();
-      $scope.store.pickupAddress.lng = coords.lng();
+      if (place.geometry) {
+        var coords = place.geometry.location;
+        $scope.store.pickupAddress.lat = coords.lat();
+        $scope.store.pickupAddress.lng = coords.lng();
+      }
     }
 
     // INTERESTING  passing in store and cloned store to this fn renders this useless
