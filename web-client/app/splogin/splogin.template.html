@@ -15,22 +15,7 @@
   }(document, 'script', 'facebook-jssdk'));
 </script>
 
-<md-toolbar layout="row"
-            class="md-whiteframe-z2 column-container">
-  <md-button href="#!/">
-    Vesta
-  </md-button>
-
-  <span flex></span>
-
-  <md-menu-bar>
-    <md-button ng-click="fblogin()"
-               class="md-raised">
-      Login with Facebook!
-    </md-button>
-  </md-menu-bar>
-</md-toolbar>
-
+<vesta-nav></vesta-nav>
 
 <md-whiteframe class="md-whiteframe-1dp">
   <div id="imageBanner">
@@ -110,7 +95,9 @@
     <div>
       <h2>Use the Beta Version</h2>
       <p>
-        The beta version of Vesta's web application has been released and is under active development. During this beta phase, chefs will publish their events both to our facebook page and to our website.
+        The beta version of Vesta's web application has been released and is under active development. 
+        <br>
+        During this beta phase, chefs will publish their events both to our facebook page and to our website.
       </p>
     </div>
     <div>

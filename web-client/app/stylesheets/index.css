@@ -16,6 +16,8 @@ body {
 /******************************** TOP NAV BAR ********************************/
 /* NOTE a few of these attributes can be encapsulated in a header elements class */
 md-toolbar {
+  padding-left: 20px;
+  padding-right: 20px;
   height: 50px;
   min-height: 50px;
   background-color: #00b36f !important;
@@ -23,16 +25,15 @@ md-toolbar {
   -webkit-user-select: none; /* Chrome/Safari */
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+ */
-/* Rules below not implemented in browsers yet */
   -o-user-select: none;
   user-select: none;
 }
-md-toolbar #brand-logo {
+md-toolbar #brandLogoButton {
+  margin-left: 20px;
+}
+md-toolbar #brandLogo {
   height: 30px;
   width: auto;
-  margin-top: auto;
-  margin-bottom: auto;
-  margin-left: 20px;
 }
 md-toolbar .topOptions {
   display: inline-block;
@@ -61,6 +62,10 @@ md-toolbar #navDropdown {
 md-toolbar #navDropdown .md-menu button {
 /* Doesn't seem to work with md-open */
   cursor: pointer;
+}
+md-toolbar #nonUserNavButtons {
+  margin-left: auto;
+  margin-right: 20px;
 }
 #topBar {
   z-index: 72;

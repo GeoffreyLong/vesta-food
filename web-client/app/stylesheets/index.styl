@@ -29,6 +29,8 @@ html, body
 $componentSize = 30px
 $marginSpace = 10px
 md-toolbar
+  padding-left: 20px
+  padding-right: 20px
   height: $headerHeight
   min-height: $headerHeight
 
@@ -38,16 +40,14 @@ md-toolbar
   -webkit-user-select: none; /* Chrome/Safari */        
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+ */
-  /* Rules below not implemented in browsers yet */
   -o-user-select: none;
   user-select: none;
 
-  #brand-logo
+  #brandLogoButton
+    margin-left: 20px
+  #brandLogo
     height: $componentSize
     width: auto
-    margin-top: auto
-    margin-bottom: auto
-    margin-left: 20px
 
   .topOptions
     display: inline-block
@@ -77,6 +77,10 @@ md-toolbar
       button
         /* Doesn't seem to work with md-open */
         cursor: pointer
+
+  #nonUserNavButtons
+    margin-left: auto
+    margin-right: 20px
 
 #topBar
   z-index: 72

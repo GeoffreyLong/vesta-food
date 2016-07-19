@@ -1,8 +1,8 @@
 <!-- Neither of these components support theming I don't think, perhaps in later release -->
 
 <md-toolbar id="topBar" layout="row" class="md-whiteframe-z2" style="padding:0px; margin-bottom:0px; position:fixed; top: 0px">
-  <md-button href="/">
-    <img id='brand-logo' src="/images/vesta/vesta_full_white.png" alt="Vesta" />
+  <md-button id="brandLogoButton" href="/">
+    <img id='brandLogo' src="/images/vesta/vesta_full_white.png" alt="Vesta" />
   </md-button>
 
 
@@ -50,29 +50,14 @@
       </md-menu-content>
     </md-menu>
   </md-menu-bar>
-  
-  <md-menu-bar id="navDropdown" ng-if="!session.user">
-    <md-menu>
-      <md-button ng-click="$mdOpenMenu()">
-        Sign Up!
-      </md-button>
-      <md-menu-content>
-        <md-menu-item class="md-indent">
-          <md-icon class="material-icons"> person </md-icon>
-          <md-button ng-click="fblogin()">
-            Sign Up / Log In with Facebook!
-          </md-button>
-        </md-menu-item>
-        <md-menu-item class="md-indent">
-          <md-icon class="material-icons"> store </md-icon>
-          <md-button href="">
-            Create a Storefront -- Want here?
-          </md-button>
-      </md-menu-content>
-    </md-menu>
-  </md-menu-bar>
 
-  <md-button id="cartButton" aria-label="Custom Icon Button" ng-click="showCart($event)">
+  <md-button ng-if="session.user" id="cartButton" aria-label="Custom Icon Button" ng-click="showCart($event)">
     <md-icon class="material-icons"> shopping_cart </md-icon>
   </md-button>
+
+  <div ng-if="!session.user" id="nonUserNavButtons">
+    <md-button ng-click="fblogin()">
+      Sign Up / Log In
+    </md-button>
+  </div>
 </md-toolbar>
