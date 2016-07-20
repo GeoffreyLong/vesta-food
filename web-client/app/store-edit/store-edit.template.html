@@ -24,7 +24,7 @@
               <md-input-container class="md-block">
                 <label class="md-title"> Store Name: </label>
                 <input  type="text" name="storeTitle" ng-model="store.storeTitle" 
-                        maxlength="25" md-maxlength="25" required />
+                        maxlength="30" md-maxlength="30" required />
                 <div ng-messages="storeForm.storeTitle.$error">
                   <div ng-message="required">This is required.</div>
                 </div>
@@ -42,7 +42,7 @@
               <label class='md-title'> Store Description: </label>
               <!-- TODO restrict from pressing "enter" a bunch... or at all -->
               <textarea class="descriptionEdit" name="description"
-                        ng-model="store.description" md-maxlength="150" maxlength="150" 
+                        ng-model="store.description" md-maxlength="300" maxlength="300" 
                         required>
               </textarea>
               <div ng-messages="storeForm.description.$error">
@@ -126,7 +126,7 @@
                 <md-input-container flex class="md-block">
                   <label class="md-title"> Name </label>
                   <input  type="text" ng-model="food.name" name="name_{{$index}}" 
-                          maxlength="25" md-maxlength="25" required />
+                          maxlength="30" md-maxlength="30" required />
                   <div ng-messages="foodForm['name_' + $index].$error">
                     <div ng-message="required">This is required.</div>
                   </div>
@@ -157,7 +157,7 @@
             <md-input-container flex class="md-block">
               <label class="md-title"> Description </label>
               <textarea name="description_{{$index}}" class="descriptionEdit" ng-model="food.description" 
-                        md-maxlength="150" maxlength="150" required>
+                        md-maxlength="300" maxlength="300" required>
               </textarea>
               <div ng-messages="foodForm['description_' + $index].$error">
                 <div ng-message="required">This is required.</div>
