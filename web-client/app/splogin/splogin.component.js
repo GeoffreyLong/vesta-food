@@ -29,5 +29,8 @@ angular.module('splogin').component('splogin', {
         console.log("ERROR: " + err); 
       });
     }
+
+
+
   }
 });

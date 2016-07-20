@@ -22,7 +22,8 @@
     "angular-payments": "*",
     "moment": "^2.14.1",
     "angular-messages": "^1.5.7",
-    "ng-img-crop-full-extended": "ngImgCropFullExtended#^0.5.5"
+    "ng-img-crop-full-extended": "ngImgCropFullExtended#^0.5.5",
+    "angular-easyfb": "^1.5.1"
   },
   "resolutions": {
     "angular": "1.5.7",

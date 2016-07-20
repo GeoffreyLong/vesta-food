@@ -7,6 +7,7 @@ angular.module('vestaApp', [
   'ngMap',
   'ngImgCrop',
   'ngFileUpload',
+  'ezfb',
   'vestaNav',
   'storesView',
   'splogin',
