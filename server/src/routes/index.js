@@ -94,10 +94,10 @@ module.exports = function(passport){
     var date = new Date();
     var query;
     if (req.query.current === 'true') {
-      query = Stores.model.find({'startDateTime': {$gt: date}, 'isValid': true});
+      query = Stores.model.find({'endDateTime': {$gt: date}, 'isValid': true});
     }
     else if (req.query.current === 'false') {
-      query = Stores.model.find({'startDateTime': {$lte: date}, 'isValid': true});
+      query = Stores.model.find({'endDateTime': {$lte: date}, 'isValid': true});
     }
     else {
       query = Stores.model.find({'isValid': true});

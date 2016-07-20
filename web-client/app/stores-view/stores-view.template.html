@@ -90,11 +90,10 @@
           <div>
             <span class="headlineContent" ng-click="$ctrl.goToStore(store, -1)">{{store.storeTitle}}</span>
             <br>
-            <span ng-if="store.date" class="subContent"> 
+            <span ng-if="store.startDateTime" class="subContent"> 
               Available:
-              {{store.date | date:'MM/dd/yyyy'}} 
-              @ {{store.startTime | date:'h:mma'}} 
-              - {{store.endTime | date:'h:mma'}}
+              {{store.startDateTime | date:'MM/dd/yyyy @ h:mma'}} 
+              - {{store.endDateTime | date:'h:mma'}}
             </span>
           </div>
         </div>
