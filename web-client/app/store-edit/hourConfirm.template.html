@@ -1,0 +1,25 @@
+<md-dialog id="hourConfirmDialog" ng-cloak>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Warning</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon class="material-icons"> close </md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="padding: 30px; text-align: center">
+      Your store hour start time is earlier than the current time! 
+      Is this ok?
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <md-button ng-click="answer()">
+        Don't allow
+      </md-button>
+      <md-button ng-click="answer('true')" style="margin-right:20px;">
+        Allow
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

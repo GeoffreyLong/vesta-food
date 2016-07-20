@@ -95,6 +95,40 @@ angular.module('storeEdit').component('storeEdit', {
       });
     };
 
+    $scope.showHourConfirmDialog = function() {
+      var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+      $mdDialog.show({
+        controller: function DialogController($mdDialog, $scope){
+          $scope.hide = function() {
+            $mdDialog.hide();
+          };
+          $scope.cancel = function() {
+            $mdDialog.cancel();
+          };
+          $scope.answer = function(answer) {
+            $mdDialog.hide(answer);
+          };
+        },
+        templateUrl: 'store-edit/hourConfirm.template.html',
+        parent: angular.element(document.body),
+        clickOutsideToClose:true,
+        fullscreen: useFullScreen,
+      })
+      .then(function(answer) {
+        // NOTE might want to consider saving this here to the DB as a temp file
+        if (answer === 'true') {
+          console.log("ok");
+        }
+      }, function() {
+        // Error handling?
+      });
+      $scope.$watch(function() {
+        return $mdMedia('xs') || $mdMedia('sm');
+      }, function(wantsFullScreen) {
+        $scope.customFullscreen = (wantsFullScreen === true);
+      });
+    };
+
     $scope.saveTempImage = function(tmpImage) {
       // Send the photo to the backend, 
       // get the callback, save the photo as the callback
@@ -289,7 +323,12 @@ angular.module('storeEdit').component('storeEdit', {
       //      Like ng-message="afterNow"
       //      You might actually just add this to the ngModel though
       //      So like ngModel.$setValidity("afterNow", false)... I'm not 100p on this
-      if (start < Date.now() || endTime <= startTime) {
+      if (start < Date.now()){
+        // For now will not use the confirm dialog, only alerts
+        // $scope.showHourConfirmDialog();
+        alert("WARNING: Store opening hour before current hour");
+      }
+      if (end < Date.now() || endTime <= startTime) {
         alert("Store Hour Errors");
         return false;
       }
