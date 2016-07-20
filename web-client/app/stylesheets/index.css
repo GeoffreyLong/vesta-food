@@ -397,8 +397,8 @@ store-front #descriptionPanel #storeDescription {
   min-width: 350px;
 }
 #imageCropDialog #imageFileEntry {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  text-align: center;
+  padding: 10px;
 }
 #imageCropDialog .cropArea {
   background: #e4e4e4;
@@ -448,6 +448,7 @@ store-front #descriptionPanel #storeDescription {
   width: 100px;
   border-radius: 50%;
   margin-right: 10%;
+  cursor: pointer;
 }
 .editCard #nonMapDiv {
   padding-right: 30px;

@@ -2,7 +2,7 @@
   <form>
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <h2>Profile Photo</h2>
+        <h2>Photo Editor</h2>
         <span flex></span>
         <md-button class="md-icon-button" ng-click="cancel()">
           <md-icon class="material-icons"> close </md-icon>
@@ -12,7 +12,6 @@
     <md-dialog-content>
 
       <div id="imageFileEntry">
-        <span class="md-title"> Select an image file: <span>
         <!-- Weird hacky stuff for file uploading... consider using ng-file-upload -->
         <input type="file" id="fileInput" onchange="angular.element(this).scope().handleFileSelect(this.files)"/>
       </div>
