@@ -7,10 +7,15 @@ angular
 
     this.store = null;
     this.clonedStore = null
+
+    this.user = null;
+    this.clonedUser = null;
+    
     this.editPhoto = null;
     this.storeCart = null;
 
 
+    // Getters and Setters for Store
     this.setStore = function(store) {
       this.store = store;
       this.clonedStore = jQuery.extend(true, {}, store);
@@ -20,6 +25,18 @@ angular
     }
     this.getClonedStore = function() {
       return jQuery.extend(true, {}, this.clonedStore);
+    }
+
+    // Getters and Setters for User
+    this.setUser = function(user) {
+      this.user = user;
+      this.clonedUser = jQuery.extend(true, {}, user);
+    }
+    this.getUser = function() {
+      return this.user;
+    }
+    this.getClonedUser = function() {
+      return jQuery.extend(true, {}, this.clonedUser);
     }
 
     // To set and retreive photos for editing
