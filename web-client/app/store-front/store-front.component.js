@@ -1,7 +1,7 @@
 angular.module('storeFront').component('storeFront', {
   templateUrl: 'store-front/store-front.template.html',
   controller: function StoreFrontController($scope, dataService, authService, $mdToast,
-                                            $location, $http){
+                                            $location, $http, $window, $mdBottomSheet){
     // TODO add in the dataService function for getting stores
     //      Something like dataService.getStore('storeId')
     //      This will also handle the db query below if it isn't found?
@@ -53,14 +53,37 @@ angular.module('storeFront').component('storeFront', {
       }
     };
 
+    angular.element($window).bind('resize', function(){
+      $scope.slickStyle();
+
+      // manuall $digest required as resize event
+      // is outside of angular
+      $scope.$digest();
+    });
+
     $scope.slickStyle = function() {
-      if ($('.slick-slide').length <= 3) {
-        $('.slick-slide').css({
-          'transition': 'none',
-          'transform': 'scale(1)',
-        });
-        $('.slick-track').css({'margin': 'auto'});
-        $('md-card-actions').css({ 'display': 'flex' });
+      if ($scope.foodLoaded && $scope.store.foods.length <= 3) {
+        if ($('.slick-slide').length <= 3) {
+          $('.slick-slide').css({
+            'transition': 'none',
+            'transform': 'scale(1)',
+          });
+          $('.slick-track').css({'margin': 'auto'});
+          $('md-card-actions').css({ 'display': 'flex' });
+        }
+        console.log($(window).width());
+
+
+        // Specific styling for fewer than three cards
+        if ($(window).width() > 1300) {
+          $scope.slickConfig.slidesToShow= 3;
+        }
+        else if ($(window).width() < 1300 && $(window).width() > 700) {
+          $scope.slickConfig.slidesToShow= 2;
+        }
+        else {
+          $scope.slickConfig.slidesToShow= 1;
+        }
       }
     };
 
