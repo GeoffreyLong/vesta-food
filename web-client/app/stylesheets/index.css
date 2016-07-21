@@ -321,6 +321,11 @@ store-front #titleDiv {
   margin-right: auto;
 /* Will center the storeTitle in absence of reviews */
 }
+@media screen and (max-width: 960px) {
+  store-front #titleDiv {
+    width: 100%;
+  }
+}
 store-front #titleDiv #titleRow {
   padding: 10px;
 }
@@ -331,6 +336,18 @@ store-front #titleDiv img {
 }
 store-front #titleDiv #storeTitle {
   display: inline-block;
+}
+@media screen and (max-width: 960px) {
+  store-front #titleDiv #storeTitle {
+    font-size: 30px;
+    line-height: 30px;
+  }
+}
+@media screen and (max-width: 700px) {
+  store-front #titleDiv #storeTitle {
+    font-size: 24px;
+    line-height: 24px;
+  }
 }
 store-front #titleDiv #starPlaceholder {
   width: 56px;
@@ -343,9 +360,15 @@ store-front #descriptionPanel {
   margin-top: 50px;
   margin-bottom: 50px;
 }
+@media screen and (max-width: 960px) {
+  store-front #descriptionPanel {
+    max-width: 500px;
+    margin: auto;
+    margin-top: 50px;
+  }
+}
 store-front #descriptionPanel #storeDescription {
-  padding-left: 5%;
-  width: 90%;
+  padding-right: 2%;
 }
 #storeReviews .altCard {
   background-color: #fff;

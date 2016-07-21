@@ -314,6 +314,8 @@ store-front
     width: 80%
     margin-left: auto
     margin-right: auto
+    @media screen and (max-width: 960px)
+      width: 100%
 
     #titleRow
       padding: 10px
@@ -325,6 +327,12 @@ store-front
 
     #storeTitle
       display:inline-block
+      @media screen and (max-width: 960px)
+        font-size: 30px
+        line-height: 30px
+      @media screen and (max-width: 700px)
+        font-size: 24px
+        line-height: 24px
 
     /* Will center the storeTitle in absence of reviews */
     #starPlaceholder
@@ -337,9 +345,12 @@ store-front
   #descriptionPanel
     margin-top: 50px
     margin-bottom: 50px
+    @media screen and (max-width: 960px)
+      max-width: 500px
+      margin: auto
+      margin-top: 50px
     #storeDescription
-      padding-left: 5%
-      width: 90%
+      padding-right: 2%
 
   
 
