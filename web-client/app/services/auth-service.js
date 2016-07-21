@@ -138,6 +138,39 @@ angular
         return deferred.promise;
       }
 
+      function profileEditAuth(){
+        // NOTE might not be the best way to handle the path...
+        //      Seems rather shotty to me...
+        // TODO make this extensible to other things needing a store
+        //      put the matching paths regex in private fn?
+        var re = new RegExp("\/user\/(.*)\/edit");
+        var userId = re.exec($location.path())[1];
+
+        // Check to see if session exists
+        // If it does and getSession is called then no promise is returned => error
+        if (session && (session.address || (session.user && session.user._id))) {
+          if (session && session.user
+            && (session.user._id == userId)) {
+            return session;
+          }
+        }
+
+        var deferred = $q.defer();
+        getStoreSession().then(function(session){
+          if (session && session.user
+            && (session.user._id == userId)) {
+            deferred.resolve(session)
+          }
+          else {
+            return deferred.reject({profileOwner: false});
+          }
+        }, function(err) {
+          return deferred.reject({profileOwner: false});
+        });
+        return deferred.promise;
+      }
+
+
       function init() {
         if ($window.sessionStorage["userInfo"]) {
           userInfo = JSON.parse($window.sessionStorage["userInfo"]);
@@ -152,7 +185,8 @@ angular
         getSession: getSession,
         getUserSession: getUserSession,
         getStoreSession: getStoreSession,
-        storeEditAuth: storeEditAuth
+        storeEditAuth: storeEditAuth,
+        profileEditAuth: profileEditAuth
       };
     }
   ]);

@@ -46,8 +46,19 @@ angular
           resolve: {
             // Going to the stores view only requires a session
             auth: function ($q, authService) {
-              console.log("ello");
               return authService.getSession();
+            }
+          }
+        })
+        .when('/user/:id/edit', {
+          template: '<vesta-nav></vesta-nav>'
+            + '<div id="nonNavContainer">'
+            + '<profile-edit></profile-edit>'
+            + '</div>',
+          resolve: {
+            // Going to the stores view only requires a session
+            auth: function ($q, authService) {
+              return authService.profileEditAuth();
             }
           }
         })
@@ -181,6 +192,9 @@ angular
         }
         // Might cause issues if errored on stripe callback to store edit transition
         if (eventObj.storeOwner === false) {
+          $window.history.back();
+        }
+        if (eventObj.profileOwner === false) {
           $window.history.back();
         }
         if (eventObj.store === false) {

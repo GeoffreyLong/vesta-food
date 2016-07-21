@@ -10,6 +10,7 @@ angular.module('vestaApp', [
   'ezfb',
   'vestaNav',
   'profile',
+  'profileEdit',
   'storesView',
   'splogin',
   'storeFront',
