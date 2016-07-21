@@ -38,6 +38,19 @@ angular
             }
           }
         })
+        .when('/user/:id', {
+          template: '<vesta-nav></vesta-nav>'
+            + '<div id="nonNavContainer">'
+            + '<profile></profile>'
+            + '</div>',
+          resolve: {
+            // Going to the stores view only requires a session
+            auth: function ($q, authService) {
+              console.log("ello");
+              return authService.getSession();
+            }
+          }
+        })
         .when('/becomeAChef', {
           template: '<vesta-nav></vesta-nav>'
             + '<div id="nonNavContainer">'

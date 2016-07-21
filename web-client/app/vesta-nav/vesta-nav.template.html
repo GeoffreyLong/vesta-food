@@ -20,17 +20,19 @@
       <md-menu-content>
         <md-menu-item class="md-indent">
           <md-icon class="material-icons"> store </md-icon>
-          <md-button ng-if="session.user.storeId" href="/store/{{session.user.storeId}}">
-            Visit your Store
+          <md-button ng-if="session.user._id" href="/user/{{session.user._id}}">
+            View your Profile
           </md-button>
+          <!--
           <md-button ng-if="!session.user.storeId" ng-click="showStripeDialog($event)">
-            Create a Storefront
+            Host an Event
           </md-button>
+          -->
         </md-menu-item>
         <md-menu-item ng-if="session.user.storeId" class="md-indent">
           <md-icon class="material-icons"> edit </md-icon>
-          <md-button ng-if="session.user.storeId" href="/store/{{session.user.storeId}}/edit">
-            Edit your Store
+          <md-button ng-if="session.user._id" href="/user/{{session.user._id}}/edit">
+            Edit your profile
           </md-button>
         </md-menu-item>
         <md-menu-item class="md-indent">
