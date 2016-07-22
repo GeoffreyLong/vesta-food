@@ -7,97 +7,57 @@
   </md-button>
 </div>
 
-<span class="md-display-2"> Store Information </span>
-<div id="storeInfoEditDiv">
-  <form name="storeForm">
+<span class="md-display-2"> User Information </span>
+<div id="infoEditDiv">
+  <form name="infoForm">
     <md-card class="editCard">
       <div class="innerEditDiv"> 
-        <div id="descriptionPanel" layout="row" layout-align-gt-sm="center center" layout-xs="column" layout-sm="column">
-          <!-- 
-                TODO this might be too sparse to lay side by side with a map
-                See if I can add more content to this
-                Could add like a "most popular dish" or something
-                Maybe I could even dynamically place it given the size of the description
-          -->
+        <div  id="descriptionPanel" layout="row" layout-align-gt-sm="center center" 
+              layout-xs="column" layout-sm="column">
           <div flex id="nonMapDiv">
             <div layout="row" layout-align="space-between center">
               <md-input-container class="md-block">
-                <label class="md-title"> Store Name: </label>
-                <input  type="text" name="storeTitle" ng-model="store.storeTitle" 
+                <label class="md-title"> User Name </label>
+                <input  type="text" name="displayName" ng-model="user.displayName" 
                         maxlength="30" md-maxlength="30" required />
-                <div ng-messages="storeForm.storeTitle.$error">
+                <div ng-messages="infoForm.displayName.$error">
                   <div ng-message="required">This is required.</div>
                 </div>
               </md-input-container>
 
-              <img  ng-if="store.profilePhoto" id="profilePhotoEdit" 
-                    src="{{store.profilePhoto}}" alt="Profile Picture" 
-                    ng-click="showConfirm($event, store.profilePhoto, 0)"/>
-              <img  ng-if="!store.profilePhoto" id="profilePhotoEdit" 
+              <img  ng-if="user.profilePhoto" id="profilePhotoEdit" 
+                    src="{{user.profilePhoto}}" alt="Profile Picture" 
+                    ng-click="showConfirm($event, user.profilePhoto)"/>
+              <img  ng-if="!user.profilePhoto" id="profilePhotoEdit" 
                     src="/images/user/default_profile.jpg" alt="Profile Picture" 
-                    ng-click="showConfirm($event, store.profilePhoto, 0)"/>
+                    ng-click="showConfirm($event, user.profilePhoto)"/>
             </div>
 
             <md-input-container class="md-block">
-              <label class='md-title'> Store Description: </label>
+              <label class='md-title'> User Description </label>
               <!-- TODO restrict from pressing "enter" a bunch... or at all -->
               <textarea class="descriptionEdit" name="description"
-                        ng-model="store.description" md-maxlength="300" maxlength="300" 
+                        ng-model="user.description" md-maxlength="300" maxlength="300" 
                         required>
               </textarea>
-              <div ng-messages="storeForm.description.$error">
+              <div ng-messages="infoForm.description.$error">
                 <div ng-message="required">This is required.</div>
               </div>
             </md-input-container>
-
-            <span class='md-title'> Store Hours: </span>
-
-            <div layout="row" id="storeHours" layout-align="space-between start">
-              <div>
-                <!-- TODO must be today or after -->
-                <md-datepicker  ng-model="store.date" md-placeholder="Enter date" 
-                                required name="date">
-                </md-datepicker>
-                <div  ng-messages="storeForm.date.$error" 
-                      ng-show="storeForm.date.$touched"
-                      style="margin-left:65px; color:#FF6D00">
-                  <div ng-message="valid">Invalid Date.</div>
-                  <div ng-message="required">This is required.</div>
-                </div>
-              </div>
-
-              <!-- TODO assert start before end -->
-              <!-- TODO find how to error message invalid times -->
-              <md-input-container flex class="md-block">
-                <label class="md-title"> Start Time: </label>
-                <input  type="time" ng-model="store.startTime" name="startTime" 
-                        placeholder="HH:mm" required/>
-                <div ng-messages="storeForm.startTime.$error">
-                  <div ng-message="required">This is required.</div>
-                </div>
-              </md-input-container>
-              <md-input-container flex class="md-block">
-                <label class="md-title"> End Time: </label>
-                <input  type="time" ng-model="store.endTime" name="endTime" 
-                        placeholder="HH:mm" required/>
-                <div ng-messages="storeForm.endTime.$error">
-                  <div ng-message="required">This is required.</div>
-                </div>
-              </md-input-container>
-            </div>
           </div>
           
+          <!-- TODO not sure if we need this -->
           <div flex>
             <md-input-container class="md-block" id="addressEditContainer">
-              <label class="md-title"> Pickup Address: </label>
-              <input  id="addressEdit" places-auto-complete types="['geocode']" ng-model="store.pickupAddress.formatted" 
+              <label class="md-title"> Address </label>
+              <input  id="addressEdit" places-auto-complete types="['geocode']" ng-model="user.address.formatted" 
                       on-place-changed="placeChanged()" name="address" required/>
-              <div ng-messages="storeForm.address.$error">
+              <div ng-messages="infoForm.address.$error">
                 <div ng-message="required">This is required.</div>
               </div>
             </md-input-container>
-            <ng-map center="{{store.pickupAddress.lat}}, {{store.pickupAddress.lng}}" zoom="14">
-              <marker position="{{store.pickupAddress.lat}}, {{store.pickupAddress.lng}}" title="Store Location"></marker> 
+            <ng-map center="{{user.address.lat}}, {{user.address.lng}}" zoom="14">
+              <marker position="{{user.address.lat}}, {{user.address.lng}}" title="Store Location"></marker> 
             </ng-map>
           </div>
         </div>

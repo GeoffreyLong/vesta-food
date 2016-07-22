@@ -14,7 +14,8 @@ module.exports = function(passport){
   var _ = require('lodash');
 
   var Food = require('../models/food.js');
-  var Stores = require('../models/store.js');
+  var Store = require('../models/store.js');
+  var Event = require('../models/event.js');
 
   var imageLocation = '../web-client/app';
   var multer = require('multer');
@@ -88,7 +89,7 @@ module.exports = function(passport){
   });
 
 
-  router.get('/stores', function(req, res) {
+  router.get('/events', function(req, res) {
     // TODO give this locations params too
     
     var date = new Date();
