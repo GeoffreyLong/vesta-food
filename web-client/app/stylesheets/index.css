@@ -191,8 +191,6 @@ slick:hover .slick-arrow.slick-next:before {
   padding: 16px 0px 16px 0px;
 }
 #storesContainer md-card {
-  min-width: 200px;
-  min-height: 200px;
   max-width: 450px;
 }
 #storesContainer md-card md-card-title {
@@ -223,6 +221,9 @@ slick:hover .slick-arrow.slick-next:before {
 #storesContainer md-card .foodImageInfo .foodRating .star md-icon {
   color: #fca345;
 }
+#storesContainer md-card .md-card-image {
+  cursor: pointer;
+}
 #storesContainer md-card md-card-content {
   padding-top: 0px;
 /* Padding in case there are no slick dots */
@@ -236,6 +237,7 @@ slick:hover .slick-arrow.slick-next:before {
   width: 50px;
   border-radius: 50%;
   margin-top: -20px;
+  cursor: pointer;
 }
 #storesContainer md-card md-card-content .headlineContent {
   font-size: 24px;
@@ -357,19 +359,10 @@ store-front #titleDiv .underline {
   height: 5px;
   background-color: #00b36f;
 }
-store-front #descriptionPanel {
-  margin-top: 50px;
-  margin-bottom: 50px;
-}
-@media screen and (max-width: 960px) {
-  store-front #descriptionPanel {
-    max-width: 500px;
-    margin: auto;
-    margin-top: 50px;
-  }
-}
-store-front #descriptionPanel #storeDescription {
-  padding-right: 2%;
+store-front #titleDiv #storeDescription {
+  padding: 5px 20px 20px 20px;
+  font-weight: 600;
+  color: #777;
 }
 #storeReviews .altCard {
   background-color: #fff;

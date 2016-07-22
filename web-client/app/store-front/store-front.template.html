@@ -7,7 +7,7 @@
 
 
 <div id="titleDiv">
-  <div id="titleRow" layout="row" layout-align="space-between center">
+  <div id="titleRow" layout="row" layout-align="space-between end">
     <!-- TODO will need to deal with long titles here -->
     <img ng-if="store.profilePhoto" src="{{store.profilePhoto}}" alt="Profile Picture"/>
     <img ng-if="!store.profilePhoto" src="/images/user/default_profile.jpg" alt="Profile Picture"/>
@@ -15,6 +15,9 @@
     <div id="starPlaceholder"> </div>
   </div>
   <div class="underline" flex/>
+  <div id="storeDescription">
+    {{store.description}}
+  </div>
 </div>
 
 <slick ng-if="foodLoaded" settings="slickConfig" id="storeFrontSlick">
@@ -29,30 +32,6 @@
     <food-card food="food" store="store"></food-card>
   </div>
 </slick>
-
-<!-- Descriptions and chef info -->
-<div  id="descriptionPanel" layout="row" layout-align="center start" 
-      layout-xs="column" layout-sm="column">
-  <!-- 
-        NOTE this might be too sparse to lay side by side with a map
-        See if I can add more content to this
-        Could add like a "most popular dish" or something
-        Maybe I could even dynamically place it given the size of the description
-  -->
-  <div flex id="storeDescription">
-    <span class='md-title'> Store Description: </span>
-    <span> {{store.description}} </span>
-  </div>
-  <div flex style="width:100%">
-    <!-- NOTE not currently error handling -->
-    <!-- NOTE could add in the current user location -->
-    <span class='md-title'> Pickup Address: </span>
-    <span> {{store.pickupAddress.formatted}} </span>
-    <ng-map center="{{store.pickupAddress.lat}}, {{store.pickupAddress.lng}}" zoom="14">
-      <marker position="{{store.pickupAddress.lat}}, {{store.pickupAddress.lng}}" title="Store Location"></marker> 
-    </ng-map>
-  </div>
-</div>
 
 <!-- 
       TODO for a later version we can add the dishes they had too

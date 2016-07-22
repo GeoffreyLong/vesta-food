@@ -86,16 +86,26 @@ angular.module('storesView').component('storesView', {
 
     // If itemIndex is set to one of the photos, then one of the foods was clicked
     // In this case go to the storefront with some sort of emphasis on the food item
-    this.goToStore = function(store, itemIndex) {
-      dataService.setStore(store);
-      console.log("Store is: " + store);
+    this.goToStore = function(storeId, itemIndex) {
+      dataService.setStore(storeId);
+      console.log("Store is: " + storeId);
       
       if (itemIndex >= 0) {
-        $location.path('/store/' + store._id + '#' + itemIndex);
+        $location.path('/store/' + storeId + '#' + itemIndex);
       }
       else {
-        $location.path('/store/' + store._id);
+        $location.path('/store/' + storeId);
       }
     }
+
+    // Hover image causes hover title
+    setTimeout(function(){
+      $('.md-card-image').add('.headlineContent').on('mouseenter', function(e){
+        $(this).parent().find('.headlineContent').css({'text-decoration': 'underline'});
+      });
+      $('.md-card-image').add('.headlineContent').on('mouseleave', function(e){
+        $(this).parent().find('.headlineContent').css({'text-decoration': 'none'});
+      });
+    }, 1000);
   }
 });

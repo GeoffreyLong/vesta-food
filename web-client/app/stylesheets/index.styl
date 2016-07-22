@@ -200,8 +200,6 @@ slick:hover
   background-color: $backgroundColor
   padding: 16px 0px 16px 0px
   md-card
-    min-width: 200px
-    min-height: 200px
     max-width: 450px
     md-card-title
       padding-top: 0
@@ -228,6 +226,9 @@ slick:hover
           md-icon
             color: $secondaryColor
 
+    .md-card-image
+      cursor: pointer
+
     md-card-content
       padding-top: 0px
       /* Padding in case there are no slick dots */
@@ -239,6 +240,7 @@ slick:hover
         width: 50px
         border-radius: 50%
         margin-top: -20px
+        cursor: pointer
       .headlineContent
         font-size: 24px
         font-weight: 600
@@ -343,15 +345,12 @@ store-front
       height: 5px;
       background-color: $primaryColor
 
-  #descriptionPanel
-    margin-top: 50px
-    margin-bottom: 50px
-    @media screen and (max-width: 960px)
-      max-width: 500px
-      margin: auto
-      margin-top: 50px
     #storeDescription
-      padding-right: 2%
+      padding: 5px 20px 20px 20px
+      font-weight: 600
+      color: #777
+
+
 
   
 

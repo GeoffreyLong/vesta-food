@@ -15,10 +15,11 @@
       <md-card-content>
         <div layout="row" layout-align="start center">
           <div>
-            <img class="avatar" ng-src="{{food.store.profilePhoto}}"/>
+            <img  class="avatar" ng-src="{{food.store.profilePhoto}}"
+                  ng-click="$ctrl.goToStore(food.store._id, -1)"/>
           </div>
           <div>
-            <span class="headlineContent" ng-click="$ctrl.goToStore(store, -1)">{{food.name}}</span>
+            <span class="headlineContent">{{food.name}}</span>
             <br>
             <div class="subContent"> 
               {{food.blurb}}
