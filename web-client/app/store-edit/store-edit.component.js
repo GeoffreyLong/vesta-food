@@ -264,6 +264,13 @@ angular.module('storeEdit').component('storeEdit', {
         alert("You need at least one food item in your store");
         return false;
       }
+
+      // TODO deal with removals of food here (isAlive)?
+      $scope.store.foods.forEach(function(food) {
+        // Make sure the storeId is set correctly
+        food.store = $scope.store._id;
+      });
+
       return true;
     };
 

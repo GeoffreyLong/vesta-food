@@ -112,6 +112,28 @@ module.exports = function(passport){
   });
 
 
+  router.get('/foods', function(req, res) {
+    var query;
+    if (req.query.current === 'true') {
+      query = Food.find({'isActive': true, 'isAlive': true});
+    }
+    else if (req.query.current === 'false') {
+      query = Food.find({'isActive': false, 'isAlive': true});
+    }
+    else {
+      query = Food.find({'isAlive': true});
+    }
+    
+    query.populate('store', 'storeTitle profilePhoto').then(function(foods) {
+        // Default is to send all
+        res.status(200).send(foods);
+      }, function (error) {
+        res.status(400).send(error);
+      });
+  });
+
+
+
 
   router.get('/store/:storeId', function(req, res) {
     Stores

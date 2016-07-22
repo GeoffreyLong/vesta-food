@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var Store = require('./store');
 
 var Food = mongoose.model('Food', {
   name: String,
@@ -7,7 +8,13 @@ var Food = mongoose.model('Food', {
   description: String,
   shelfLife: Number,
   prepTime: Number,
-  overallRating: Number
+  overallRating: Number,
+  store: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Store'
+  },
+  isActive: Boolean,
+  isAlive: Boolean
 });
 
 module.exports = Food;

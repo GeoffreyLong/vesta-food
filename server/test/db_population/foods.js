@@ -1,6 +1,8 @@
 module.exports = [{
   name: "Hamburger Pastry thingies",
   photo: "/images/user/chef_1-1.png",
+  isActive: true,
+  isAlive: true,
   price: 10,
   shelfLife: 3,
   prepTime: 2,
@@ -8,6 +10,8 @@ module.exports = [{
 }, {
   name: "Schwarma Guy Wraps",
   photo: "/images/user/chef_1-2.jpg",
+  isActive: true,
+  isAlive: true,
   price: 8,
   shelfLife: 2,
   prepTime: 4,
@@ -15,6 +19,8 @@ module.exports = [{
 }, {
   name: "Salmon Delight",
   photo: "/images/user/chef_1-3.jpeg",
+  isActive: true,
+  isAlive: true,
   price: 8,
   shelfLife: 1,
   prepTime: 1,
@@ -22,6 +28,8 @@ module.exports = [{
 }, {
   name: "They're called MILANOS",
   photo: "/images/user/chef_1-4.png",
+  isActive: false,
+  isAlive: true,
   price: 4,
   shelfLife: 500,
   prepTime: 0,
@@ -30,6 +38,8 @@ module.exports = [{
 }, {
   name: "Ipsum Salad",
   photo: "/images/user/chef_2-1.jpg",
+  isActive: false,
+  isAlive: true,
   price: 10,
   shelfLife: 3,
   prepTime: 2,
@@ -37,6 +47,8 @@ module.exports = [{
 }, {
   name: "Brittle Peanuts",
   photo: "/images/user/chef_3-1.jpg",
+  isActive: false,
+  isAlive: false,
   price: 10,
   shelfLife: 3,
   prepTime: 2,
@@ -44,6 +56,8 @@ module.exports = [{
 }, {
   name: "Ribz",
   photo: "/images/user/chef_4-1.jpg",
+  isActive: false,
+  isAlive: false,
   price: 10,
   shelfLife: 3,
   prepTime: 2,

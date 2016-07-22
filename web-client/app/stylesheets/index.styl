@@ -195,15 +195,13 @@ slick:hover
 /******************************** STORES VIEW ********************************/
 /* Hacky workaround to make flexbox images scale correctly */
 /* Allegedly adding flex="none" on a child may work, I haven't seen success */
-#storesContainer *
-  min-height: 0
-  min-width: 0
-
 #storesContainer
   overflow-x: hidden
   background-color: $backgroundColor
   padding: 16px 0px 16px 0px
   md-card
+    min-width: 200px
+    min-height: 200px
     max-width: 450px
     md-card-title
       padding-top: 0

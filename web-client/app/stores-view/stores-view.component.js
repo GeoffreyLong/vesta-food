@@ -13,11 +13,12 @@ angular.module('storesView').component('storesView', {
     //    There might be a good way to do this
     $http({
       method: 'GET',
-      url: 'api/stores?current=true'
+      url: 'api/foods?current=true'
     }).then(function(data) {
       // This gives the number of rows
       // Three looks good on my screen
       // Might want to make it dynamic based on screen size
+      console.log(data);
       $scope.currentStores = chunk(data.data);
       console.log($scope.currentStores);
     }, function(err) {
@@ -27,11 +28,12 @@ angular.module('storesView').component('storesView', {
     // Get the past stores from a given location
     $http({
       method: 'GET',
-      url: 'api/stores?current=false'
+      url: 'api/foods?current=false'
     }).then(function(data) {
       // This gives the number of rows
       // Three looks good on my screen
       // Might want to make it dynamic based on screen size
+      console.log(data);
       $scope.previousStores = chunk(data.data);
     }, function(err) {
       console.log(err);
