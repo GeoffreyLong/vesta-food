@@ -133,7 +133,14 @@ angular.module('vestaNav').component('vestaNav', {
               cartService.updateCart($scope.cart);
             }
           }
-
+          $scope.removeOrder = function(storeCartIdx) {
+            $scope.cart.splice(storeCartIdx, 1);
+            cartService.updateCart($scope.cart);
+          }
+          $scope.clearCart = function() {
+            $scope.cart = [];
+            cartService.updateCart($scope.cart);
+          }
           
           $scope.calculateTotal = function() {
             var total = 0;
@@ -150,23 +157,25 @@ angular.module('vestaNav').component('vestaNav', {
           // BIG TODO how to loop over and pay us so we can pay chefs?
           // Do they have to make each purchase separate?
           $scope.purchaseOrder = function() {
-            var storeCart = $scope.cart[storeCartIdx];
+            var data = {};
+            data.cart = $scope.cart;
             var handler = StripeCheckout.configure({
               key: CONFIG.STRIPE.PUBLIC_KEY,
               image: '/images/vesta/vesta_logo_greenbg.png',
               token: function(token) {
-                storeCart.token = token;
+                $scope.cart = [];
+                data.token = token;
                 if (token.error) {
+                  $scope.cart = cartService.getCart();
                   window.alert('Payment failed! error: ' + result.error.message);
                 } 
                 else {
-                  $scope.removeOrder(storeCartIdx);
-                  console.log(storeCart);
-                  var userId = authService.getSession().user._id;
+                  var userId = authService.getSessionSynch().user._id;
                   var url = "/api/users/" + userId + "/purchases";
                   $http.post(url, {
-                    data: storeCart
+                    data: data
                   }).then(function success(response) {
+                    $scope.clearCart();
                     $mdDialog.hide();
                     $location.path('/dashboard');
                   }, function error(response) {
@@ -176,9 +185,9 @@ angular.module('vestaNav').component('vestaNav', {
               }
             });
             handler.open({
-              name: storeCart.storeTitle,
-              description: "Make a purchase from " + storeCart.storeTitle,
-              amount: $scope.calculateTotal(storeCartIdx) * 100
+              name: "Vesta Foods",
+              description: "Make a purchase!",
+              amount: $scope.calculateTotal() * 100
             });
           }
 

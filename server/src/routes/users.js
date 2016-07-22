@@ -160,64 +160,69 @@ router.get('/:userId/store/purchases', function(req, res) {
  *  stripePaymentToken
  * }
  */
+// TODO TODO TODO TEST WITH MULTIPLE STORES
 router.post('/:userId/purchases', function (req, res) {
   var buyerId = req.params.userId;
-  var storeCart = req.body.data;
-  var storeId = storeCart.storeId;
-  var foods = storeCart.foods;
-  var stripePaymentToken = storeCart.token;
+  var cart = req.body.data.cart;
+  var stripePaymentToken = req.body.data.token;
 
-  var totalCost = 0;
-  for (var i = 0; i < foods.length; i++) {
-    // times one hundred b/c stripe charges are in cents
-    totalCost += foods[i].price * foods[i].quantity * 100;
-  }
 
-  var applicationFee = Math.round(totalCost * 0.14);
+  cart.forEach(function(storeCart){
+    var storeId = storeCart.storeId;
+    var foods = storeCart.foods;
 
-  Store
-    .getById(storeId)
-    .then(function (store) {
-      var sellerAccountId = store.stripe.stripe_user_id;
+    var totalCost = 0;
+    for (var i = 0; i < foods.length; i++) {
+      // times one hundred b/c stripe charges are in cents
+      totalCost += foods[i].price * foods[i].quantity * 100;
+    }
 
-      stripe.charges.create({
-        amount: totalCost,
-        currency: 'cad',
-        source: stripePaymentToken.id,
-        application_fee: applicationFee,
-        destination: sellerAccountId
-      }).then(function (charge) {
-        //convert to representation that works with database model
-        var purchaseFoods = _.map(foods, function (food) {
-          return {
-            id: food._id,
-            quantity: food.quantity
-          }
-        });
+    var applicationFee = Math.round(totalCost * 0.14);
 
-        Purchase.create({
-          buyerId: buyerId,
-          storeId: storeId,
-          foods: purchaseFoods,
-          stripeCharge: charge,
-          stripeToken: stripePaymentToken
-        }).then(function successCallback(purchase) {
-          res.status(200).send(purchase);
-        }, function errorCallback(purchaseError) {
-          console.log('error saving purchase to db');
-          console.log(purchaseError);
+    Store
+      .getById(storeId)
+      .then(function (store) {
+        var sellerAccountId = store.stripe.stripe_user_id;
+
+        stripe.charges.create({
+          amount: totalCost,
+          currency: 'cad',
+          source: stripePaymentToken.id,
+          application_fee: applicationFee,
+          destination: sellerAccountId
+        }).then(function (charge) {
+          //convert to representation that works with database model
+          var purchaseFoods = _.map(foods, function (food) {
+            return {
+              id: food._id,
+              quantity: food.quantity
+            }
+          });
+
+          Purchase.create({
+            buyerId: buyerId,
+            storeId: storeId,
+            foods: purchaseFoods,
+            stripeCharge: charge,
+            stripeToken: stripePaymentToken
+          }).then(function successCallback(purchase) {
+            res.status(200).send(purchase);
+          }, function errorCallback(purchaseError) {
+            console.log('error saving purchase to db');
+            console.log(purchaseError);
+            res.status(500).send();
+          })
+        }).catch(function (stripeError) {
+          console.log('error creating charge with stripe');
+          console.log(stripeError);
           res.status(500).send();
         })
-      }).catch(function (stripeError) {
-        console.log('error creating charge with stripe');
-        console.log(stripeError);
+      }, function (storeError) {
+        console.log('error finding store by id');
+        console.log(storeError);
         res.status(500).send();
-      })
-    }, function (storeError) {
-      console.log('error finding store by id');
-      console.log(storeError);
-      res.status(500).send();
-    });
+      });
+  });
 });
 
 module.exports = router;
