@@ -5,6 +5,7 @@ var Food = mongoose.model('Food', {
   name: String,
   photo: String,
   price: Number,
+  blurb: String,
   description: String,
   shelfLife: Number,
   prepTime: Number,
