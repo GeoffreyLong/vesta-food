@@ -135,24 +135,21 @@ angular.module('vestaNav').component('vestaNav', {
           }
 
           
-          $scope.calculateTotal = function(storeCartIdx) {
+          $scope.calculateTotal = function() {
             var total = 0;
-            $scope.cart[storeCartIdx].foods.forEach(function(food) {
-              total += food.quantity * food.price;
+            $scope.cart.forEach(function(storeCart) {
+              storeCart.foods.forEach(function(food) {
+                total += food.quantity * food.price;
+              });
             });
 
             return total;
           }
   
 
-
-
-          $scope.removeOrder = function(storeCartIdx) {
-            $scope.cart.splice(storeCartIdx, 1);
-            cartService.updateCart($scope.cart);
-          }
-          // NOTE might be nice to put the chef's image here instead of the logo 
-          $scope.purchaseOrder = function(storeCartIdx) {
+          // BIG TODO how to loop over and pay us so we can pay chefs?
+          // Do they have to make each purchase separate?
+          $scope.purchaseOrder = function() {
             var storeCart = $scope.cart[storeCartIdx];
             var handler = StripeCheckout.configure({
               key: CONFIG.STRIPE.PUBLIC_KEY,

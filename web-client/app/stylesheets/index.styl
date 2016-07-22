@@ -96,11 +96,13 @@ md-menu-content
 /******************************** CART ********************************/
 #cart
   .storeTitle
-    cursor: pointer
     .md-subheader-inner
       padding: 8px 0px 8px 16px
-  .storeTitle:hover
-    color: $linkColor
+      .md-subheader-content
+        span
+          cursor: pointer
+        span:hover
+          color: $linkColor
   md-dialog-content
     padding: 20px
   md-list-item
