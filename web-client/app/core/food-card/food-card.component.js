@@ -4,6 +4,7 @@ angular.module('foodCard').component('foodCard', {
                                             cartService, $mdToast) {
     $scope.food = this.food;
     $scope.store = this.store;
+    $scope.scopedPage = this.scopedPage;
 
     $scope.isEdit = function(){
       // Getting hacky with this
@@ -76,6 +77,7 @@ angular.module('foodCard').component('foodCard', {
   },
   bindings: {
     food: '=',
-    store: '='
+    store: '=',
+    scopedPage: '@'
   }
 });

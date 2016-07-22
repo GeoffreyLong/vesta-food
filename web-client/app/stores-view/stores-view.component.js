@@ -98,6 +98,7 @@ angular.module('storesView').component('storesView', {
       }
     }
 
+
     // Hover image causes hover title
     setTimeout(function(){
       $('.md-card-image').add('.headlineContent').on('mouseenter', function(e){

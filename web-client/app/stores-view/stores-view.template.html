@@ -7,27 +7,9 @@
             layout="column" layout-align="space-between start" layout-gt-sm="row" 
             layout-align-sm="center center" layout-align-xs="center center">
   <div flex layout="column" ng-repeat="rows in currentStores">
-    <md-card ng-cloak ng-repeat="food in rows">
-      <div class="foodImageInfo" layout="row" layout-align="space-between center">
-        <span class="foodPrice"> ${{food.price}} </span>
-      </div>
-      <img ng-src="{{food.photo}}" class="md-card-image" alt="Food Image">
-      <md-card-content>
-        <div layout="row" layout-align="start center">
-          <div>
-            <img  class="avatar" ng-src="{{food.store.profilePhoto}}"
-                  ng-click="$ctrl.goToStore(food.store._id, -1)"/>
-          </div>
-          <div>
-            <span class="headlineContent">{{food.name}}</span>
-            <br>
-            <div class="subContent"> 
-              {{food.blurb}}
-            </div>
-          </div>
-        </div>
-      </md-card-content>
-    </md-card>
+    <div ng-cloak ng-repeat="food in rows">
+      <food-card food="food" store="food.store" scoped-page="view"></food-card>
+    </div>
   </div>
 </md-content>
 
