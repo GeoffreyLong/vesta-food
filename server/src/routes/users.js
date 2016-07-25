@@ -12,6 +12,9 @@ var Purchase = require('../models/purchase');
 
 var STRIPE_TOKEN_URI = 'https://connect.stripe.com/oauth/token';
 
+var fs = require('fs');
+var imageLocation = '../web-client/app';
+
 // TODO TODO
 //      Create a default "user" object with default photo and whatnot
 //      This will help for the "edit" phase
@@ -30,6 +33,50 @@ router.get('/:userId', function(req, res) {
       res.status(500).send(error);
     });
 });
+
+
+router.post('/:userId', function(req, res) {
+  console.log(req.body);
+  var user = req.body.data;
+
+  // Update the profile photo
+  var oldProfPath = user.profilePhoto;
+  user.profilePhoto = user.profilePhoto.replace("/tmp/", "/");
+  updatePath(oldProfPath, user.profilePhoto);
+
+  var id = user._id;
+  delete user._id;
+  delete user.__v;
+
+  User.findByIdAndUpdate(id, user, {new: false}, function(err, oldUser) {
+    if (err) {
+      console.log(err);
+      res.status(500).send(err);
+    }
+    else {
+      // Move the photos to the tmp folder
+      // Alternatively could use timestamps in the titles or in the db
+      console.log(user);
+      res.status(200).send("");
+    }
+  });
+
+});
+
+var updatePath = function(oldPath, newPath){
+  oldPath = imageLocation + oldPath;
+  newPath = imageLocation + newPath;
+  if (oldPath !== newPath){
+    console.log(oldPath, newPath);
+    fs.rename(oldPath, newPath, function(err) {
+      if ( err ) console.log('ERROR: ' + err);
+    });
+  }
+}
+var spliceTmp = function(string) {
+  return string.slice(0, 8) + "tmp/" + string.slice(8);
+}
+
 
 
 /**
@@ -219,5 +266,6 @@ router.post('/:userId/purchases', function (req, res) {
       res.status(500).send();
     });
 });
+
 
 module.exports = router;

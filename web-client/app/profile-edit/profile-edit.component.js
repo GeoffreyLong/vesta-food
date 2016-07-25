@@ -1,7 +1,7 @@
 angular.module('profileEdit').component('profileEdit', {
   templateUrl: 'profile-edit/profile-edit.template.html',
   controller: function ProfileEditController($scope, $location, $http, dataService,
-                                              NgMap, $mdMedia, $mdDialog){
+                                              NgMap, $mdMedia, $mdDialog, Upload){
     // NOTE might not be the best way to handle the path...
     //      This is the same way as is done in app.config.js
     var re = new RegExp("\/user\/(.*)\/edit");
@@ -129,13 +129,7 @@ angular.module('profileEdit').component('profileEdit', {
         data: photoData
       }).then(function(data, status, headers, config){
         if (data.status == 200) {
-          if ($scope.photoNum == 0) {
-            // Update the photo for the view
-            $scope.store.profilePhoto = data.data;
-          }
-          else {
-            $scope.store.foods[$scope.photoNum-1].photo = data.data;
-          }
+          $scope.user.profilePhoto = data.data;
         }
         else {
           //TODO error handling

@@ -9,7 +9,7 @@ var User = mongoose.model('User', {
   address: {
     formatted: String,
     lat: Number,
-    lon: Number
+    lng: Number
   },
   description: String,
   stripe: {
