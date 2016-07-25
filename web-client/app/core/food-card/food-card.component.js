@@ -74,6 +74,18 @@ angular.module('foodCard').component('foodCard', {
           .parent(ev.srcElement.closest('md-card'))
       );
     }
+
+    this.goToStore = function(storeId, itemIndex) {
+      console.log("Store is: " + storeId);
+      
+      if (itemIndex >= 0) {
+        $location.path('/store/' + storeId + '#' + itemIndex);
+      }
+      else {
+        $location.path('/store/' + storeId);
+      }
+    }
+
   },
   bindings: {
     food: '=',
