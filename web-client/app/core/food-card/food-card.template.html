@@ -7,9 +7,9 @@
     </span>
   </div>
   <img  ng-if="food.photo" ng-src="{{food.photo}}" 
-        class="md-card-image" alt="Food Image" ng-click="imageAction()">      
+        class="md-card-image" alt="Food Image" ng-click="imageAction($event, food)">      
   <img  ng-if="!food.photo" ng-src="/images/user/default_food.jpg" 
-        class="md-card-image" alt="Food Image" ng-click="imageAction()">
+        class="md-card-image" alt="Food Image" ng-click="imageAction($event, food)">
 
   <!-- WHAT if I remove the quotes from view ("scopedPage === view")
             It works opposite of this -->
@@ -20,7 +20,7 @@
               ng-click="$ctrl.goToStore(food.store._id, -1)"/>
       </div>
       <div>
-        <span class="headlineContent">{{food.name}}</span>
+        <span class="headlineContent" ng-click="showBottomSheet($event, food)">{{food.name}}</span>
         <br>
         <div class="subContent"> 
           {{food.blurb}}

@@ -22,8 +22,20 @@ angular.module('foodCard').component('foodCard', {
     //      When the user is in the stores view a click should take you to the store
     //      with a focus on the specific food selected
     //      When the user is in edit, it should launch the edit dialog
-    $scope.imageAction = function(){
+    $scope.imageAction = function(ev, food, index){
+      console.log($scope.scopedPage);
+      if ($scope.scopedPage === 'view'){
+        console.log('view');
+        $scope.showBottomSheet(ev, food);
+      }
+      if ($scope.scopedPage === 'edit'){
+        console.log('edit');
+        // TODO this function is in the photo-editor in the store edit
+        //$scope.showConfirm(ev, food.photo, index+1);
+      }
+      if ($scope.scopedPage === 'front'){
 
+      }
     }
 
     $scope.showBottomSheet = function(ev, food){
