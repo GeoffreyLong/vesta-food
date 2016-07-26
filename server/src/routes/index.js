@@ -32,34 +32,6 @@ module.exports = function(passport){
   });
   var upload = multer({storage: storage});
 
-  // var mongoose = require('mongoose');
-  // var mongo = require('mongodb');
-  //
-  // var path = require("path");
-  //
-  // // NOTE: Not so sure about this
-  // // Could just module.exports this auth information... this seems convoluted
-  // // Does it offer any benefits accessing it in this manner?
-  // var common = require('./common');
-  // var config = common.config();
-  //
-  //
-  // var Schema = mongoose.Schema;
-  //
-  // var EarlyUserSchema = new Schema({
-  //     email: String,
-  // });
-  // var EarlySellerSchema = new Schema({
-  //     firstName: String,
-  //     lastName: String,
-  //     email: String,
-  //     telephone: String,
-  //     pickupLocation: String,
-  // });
-  //
-  // var EarlyUsers = mongoose.model('earlyUsers', EarlyUserSchema);
-  // var EarlySellers = mongoose.model('earlySellers', EarlySellerSchema);
-
 
   // This endpoint is for when the user enters an address in the front page
   // It will store the address in the session object for later authentications
@@ -96,16 +68,16 @@ module.exports = function(passport){
     var date = new Date();
     var query;
     if (req.query.current === 'true') {
-      query = Stores.model.find({'endDateTime': {$gt: date}, 'isValid': true});
+      query = Event.find({'endDateTime': {$gt: date}});
     }
     else if (req.query.current === 'false') {
-      query = Stores.model.find({'endDateTime': {$lte: date}, 'isValid': true});
+      query = Event.find({'endDateTime': {$lte: date}});
     }
     else {
-      query = Stores.model.find({'isValid': true});
+      query = Event.model.find({});
     }
     
-    query.populate('foods').then(function(stores) {
+    query.populate('foods').populate('host').then(function(stores) {
         // Default is to send all
         res.status(200).send(stores);
       }, function (error) {
