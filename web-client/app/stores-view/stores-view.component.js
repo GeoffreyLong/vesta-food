@@ -19,7 +19,6 @@ angular.module('storesView').component('storesView', {
       // Three looks good on my screen
       // Might want to make it dynamic based on screen size
       $scope.current = chunk(data.data);
-      console.log($scope.currentStores);
     }, function(err) {
       console.log(err);
     });
@@ -82,18 +81,8 @@ angular.module('storesView').component('storesView', {
       }
     }, 500);
 
-    // If itemIndex is set to one of the photos, then one of the foods was clicked
-    // In this case go to the storefront with some sort of emphasis on the food item
-    this.goToStore = function(store, itemIndex) {
-      dataService.setStore(store);
-      console.log("Store is: " + store);
-      
-      if (itemIndex >= 0) {
-        $location.path('/store/' + store._id + '#' + itemIndex);
-      }
-      else {
-        $location.path('/store/' + store._id);
-      }
+    $scope.goTo = function(loc) {
+      $location.path(loc);
     }
   }
 });

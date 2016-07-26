@@ -28,10 +28,11 @@
         <div class="slickPadding" ng-if="event.foods.length <= 1"> </div>
         <div layout="row" layout-align="start center">
           <div>
-            <img class="avatar" ng-src="{{event.host.profilePhoto}}"/>
+            <img  class="avatar" ng-src="{{event.host.profilePhoto}}" 
+                  ng-click="goTo('user/' + event.host._id)"/>
           </div>
           <div>
-            <span class="headlineContent" ng-click="$ctrl.goToStore(event, -1)">{{event.name}}</span>
+            <span class="headlineContent" ng-click="goTo('/event/' + event._id)">{{event.name}}</span>
             <br>
             <span ng-if="event.startDateTime" class="subContent"> 
               Available:
@@ -85,10 +86,11 @@
         <div class="slickPadding" ng-if="event.foods.length <= 1"> </div>
         <div layout="row" layout-align="start center">
           <div>
-            <img class="avatar" ng-src="{{event.host.profilePhoto}}"/>
+            <img  class="avatar" ng-src="{{event.host.profilePhoto}}" 
+                  ng-click="goTo('user/' + event.host._id)"/>
           </div>
           <div>
-            <span class="headlineContent" ng-click="$ctrl.goToStore(event, -1)">{{event.name}}</span>
+            <span class="headlineContent" ng-click="goTo('/event/' + event._id)">{{event.name}}</span>
             <br>
             <span ng-if="event.startDateTime" class="subContent"> 
               Available:
