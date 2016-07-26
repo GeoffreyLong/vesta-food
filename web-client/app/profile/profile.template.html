@@ -1,1 +1,27 @@
-Hello World
+<div class="importantFixedDiv">
+  <md-button class="importantFixedButton" ng-if="checkOwnership()" ng-click="editUser()">
+    <md-icon class="material-icons"> edit </md-icon> Edit!
+  </md-button>
+</div>
+  
+<div id="titleDiv">
+  <div id="titleRow" layout="row" layout-align="space-between center">
+    <!-- TODO will need to deal with long titles here -->
+    <img ng-if="user.profilePhoto" src="{{user.profilePhoto}}" alt="Profile Picture"/>
+    <img ng-if="!user.profilePhoto" src="/images/user/default_profile.jpg" alt="Profile Picture"/>
+    <span id="storeTitle" class="md-display-1"> {{user.displayName}} </span>
+    <div id="starPlaceholder"> </div>
+  </div>
+  <div class="underline" flex/>
+  <div id="description">
+    {{user.description}}
+  </div>
+</div>
+
+
+<!-- TODO 
+          Events hosted (current and past)
+          Events attended (current and past)
+          Friends?
+          Different if viewing it yourself?
+-->

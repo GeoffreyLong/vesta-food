@@ -293,28 +293,28 @@ food-card md-card .foodPrice {
   font-weight: bold;
 }
 /******************************** STORE FRONT ********************************/
-store-front slick .slick-arrow.slick-prev:before,
-store-front slick .slick-arrow.slick-next:before {
+profile slick .slick-arrow.slick-prev:before,
+profile slick .slick-arrow.slick-next:before {
   opacity: 1;
 }
-store-front slick .slick-arrow.slick-prev:focus:before,
-store-front slick .slick-arrow.slick-next:focus:before {
+profile slick .slick-arrow.slick-prev:focus:before,
+profile slick .slick-arrow.slick-next:focus:before {
   opacity: 1;
 }
-store-front slick .slick-slide {
+profile slick .slick-slide {
   transform: scale(0.6);
   transition: all 0.5s;
 }
-store-front slick .slick-slide md-card-actions {
+profile slick .slick-slide md-card-actions {
   display: none;
 }
-store-front slick .slick-center {
+profile slick .slick-center {
   transform: scale(1);
 }
-store-front slick .slick-center md-card-actions {
+profile slick .slick-center md-card-actions {
   display: flex;
 }
-store-front #titleDiv {
+profile #titleDiv {
   margin-top: 20px;
   width: 80%;
   margin-left: auto;
@@ -322,52 +322,58 @@ store-front #titleDiv {
 /* Will center the storeTitle in absence of reviews */
 }
 @media screen and (max-width: 960px) {
-  store-front #titleDiv {
+  profile #titleDiv {
     width: 100%;
   }
 }
-store-front #titleDiv #titleRow {
+profile #titleDiv #titleRow {
   padding: 10px;
 }
-store-front #titleDiv img {
+profile #titleDiv img {
 /* Height of md-display-3 */
   height: 56px;
   border-radius: 50%;
 }
-store-front #titleDiv #storeTitle {
+profile #titleDiv #storeTitle {
   display: inline-block;
 }
 @media screen and (max-width: 960px) {
-  store-front #titleDiv #storeTitle {
+  profile #titleDiv #storeTitle {
     font-size: 30px;
     line-height: 30px;
   }
 }
 @media screen and (max-width: 700px) {
-  store-front #titleDiv #storeTitle {
+  profile #titleDiv #storeTitle {
     font-size: 24px;
     line-height: 24px;
   }
 }
-store-front #titleDiv #starPlaceholder {
+profile #titleDiv #starPlaceholder {
   width: 56px;
 }
-store-front #titleDiv .underline {
+profile #titleDiv .underline {
   height: 5px;
   background-color: #00b36f;
 }
-store-front #descriptionPanel {
+profile #titleDiv #description {
+  text-align: center;
+  padding: 5px 20px 20px 20px;
+  font-weight: 600;
+  color: #777;
+}
+profile #descriptionPanel {
   margin-top: 50px;
   margin-bottom: 50px;
 }
 @media screen and (max-width: 960px) {
-  store-front #descriptionPanel {
+  profile #descriptionPanel {
     max-width: 500px;
     margin: auto;
     margin-top: 50px;
   }
 }
-store-front #descriptionPanel #storeDescription {
+profile #descriptionPanel #storeDescription {
   padding-right: 2%;
 }
 #storeReviews .altCard {
