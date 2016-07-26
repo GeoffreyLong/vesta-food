@@ -25,7 +25,7 @@ angular
      * @return              The number of the specific food item in the cart. 
      *                      Returns 0 on error.
      */
-    this.addToCart = function(storeId, storeTitle, food) {
+    this.addToCart = function(eventId, hostId, food) {
       // NOTE I think we want to do this if they don't have storage
       if (!sessionStorage) return 0;
 
@@ -36,18 +36,18 @@ angular
 
       // NOTE instead of dealing with these booleans, could simply return when found
       // NOTE It would be cool if I could dynamically name the keys
-      var foundStore = false;
+      var foundEvent = false;
       var returnQuantity = 0;
 
 
       // Iterate through the individual stores in the cart
-      cart.forEach(function(storeCart){
-        if (storeCart.storeId == storeId) {
-          foundStore = true;
+      cart.forEach(function(subCart){
+        if (subCart.eventId == eventId) {
+          foundEvent = true;
           var foundFood = false;
 
           // Iterate through foods in the matching store cart to see if the food is there
-          storeCart.foods.forEach(function(cartFood){
+          subCart.foods.forEach(function(cartFood){
             if (cartFood._id == food._id){
               foundFood = true;
               cartFood.quantity ++;
@@ -58,24 +58,25 @@ angular
           if (!foundFood) {
             returnQuantity = 1;
             food.quantity = 1;
-            storeCart.foods.push(food);
+            subCart.foods.push(food);
           }
         }
       })
 
       // If no store was found, add that store and the food to the cart
-      if (!foundStore) {
-        var storeCart = {};
-        storeCart.storeId = storeId;
-        storeCart.storeTitle = storeTitle;
-        storeCart.foods = [];
+      if (!foundEvent) {
+        var subCart = {};
+        subCart.eventId = eventId;
+        subCart.hostId = hostId;
+        subCart.foods = [];
 
         returnQuantity = 1;
         food.quantity = 1;
-        storeCart.foods.push(food);
-        cart.push(storeCart);
+        subCart.foods.push(food);
+        cart.push(subCart);
       }
 
+      console.log(cart);
       this.updateCart(cart);
       return returnQuantity;
     }

@@ -3,15 +3,15 @@ angular.module('foodCard').component('foodCard', {
   controller: function FoodCardController($scope, $location, $mdBottomSheet,
                                             cartService, $mdToast) {
     $scope.food = this.food;
-    $scope.store = this.store;
+    $scope.event = this.event;
 
     $scope.isEdit = function(){
       // Getting hacky with this
       // TODO fix up
-      var re = new RegExp("\/store\/(.*)\/edit");
-      var storeId = re.exec($location.path());    
+      var re = new RegExp("\/event\/(.*)\/edit");
+      var id = re.exec($location.path());    
     
-      if (storeId) {
+      if (id) {
         return true;
       }
       return false;
@@ -21,6 +21,7 @@ angular.module('foodCard').component('foodCard', {
     //      When the user is in the stores view a click should take you to the store
     //      with a focus on the specific food selected
     //      When the user is in edit, it should launch the edit dialog
+    //      SEE BULK MODEL -- I think it's implemented there
     $scope.imageAction = function(){
 
     }
@@ -38,7 +39,7 @@ angular.module('foodCard').component('foodCard', {
 
       if ($('md-bottom-sheet').length == 0) {
         $mdBottomSheet.show({
-          templateUrl: 'store-front/food-info-bsheet.template.html',
+          templateUrl: 'core/food-card/food-info-bsheet.template.html',
           parent: ev.currentTarget.closest('md-card'),
           clickOutsideToClose: true,
           disableParentScroll: false,
@@ -64,7 +65,7 @@ angular.module('foodCard').component('foodCard', {
       //      Initially I planned on placing it inside the user session object
       //      I think it is better to not have to deal 
       //      with passing this info back and forth though
-      var foodQty = cartService.addToCart($scope.store._id, $scope.store.storeTitle, food);
+      var foodQty = cartService.addToCart($scope.event._id, $scope.event.host._id, food);
       $mdToast.show(
         $mdToast.simple()
           .textContent(foodQty + ' of item added to cart')
@@ -76,6 +77,6 @@ angular.module('foodCard').component('foodCard', {
   },
   bindings: {
     food: '=',
-    store: '='
+    event: '='
   }
 });

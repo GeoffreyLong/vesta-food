@@ -94,7 +94,8 @@ angular.module('event').component('event', {
     //    Maybe we only want to fetch the session once
     $scope.checkOwnership = function() {
       var session = authService.getSessionSynch();
-      return (session && session.user && session.user._id === $scope.event.host._id);
+      return (session && session.user && $scope.event 
+                      && session.user._id === $scope.event.host._id);
     }
 
     $scope.editStore = function() {
