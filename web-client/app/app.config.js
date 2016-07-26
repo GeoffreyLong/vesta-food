@@ -68,6 +68,8 @@ angular
           resolve: {
             auth: function ($q, authService) {
               // TODO requires any more?
+              //      Make sure they have stripe?
+              //      Only need stripe if paid event though
               return authService.getUserSession();
             }
           }

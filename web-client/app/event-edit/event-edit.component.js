@@ -1,7 +1,7 @@
 angular.module('eventEdit').component('eventEdit', {
   templateUrl: 'event-edit/event-edit.template.html',
   controller: function EventEditController($scope, $location, $http, dataService,
-                                            $mdMedia, $mdDialog, NgMap, Upload){
+                                            $mdMedia, $mdDialog, NgMap, Upload, authService){
 
     $scope.event = {};
     dataService.setEvent($scope.event);
@@ -241,6 +241,8 @@ angular.module('eventEdit').component('eventEdit', {
       if (checkForFood() && checkForms() && checkPhotos()){
         console.log($scope.event);
         var data = $scope.event;
+        var session = authService.getSessionSynch();
+        data.host = session.user._id;
         $http.post('api/event/' + data._id, {
           data: data
         }).then(function(data) {
