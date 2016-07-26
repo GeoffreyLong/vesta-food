@@ -246,7 +246,7 @@ angular.module('eventEdit').component('eventEdit', {
         $http.post('api/event/' + data._id, {
           data: data
         }).then(function(data) {
-          $location.path("/event/" + data._id);
+          $location.path("/event/" + data.data._id);
         }, function(err) {
           // TODO error handling
           console.log(err);
