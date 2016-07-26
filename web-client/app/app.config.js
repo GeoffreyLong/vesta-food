@@ -44,7 +44,6 @@ angular
             + '<profile></profile>'
             + '</div>',
           resolve: {
-            // Going to the stores view only requires a session
             auth: function ($q, authService) {
               return authService.getSession();
             }
@@ -56,9 +55,33 @@ angular
             + '<profile-edit></profile-edit>'
             + '</div>',
           resolve: {
-            // Going to the stores view only requires a session
             auth: function ($q, authService) {
               return authService.profileEditAuth();
+            }
+          }
+        })
+        .when('/event/create', {
+          template: '<vesta-nav></vesta-nav>'
+            + '<div id="nonNavContainer">'
+            + '<event-edit></event-edit>'
+            + '</div>',
+          resolve: {
+            auth: function ($q, authService) {
+              // TODO requires any more?
+              return authService.getUserSession();
+            }
+          }
+        })
+        .when('/event/:id/edit', {
+          template: '<vesta-nav></vesta-nav>'
+            + '<div id="nonNavContainer">'
+            + '<event-edit></event-edit>'
+            + '</div>',
+          resolve: {
+            auth: function ($q, authService) {
+              // TODO requires any more?
+              // Will require similar to store editing (make sure user owns event)
+              return authService.getUserSession();
             }
           }
         })
