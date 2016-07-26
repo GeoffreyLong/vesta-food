@@ -197,6 +197,12 @@ module.exports = function(passport){
   }
 
 
+  router.get('/event/:id', function(req, res) {
+    Event.findById(req.params.id).populate('foods').populate('host').then(function(event) {
+      res.status(200).send(event);
+    });
+  });
+
   /**
    * Create or edit store
    */

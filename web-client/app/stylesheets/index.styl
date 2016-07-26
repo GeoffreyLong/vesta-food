@@ -292,7 +292,7 @@ food-card
 
 
 /******************************** STORE FRONT ********************************/
-profile
+event
   slick
     .slick-arrow.slick-prev:before, .slick-arrow.slick-next:before
       opacity: 1
@@ -309,54 +309,61 @@ profile
       md-card-actions
         display: flex
 
-  #titleDiv
-    margin-top: 20px
-    width: 80%
-    margin-left: auto
-    margin-right: auto
+#titleDiv
+  margin-top: 20px
+  width: 80%
+  margin-left: auto
+  margin-right: auto
+  @media screen and (max-width: 960px)
+    width: 100%
+
+  #titleRow
+    padding: 10px
+
+  img
+    /* Height of md-display-3 */
+    height: 56px
+    border-radius: 50%
+
+  #storeTitle
+    display:inline-block
     @media screen and (max-width: 960px)
-      width: 100%
+      font-size: 30px
+      line-height: 30px
+    @media screen and (max-width: 700px)
+      font-size: 24px
+      line-height: 24px
 
-    #titleRow
-      padding: 10px
+  /* Will center the storeTitle in absence of reviews */
+  #starPlaceholder
+    width: 56px
 
-    img
-      /* Height of md-display-3 */
-      height: 56px
-      border-radius: 50%
+  .underline
+    height: 5px;
+    background-color: $primaryColor
 
-    #storeTitle
-      display:inline-block
-      @media screen and (max-width: 960px)
-        font-size: 30px
-        line-height: 30px
-      @media screen and (max-width: 700px)
-        font-size: 24px
-        line-height: 24px
+  #description
+    text-align: center
+    padding: 5px 20px 20px 20px
+    font-weight: 600
+    color: #777
 
-    /* Will center the storeTitle in absence of reviews */
-    #starPlaceholder
-      width: 56px
+  .underUnderline
+    text-align: center
+    padding: 5px 20px 20px 20px
+    font-weight: 600
+    color: #777
 
-    .underline
-      height: 5px;
-      background-color: $primaryColor
 
-    #description
-      text-align: center
-      padding: 5px 20px 20px 20px
-      font-weight: 600
-      color: #777
-
-  #descriptionPanel
+#descriptionPanel
+  margin-top: 50px
+  margin-bottom: 50px
+  @media screen and (max-width: 960px)
+    max-width: 500px
+    margin: auto
     margin-top: 50px
-    margin-bottom: 50px
-    @media screen and (max-width: 960px)
-      max-width: 500px
-      margin: auto
-      margin-top: 50px
-    #storeDescription
-      padding-right: 2%
+  #storeDescription
+    padding-right: 2%
 
   
 

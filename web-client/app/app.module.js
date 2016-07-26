@@ -11,6 +11,7 @@ angular.module('vestaApp', [
   'vestaNav',
   'profile',
   'profileEdit',
+  'event',
   'eventEdit',
   'storesView',
   'splogin',

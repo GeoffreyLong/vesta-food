@@ -60,6 +60,17 @@ angular
             }
           }
         })
+        .when('/event/:id', {
+          template: '<vesta-nav></vesta-nav>'
+            + '<div id="nonNavContainer">'
+            + '<event></event>'
+            + '</div>',
+          resolve: {
+            auth: function ($q, authService) {
+              return authService.getSession();
+            }
+          }
+        })
         .when('/event/create', {
           template: '<vesta-nav></vesta-nav>'
             + '<div id="nonNavContainer">'
@@ -212,17 +223,20 @@ angular
         if (eventObj.sessioned === false) {
           $location.path("/splash");
         }
-        if (eventObj.authenticated === false) {
+        else if (eventObj.authenticated === false) {
           $location.path("/login");
         }
         // Might cause issues if errored on stripe callback to store edit transition
-        if (eventObj.storeOwner === false) {
+        else if (eventObj.storeOwner === false) {
           $window.history.back();
         }
-        if (eventObj.profileOwner === false) {
+        else if (eventObj.profileOwner === false) {
           $window.history.back();
         }
-        if (eventObj.store === false) {
+        else if (eventObj.store === false) {
+          $location.path("/");
+        }
+        else {
           $location.path("/");
         }
       });
