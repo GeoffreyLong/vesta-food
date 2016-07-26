@@ -11,6 +11,9 @@ angular
     this.user = null;
     this.clonedUser = null;
     
+    this.event = null;
+    this.clonedEvent = null;
+
     this.editPhoto = null;
     this.storeCart = null;
 
@@ -26,6 +29,19 @@ angular
     this.getClonedStore = function() {
       return jQuery.extend(true, {}, this.clonedStore);
     }
+
+    // Getters and Setters for Event
+    this.setEvent = function(event) {
+      this.event = event;
+      this.clonedEvent = jQuery.extend(true, {}, event);
+    }
+    this.getEvent = function() {
+      return this.event;
+    }
+    this.getClonedEvent = function() {
+      return jQuery.extend(true, {}, this.clonedEvent);
+    }
+
 
     // Getters and Setters for User
     this.setUser = function(user) {

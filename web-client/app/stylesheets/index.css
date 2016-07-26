@@ -468,7 +468,7 @@ profile #descriptionPanel #storeDescription {
 /* Firefox 18- */
   opacity: 0;
 }
-#storeHours md-input-container {
+#timeEntry md-input-container {
   margin-top: 3px;
 }
 .editCard #profilePhotoEdit {
