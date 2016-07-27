@@ -1,21 +1,9 @@
-module.exports = function(passport){
+module.exports = function(passport) {
   var FacebookStrategy   = require('passport-facebook').Strategy;
   var User = require('../models/user');
-
-  // Get the correct configuration down
   var config = require('../config')();
 
-	passport.use(new FacebookStrategy({
-                  clientID: config.facebook.appID,
-                  clientSecret:config.facebook.appSecret,
-                  callbackURL: config.facebook.callbackUrl,
-                  profileFields: [
-                    'id',
-                    'displayName',
-                    'photos',
-                    'emails'
-                  ]
-              }, function(access_token, refresh_token, profile, done) {
+  var handleLogin = function(access_token, refresh_token, profile, done) {
     process.nextTick(function () {
       User.findOne({ 'fbID' :  profile.id }, function(err, user) {
         // In case of any error, return using the done method
@@ -42,8 +30,8 @@ module.exports = function(passport){
             // facebook can return multiple emails so we'll take the first
             newUser.email = profile.emails[0].value;
           }
-          
-          newUser.displayName = profile.displayName
+
+          newUser.displayName = profile.displayName;
 
           // save our user to the database
           newUser.save(function(err, dbUser) {
@@ -58,8 +46,18 @@ module.exports = function(passport){
         }
       });
     });
-  }));
+  };
+  var strategy = new FacebookStrategy({
+    clientID: config.facebook.appID,
+    clientSecret:config.facebook.appSecret,
+    callbackURL: config.facebook.callbackUrl,
+    profileFields: [
+      'id',
+      'displayName',
+      'photos',
+      'emails'
+    ]
+  }, handleLogin);
 
-
-    
-}
+	passport.use(strategy);
+};
