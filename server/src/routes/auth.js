@@ -16,8 +16,13 @@ router.get('/login', function(req, res) {
 
 
 // Passport Router
-// Add scope?
-router.get('/facebook', passport.authenticate('facebook'));
+router.get('/facebook',
+  passport.authenticate('facebook', {
+    scope: [
+      'public_profile'
+    ]
+  })
+);
 
 router.get('/facebook/callback',
   passport.authenticate('facebook', {
