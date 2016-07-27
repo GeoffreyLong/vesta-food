@@ -19,7 +19,9 @@ router.get('/login', function(req, res) {
 router.get('/facebook',
   passport.authenticate('facebook', {
     scope: [
-      'public_profile'
+      'public_profile',
+      'email',
+      'user_friends'
     ]
   })
 );
