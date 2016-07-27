@@ -1,0 +1,190 @@
+<div class="importantFixedDiv" layout="column" ng-if="!checkEquality()">
+  <md-button class="importantFixedButton" ng-click="saveChanges()"> 
+    Save Changes
+  </md-button>
+  <md-button class="importantFixedButton" ng-click="resetChanges()"> 
+    Undo Changes
+  </md-button>
+</div>
+
+<span class="md-display-2"> Event Information </span>
+<div id="infoEditDiv">
+  <form name="infoForm">
+    <md-card class="editCard">
+      <div class="innerEditDiv"> 
+        <div  id="descriptionPanel" layout="row" layout-align-gt-sm="center center" 
+              layout-xs="column" layout-sm="column">
+          <div flex id="nonMapDiv">
+            <div layout="row" layout-align="space-between center">
+              <md-input-container class="md-block">
+                <label class="md-title"> Event Name </label>
+                <input  type="text" name="name" ng-model="event.name" 
+                        maxlength="30" md-maxlength="30" required />
+                <div ng-messages="infoForm.name.$error">
+                  <div ng-message="required">This is required.</div>
+                </div>
+              </md-input-container>
+            </div>
+
+            <md-input-container class="md-block">
+              <label class='md-title'> Event Description </label>
+              <!-- TODO restrict from pressing "enter" a bunch... or at all -->
+              <textarea class="descriptionEdit" name="description"
+                        ng-model="event.description" md-maxlength="300" maxlength="300" 
+                        required>
+              </textarea>
+              <div ng-messages="infoForm.description.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
+            </md-input-container>
+
+            <span class='md-title'> Event Hours: </span>
+
+            <div layout="row" id="timeEntry" layout-align="space-between start">
+              <div>
+                <!-- TODO must be today or after -->
+                <md-datepicker  ng-model="event.date" md-placeholder="Enter date" 
+                                required name="date">
+                </md-datepicker>
+                <div  ng-messages="infoForm.date.$error" 
+                      ng-show="infoForm.date.$touched"
+                      style="margin-left:65px; color:#FF6D00">
+                  <div ng-message="valid">Invalid Date.</div>
+                  <div ng-message="required">This is required.</div>
+                </div>
+              </div>
+
+              <!-- TODO assert start before end -->
+              <!-- TODO find how to error message invalid times -->
+              <md-input-container flex class="md-block">
+                <label class="md-title"> Start Time: </label>
+                <input  type="time" ng-model="event.startTime" name="startTime" 
+                        placeholder="HH:mm" required/>
+                <div ng-messages="infoForm.startTime.$error">
+                  <div ng-message="required">This is required.</div>
+                </div>
+              </md-input-container>
+              <md-input-container flex class="md-block">
+                <label class="md-title"> End Time: </label>
+                <input  type="time" ng-model="event.endTime" name="endTime" 
+                        placeholder="HH:mm" required/>
+                <div ng-messages="infoForm.endTime.$error">
+                  <div ng-message="required">This is required.</div>
+                </div>
+              </md-input-container>
+            </div>
+          </div>
+          
+          <!-- TODO not sure if we need this -->
+          <div flex>
+            <md-input-container class="md-block" id="addressEditContainer">
+              <label class="md-title"> Address </label>
+              <input  id="addressEdit" places-auto-complete types="['geocode']" ng-model="event.address.formatted" 
+                      on-place-changed="placeChanged()" name="address" required/>
+              <div ng-messages="infoForm.address.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
+            </md-input-container>
+            <ng-map center="{{event.address.lat}}, {{event.address.lng}}" zoom="14">
+              <marker position="{{event.address.lat}}, {{event.address.lng}}" title="Event Location"></marker> 
+            </ng-map>
+          </div>
+        </div>
+      </div>
+
+    </md-card>
+  </form>
+</div>
+
+<span class="md-display-2"> Food Items </span>
+<form name="foodFormContainer">
+<div ng-repeat="food in event.foods track by $index" class="foodEditDiv">
+  <ng-form name="foodForm">
+    <md-card class="editCard">
+      <div class="innerEditDiv"> 
+        <div layout="row" layout-align-gt-sm="space-between center" layout-xs="column" layout-sm="column">
+          <div flex flex-gt-sm=50 flex-md=60>
+            <!-- 
+                  TODO  require things, make sure the max lengths are correct,
+                        alter the units so they accept the right things, etc
+            -->
+            <!-- Should probably make these md-inputs -->
+
+            <div layout="column" layout-gt-xs="row" layout-align-sm="center center">
+              <div layout="row">
+                <md-input-container flex class="md-block">
+                  <label class="md-title"> Name </label>
+                  <input  type="text" ng-model="food.name" name="name_{{$index}}" 
+                          maxlength="30" md-maxlength="30" required />
+                  <div ng-messages="foodForm['name_' + $index].$error">
+                    <div ng-message="required">This is required.</div>
+                  </div>
+                </md-input-container>
+                <md-input-container class="foodPriceContainer">
+                  <label class="md-title"> Price </label>
+                  <!-- TODO can set a minimum price here -->
+                  <input  type="number" min="0" step="0.01" ng-model="food.price" 
+                          name="price_{{$index}}" required />
+                  <div ng-messages="foodForm['price_' + $index].$error">
+                    <div ng-message="required">This is required.</div>
+                  </div>
+                </md-input-container>
+              </div>
+              <md-button flex ng-click="showConfirm($event, food.photo, $index+1)">
+                Edit Photo
+              </md-button>
+            </div>
+            <!-- NOTE might want to add an angular comment to this 
+                      saying exactly what I mean
+                      <div class="hint"> Describe how many ozs, etc </div>
+                      Actually removing whole thing for now
+            <md-input-container flex class="md-block">
+              <label class="md-title"> Description of Portion Size </label>
+              <input ng-model="food.portionSize" />
+            </md-input-container>
+            -->
+            <md-input-container flex class="md-block">
+              <label class="md-title"> Description </label>
+              <textarea name="description_{{$index}}" class="descriptionEdit" ng-model="food.description" 
+                        md-maxlength="300" maxlength="300" required>
+              </textarea>
+              <div ng-messages="foodForm['description_' + $index].$error">
+                <div ng-message="required">This is required.</div>
+              </div>
+            </md-input-container>
+
+          </div>
+          <div  class="foodPreview" flex flex-gt-sm=35 
+                layout="column" layout-align="center center">
+            <span style="font-weight:600"> FOOD PREVIEW </span>
+            <food-card food="food"></food-card>
+          </div>
+
+        </div>
+      </div>
+      <md-card-actions layout="row" layout-align="space-between center">
+        <div>
+          <md-button ng-click="deleteFood($index)">Delete Food</md-button>
+        </div>
+        <div>
+          <md-button ng-if="$index != 0" ng-click="swapFoods($index, $index-1)">Move Food Up</md-button>
+          <md-button ng-if="$index != event.foods.length-1" ng-click="swapFoods($index, $index+1)">Move Food Down</md-button>
+        </div>
+      </md-card-actions>
+    </md-card>
+  </ng-form>
+</div>
+</form>
+
+<div id="addFoodDiv" ng-click="addFood()">
+  <md-card>
+  <div layout="row" layout-align="start center">
+    <div>
+      <md-icon class="material-icons"> add </md-icon>
+    </div>
+    <div style="margin:auto">
+      <span class="md-display-1"> ADD A FOOD! </span>
+    </div>
+  </div>
+  </md-card>
+</div>

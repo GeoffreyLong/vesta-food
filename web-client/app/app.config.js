@@ -44,7 +44,6 @@ angular
             + '<profile></profile>'
             + '</div>',
           resolve: {
-            // Going to the stores view only requires a session
             auth: function ($q, authService) {
               return authService.getSession();
             }
@@ -56,9 +55,46 @@ angular
             + '<profile-edit></profile-edit>'
             + '</div>',
           resolve: {
-            // Going to the stores view only requires a session
             auth: function ($q, authService) {
               return authService.profileEditAuth();
+            }
+          }
+        })
+        .when('/event/:id', {
+          template: '<vesta-nav></vesta-nav>'
+            + '<div id="nonNavContainer">'
+            + '<event></event>'
+            + '</div>',
+          resolve: {
+            auth: function ($q, authService) {
+              return authService.getSession();
+            }
+          }
+        })
+        .when('/event/create', {
+          template: '<vesta-nav></vesta-nav>'
+            + '<div id="nonNavContainer">'
+            + '<event-edit></event-edit>'
+            + '</div>',
+          resolve: {
+            auth: function ($q, authService) {
+              // TODO requires any more?
+              //      Make sure they have stripe?
+              //      Only need stripe if paid event though
+              return authService.getUserSession();
+            }
+          }
+        })
+        .when('/event/:id/edit', {
+          template: '<vesta-nav></vesta-nav>'
+            + '<div id="nonNavContainer">'
+            + '<event-edit></event-edit>'
+            + '</div>',
+          resolve: {
+            auth: function ($q, authService) {
+              // TODO requires any more?
+              // Will require similar to store editing (make sure user owns event)
+              return authService.getUserSession();
             }
           }
         })
@@ -187,17 +223,20 @@ angular
         if (eventObj.sessioned === false) {
           $location.path("/splash");
         }
-        if (eventObj.authenticated === false) {
+        else if (eventObj.authenticated === false) {
           $location.path("/login");
         }
         // Might cause issues if errored on stripe callback to store edit transition
-        if (eventObj.storeOwner === false) {
+        else if (eventObj.storeOwner === false) {
           $window.history.back();
         }
-        if (eventObj.profileOwner === false) {
+        else if (eventObj.profileOwner === false) {
           $window.history.back();
         }
-        if (eventObj.store === false) {
+        else if (eventObj.store === false) {
+          $location.path("/");
+        }
+        else {
           $location.path("/");
         }
       });

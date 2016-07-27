@@ -35,6 +35,13 @@
             Edit your profile
           </md-button>
         </md-menu-item>
+        <!-- Should be if stripe authed -->
+        <md-menu-item ng-if="session.user._id" class="md-indent">
+          <md-icon class="material-icons"> edit </md-icon>
+          <md-button ng-if="session.user._id" href="/event/create">
+            Create an event
+          </md-button>
+        </md-menu-item>
         <md-menu-item class="md-indent">
           <md-icon class="material-icons"> dashboard </md-icon>
           <md-button href="/dashboard"> Buyer Dashboard </md-button>

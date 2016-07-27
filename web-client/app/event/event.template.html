@@ -1,0 +1,99 @@
+
+<div class="importantFixedDiv">
+  <md-button class="importantFixedButton" ng-if="checkOwnership()" ng-click="editStore()">
+    <md-icon class="material-icons"> edit </md-icon> Edit!
+  </md-button>
+</div>
+  
+
+
+<div id="titleDiv">
+  <div id="titleRow" layout="row" layout-align="space-between center">
+    <!-- TODO will need to deal with long titles here -->
+    <img ng-if="event.host.profilePhoto" src="{{event.host.profilePhoto}}" alt="Profile Picture"/>
+    <img ng-if="!event.host.profilePhoto" src="/images/user/default_profile.jpg" alt="Profile Picture"/>
+    <span id="storeTitle" class="md-display-1"> {{event.name}} </span>
+    <div id="starPlaceholder"> </div>
+  </div>
+  <div class="underline" flex/>
+  <div class="underUnderline">
+    Event hours:
+    {{event.startDateTime | date:'MM/dd/yyyy @ h:mma'}} 
+    - {{event.endDateTime | date:'h:mma'}}
+  </div>
+</div>
+
+<slick ng-if="foodLoaded" settings="slickConfig" id="storeFrontSlick">
+  <div ng-repeat="food in event.foods">
+    <!-- TODO fix this food card stuff -->
+    <food-card food="food" event="event"></food-card>
+  </div>
+</slick>
+
+<!-- Descriptions and chef info -->
+<div  id="descriptionPanel" layout="row" layout-align="center start" 
+      layout-xs="column" layout-sm="column">
+  <!-- 
+        NOTE this might be too sparse to lay side by side with a map
+        See if I can add more content to this
+        Could add like a "most popular dish" or something
+        Maybe I could even dynamically place it given the size of the description
+  -->
+  <div flex id="storeDescription">
+    <span class='md-title'> Event Description: </span>
+    <span> {{event.description}} </span>
+  </div>
+  <div flex style="width:100%">
+    <!-- NOTE not currently error handling -->
+    <!-- NOTE could add in the current user location -->
+    <span class='md-title'> Event Address: </span>
+    <span> {{event.address.formatted}} </span>
+    <ng-map center="{{event.address.lat}}, {{event.address.lng}}" zoom="14">
+      <marker position="{{event.address.lat}}, {{event.address.lng}}" title="Event Location"></marker> 
+    </ng-map>
+  </div>
+</div>
+
+<!-- 
+      TODO for a later version we can add the dishes they had too
+-->
+<!-- Review Stuff -->
+<!-- An alternative way of doing this would be with lists
+      https://material.angularjs.org/1.0.9/demo/list -->
+<div id="storeReviews">
+  <div ng-repeat="review in storeReviews">
+    <div class="altCard">
+      <div class="profilePhotoDiv">
+        <!-- 
+              NOTE should probably get a stock image for no-photo people 
+              if we even allow that to happen
+        -->
+        <img ng-src="{{review.buyer.photo}}" class="profilePhoto md-card-image" alt="Profile Image" />      
+      </div>
+      <div class="reviewContentContainer">
+        <div class="reviewHeader" layout="row" layout-align="space-between end">
+          <div class='md-title'> {{review.buyer.displayName}} </div>
+          <!-- NOTE not sure if I like this not lining up with the other stars -->
+          <div class="reviewStars"> 
+            <md-icon class="star material-icons" ng-repeat="star in $ctrl.getNumber(review.overall) track by $index"> star </md-icon>
+          </div>
+          <div> {{review.date}} </div>
+        </div>
+        <div ng-if="review.comment" class="reviewComment">
+          {{review.comment}}
+        </div>
+        <!-- 
+              NOTE could alternatively just have slightly different styling
+              Could also just require a comment
+        -->
+        <div ng-if="!review.comment" class="reviewComment">
+          <i>
+            No Review Comment Given!
+          </i>
+        </div>
+
+    </div>
+    </div>
+  </div>
+</div>
+{{slickStyle()}}

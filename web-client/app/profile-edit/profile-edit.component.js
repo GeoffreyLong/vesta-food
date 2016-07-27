@@ -121,7 +121,7 @@ angular.module('profileEdit').component('profileEdit', {
       // Can add progress which is kindof cool 
       //    .progress(function(evt) { parseInt(100.0 * evt.loaded / evt.total); });
       Upload.upload({
-        url: '/api/store/edit/photo',
+        url: '/api/edit/photo',
         headers : {
             'Content-Type': 'multipart/form-data'
         },

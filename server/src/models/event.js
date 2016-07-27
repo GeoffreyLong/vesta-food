@@ -3,17 +3,19 @@ var User = require('./user'); // needed to use query.populate
 var Food = require('./food');
 
 var Event = mongoose.model('Event', {
+  name: String,
+  description: String,
+  startDateTime: Date,
+  endDateTime: Date,  
+  address: {
+    formatted: String,
+    lat: Number,
+    lng: Number
+  },
   host: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
-  startDateTime: Date,
-  endDateTime: Date,  
-  location: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Location'
-  },
-  description: String,
   foods: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Food'

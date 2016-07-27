@@ -13,13 +13,12 @@ angular.module('storesView').component('storesView', {
     //    There might be a good way to do this
     $http({
       method: 'GET',
-      url: 'api/stores?current=true'
+      url: 'api/events?current=true'
     }).then(function(data) {
       // This gives the number of rows
       // Three looks good on my screen
       // Might want to make it dynamic based on screen size
-      $scope.currentStores = chunk(data.data);
-      console.log($scope.currentStores);
+      $scope.current = chunk(data.data);
     }, function(err) {
       console.log(err);
     });
@@ -27,12 +26,12 @@ angular.module('storesView').component('storesView', {
     // Get the past stores from a given location
     $http({
       method: 'GET',
-      url: 'api/stores?current=false'
+      url: 'api/events?current=false'
     }).then(function(data) {
       // This gives the number of rows
       // Three looks good on my screen
       // Might want to make it dynamic based on screen size
-      $scope.previousStores = chunk(data.data);
+      $scope.previous = chunk(data.data);
     }, function(err) {
       console.log(err);
     });
@@ -82,18 +81,8 @@ angular.module('storesView').component('storesView', {
       }
     }, 500);
 
-    // If itemIndex is set to one of the photos, then one of the foods was clicked
-    // In this case go to the storefront with some sort of emphasis on the food item
-    this.goToStore = function(store, itemIndex) {
-      dataService.setStore(store);
-      console.log("Store is: " + store);
-      
-      if (itemIndex >= 0) {
-        $location.path('/store/' + store._id + '#' + itemIndex);
-      }
-      else {
-        $location.path('/store/' + store._id);
-      }
+    $scope.goTo = function(loc) {
+      $location.path(loc);
     }
   }
 });
