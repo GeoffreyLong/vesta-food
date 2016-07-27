@@ -16,6 +16,13 @@ angular.module('eventEdit').component('eventEdit', {
         $scope.event.date = new Date($scope.event.startDateTime);
         $scope.event.startTime = new Date($scope.event.startDateTime);
         $scope.event.endTime = new Date($scope.event.endDateTime);
+  
+        if ($scope.event.orderCutoffTime) {
+          $scope.event.orderCutoff = new Date($scope.event.orderCutoffTime);
+        }
+        else {
+          $scope.event.orderCutoff = new Date($scope.event.endDateTime);
+        }
 
         dataService.setEvent($scope.event);
         $scope.clonedEvent = dataService.getClonedEvent();
@@ -300,6 +307,7 @@ angular.module('eventEdit').component('eventEdit', {
       var date = event.date;
       var startTime = event.startTime;
       var endTime = event.endTime;
+      var orderCutoff = event.orderCutoff;
 
       if (!date || !startTime || !endTime) {
         return false;
@@ -314,6 +322,12 @@ angular.module('eventEdit').component('eventEdit', {
       var end = new Date(date);
       end.setHours(endTime.getHours());
       end.setMinutes(endTime.getMinutes());
+
+      var cutoff = new Date(date);
+      cutoff.setHours(orderCutoff.getHours());
+      cutoff.setMinutes(orderCutoff.getMinutes());
+      console.log(cutoff + '  ' + endTime);
+
 
       // Ensure start DateTime is later than right now
       // TODO Specific $error messages
@@ -331,7 +345,12 @@ angular.module('eventEdit').component('eventEdit', {
         alert("Store Hour Errors");
         return false;
       }
+      if (cutoff > end) {
+        alert("Order Cutoff cannot be after end time");
+        return false;
+      }
 
+      $scope.event.orderCutoffTime = cutoff;
       $scope.event.startDateTime = start;
       $scope.event.endDateTime = end;
       return true;

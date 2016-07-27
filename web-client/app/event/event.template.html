@@ -21,6 +21,9 @@
     {{event.startDateTime | date:'MM/dd/yyyy @ h:mma'}} 
     - {{event.endDateTime | date:'h:mma'}}
   </div>
+  <div class="underUnderline">
+    TODO say whether or not currently accepting orders?
+  </div>
 </div>
 
 <slick ng-if="foodLoaded" settings="slickConfig" id="storeFrontSlick">

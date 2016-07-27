@@ -30,9 +30,13 @@
             <span class="headlineContent" ng-click="goTo('/event/' + event._id)">{{event.name}}</span>
             <br>
             <span ng-if="event.startDateTime" class="subContent"> 
-              Available:
+              Event Hours:
               {{event.startDateTime | date:'MM/dd/yyyy @ h:mma'}} 
               - {{event.endDateTime | date:'h:mma'}}
+            </span>
+            <br>
+            <span ng-if="event.orderCutoffTime" class="subContent"> 
+              Order Before: {{event.orderCutoffTime | date:'MM/dd/yyyy @ h:mma'}} 
             </span>
           </div>
         </div>
@@ -88,7 +92,7 @@
             <span class="headlineContent" ng-click="goTo('/event/' + event._id)">{{event.name}}</span>
             <br>
             <span ng-if="event.startDateTime" class="subContent"> 
-              Available:
+              Event Hours:
               {{event.startDateTime | date:'MM/dd/yyyy @ h:mma'}} 
               - {{event.endDateTime | date:'h:mma'}}
             </span>

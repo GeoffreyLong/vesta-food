@@ -68,10 +68,10 @@ module.exports = function(passport){
     var date = new Date();
     var query;
     if (req.query.current === 'true') {
-      query = Event.find({'endDateTime': {$gt: date}});
+      query = Event.find({'orderCutoffTime': {$gt: date}});
     }
     else if (req.query.current === 'false') {
-      query = Event.find({'endDateTime': {$lte: date}});
+      query = Event.find({'orderCutoffTime': {$lte: date}});
     }
     else {
       query = Event.model.find({});

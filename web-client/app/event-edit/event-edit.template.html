@@ -73,7 +73,20 @@
                 </div>
               </md-input-container>
             </div>
+
+            <div layout="row" layout-align="start center">
+            <span class='md-title'> Order Cutoff Time: </span>
+            <md-input-container style="margin:0; margin-left: 10px; height: 30px">
+              <label class="md-title"> Time: </label>
+              <input  type="time" ng-model="event.orderCutoff" name="startTime" 
+                      placeholder="HH:mm" required/>
+              <div ng-messages="infoForm.startTime.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
+            </md-input-container>
+            </div>
           </div>
+
           
           <!-- TODO not sure if we need this -->
           <div flex>
