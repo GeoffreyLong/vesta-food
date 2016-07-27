@@ -96,7 +96,7 @@ router.get('/:userId/purchases', function (req, res) {
 /**
  * Create a store for a given user.
  */
-router.post('/:userId/store', function(req, res) {
+router.post('/:userId/addStripe', function(req, res) {
   console.log(req.body.scope + ' : ' + req.body.code);
 
   request.post({
@@ -111,51 +111,18 @@ router.post('/:userId/store', function(req, res) {
     if (!stripeError) {
       console.log(body);
 
-      // Create a formatted date
-      var date = new Date();
-      var date = new Date(date.getFullYear(), date.getMonth(), date.getDate(),
-                          date.getHours(), date.getMinutes());
-
-      Store
-        .create({
-          stripe: JSON.parse(body),
-          userId: req.params.userId,
-          startDateTime: date,
-          endDateTime: date,
-        })
-        .then(function (store) {
-          User
-            .where('_id', req.params.userId)
-            .findOne()
-            .exec()
-            .then(function successCallback(user) {
-              user.storeId = store._id;
-              user.save(function (storeError) {
-                if (!storeError) {
-                  console.log("successfully saved store to db");
-                  console.log(store);
-                  // Update the parameters for authentication purposes
-                  req.user.storeId = store._id;
-                  res.status(200).send(store);
-                }
-                else {
-                  console.log("mongoose error saving store");
-                  console.log(storeError);
-                  res.status(500).send();
-                }
-              })
-            }, function errorCallback(error) {
-              console.log("mongoose error finding user");
-              console.log("store error");
-              res.status(500).send(storeError);
-            });
-        }, function (storeError) {
-          console.log('mongoose error creating store');
-          console.log(storeError);
-          res.status(500).send(storeError);
-        });
+      User.findByIdAndUpdate(req.params.userId, 
+                            {"hostStripe": JSON.parse(body)})
+          .then(function(user) {
+        // Set the user object stripe
+        // NOTE consider only adding the stripe field to the existing req.user
+        req.user = user;
+        res.status(200).send(user);
+      }, function(error){
+        console.log("Mongoose error updating user");
+        res.status(400).send(error);
+      });
     }
-
     else {
       console.log('stripe error processing client id');
       console.log(stripeError);

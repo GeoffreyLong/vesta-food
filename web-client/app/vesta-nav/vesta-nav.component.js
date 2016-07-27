@@ -4,6 +4,7 @@ angular.module('vestaNav').component('vestaNav', {
                                           $mdMenu, dataService, $mdDialog, $mdMedia) {
     authService.getSession().then(function(session){
       $scope.session = session;
+      console.log(session);
     }, function(err) {
 
     });

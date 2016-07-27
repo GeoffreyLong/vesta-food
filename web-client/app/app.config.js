@@ -60,6 +60,19 @@ angular
             }
           }
         })
+        // NOTE this needs to be above /event/:id
+        //      else that runs first and assumes that "create" is an id
+        .when('/event/create', {
+          template: '<vesta-nav></vesta-nav>'
+            + '<div id="nonNavContainer">'
+            + '<event-edit></event-edit>'
+            + '</div>',
+          resolve: {
+            auth: function ($q, authService) {
+              return authService.getUserSession();
+            }
+          }
+        })
         .when('/event/:id', {
           template: '<vesta-nav></vesta-nav>'
             + '<div id="nonNavContainer">'
@@ -71,20 +84,6 @@ angular
             }
           }
         })
-        .when('/event/create', {
-          template: '<vesta-nav></vesta-nav>'
-            + '<div id="nonNavContainer">'
-            + '<event-edit></event-edit>'
-            + '</div>',
-          resolve: {
-            auth: function ($q, authService) {
-              // TODO requires any more?
-              //      Make sure they have stripe?
-              //      Only need stripe if paid event though
-              return authService.getUserSession();
-            }
-          }
-        })
         .when('/event/:id/edit', {
           template: '<vesta-nav></vesta-nav>'
             + '<div id="nonNavContainer">'
@@ -93,7 +92,8 @@ angular
           resolve: {
             auth: function ($q, authService) {
               // TODO requires any more?
-              // Will require similar to store editing (make sure user owns event)
+              //      Will require similar to store editing (make sure user owns event)
+              //      Something like profileEditAuth
               return authService.getUserSession();
             }
           }
@@ -111,6 +111,7 @@ angular
           }
         })
         .when('/becomeAChef/stripeCallback', {
+          // TODO move this logic out of the app.config.js
           template: '<vesta-nav></vesta-nav>' + 
                     //'<div layout="row" layout-align="space-around"' +
                     //      'style="margin-top:50%; height:100%">' +
@@ -122,7 +123,7 @@ angular
             var stripeParams = $location.search();
 
             var userId = authService.getSessionSynch().user._id;
-            var url = '/api/users/' + userId + '/store';
+            var url = '/api/users/' + userId + '/addStripe';
             $http
               .post(url, stripeParams)
               .then(function onSuccess(response) {
@@ -133,7 +134,7 @@ angular
 
                 // NOTE could also put this store into the dataService to save a call
                 //      Else, the edit page will reload an object we just had
-                $location.path('/store/' + response.data._id + '/edit');
+                $location.path('/event/create');
               }, function onError(response) {
                 // TODO might want an error Page
                 console.log('error');
@@ -202,7 +203,11 @@ angular
           + '</div>',
           resolve: {
             auth: function ($q, authService) {
-              return authService.getStoreSession();
+              // TODO probably don't need this
+              //      If they don't have stripe then their seller dash will be empty
+              //      Won't be an issue unless we have sensitive control fns in the dash
+              //      Just make sure they cannot access it without typing in the url
+              return authService.getStripedSession();
             }
           }
         })
@@ -235,6 +240,9 @@ angular
         }
         else if (eventObj.store === false) {
           $location.path("/");
+        }
+        else if (eventObj.striped === false) {
+          // TODO launch stripe dialog from vesta nav component
         }
         else {
           $location.path("/");

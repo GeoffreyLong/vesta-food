@@ -38,7 +38,10 @@
         <!-- Should be if stripe authed -->
         <md-menu-item ng-if="session.user._id" class="md-indent">
           <md-icon class="material-icons"> edit </md-icon>
-          <md-button ng-if="session.user._id" href="/event/create">
+          <md-button ng-if="session.user.hostStripe" href="/event/create">
+            Create an event
+          </md-button>
+          <md-button ng-if="!session.user.hostStripe" ng-click="showStripeDialog($event)">
             Create an event
           </md-button>
         </md-menu-item>

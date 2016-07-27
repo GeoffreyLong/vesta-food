@@ -66,7 +66,9 @@ angular
         return deferred.promise;
       }
 
+      
       // Gets the full session object
+      // TODO deprecate in favor of getStripedSession
       function getStoreSession() {
         var deferred = $q.defer();
         if (session && session.user && session.user.storeId) {
@@ -82,6 +84,27 @@ angular
             }
           }, function(err){
             deferred.reject({store: false});
+          });
+        }
+        return deferred.promise;
+      }
+
+      // Gets the full session object
+      function getStripedSession() {
+        var deferred = $q.defer();
+        if (session && session.user && session.user.hostStripe) {
+          deferred.resolve(session);
+        }
+        else {
+          getSessionFromDB().then(function(session){
+            if (session && session.length !== 0 && session.user && session.user.hostStripe) {
+              deferred.resolve(session);
+            }
+            else{
+              deferred.reject({striped: false});
+            }
+          }, function(err){
+            deferred.reject({striped: false});
           });
         }
         return deferred.promise;
@@ -185,6 +208,7 @@ angular
         getSession: getSession,
         getUserSession: getUserSession,
         getStoreSession: getStoreSession,
+        getStripedSession: getStripedSession,
         storeEditAuth: storeEditAuth,
         profileEditAuth: profileEditAuth
       };

@@ -12,16 +12,14 @@ var User = mongoose.model('User', {
     lng: Number
   },
   description: String,
-  stripe: {
-    host: {
-      access_token: String,
-      livemode: Boolean,
-      refresh_token: String,
-      token_type: String,
-      stripe_publishable_key: String,
-      stripe_user_id: String,
-      scope: String
-    }        
+  hostStripe: {
+    access_token: String,
+    livemode: Boolean,
+    refresh_token: String,
+    token_type: String,
+    stripe_publishable_key: String,
+    stripe_user_id: String,
+    scope: String
   },
   hostedEvents: [{
     type: mongoose.Schema.Types.ObjectId,
