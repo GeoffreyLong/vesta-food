@@ -13,7 +13,7 @@ angular.module('vestaApp', [
   'profileEdit',
   'event',
   'eventEdit',
-  'storesView',
+  'eventsView',
   'splogin',
   'storeFront',
   'storeEdit',

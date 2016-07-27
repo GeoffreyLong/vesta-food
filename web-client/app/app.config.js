@@ -29,7 +29,7 @@ angular
         .when('/', {
           template: '<vesta-nav></vesta-nav>'
             + '<div id="nonNavContainer">'
-            + '<stores-view></stores-view>'
+            + '<events-view></events-view>'
             + '</div>',
           resolve: {
             // Going to the stores view only requires a session

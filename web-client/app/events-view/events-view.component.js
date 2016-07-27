@@ -3,8 +3,8 @@
 //    Might want to consider delaying the page render until the slick is slicked
 //    Might want to consider lazy loading after a certain number
 
-angular.module('storesView').component('storesView', {
-  templateUrl: 'stores-view/stores-view.template.html',
+angular.module('eventsView').component('eventsView', {
+  templateUrl: 'events-view/events-view.template.html',
   controller: function StoresViewController(dataService, $location, $scope, $http) {
     // Get all the stores in a given location
     // NOTE might want to cache this at a later date for speed
@@ -42,7 +42,6 @@ angular.module('storesView').component('storesView', {
     // As long as it sets correctly the first time.
     function chunk(arr) {
       var size = 2;
-      console.log(window.innerWidth);
       if (window.innerWidth > 1500) {
         size = 3;
       }
@@ -53,7 +52,9 @@ angular.module('storesView').component('storesView', {
         for (var j = i; j < arr.length; j += size) {
           tempArr.push(arr[j]);
         }
-        newArr.push(tempArr);
+        if (tempArr.length !== 0) {
+          newArr.push(tempArr);
+        }
       }
       return newArr;
     }
@@ -67,7 +68,7 @@ angular.module('storesView').component('storesView', {
     // If not try wrapping this in an image loading event
     //    so it fires after the images have been sent
     // This will also hide the elements until they are ready to be rendered
-    $('#storesContainer').hide();
+    $('#viewContainer').hide();
     var refreshSlick = setInterval(function() {
       if ($('.slider').length > 0) {
         // HACK to avoid slick styling bugs when one column
@@ -75,7 +76,7 @@ angular.module('storesView').component('storesView', {
         // through a setTimeout on the next lines
         $(window).resize();
         
-        $('#storesContainer').show();
+        $('#viewContainer').show();
         clearInterval(refreshSlick);
         $('.slider').slick('setPosition');
       }
