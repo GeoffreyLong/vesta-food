@@ -29,9 +29,9 @@
           </md-button>
           -->
         </md-menu-item>
-        <md-menu-item ng-if="session.user.storeId" class="md-indent">
+        <md-menu-item ng-if="session.user._id" class="md-indent">
           <md-icon class="material-icons"> edit </md-icon>
-          <md-button ng-if="session.user._id" href="/user/{{session.user._id}}/edit">
+          <md-button href="/user/{{session.user._id}}/edit">
             Edit your profile
           </md-button>
         </md-menu-item>
