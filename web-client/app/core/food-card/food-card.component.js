@@ -17,6 +17,13 @@ angular.module('foodCard').component('foodCard', {
       return false;
     }
 
+    $scope.orderClosed = function() {
+      if ($scope.isEdit() || !$scope.event.isOpen){
+        return true;
+      }
+      return false;
+    }
+
     // TODO might be nice to make the images clickable
     //      When the user is in the stores view a click should take you to the store
     //      with a focus on the specific food selected

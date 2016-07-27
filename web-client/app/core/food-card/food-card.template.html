@@ -13,6 +13,6 @@
 
   <md-card-actions class="md-whiteframe-1dp" layout="row" layout-align="center center">
     <md-button flex="50" ng-click="showBottomSheet($event, food)">More Info</md-button>
-    <md-button ng-disabled="isEdit()" flex="50" ng-click="addToCart($event, food)">Add to Cart</md-button>
+    <md-button ng-disabled="orderClosed()" flex="50" ng-click="addToCart($event, food)">Add to Cart</md-button>
   </md-card-actions>
 </md-card>

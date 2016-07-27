@@ -28,6 +28,7 @@ var Event = mongoose.model('Event', {
     status: String
   }],
   orderCutoffTime: Date,
+  isOpen: Boolean,
   confirmationRequired: Boolean,
   privacy: String,
   photos: [String],

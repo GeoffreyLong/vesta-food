@@ -199,6 +199,11 @@ module.exports = function(passport){
 
   router.get('/event/:id', function(req, res) {
     Event.findById(req.params.id).populate('foods').populate('host').then(function(event) {
+      // Check if still receiving orders
+      event.isOpen = true;
+      if (Date.now() >= event.orderCutoffTime) {
+        event.isOpen = false;
+      }
       res.status(200).send(event);
     });
   });
