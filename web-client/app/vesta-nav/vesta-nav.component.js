@@ -9,6 +9,7 @@ angular.module('vestaNav').component('vestaNav', {
 
     });
 
+
     $scope.currentPath = $location.path();
 
     $scope.fblogin = function(){

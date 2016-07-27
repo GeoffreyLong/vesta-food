@@ -69,9 +69,7 @@ angular
             + '</div>',
           resolve: {
             auth: function ($q, authService) {
-              // NOTE could use getStripedSession
-              //      Then run the stripe auth dialog in the rejection
-              return authService.getUserSession();
+              return authService.getStripedSession();
             }
           }
         })
@@ -245,6 +243,9 @@ angular
         }
         else if (eventObj.striped === false) {
           // TODO launch stripe dialog from vesta nav component
+          //      I don't "need" to do this, but if this fails then that's no good
+          //      I think I guarded against failure though... 
+          //        Unless someone explicitly types the url into the browser without auth
         }
         else {
           $location.path("/");
