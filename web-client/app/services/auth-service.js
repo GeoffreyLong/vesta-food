@@ -172,14 +172,13 @@ angular
         // Check to see if session exists
         // If it does and getSession is called then no promise is returned => error
         if (session && (session.address || (session.user && session.user._id))) {
-          if (session && session.user
-            && (session.user._id == userId)) {
+          if (session && session.user && (session.user._id == userId)) {
             return session;
           }
         }
 
         var deferred = $q.defer();
-        getStoreSession().then(function(session){
+        getUserSession().then(function(session){
           if (session && session.user
             && (session.user._id == userId)) {
             deferred.resolve(session)

@@ -69,6 +69,8 @@ angular
             + '</div>',
           resolve: {
             auth: function ($q, authService) {
+              // NOTE could use getStripedSession
+              //      Then run the stripe auth dialog in the rejection
               return authService.getUserSession();
             }
           }

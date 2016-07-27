@@ -19,14 +19,28 @@ router.get('/login', function(req, res) {
 // Add scope?
 router.get('/facebook', passport.authenticate('facebook'));
 
-router.get('/facebook/callback',
-  passport.authenticate('facebook', {
-    successRedirect : '/',
-    failureRedirect: '/splogin'
-  }), function(req, res) {
-    res.redirect('/');
-  }
-);
+router.get('/facebook/callback', function(req, res, next) {
+  passport.authenticate('facebook', function(err, user, info) {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return res.redirect('/');
+    }
+    req.logIn(user, function(err) {
+      if (err) {
+        return next(err);
+      }
+      if (!user.description || !user.address || !user.profilePhoto){
+        console.log(user);
+        return res.redirect('/user/' + user._id + '/edit');
+      }
+      else {
+        return res.redirect('/');
+      }
+    });
+  })(req, res, next);
+});
 
 router.get('/logout', function(req, res){
   // TODO error handling here and on the front end side of this
