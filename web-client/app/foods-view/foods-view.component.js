@@ -3,10 +3,10 @@
 //    Might want to consider delaying the page render until the slick is slicked
 //    Might want to consider lazy loading after a certain number
 
-angular.module('storesView').component('storesView', {
-  templateUrl: 'stores-view/stores-view.template.html',
+angular.module('foodsView').component('foodsView', {
+  templateUrl: 'foods-view/foods-view.template.html',
   controller: function StoresViewController(dataService, $location, $scope, $http) {
-    // Get all the stores in a given location
+    // Get all the foods in a given location
     // NOTE might want to cache this at a later date for speed
     //    Could cache it with the address to check for address changes
     //    Also with a timestamp or at least have it expire
@@ -25,7 +25,7 @@ angular.module('storesView').component('storesView', {
       console.log(err);
     });
 
-    // Get the past stores from a given location
+    // Get the past foods from a given location
     $http({
       method: 'GET',
       url: 'api/foods?current=false'
@@ -70,7 +70,7 @@ angular.module('storesView').component('storesView', {
     // If not try wrapping this in an image loading event
     //    so it fires after the images have been sent
     // This will also hide the elements until they are ready to be rendered
-    $('#storesContainer').hide();
+    $('#foodsContainer').hide();
     var refreshSlick = setInterval(function() {
       if ($('.slider').length > 0) {
         // HACK to avoid slick styling bugs when one column
@@ -78,7 +78,7 @@ angular.module('storesView').component('storesView', {
         // through a setTimeout on the next lines
         $(window).resize();
         
-        $('#storesContainer').show();
+        $('#foodsContainer').show();
         clearInterval(refreshSlick);
         $('.slider').slick('setPosition');
       }

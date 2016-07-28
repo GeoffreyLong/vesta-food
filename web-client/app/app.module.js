@@ -9,7 +9,7 @@ angular.module('vestaApp', [
   'ngFileUpload',
   'ezfb',
   'vestaNav',
-  'storesView',
+  'foodsView',
   'splogin',
   'storeFront',
   'storeEdit',
