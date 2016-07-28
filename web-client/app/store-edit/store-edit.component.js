@@ -13,18 +13,9 @@ angular.module('storeEdit').component('storeEdit', {
     $http.get('/api/store/' + storeId).then(function(store) {
       $scope.store = store.data;
 
-      $scope.store.date = new Date($scope.store.startDateTime);
-      $scope.store.startTime = new Date($scope.store.startDateTime);
-      $scope.store.endTime = new Date($scope.store.endDateTime);
-
-
       // Needed to pass to dialog
       dataService.setStore($scope.store);
       $scope.clonedStore = dataService.getClonedStore();
-      console.log($scope.storeForm.$error);
-      setTimeout(function(){
-        $('.md-datepicker-input-container').removeClass('md-datepicker-invalid');
-      }, 100);
     }, function(err) {
     });
 
@@ -95,40 +86,6 @@ angular.module('storeEdit').component('storeEdit', {
       });
     };
 
-    $scope.showHourConfirmDialog = function() {
-      var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
-      $mdDialog.show({
-        controller: function DialogController($mdDialog, $scope){
-          $scope.hide = function() {
-            $mdDialog.hide();
-          };
-          $scope.cancel = function() {
-            $mdDialog.cancel();
-          };
-          $scope.answer = function(answer) {
-            $mdDialog.hide(answer);
-          };
-        },
-        templateUrl: 'store-edit/hourConfirm.template.html',
-        parent: angular.element(document.body),
-        clickOutsideToClose:true,
-        fullscreen: useFullScreen,
-      })
-      .then(function(answer) {
-        // NOTE might want to consider saving this here to the DB as a temp file
-        if (answer === 'true') {
-          console.log("ok");
-        }
-      }, function() {
-        // Error handling?
-      });
-      $scope.$watch(function() {
-        return $mdMedia('xs') || $mdMedia('sm');
-      }, function(wantsFullScreen) {
-        $scope.customFullscreen = (wantsFullScreen === true);
-      });
-    };
-
     $scope.saveTempImage = function(tmpImage) {
       // Send the photo to the backend, 
       // get the callback, save the photo as the callback
@@ -178,20 +135,6 @@ angular.module('storeEdit').component('storeEdit', {
 
     };
 
-    $scope.alternatePhotoSave = function() {
-      // NOTE
-      //      It is possible to upload all of the data in one shot
-      //      For each photo that has been altered, first convert it to a blob
-      //      then use the foodName / profilePhoto to label 
-      //      fd.append('<fieldName>', storeData);
-      //      For instance, if the food was chili then
-      //        fd.append('chili', storeData);
-      //      Then on the server you could pair each req.file fieldname
-      //      with the proper field in the store object
-      //      This would reduce server load, but I think it might be bad practice?
-
-    }
-
 
     $scope.blobConversion = function(image) {
       // Convert to a format useable with ng-file-upload 
@@ -204,20 +147,6 @@ angular.module('storeEdit').component('storeEdit', {
       return new Blob([new Uint8Array(array)], {type: mimeString});
     }
 
-    // Callback to set the map after map initializes
-    NgMap.getMap().then(function(map) {
-      $scope.map = map;
-    });
-    $scope.placeChanged = function() {
-      // console.log(this.getPlace());
-      var place = this.getPlace();
-      if (place.geometry) {
-        var coords = place.geometry.location;
-        $scope.store.pickupAddress.lat = coords.lat();
-        $scope.store.pickupAddress.lng = coords.lng();
-      }
-    }
-
     // INTERESTING  passing in store and cloned store to this fn renders this useless
     //              I guess the variable binding makes this so
     $scope.checkEquality = function(){
@@ -227,12 +156,6 @@ angular.module('storeEdit').component('storeEdit', {
       return (JSON.stringify($scope.store) === JSON.stringify($scope.clonedStore));
     }
 
-    $scope.saveStoreInfo = function() {
-
-    }
-    $scope.saveFoodItem = function() {
-
-    }
     $scope.saveChanges = function() {
       // Send everything to the backend
       // Photos are moved from /tmp to the regular img directory
@@ -278,8 +201,7 @@ angular.module('storeEdit').component('storeEdit', {
       // Check to see if the error objects are empty
       // If they are then return true
       if ($.isEmptyObject($scope.storeForm.$error) 
-          && $.isEmptyObject($scope.foodFormContainer.$error)
-          && checkStoreHours()){
+          && $.isEmptyObject($scope.foodFormContainer.$error)){
         return true;
       }
 
@@ -303,47 +225,6 @@ angular.module('storeEdit').component('storeEdit', {
       return false;
     };
 
-    var checkStoreHours = function() {
-      var store = $scope.store;
-      var date = store.date;
-      var startTime = store.startTime;
-      var endTime = store.endTime;
-
-      if (!date || !startTime || !endTime) {
-        return false;
-      } 
-
-      // Construct a start DateTime without modifying store.date
-      var start = new Date(date);
-      start.setHours(startTime.getHours());
-      start.setMinutes(startTime.getMinutes());
-
-      // Construct a start DateTime without modifying store.date
-      var end = new Date(date);
-      end.setHours(endTime.getHours());
-      end.setMinutes(endTime.getMinutes());
-
-      // Ensure start DateTime is later than right now
-      // TODO Specific $error messages
-      //      Like $scope.storeForm.date.$setValidity("afterNow", false);
-      //      Then in template have an ng-message for date.$error.afterNow
-      //      Like ng-message="afterNow"
-      //      You might actually just add this to the ngModel though
-      //      So like ngModel.$setValidity("afterNow", false)... I'm not 100p on this
-      if (start < Date.now()){
-        // For now will not use the confirm dialog, only alerts
-        // $scope.showHourConfirmDialog();
-        alert("WARNING: Store opening hour before current hour");
-      }
-      if (end < Date.now() || endTime <= startTime) {
-        alert("Store Hour Errors");
-        return false;
-      }
-
-      $scope.store.startDateTime = start;
-      $scope.store.endDateTime = end;
-      return true;
-    };
 
     var checkPhotos = function(){
       if (!$scope.store.profilePhoto){

@@ -6,16 +6,8 @@ var Store = mongoose.model('Store', {
 	storeTitle: String,
 	profilePhoto: String,
 	description: String,
-  startDateTime: Date,
-  endDateTime: Date,
 	overallRating: Number,
-	neighborhood: String,
   isValid: Boolean,
-	pickupAddress: {
-    formatted: String,
-    lat: Number,
-    lng: Number
-  },
 	stripe: {
     access_token: String,
     livemode: Boolean,
