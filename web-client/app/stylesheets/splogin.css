@@ -35,6 +35,15 @@ splogin #splashPane #formContainer {
   left: 0;
   top: 40%;
 }
+splogin #splashPane #formContainer #explore {
+  font-size: 30px;
+  color: #fff;
+  padding: 10px;
+  background: #00b36f;
+}
+splogin #splashPane #formContainer #explore:hover {
+  background: #00e68f;
+}
 splogin #splashPane #formContainer #splashTag {
   color: #fff;
   font-weight: bold;

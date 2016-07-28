@@ -20,6 +20,11 @@ angular
         });
       }
 
+      function setTempSession() {
+        session = {};
+        session.temp = true;
+      }
+
       // If we know the session object exists and don't think we need to defer
       function getSessionSynch(){
         return session;
@@ -148,6 +153,7 @@ angular
       return {
         fblogin: fblogin,
         logout: logout,
+        setTempSession: setTempSession,
         getSessionSynch: getSessionSynch,
         getSession: getSession,
         getUserSession: getUserSession,

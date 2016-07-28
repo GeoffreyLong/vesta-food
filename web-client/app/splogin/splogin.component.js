@@ -5,6 +5,18 @@ angular.module('splogin').component('splogin', {
       authService.fblogin();
     };
 
+    $scope.tempSession = function(){
+      authService.setTempSession();
+
+      /* NOTE might need to do this
+      $http.post("/api/tempSession").then(function(response) {
+        
+      }, function(err) {
+
+      }
+      */
+    }
+
     $scope.placeChanged = function() {
       // This can be useful in gathering coordinates and whatnot
       // This way we only have to poll once if coordinates are ever needed

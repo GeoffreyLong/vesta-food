@@ -1,3 +1,6 @@
+$primaryColor = #00B36F
+
+
 /********************************** SPLOGIN **********************************/
 splogin
   #splashPane
@@ -39,6 +42,14 @@ splogin
       position: absolute
       left:0
       top: 40%;
+
+      #explore
+        font-size: 30px
+        color: #FFFFFF
+        padding: 10px
+        background: $primaryColor
+      #explore:hover
+        background: lighten($primaryColor, 10)
 
       #splashTag
         color: #FFFFFF
