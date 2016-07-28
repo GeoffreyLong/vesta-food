@@ -188,8 +188,11 @@ angular.module('storeEdit').component('storeEdit', {
         return false;
       }
 
-      // TODO deal with removals of food here (isAlive)?
       $scope.store.foods.forEach(function(food) {
+        // TODO deal with removals of food here (isAlive)?
+        food.isAlive = true;
+        food.isActive = true;
+
         // Make sure the storeId is set correctly
         food.store = $scope.store._id;
       });
