@@ -17,5 +17,9 @@ angular.module('profile').component('profile', {
       return (session && session.user && $scope.user
               && (session.user._id === $scope.user._id));
     }    
+
+    $scope.editUser = function() {
+      $location.path('/user/' + userId + '/edit');
+    }
   }
 });
