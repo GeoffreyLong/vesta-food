@@ -100,7 +100,9 @@ angular.module('vestaNav').component('vestaNav', {
       $mdDialog.show({
         controller: function DialogController(cartService, $scope, $mdDialog, 
                                               $location, dataService, $http, CONFIG){
-          $scope.cart = cartService.getCart();
+          cartService.getCart().then(function(cart) {
+            $scope.cart = cart;
+          });
 
           $scope.routeToEvent = function(eventId) {
             $mdDialog.hide();
@@ -176,7 +178,11 @@ angular.module('vestaNav').component('vestaNav', {
                     $mdDialog.hide();
                     $location.path('/dashboard');
                   }, function error(response) {
-
+                    // TODO Could add "at {{response.data}}"
+                    console.log(response);
+                    alert("Your charge did not go through, event stopped accepting orders. " + 
+                      "You will not be charged for this transaction");
+                    $mdDialog.hide();
                   })
                 }
               }

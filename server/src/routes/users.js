@@ -192,46 +192,50 @@ router.post('/:userId/purchases', function (req, res) {
 
   var applicationFee = Math.round(totalCost * 0.14);
 
-  User
-    .findById(hostId)
-    .then(function (host) {
-      console.log(host);
-      var sellerAccountId = host.hostStripe.stripe_user_id;
+  Event
+    .findById(eventId).populate('host')
+    .then(function (ev) {
+      var sellerAccountId = ev.host.hostStripe.stripe_user_id;
 
-      stripe.charges.create({
-        amount: totalCost,
-        currency: 'cad',
-        source: stripePaymentToken.id,
-        application_fee: applicationFee,
-        destination: sellerAccountId
-      }).then(function (charge) {
-        //convert to representation that works with database model
-        var purchaseFoods = _.map(foods, function (food) {
-          return {
-            id: food._id,
-            quantity: food.quantity
-          }
-        });
+      if (Date.now() > ev.orderCutoffTime) {
+        res.status(500).send(ev.orderCutoffTime);
+      }
+      else {
+        stripe.charges.create({
+          amount: totalCost,
+          currency: 'cad',
+          source: stripePaymentToken.id,
+          application_fee: applicationFee,
+          destination: sellerAccountId
+        }).then(function (charge) {
+          //convert to representation that works with database model
+          var purchaseFoods = _.map(foods, function (food) {
+            return {
+              id: food._id,
+              quantity: food.quantity
+            }
+          });
 
-        Purchase.create({
-          buyerId: buyerId,
-          eventId: eventId,
-          hostId: hostId,
-          foods: purchaseFoods,
-          stripeCharge: charge,
-          stripeToken: stripePaymentToken
-        }).then(function successCallback(purchase) {
-          res.status(200).send(purchase);
-        }, function errorCallback(purchaseError) {
-          console.log('error saving purchase to db');
-          console.log(purchaseError);
+          Purchase.create({
+            buyerId: buyerId,
+            eventId: eventId,
+            hostId: hostId,
+            foods: purchaseFoods,
+            stripeCharge: charge,
+            stripeToken: stripePaymentToken
+          }).then(function successCallback(purchase) {
+            res.status(200).send(purchase);
+          }, function errorCallback(purchaseError) {
+            console.log('error saving purchase to db');
+            console.log(purchaseError);
+            res.status(500).send();
+          })
+        }).catch(function (stripeError) {
+          console.log('error creating charge with stripe');
+          console.log(stripeError);
           res.status(500).send();
         })
-      }).catch(function (stripeError) {
-        console.log('error creating charge with stripe');
-        console.log(stripeError);
-        res.status(500).send();
-      })
+      }
     }, function (storeError) {
       console.log('error finding store by id');
       console.log(storeError);

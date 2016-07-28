@@ -5,7 +5,7 @@ var Purchase = mongoose.model('Purchase', {
   hostId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   eventId: {type: mongoose.Schema.Types.ObjectId, ref: 'Store'},
   foods: [{
-    food: {
+    id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Food'
     },

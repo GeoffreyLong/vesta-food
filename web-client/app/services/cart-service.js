@@ -1,6 +1,6 @@
 angular
   .module('cartService', [])
-  .service('cartService', function() {
+  .service('cartService', function($http, $q) {
     // TODO TODO TODO
     //      Using sessionStorage for testing, switch to localstorage for prod
     //      This will solve any persistency issues
@@ -84,13 +84,45 @@ angular
     }
 
     this.getCart = function() {
-      // This will protect us from the sessionStorage being empty
-      // And from sessionStorage.cart being empty
+      var deferred = $q.defer();
+      this.rakeCart().then(function(cart) {
+        deferred.resolve(cart);
+      });
+
+      return deferred.promise;
+    }
+
+    // Check to see if food items are still available to order
+    // If they aren't, then remove them 
+    // TODO perhaps add a client side alert saying we are removing 
+    //      a cart cause it is no longer available when we do so
+    // TODO see if this slows things down too much
+    this.rakeCart = function() {
+      var deferred = $q.defer();
       var cart = [];
       if (sessionStorage && sessionStorage.cart) 
         cart = JSON.parse(sessionStorage.cart || []);
 
-      return cart;
+      if (cart.length > 0) {
+        cart.forEach(function(subCart, index){
+          $http.get('/api/event/' + subCart.eventId).then(function(data) {
+            var ev = data.data;
+
+            if (!ev.isOpen) {
+              cart.splice(index, 1);
+            }
+          });
+        });
+        
+        // TODO Not sure if this is correctly updating the cart
+        sessionStorage.cart = JSON.stringify(cart);
+        deferred.resolve(cart);
+      }
+      else {
+        deferred.resolve(cart);
+      }
+
+      return deferred.promise;
     }
 
     this.updateCart = function(cart) {
