@@ -102,44 +102,44 @@ angular.module('vestaNav').component('vestaNav', {
                                               $location, dataService, $http, CONFIG){
           $scope.cart = cartService.getCart();
 
-          $scope.routeToStore = function(storeId) {
+          $scope.routeToEvent = function(eventId) {
             $mdDialog.hide();
-            $location.path('/store/' + storeId);
+            $location.path('/event/' + eventId);
           }
 
           // TODO it would probably be super smart to add error handling to this
           // NOTE not the fastest to keep passing it back to the cartService
           //      I tried to finagle with updating with the onRemoving field to no avail
           //      I didn't try for too long so there might be a solution if one were inclined
-          $scope.increaseQty = function(storeCartIdx, foodIdx){
-            $scope.cart[storeCartIdx].foods[foodIdx].quantity ++;
+          $scope.increaseQty = function(subCartIdx, foodIdx){
+            $scope.cart[subCartIdx].foods[foodIdx].quantity ++;
             cartService.updateCart($scope.cart);
           }
-          $scope.decreaseQty = function(storeCartIdx, foodIdx){
-            if ($scope.cart[storeCartIdx].foods[foodIdx].quantity != 0) {
-              $scope.cart[storeCartIdx].foods[foodIdx].quantity --;
+          $scope.decreaseQty = function(subCartIdx, foodIdx){
+            if ($scope.cart[subCartIdx].foods[foodIdx].quantity != 0) {
+              $scope.cart[subCartIdx].foods[foodIdx].quantity --;
               cartService.updateCart($scope.cart);
             }
           }
-          $scope.removeFood = function(storeCartIdx, foodIdx){
+          $scope.removeFood = function(subCartIdx, foodIdx){
             // Remove the item from the cart
-            $scope.cart[storeCartIdx].foods.splice(foodIdx, 1);
+            $scope.cart[subCartIdx].foods.splice(foodIdx, 1);
 
-            // If the storeCart is empty then remove that object
-            if ($scope.cart[storeCartIdx].foods.length == 0) {
+            // If the subCart is empty then remove that object
+            if ($scope.cart[subCartIdx].foods.length == 0) {
               // This will handle updating the cart in cartService and our scope
-              $scope.removeOrder(storeCartIdx);
+              $scope.removeOrder(subCartIdx);
             }
             else {
-              // If the storeCart is not empty then we have to update the cart
+              // If the subCart is not empty then we have to update the cart
               cartService.updateCart($scope.cart);
             }
           }
 
           
-          $scope.calculateTotal = function(storeCartIdx) {
+          $scope.calculateTotal = function(subCartIdx) {
             var total = 0;
-            $scope.cart[storeCartIdx].foods.forEach(function(food) {
+            $scope.cart[subCartIdx].foods.forEach(function(food) {
               total += food.quantity * food.price;
             });
 
@@ -149,28 +149,29 @@ angular.module('vestaNav').component('vestaNav', {
 
 
 
-          $scope.removeOrder = function(storeCartIdx) {
-            $scope.cart.splice(storeCartIdx, 1);
+          $scope.removeOrder = function(subCartIdx) {
+            $scope.cart.splice(subCartIdx, 1);
             cartService.updateCart($scope.cart);
           }
+
           // NOTE might be nice to put the chef's image here instead of the logo 
-          $scope.purchaseOrder = function(storeCartIdx) {
-            var storeCart = $scope.cart[storeCartIdx];
+          $scope.purchaseOrder = function(subCartIdx) {
+            var subCart = $scope.cart[subCartIdx];
             var handler = StripeCheckout.configure({
               key: CONFIG.STRIPE.PUBLIC_KEY,
               image: '/images/vesta/vesta_logo_greenbg.png',
               token: function(token) {
-                storeCart.token = token;
+                subCart.token = token;
                 if (token.error) {
                   window.alert('Payment failed! error: ' + result.error.message);
                 } 
                 else {
-                  $scope.removeOrder(storeCartIdx);
-                  console.log(storeCart);
-                  var userId = authService.getSession().user._id;
+                  $scope.removeOrder(subCartIdx);
+                  console.log(subCart);
+                  var userId = authService.getSessionSynch().user._id;
                   var url = "/api/users/" + userId + "/purchases";
                   $http.post(url, {
-                    data: storeCart
+                    data: subCart
                   }).then(function success(response) {
                     $mdDialog.hide();
                     $location.path('/dashboard');
@@ -181,9 +182,9 @@ angular.module('vestaNav').component('vestaNav', {
               }
             });
             handler.open({
-              name: storeCart.storeTitle,
-              description: "Make a purchase from " + storeCart.storeTitle,
-              amount: $scope.calculateTotal(storeCartIdx) * 100
+              name: subCart.eventName,
+              description: "Make a purchase from " + subCart.hostName,
+              amount: $scope.calculateTotal(subCartIdx) * 100
             });
           }
 

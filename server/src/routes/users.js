@@ -8,6 +8,7 @@ var _ = require('lodash');
 
 var User = require('../models/user');
 var Store = require('../models/store');
+var Event = require('../models/event');
 var Purchase = require('../models/purchase');
 
 var STRIPE_TOKEN_URI = 'https://connect.stripe.com/oauth/token';
@@ -80,20 +81,6 @@ var spliceTmp = function(string) {
 
 
 /**
- * Purchases made by the given user.
- */
-router.get('/:userId/purchases', function (req, res) {
-  var buyerId = req.params.userId;
-  Purchase.allByUser(buyerId).then(
-    function successCallback(purchases) {
-      res.status(200).send(purchases);
-    }, function errorCallback(error) {
-      res.status(500).send(error);
-    });
-})
-
-
-/**
  * Create a store for a given user.
  */
 router.post('/:userId/addStripe', function(req, res) {
@@ -163,6 +150,20 @@ router.get('/:userId/store/purchases', function(req, res) {
 
 
 /**
+ * Purchases made by the given user.
+ */
+router.get('/:userId/purchases', function (req, res) {
+  var buyerId = req.params.userId;
+  Purchase.allByUser(buyerId).then(
+    function successCallback(purchases) {
+      res.status(200).send(purchases);
+    }, function errorCallback(error) {
+      res.status(500).send(error);
+    });
+})
+
+
+/**
  * Create a new order
  * req.body: {
  *  storeId: String
@@ -176,10 +177,12 @@ router.get('/:userId/store/purchases', function(req, res) {
  */
 router.post('/:userId/purchases', function (req, res) {
   var buyerId = req.params.userId;
-  var storeCart = req.body.data;
-  var storeId = storeCart.storeId;
-  var foods = storeCart.foods;
-  var stripePaymentToken = storeCart.token;
+  var subCart = req.body.data;
+  var eventId = subCart.eventId;
+  var hostId = subCart.hostId;
+  var foods = subCart.foods;
+  var stripePaymentToken = subCart.token;
+
 
   var totalCost = 0;
   for (var i = 0; i < foods.length; i++) {
@@ -189,10 +192,11 @@ router.post('/:userId/purchases', function (req, res) {
 
   var applicationFee = Math.round(totalCost * 0.14);
 
-  Store
-    .getById(storeId)
-    .then(function (store) {
-      var sellerAccountId = store.stripe.stripe_user_id;
+  User
+    .findById(hostId)
+    .then(function (host) {
+      console.log(host);
+      var sellerAccountId = host.hostStripe.stripe_user_id;
 
       stripe.charges.create({
         amount: totalCost,
@@ -211,7 +215,8 @@ router.post('/:userId/purchases', function (req, res) {
 
         Purchase.create({
           buyerId: buyerId,
-          storeId: storeId,
+          eventId: eventId,
+          hostId: hostId,
           foods: purchaseFoods,
           stripeCharge: charge,
           stripeToken: stripePaymentToken

@@ -25,7 +25,7 @@ angular
      * @return              The number of the specific food item in the cart. 
      *                      Returns 0 on error.
      */
-    this.addToCart = function(eventId, hostId, food) {
+    this.addToCart = function(eventId, hostId, hostName, eventName, food) {
       // NOTE I think we want to do this if they don't have storage
       if (!sessionStorage) return 0;
 
@@ -68,6 +68,8 @@ angular
         var subCart = {};
         subCart.eventId = eventId;
         subCart.hostId = hostId;
+        subCart.hostName = hostName;
+        subCart.eventName = eventName;
         subCart.foods = [];
 
         returnQuantity = 1;

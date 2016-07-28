@@ -2,9 +2,10 @@ var mongoose = require('mongoose');
 
 var Purchase = mongoose.model('Purchase', {
   buyerId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-  storeId: {type: mongoose.Schema.Types.ObjectId, ref: 'Store'},
+  hostId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+  eventId: {type: mongoose.Schema.Types.ObjectId, ref: 'Store'},
   foods: [{
-    id: {
+    food: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Food'
     },

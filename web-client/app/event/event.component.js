@@ -67,8 +67,6 @@ angular.module('event').component('event', {
           $('.slick-track').css({'margin': 'auto'});
           $('md-card-actions').css({ 'display': 'flex' });
         }
-        console.log($(window).width());
-
 
         // Specific styling for fewer than three cards
         if ($(window).width() > 1300) {

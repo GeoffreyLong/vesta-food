@@ -14,13 +14,16 @@
     </div>
     <div ng-if="cart.length !== 0">
       <form>
-        <md-card ng-repeat="storeCart in cart">
+        <md-card ng-repeat="subCart in cart">
           <!-- TODO style like a materialize collection 
                     I like "avatar content" in http://materializecss.com/collections.html
           -->
           <md-list>
-            <md-subheader class="md-no-sticky storeTitle" ng-click="routeToStore(storeCart.storeId)"> {{storeCart.storeTitle}} </md-subheader>
-            <div layout="row" layout-align="space-between start" ng-repeat="food in storeCart.foods">
+            <md-subheader class="md-no-sticky eventTitle" 
+                          ng-click="routeToEvent(subCart.eventId)"> 
+              "{{subCart.eventName}}" hosted by {{subCart.hostName}} 
+            </md-subheader>
+            <div layout="row" layout-align="space-between start" ng-repeat="food in subCart.foods">
                 <md-button class="md-icon-button" ng-click="removeFood($parent.$index, $index)">
                   <md-icon class="material-icons"> close </md-icon>
                 </md-button>

@@ -72,7 +72,10 @@ angular.module('foodCard').component('foodCard', {
       //      Initially I planned on placing it inside the user session object
       //      I think it is better to not have to deal 
       //      with passing this info back and forth though
-      var foodQty = cartService.addToCart($scope.event._id, $scope.event.host._id, food);
+      var foodQty = cartService.addToCart($scope.event._id, $scope.event.host._id, 
+                                          $scope.event.host.displayName, 
+                                          $scope.event.name, food);
+      console.log($scope.event);
       $mdToast.show(
         $mdToast.simple()
           .textContent(foodQty + ' of item added to cart')
