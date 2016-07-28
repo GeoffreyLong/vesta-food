@@ -272,6 +272,20 @@ food-card md-card .foodImageInfo {
   margin-bottom: -29px;
   z-index: 1;
 }
+food-card md-card md-card-content {
+  padding: 10px;
+  margin-top: 5px;
+}
+food-card md-card md-card-content .avatar {
+  border: 3px solid #fff;
+}
+food-card md-card md-card-content button .material-icons {
+  height: 50px;
+  width: 50px;
+  line-height: 50px;
+  font-size: 50px;
+  color: #444;
+}
 food-card md-card md-card-actions {
   z-index: 71;
   margin: 0;
@@ -280,7 +294,7 @@ food-card md-card md-card-actions {
   background-color: #fff;
 }
 food-card md-card md-bottom-sheet {
-  margin-bottom: 90px;
+  margin-bottom: 82px;
 }
 food-card md-card md-bottom-sheet #foodPrice {
   padding-top: 10px;
