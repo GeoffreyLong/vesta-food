@@ -21,8 +21,11 @@
     {{event.startDateTime | date:'MM/dd/yyyy @ h:mma'}} 
     - {{event.endDateTime | date:'h:mma'}}
   </div>
-  <div class="underUnderline">
-    TODO say whether or not currently accepting orders?
+  <div ng-hide="!event.isOpen" class="underUnderline orderDeadline">
+    Order Deadline: {{event.orderCutoffTime | date: 'MM/dd/yyyy @ h:mma'}}
+  </div>
+  <div ng-show="!event.isOpen" class="underUnderline orderDeadline">
+    ORDERING IS CLOSED
   </div>
 </div>
 
