@@ -11,6 +11,7 @@ var Purchase = mongoose.model('Purchase', {
     },
     quantity: Number
   }],
+  completed: Date,
   stripeCharge: mongoose.Schema.Types.Mixed,
   stripeToken: mongoose.Schema.Types.Mixed
 });

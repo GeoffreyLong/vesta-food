@@ -197,6 +197,7 @@ router.post('/:userId/purchases', function (req, res) {
     .then(function (ev) {
       var sellerAccountId = ev.host.hostStripe.stripe_user_id;
 
+      // TODO Could give them a five minute grace period
       if (Date.now() > ev.orderCutoffTime) {
         res.status(500).send(ev.orderCutoffTime);
       }
@@ -216,11 +217,14 @@ router.post('/:userId/purchases', function (req, res) {
             }
           });
 
+          var curDate = Date.now();
+
           Purchase.create({
             buyerId: buyerId,
             eventId: eventId,
             hostId: hostId,
             foods: purchaseFoods,
+            completed: Date.now(),
             stripeCharge: charge,
             stripeToken: stripePaymentToken
           }).then(function successCallback(purchase) {
