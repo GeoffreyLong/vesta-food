@@ -182,7 +182,7 @@ slick:hover .slick-arrow.slick-prev:before,
 slick:hover .slick-arrow.slick-next:before {
   opacity: 1;
 }
-/******************************** STORES VIEW ********************************/
+/******************************** EVENTS VIEW ********************************/
 /* Hacky workaround to make flexbox images scale correctly */
 /* Allegedly adding flex="none" on a child may work, I haven't seen success */
 #viewContainer * {
@@ -226,18 +226,17 @@ slick:hover .slick-arrow.slick-next:before {
   color: #fca345;
 }
 #viewContainer md-card md-card-content {
-  padding-top: 0px;
 /* Padding in case there are no slick dots */
-}
-#viewContainer md-card md-card-content .slickPadding {
-  width: 100%;
-  height: 24px;
+  padding: 10px;
 }
 #viewContainer md-card md-card-content .avatar {
-  height: 50px;
-  width: 50px;
+/* NOTE adding this position relative put the avatar over the slick */
+  position: relative;
+  height: 75px;
+  width: 75px;
   border-radius: 50%;
-  margin-top: -20px;
+  border: 3px solid #fff;
+  margin-top: -40px;
 }
 #viewContainer md-card md-card-content .headlineContent {
   font-size: 24px;
@@ -253,6 +252,9 @@ slick:hover .slick-arrow.slick-next:before {
   font-weight: 600;
   color: #777;
   margin-left: -5px;
+}
+#viewContainer md-card md-card-content .subContent.orderBefore {
+  margin-left: -9px;
 }
 /******************************** FOOD CARD **********************************/
 food-card md-card {
